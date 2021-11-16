@@ -8,7 +8,7 @@ class Dog(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     name = db.Column(db.String(40), nullable=False)
     breed = db.Column(db.String(40), nullable=False)
-    description = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.Text, nullable=False)
     weight = db.Column(db.Integer, nullable=False)
     address = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(50), nullable=False)
@@ -18,7 +18,7 @@ class Dog(db.Model):
     longitude = db.Column(db.Float)
 
     user = db.relationship("User", back_populates="dogs")
-
+    images = db.relationship("Image", back_populates="dog", cascade="all, delete")
 
     def to_dict(self):
         return {
@@ -34,5 +34,5 @@ class Dog(db.Model):
             'latitude': self.latitude,
             'longitude': self.longitude,
             'user': self.user.owner_info(),
-            
+            'images': [image.image_info() for image in self.images],
         }
