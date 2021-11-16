@@ -1,0 +1,44 @@
+.profileButton {
+    width: 78px;
+    height: 40px;
+    border: 1px solid rgb(221,221,221);
+    margin-top: 11px;
+    border-radius: 21px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    transition: box-shadow .25s 0s;
+}
+
+.profileButton:hover {
+    box-shadow: -1px 1px 3px rgb(173, 173, 173), 1px 1px 3px rgb(173, 173, 173);
+}
+
+.threeLines {
+    display: flex;
+    flex-direction: column;
+    height: 12px;
+    justify-content: space-between;
+}
+
+.threeLines > div {
+    height: 2px;
+    background-color: black;
+    width: 14px;
+}
+
+.profileButtonUserIcon {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background-color: rgb(113,113,113);
+    background-size: cover;
+    background-position: center;
+}
+
+.noLoggedInUser {
+    font-size: 50px;
+    border-radius: 50%;
+    color:rgb(113,113,113);
+}
