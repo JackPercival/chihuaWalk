@@ -14,8 +14,8 @@ class Dog(db.Model):
     city = db.Column(db.String(50), nullable=False)
     state = db.Column(db.String(50), nullable=False)
     country = db.Column(db.String(50), nullable=False)
-    latitude = db.Column(db.Float)
-    longitude = db.Column(db.Float)
+    latitude = db.Column(db.Float, nullable=False)
+    longitude = db.Column(db.Float, nullable=False)
 
     user = db.relationship("User", back_populates="dog")
     images = db.relationship("Image", back_populates="dog", cascade="all, delete")

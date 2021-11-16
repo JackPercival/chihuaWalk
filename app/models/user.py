@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(60), nullable=False, unique=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    profile_pic = db.Column(db.String(255), nullable=False, unique=False)
+    profile_pic = db.Column(db.String(255), nullable=True, unique=False)
 
     dog = db.relationship("Dog", back_populates="user")
     review = db.relationship("Review", back_populates="user")
