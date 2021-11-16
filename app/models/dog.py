@@ -17,8 +17,10 @@ class Dog(db.Model):
     latitude = db.Column(db.Float)
     longitude = db.Column(db.Float)
 
-    user = db.relationship("User", back_populates="dogs")
+    user = db.relationship("User", back_populates="dog")
     images = db.relationship("Image", back_populates="dog", cascade="all, delete")
+    review = db.relationship("Review", back_populates="dog", cascade="all, delete")
+    walk = db.relationship("Walk", back_populates="dog", cascade="all, delete")
 
     def to_dict(self):
         return {
