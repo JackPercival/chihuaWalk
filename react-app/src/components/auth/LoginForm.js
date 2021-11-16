@@ -7,7 +7,7 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [address, setAddress] = useState('5 Canyon Point, Newport Coast')
+  const [address, setAddress] = useState('')
 
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
