@@ -1,0 +1,28 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 100px;
+    /* padding-top: 50px; */
+    height: 80px;
+    position: sticky;
+}
+
+.mainLogoTitle {
+    display: flex;
+    align-items: center;
+}
+
+.mainLogo {
+    font-family: 'Gloria Hallelujah', cursive;
+    color: rgb(255,56,93);
+    font-size: 50px;
+}
+
+.mainTitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 27px;
+    color: rgb(255,56,93);
+    margin-top: 10px;
+    margin-left: 6px;
+}
