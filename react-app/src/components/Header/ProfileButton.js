@@ -8,6 +8,7 @@ import { signUp } from '../../store/session';
 
 import './ProfileButton.css'
 import './login.css'
+import './signup.css'
 
 const ProfileButton = ({ user }) => {
     const dispatch = useDispatch();
@@ -17,14 +18,34 @@ const ProfileButton = ({ user }) => {
     const [showSignUpModal, setShowSignUpModal] = useState(false)
 
     const [errors, setErrors] = useState([]);
+    const [signUpErrors, setSignUpErrors] = useState([]);
     const [email, setEmail] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
+
     const [passwordLable, setPasswordLabel] = useState('passwordLable')
     const [emailLable, setEmailLabel] = useState('emailLable')
+    const [firstNameLable, setFirstNameLabel] = useState('firstNameLable')
+    const [lastNameLable, setLastNameLabel] = useState('lastNameLable')
     const [borderError, setBorderError] = useState('noBorderError')
     const [loginError, setLoginError] = useState('hidden')
+
+    const [signUpEmailError, setSignUpEmailError] = useState('noEmailErrorYet')
+    const [signUpEmailErrorMessaage, setSignUpEmailErrorMessage] = useState('')
+    const [signUpEmailErrorVisible, setSignUpEmailErrorVisible] = useState('hidden')
+
+    const [firstNameError, setFirstNameError] = useState('noFirstNameErrorYet')
+    const [firstNameErrorMessaage, setFirstNameErrorMessage] = useState('')
+    const [firstNameErrorVisible, setFirstNameErrorVisible] = useState('hidden')
+
+    const [lastNameError, setLastNameError] = useState('noLastNameErrorYet')
+    const [lastNameErrorMessaage, setLastNameErrorMessage] = useState('')
+    const [lastNameErrorVisible, setLastNameErrorVisible] = useState('hidden')
+
+    const [passwordError, setPasswordError] = useState('noPasswordErrorYet')
+    const [passwordErrorMessaage, setPasswordErrorMessage] = useState('')
+    const [passwordErrorVisible, setPasswordErrorVisible] = useState('hidden')
 
     useEffect(() => {
         if (!showMenu) return;
@@ -63,14 +84,58 @@ const ProfileButton = ({ user }) => {
     }, [email.length])
 
     useEffect(() => {
+        if (firstName.length > 0) {
+            setFirstNameLabel('firstNameSet')
+        } else {
+            setFirstNameLabel('firstNameLable')
+        }
+    }, [firstName.length])
+
+    useEffect(() => {
+        if (lastName.length > 0) {
+            setLastNameLabel('lastNameSet')
+        } else {
+            setLastNameLabel('lastNameLable')
+        }
+    }, [lastName.length])
+
+    useEffect(() => {
         if (errors.length > 0) {
             setLoginError('visible')
         }
     }, [errors])
 
+    useEffect(() => {
+        resetErrors();
+        console.log(signUpErrors)
+        if (signUpErrors.length) {
+            for (const error of signUpErrors) {
+                let errorArray = error.split(" : ")
+                console.log(errorArray)
+                if (errorArray[0] === "email") {
+                    setSignUpEmailError("signUpEmailError")
+                    setSignUpEmailErrorMessage(errorArray[1])
+                    setSignUpEmailErrorVisible('visible')
+                } else if (errorArray[0] === "first_name") {
+                    setFirstNameError("firstNameError")
+                    setFirstNameErrorMessage(errorArray[1])
+                    setFirstNameErrorVisible('visible')
+                } else if (errorArray[0] === "last_name") {
+                    setLastNameError("lastNameError")
+                    setLastNameErrorMessage(errorArray[1])
+                    setLastNameErrorVisible('visible')
+                } else if (errorArray[0] === "password") {
+                    setPasswordError("passwordError")
+                    setPasswordErrorMessage(errorArray[1])
+                    setPasswordErrorVisible('visible')
+                }
+            }
+        }
+    }, [signUpErrors])
+
       const onLogin = async (e) => {
         e.preventDefault();
-        const cleanEmail = email.toLocaleLowerCase()
+        const cleanEmail = email.toLowerCase()
         const data = await dispatch(login(cleanEmail, password));
         if (data) {
           setErrors(data);
@@ -112,14 +177,35 @@ const ProfileButton = ({ user }) => {
         const cleanEmail = email.toLocaleLowerCase()
           const data = await dispatch(signUp(firstName, lastName, cleanEmail, password));
           if (data) {
-            setErrors(data)
+            setSignUpErrors(data)
         } else {
-            setShowSignUpModal(false)
+            resetSignUpForm()
         }
       };
 
       const resetSignUpForm = () => {
         setShowSignUpModal(false)
+        setSignUpErrors([])
+        setEmail('')
+        setPassword('')
+        setFirstName('')
+        setLastName('')
+        resetErrors()
+      }
+
+      const resetErrors = () => {
+        setSignUpEmailError('noEmailErrorYet')
+        setSignUpEmailErrorMessage('')
+        setSignUpEmailErrorVisible('hidden')
+        setFirstNameError("noFirstNameErrorYet")
+        setFirstNameErrorMessage('')
+        setFirstNameErrorVisible('hidden')
+        setLastNameError("noLastNameErrorYet")
+        setLastNameErrorMessage('')
+        setLastNameErrorVisible('hidden')
+        setPasswordError("noPasswordErrorYet")
+        setPasswordErrorMessage(''[1])
+        setPasswordErrorVisible('hidden')
       }
 
     return (
@@ -133,8 +219,8 @@ const ProfileButton = ({ user }) => {
                     </div>
                     {user ? (
                         <>
-                        {user?.profile_pic ? (
-                            <div className="profileButtonUserIcon" style={{backgroundImage: `url(${user?.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
+                        {user.profile_pic ? (
+                            <div className="profileButtonUserIcon" style={{backgroundImage: `url(${user.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
                         ) : (
                             <div className="profileButtonUserIcon" style={{backgroundImage: 'url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png'}}></div>
                         )}
@@ -230,55 +316,71 @@ const ProfileButton = ({ user }) => {
                         <form id="signUpForm" autoComplete="off" onSubmit={onSignUp}>
                             <div className="formField">
                                 <input
-                                    className={borderError}
+                                    id={firstNameError}
                                     name='email'
                                     type="text"
                                     required
                                     autoComplete="off"
+                                    maxLength="60"
                                     value={firstName}
                                     onChange={(e) => setFirstName(e.target.value)}
                                 />
-                                <label id={emailLable}>First Name</label>
+                                <label id={firstNameLable}>First Name</label>
+                                <div className="loginError" style={{visibility: firstNameErrorVisible}}>
+                                    <div>!</div>
+                                    <span>{firstNameErrorMessaage}</span>
+                                </div>
                             </div>
                             <div className="formField">
                                 <input
-                                    className={borderError}
+                                    id={lastNameError}
                                     name='email'
                                     type="text"
                                     required
                                     autoComplete="off"
+                                    maxLength="60"
                                     value={lastName}
                                     onChange={(e) => setLastName(e.target.value)}
                                 />
-                                <label id={emailLable}>Last Name</label>
+                                <label id={lastNameLable}>Last Name</label>
+                                <div className="loginError" style={{visibility: lastNameErrorVisible}}>
+                                    <div>!</div>
+                                    <span>{lastNameErrorMessaage}</span>
+                                </div>
                             </div>
                             <div className="formField">
                                 <input
-                                    className={borderError}
+                                    id={signUpEmailError}
                                     name='email'
                                     type="text"
                                     required
                                     autoComplete="off"
+                                    maxLength="255"
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
                                 <label id={emailLable}>Email</label>
                             </div>
+                            <div className="loginError" style={{visibility: signUpEmailErrorVisible}}>
+                                <div>!</div>
+                                <span>{signUpEmailErrorMessaage}</span>
+                            </div>
                             <div className="formField">
                                 <input
-                                    className={borderError}
+                                    id={passwordError}
                                     name='password'
                                     type="password"
                                     required
                                     autoComplete="off"
+                                    maxLength="100"
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
                                 <label id={passwordLable}>Password</label>
                             </div>
-                            <div className="loginError" style={{visibility: loginError}}>
+                            <div className="loginError" style={{visibility: passwordErrorVisible}}>
                                 <div>!</div>
-                                <span> Email or password is invalid.</span>
+                                <span>{passwordErrorMessaage}</span>
                             </div>
                             <div className="loginButtons">
                                 <button className="formButton" type="submit">Sign Up</button>

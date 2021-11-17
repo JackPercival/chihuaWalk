@@ -12,7 +12,7 @@ import { authenticate } from './store/session';
 import './components/overall.css'
 
 function App() {
-  const [loaded, setLoaded] = useState(false);
+  const [isLoaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,33 +22,37 @@ function App() {
     })();
   }, [dispatch]);
 
-  if (!loaded) {
-    return 'null';
-  }
+  // if (!loaded) {
+  //   return 'null';
+  // }
 
   return (
-    <BrowserRouter>
-      <div className="pageContainer" id="pageContainer">
-        <Header />
-        <Switch>
-          <Route path='/' exact={true} >
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
-            <h1>Jack's Home Page</h1>
+    <>
+      {isLoaded && (
+        <BrowserRouter>
+          <div className="pageContainer" id="pageContainer">
+            <Header />
+            <Switch>
+              <Route path='/' exact={true} >
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
+                <h1>Jack's Home Page</h1>
 
-          </Route>
-        </Switch>
-      </div>
-    </BrowserRouter>
+              </Route>
+            </Switch>
+          </div>
+        </BrowserRouter>
+      )}
+    </>
   );
 }
 
