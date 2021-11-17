@@ -6,6 +6,7 @@
     width: 20vw;
     height: 20vw;
     position: relative;
+    margin: 10px;
 }
 
 /*
@@ -31,6 +32,7 @@
     min-height: 260px;
     width: 20vw;
     height: 20vw;
+    border-radius: 20px;
 }
 
 .each-slideshow-indicator {

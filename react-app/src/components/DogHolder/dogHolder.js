@@ -18,7 +18,7 @@ const DogHolder = ({dog}) => {
             </Link>
             )}
         </Slide>
-        {/* {dog.images} */}
+        <p>{dog.name}</p>
     </div>
   );
 }
