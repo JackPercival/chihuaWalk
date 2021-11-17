@@ -23,7 +23,7 @@ function App() {
   }, [dispatch]);
 
   if (!loaded) {
-    return null;
+    return 'null';
   }
 
   return (

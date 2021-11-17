@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 
 import { login, logout } from '../../store/session';
+import { signUp } from '../../store/session';
 
 import './ProfileButton.css'
 import './login.css'
@@ -11,13 +12,14 @@ import './login.css'
 const ProfileButton = ({ user }) => {
     const dispatch = useDispatch();
 
-
     const [showMenu, setShowMenu] = useState(false);
-    const [showSignUpModal, setShowSignUpModal] = useState(false)
     const [showLoginModal, setShowLoginModal] = useState(false)
+    const [showSignUpModal, setShowSignUpModal] = useState(false)
 
     const [errors, setErrors] = useState([]);
     const [email, setEmail] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [password, setPassword] = useState('');
     const [passwordLable, setPasswordLabel] = useState('passwordLable')
     const [emailLable, setEmailLabel] = useState('emailLable')
@@ -68,7 +70,8 @@ const ProfileButton = ({ user }) => {
 
       const onLogin = async (e) => {
         e.preventDefault();
-        const data = await dispatch(login(email, password));
+        const cleanEmail = email.toLocaleLowerCase()
+        const data = await dispatch(login(cleanEmail, password));
         if (data) {
           setErrors(data);
           setBorderError('borderError')
@@ -104,6 +107,21 @@ const ProfileButton = ({ user }) => {
         setLoginError('hidden')
       }
 
+      const onSignUp = async (e) => {
+        e.preventDefault();
+        const cleanEmail = email.toLocaleLowerCase()
+          const data = await dispatch(signUp(firstName, lastName, cleanEmail, password));
+          if (data) {
+            setErrors(data)
+        } else {
+            setShowSignUpModal(false)
+        }
+      };
+
+      const resetSignUpForm = () => {
+        setShowSignUpModal(false)
+      }
+
     return (
         <>
             <div className="profileButtonAndDropDown">
@@ -113,8 +131,14 @@ const ProfileButton = ({ user }) => {
                         <div></div>
                         <div></div>
                     </div>
-                    {user? (
-                        <div className="profileButtonUserIcon" style={{backgroundImage: `url(${user.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
+                    {user ? (
+                        <>
+                        {user?.profile_pic ? (
+                            <div className="profileButtonUserIcon" style={{backgroundImage: `url(${user?.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
+                        ) : (
+                            <div className="profileButtonUserIcon" style={{backgroundImage: 'url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png'}}></div>
+                        )}
+                        </>
                     ) : (
                         <div className="profileButtonUserIcon" style={{backgroundImage: `url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
                     )}
@@ -138,7 +162,7 @@ const ProfileButton = ({ user }) => {
                         ) : (
                             <div className="loggedOutProfileDropDown">
                                 <div onClick={() => setShowLoginModal(true)}>Log in</div>
-                                <div>Sign up</div>
+                                <div onClick={() => setShowSignUpModal(true)}>Sign up</div>
                             </div>
                         )}
                     </div>
@@ -151,11 +175,10 @@ const ProfileButton = ({ user }) => {
                             <div className="xToClose" onClick={resetLoginForm}>
                                 <i className="fas fa-times"></i>
                             </div>
-                            <h3>Login or sign up</h3>
+                            <h3>Login</h3>
                             <div></div>
                         </div>
                         <h2>Welcome to chihuaWalk</h2>
-
                         <form id="signUpForm" autoComplete="off" onSubmit={onLogin}>
                             <div className="formField">
                                 <input
@@ -188,6 +211,77 @@ const ProfileButton = ({ user }) => {
                             <div className="loginButtons">
                                 <button className="formButton" type="submit">Login</button>
                                 <button id="demoLoginButton" className="formButton" onClick={demoLogin}>Demo Login</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
+            {showSignUpModal && (
+                <div className="loginModal">
+                    <div className="loginFormContainer">
+                        <div className="topRowForm">
+                            <div className="xToClose" onClick={resetSignUpForm}>
+                                <i className="fas fa-times"></i>
+                            </div>
+                            <h3>Sign up</h3>
+                            <div></div>
+                        </div>
+                        <h2>Welcome to chihuaWalk</h2>
+                        <form id="signUpForm" autoComplete="off" onSubmit={onSignUp}>
+                            <div className="formField">
+                                <input
+                                    className={borderError}
+                                    name='email'
+                                    type="text"
+                                    required
+                                    autoComplete="off"
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                />
+                                <label id={emailLable}>First Name</label>
+                            </div>
+                            <div className="formField">
+                                <input
+                                    className={borderError}
+                                    name='email'
+                                    type="text"
+                                    required
+                                    autoComplete="off"
+                                    value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
+                                />
+                                <label id={emailLable}>Last Name</label>
+                            </div>
+                            <div className="formField">
+                                <input
+                                    className={borderError}
+                                    name='email'
+                                    type="text"
+                                    required
+                                    autoComplete="off"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                                <label id={emailLable}>Email</label>
+                            </div>
+                            <div className="formField">
+                                <input
+                                    className={borderError}
+                                    name='password'
+                                    type="password"
+                                    required
+                                    autoComplete="off"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                                <label id={passwordLable}>Password</label>
+                            </div>
+                            <div className="loginError" style={{visibility: loginError}}>
+                                <div>!</div>
+                                <span> Email or password is invalid.</span>
+                            </div>
+                            <div className="loginButtons">
+                                <button className="formButton" type="submit">Sign Up</button>
                             </div>
                         </form>
                     </div>

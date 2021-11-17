@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header>
-          <Link to='/' exact="true" className="mainLogoTitle">
+          <Link to='/' className="mainLogoTitle">
             <div className="mainLogo">cW</div>
             <div className="mainTitle">chihuaWalk</div>
           </Link>
