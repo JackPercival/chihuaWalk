@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Header from './components/Header/Header';
+import Footer from './components/Footer/footer';
 import SplashPage from './components/SplashPage/SplashPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
@@ -34,6 +35,7 @@ function App() {
                 <SplashPage />
               </Route>
             </Switch>
+            <Footer />
           </div>
         </BrowserRouter>
       )}
