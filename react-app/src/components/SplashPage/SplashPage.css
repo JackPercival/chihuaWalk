@@ -1,0 +1,86 @@
+.topSpashPage {
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637163413/Capstone/dogWalk_dvgabk.jpg");
+    background-size: cover;
+    height: 70vh;
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-bottom: 100px;
+}
+
+.mainHeaderSlogan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.mainHeaderSlogan h1 {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 60px;
+    text-shadow: 0 0 3px #000;
+    margin: 0;
+}
+
+.mainHeaderSlogan h2 {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 30px;
+    text-shadow: 0 0 3px #000;
+    margin: 0;
+    position: absolute;
+    top: 80px;
+    left: -200px;
+    width: 800px;
+}
+
+.notSureContainer {
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637166464/Capstone/labwalk_imn08s.jpg");
+    background-size: cover;
+    height: 60vh;
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    justify-content: flex-end;
+    align-items: center;
+    border-radius: 20px;
+    margin-bottom: 100px;
+}
+
+.notSureContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.notSureContainer h2 {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 30px;
+    text-shadow: 0 0 3px #000;
+    margin: 0;
+}
+
+.flexibleButton {
+    width: fit-content;
+    color: rgb(170,1,135);
+    font-size: 22px;
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    border-radius: 21px;
+    width: fit-content;
+    padding: 10px 15px;
+    cursor: pointer;
+    margin: 20px;
+}
+
+.flexibleButton:hover div {
+    color:rgb(209, 14, 170);
+}
