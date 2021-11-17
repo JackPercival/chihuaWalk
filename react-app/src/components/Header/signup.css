@@ -1,0 +1,45 @@
+#firstNameSet {
+    top: 13px;
+    font-size: 13px;
+}
+
+#lastNameSet {
+    top: 13px;
+    font-size: 13px;
+}
+
+#signUpEmailError {
+    border: 1px solid rgb(192,53,22);
+    color: rgb(192,53,22);
+}
+
+#signUpError + label {
+    color: rgb(192,53,22);
+}
+
+#firstNameError {
+    border: 1px solid rgb(192,53,22);
+    color: rgb(192,53,22);
+}
+
+#firstNameError + label {
+    color: rgb(192,53,22);
+}
+
+#lastNameError {
+    border: 1px solid rgb(192,53,22);
+    color: rgb(192,53,22);
+}
+
+#lastNameEmailError + label {
+    color: rgb(192,53,22);
+}
+
+#passwordError {
+    border: 1px solid rgb(192,53,22);
+    color: rgb(192,53,22);
+}
+
+#passwordError + label {
+    color: rgb(192,53,22);
+}
