@@ -28,11 +28,23 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="pageContainer">
+      <div className="pageContainer" id="pageContainer">
         <Header />
         <Switch>
           <Route path='/' exact={true} >
             <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+            <h1>Jack's Home Page</h1>
+
           </Route>
         </Switch>
       </div>

@@ -1,0 +1,106 @@
+.profileButtonAndDropDown {
+    position: relative;
+}
+
+.profileButton {
+    width: 78px;
+    height: 40px;
+    border: 1px solid rgb(221,221,221);
+    margin-top: 11px;
+    border-radius: 21px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+    transition: box-shadow .25s 0s;
+}
+
+.profileButton:hover {
+    box-shadow: -1px 1px 3px rgb(173, 173, 173), 1px 1px 3px rgb(173, 173, 173);
+}
+
+.threeLines {
+    display: flex;
+    flex-direction: column;
+    height: 12px;
+    justify-content: space-between;
+}
+
+.threeLines > div {
+    height: 2px;
+    background-color: black;
+    width: 14px;
+}
+
+.profileButtonUserIcon {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    background-color: rgb(113,113,113);
+    background-size: cover;
+    background-position: center;
+}
+
+.noLoggedInUser {
+    font-size: 50px;
+    border-radius: 50%;
+    color:rgb(113,113,113);
+}
+
+.profileDropDown {
+    position: absolute;
+    width: 242px;
+    height: fit-content;
+    box-sizing: border-box;
+    box-shadow: -1px 1px 3px rgb(214, 214, 214), 1px 1px 3px rgb(214, 214, 214);
+    border-radius: 10px;
+    right: 0;
+    top: 64px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.loggedInProfileDropDown> *:first-child div, .loggedOutProfileDropDown > *:first-child {
+    margin-top: 8px;
+}
+
+.loggedInProfileDropDown> *:last-child, .loggedOutProfileDropDown > *:last-child {
+    margin-bottom: 8px;
+}
+
+.loggedInProfileDropDown a div, .loggedOutProfileDropDown div {
+    padding: 8px;
+    padding-left: 12px;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.loggedInProfileDropDown > .logOutButton:hover {
+    background-color: rgb(244,244,244);
+}
+
+.loggedInProfileDropDown > a:hover div, .loggedOutProfileDropDown > div:hover {
+    background-color: rgb(244,244,244);
+}
+
+.dropDownLine {
+    height: 1px;
+    width: 242px;
+    background-color: rgb(224, 224, 224);
+    margin: 8px 0;
+}
+
+.logOutButton {
+    padding: 8px;
+    padding-left: 12px;
+    cursor: pointer;
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.profileDropDownLinks {
+    color:black;
+    font-size: 14px;
+}
