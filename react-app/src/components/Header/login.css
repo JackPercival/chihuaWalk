@@ -1,0 +1,94 @@
+.loginModal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.loginFormContainer {
+  background-color: white;
+  border-radius: 15px;
+  width: fit-content;
+  /* padding: 5px 15px 15px 15px; */
+  font-family: inherit;
+}
+
+.topRowForm {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  padding: 15px 35px;
+}
+
+.xToClose {
+    transition: all .2s ease-in-out;
+}
+
+.xToClose:hover {
+  color: grey;
+  cursor: pointer;
+}
+
+.xToClose:hover {
+  color: rgb(185, 185, 185);
+  cursor: pointer;
+}
+
+.loginFormContainer h2 {
+  font-family: "Roboto", sans-serif;
+  padding-left: 15px;
+}
+
+#signUpForm {
+  padding: 15px;
+}
+
+.formField {
+  position: relative;
+}
+
+.formField label {
+  position: absolute;
+  left: 35px;
+  top: 30px;
+  font-size: 20px;
+  font-weight: lighter;
+  color: rgb(113,113,113);
+  transition: all .2s ease-in-out;
+}
+
+.formField input {
+  box-sizing: border-box;
+  width: 567px;
+  height: 61px;
+  border-radius: 15px;
+  margin: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-left: 22px;
+  font-size: 20px;
+  color: rgb(113,113,113);
+}
+
+.formField input:focus + label {
+    top: 15px;
+    font-size: 14px;
+}
+
+.loginButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginButtons button {
+  width: 567px;
+  height: 55px;
+  margin: 5px;
+}
