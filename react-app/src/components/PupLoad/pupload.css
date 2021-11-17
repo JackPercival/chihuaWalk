@@ -26,4 +26,18 @@
 .pupLoadField {
     display: flex;
     flex-direction: column;
+    padding: 5px;
+}
+
+.pupLoadField input {
+    padding: 4px;
+    font-size: 18px;
+}
+
+.fieldSection {
+    padding: 15px;
+}
+
+textarea {
+    resize: none;
 }
