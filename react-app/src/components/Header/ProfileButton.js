@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 
 import { login, logout } from '../../store/session';
 import { signUp } from '../../store/session';

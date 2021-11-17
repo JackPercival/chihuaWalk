@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { addNewDog } from '../../store/dog';
+import { getKey } from '../../store/map';
 
 import './pupload.css'
 
 const Pupload = () => {
     const dispatch = useDispatch();
 
+    const key = useSelector((state) => state.maps.key);
     const user = useSelector(state => state.session.user);
 
     const [errors, setErrors] = useState([]);
@@ -19,13 +21,39 @@ const Pupload = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
-    const [lat, setLat] = useState('');
-    const [long, setLong] = useState('');
+    const [addressError, setAddressError] = useState('Invalid address.');
+
+    useEffect(() => {
+        if (!key) {
+          dispatch(getKey());
+        }
+      }, [dispatch, key]);
+
+
+    //Get the longitude/latitude coordinates of the address by calling a google API
+    const getGeoCoordinates = async (address) => {
+        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${key}`)
+        const data = await response.json();
+        return data;
+    }
 
     const addDog = async (e) => {
         e.preventDefault();
-        const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, country, 100, 100));
-        console.log(data)
+
+        // const fullAddress = `${address}, ${city}, ${state} ${country}`
+        // const encodedAddress = encodeURI(fullAddress)
+
+        // const realAddress = await getGeoCoordinates(encodedAddress)
+
+        // if (realAddress.status === "OK") {
+        //     const latitude = realAddress.results[0].geometry.location.lat
+        //     const longitude = realAddress.results[0].geometry.location.lng
+        //     const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, country, latitude, longitude));
+        // } else {
+        //     setAddressError("Invalid address.")
+        //     return;
+        // }
+        setAddressError("Invalid address.")
     }
 
   return (
@@ -136,12 +164,18 @@ const Pupload = () => {
                                     onChange={(e) => setCountry(e.target.value)}
                                 />
                             </div>
+                            {addressError.length > 0 && (
+                                <div className="loginError" id="pupLoadError">
+                                    <div>!</div>
+                                <span>{addressError}</span>
+                            </div>
+                            )}
                         </div>
 
                     </div>
                     <div>
                         <button type="submit">Add Dog</button>
-                        <button className="formButton">Cancel</button>
+                        <button className="formButton">Clear Form</button>
                     </div>
                 </form>
             </div>

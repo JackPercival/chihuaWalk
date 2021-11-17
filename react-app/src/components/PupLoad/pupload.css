@@ -32,6 +32,16 @@
 .pupLoadField input {
     padding: 4px;
     font-size: 18px;
+    width: 250px;
+    border: 1px solid rgb(175, 175, 175);
+}
+
+.pupLoadField textarea {
+    padding: 4px;
+    font-size: 14px;
+    width: 250px;
+    border: 1px solid rgb(175, 175, 175);
+    height: 70px;
 }
 
 .fieldSection {
@@ -40,4 +50,13 @@
 
 textarea {
     resize: none;
+}
+
+#pupLoadError {
+    font-size: 17px;
+}
+
+#pupLoadError div {
+    width: 17px;
+    height: 17px;
 }
