@@ -15,10 +15,14 @@ const ProfileButton = ({ user }) => {
     const [showMenu, setShowMenu] = useState(false);
     const [showSignUpModal, setShowSignUpModal] = useState(false)
     const [showLoginModal, setShowLoginModal] = useState(false)
+
     const [errors, setErrors] = useState([]);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loginError, setLoginError] = useState('');
+    const [passwordLable, setPasswordLabel] = useState('passwordLable')
+    const [emailLable, setEmailLabel] = useState('emailLable')
+    const [borderError, setBorderError] = useState('noBorderError')
+    const [loginError, setLoginError] = useState('hidden')
 
     useEffect(() => {
         if (!showMenu) return;
@@ -40,13 +44,36 @@ const ProfileButton = ({ user }) => {
         }
     }, [showSignUpModal, showLoginModal])
 
+    useEffect(() => {
+        if (password.length > 0) {
+            setPasswordLabel('passwordSet')
+        } else {
+            setPasswordLabel('passwordLable')
+        }
+    }, [password.length])
+
+    useEffect(() => {
+        if (email.length > 0) {
+            setEmailLabel('emailSet')
+        } else {
+            setEmailLabel('emailLable')
+        }
+    }, [email.length])
+
+    useEffect(() => {
+        if (errors.length > 0) {
+            setLoginError('visible')
+        }
+    }, [errors])
+
       const onLogin = async (e) => {
         e.preventDefault();
         const data = await dispatch(login(email, password));
         if (data) {
           setErrors(data);
+          setBorderError('borderError')
         } else {
-            setShowLoginModal(false)
+            resetLoginForm()
         }
       };
 
@@ -59,12 +86,23 @@ const ProfileButton = ({ user }) => {
         setPassword(demoPassword)
 
         await dispatch(login('demo@aa.io', 'password'));
-        setShowLoginModal(false)
+        resetLoginForm()
       };
 
       const onLogout = async (e) => {
         await dispatch(logout());
       };
+
+      const resetLoginForm = () => {
+        setShowLoginModal(false)
+        setErrors([])
+        setEmail('')
+        setPassword('')
+        setPasswordLabel('passwordLable')
+        setEmailLabel('emailLable')
+        setBorderError('noBorderError')
+        setLoginError('hidden')
+      }
 
     return (
         <>
@@ -110,7 +148,7 @@ const ProfileButton = ({ user }) => {
                 <div className="loginModal">
                     <div className="loginFormContainer">
                         <div className="topRowForm">
-                            <div className="xToClose" onClick={() => setShowLoginModal(false)}>
+                            <div className="xToClose" onClick={resetLoginForm}>
                                 <i className="fas fa-times"></i>
                             </div>
                             <h3>Login or sign up</h3>
@@ -121,6 +159,7 @@ const ProfileButton = ({ user }) => {
                         <form id="signUpForm" autoComplete="off" onSubmit={onLogin}>
                             <div className="formField">
                                 <input
+                                    className={borderError}
                                     name='email'
                                     type="text"
                                     required
@@ -128,12 +167,11 @@ const ProfileButton = ({ user }) => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
-                                <label>
-                                    Email
-                                </label>
+                                <label id={emailLable}>Email</label>
                                 </div>
                             <div className="formField">
                                 <input
+                                    className={borderError}
                                     name='password'
                                     type="password"
                                     required
@@ -141,11 +179,12 @@ const ProfileButton = ({ user }) => {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
-                                <label>Password</label>
+                                <label id={passwordLable}>Password</label>
                             </div>
-                            {errors.length > 0 && (
-                                <span className="loginError"> Email or password is invalid.</span>
-                            )}
+                            <div className="loginError" style={{visibility: loginError}}>
+                                <div>!</div>
+                                <span> Email or password is invalid.</span>
+                            </div>
                             <div className="loginButtons">
                                 <button className="formButton" type="submit">Login</button>
                                 <button id="demoLoginButton" className="formButton" onClick={demoLogin}>Demo Login</button>
