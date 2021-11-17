@@ -1,0 +1,29 @@
+.puploadContainer {
+    width: 90vw;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: fit-content;
+}
+
+.puploadContainer h2 {
+    font-size: 17px;
+    width: 600px;
+}
+
+/* .puploadForm {
+    display: flex;
+} */
+
+.formInputSection {
+    display: flex;
+    flex-wrap: nowrap;
+    border: 1px solid rgb(221,221,221);
+    border-radius: 10px;
+    width: fit-content;
+    padding: 20px;
+}
+
+.pupLoadField {
+    display: flex;
+    flex-direction: column;
+}

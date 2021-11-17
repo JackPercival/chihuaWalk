@@ -251,7 +251,7 @@ const ProfileButton = ({ user }) => {
                                 <Link to="/your-dogs">
                                     <div className="profileDropDownLinks">Your dogs</div>
                                 </Link>
-                                <Link to="/your-dogs">
+                                <Link to="/pupload">
                                     <div className="profileDropDownLinks">Post a pup</div>
                                 </Link>
                                 <Link to="/account-settings">
