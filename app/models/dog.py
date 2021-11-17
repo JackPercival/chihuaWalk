@@ -27,6 +27,7 @@ class Dog(db.Model):
             'id': self.id,
             'user_id': self.user_id,
             'name': self.name,
+            'breed': self.breed,
             'description': self.description,
             'weight': self.weight,
             'address': self.address,

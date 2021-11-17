@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Link } from 'react-router-dom';
 import { loadAllDogs } from '../../store/dog';
+import DogHolder from '../DogHolder/dogHolder';
+
+import './browse.css'
 
 const Browse = () => {
 
@@ -21,11 +24,12 @@ const Browse = () => {
   return (
     <>
         {isLoaded && (
-            <>
+            <div className="browseDogContainer">
+                <h1>Browse all dogs</h1>
                 {dogs?.map(dog =>
-                    <h1>{dog?.name}</h1>
+                    <DogHolder dog={dog} key={`Dog_Browse_${dog?.id}`}/>
                 )}
-            </>
+            </div>
 
         )}
     </>

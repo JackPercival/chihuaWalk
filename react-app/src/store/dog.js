@@ -1,5 +1,5 @@
 //constants
-const LOAD = 'channels/LOAD_CHANNELS'
+const LOAD = 'dogs/LOAD_DOGS'
 // const ADD_CHANNEL = 'channels/ADD_CHANNEL'
 // const UPDATE_CHANNEL = 'channels/UPDATE_CHANNEL'
 // const DELETE_CHANNEL = 'channels/DELETE_CHANNEL'
