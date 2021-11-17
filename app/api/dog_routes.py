@@ -11,7 +11,7 @@ dog_routes = Blueprint('dogs', __name__)
 def all_dogs():
     dogs = Dog.query.all()
     results = [dog.to_dict() for dog in dogs]
-    return {'servers': results}
+    return {'dogs': results}
 
 #Create a dog
 @dog_routes.route('/', methods=['POST'])
@@ -30,7 +30,7 @@ def add_dog():
 
 #Update a dog
 @dog_routes.route('/<int:dogId>', methods=['PUT'])
-def udpate_dog(dogId):
+def update_dog(dogId):
     form = NewDogForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
@@ -54,7 +54,7 @@ def udpate_dog(dogId):
 
 #Delete a dog
 @dog_routes.route('/<int:dogId>', methods=['DELETE'])
-def udpate_dog(dogId):
+def delete_dog(dogId):
     dog = Dog.query.filter(Dog.id == dogId).first()
     if dog:
         db.session.delete(dog)
