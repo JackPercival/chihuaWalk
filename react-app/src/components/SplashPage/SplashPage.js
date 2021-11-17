@@ -26,6 +26,41 @@ const SplashPage = () => {
                 </div>
             </div>
         </div>
+        <h3 className="inspiration">Inspiration for your next walk</h3>
+        <div className="inspirationCardContainer">
+            <Link to="/browse">
+                <div className="inspirationCard">
+                    <div className="inspirationImage"></div>
+                    <div className="inspirationContent">
+                        <div>Small Dogs</div>
+                    </div>
+                </div>
+            </Link>
+            <Link to="/browse">
+                <div className="inspirationCard" id="mediumDog">
+                    <div className="inspirationImage"></div>
+                    <div className="inspirationContent">
+                        <div>Medium Dogs</div>
+                    </div>
+                </div>
+            </Link>
+            <Link to="/browse">
+                <div className="inspirationCard" id="largeDog">
+                    <div className="inspirationImage"></div>
+                    <div className="inspirationContent">
+                        <div>Large Dogs</div>
+                    </div>
+                </div>
+            </Link>
+            <Link to="/browse">
+                <div className="inspirationCard" id="xlargeDog">
+                    <div className="inspirationImage"></div>
+                    <div className="inspirationContent">
+                        <div>Extra Large Dogs</div>
+                    </div>
+                </div>
+            </Link>
+        </div>
     </div>
   );
 }

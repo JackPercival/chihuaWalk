@@ -1,16 +1,23 @@
+.splashPageContainer {
+    width: 85vw;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: fit-content;
+    box-sizing: border-box;
+    margin-bottom: 100px;
+}
+
 .topSpashPage {
     background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637163413/Capstone/dogWalk_dvgabk.jpg");
     background-size: cover;
     height: 70vh;
-    width: 90vw;
-    margin: 0 auto;
+    width: 85vw;
+    margin: 60px auto 100px auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 20px;
-    margin-bottom: 100px;
-    max-width: 1600px;
 }
 
 .mainHeaderSlogan {
@@ -44,12 +51,10 @@
     background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637166464/Capstone/labwalk_imn08s.jpg");
     background-size: cover;
     height: 70vh;
-    width: 90vw;
-    max-width: 1600px;
+    width: 85vw;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
     justify-content: flex-end;
     align-items: center;
     border-radius: 20px;
@@ -86,4 +91,78 @@
 
 .flexibleButton:hover div {
     color:rgb(209, 14, 170);
+}
+
+.flexibleButton a:visited {
+    color: inherit;
+}
+
+.inspiration {
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+}
+
+.inspirationCardContainer {
+    display: flex;
+    width: 85vw;
+    justify-content: space-between;
+    font-family: 'Roboto', sans-serif;
+}
+
+.inspirationCard {
+    height: 27vw;
+    width: 19vw;
+    max-height: 500px;
+    max-width: 385px;
+    background-color: rgb(188,27,110);
+    border-radius: 13px;
+    transition: box-shadow .4s 0s;
+}
+
+.inspirationCard:hover {
+    box-shadow: -3px 3px 5px rgb(173, 173, 173), 3px 3px 5px rgb(173, 173, 173);
+}
+
+.inspirationImage {
+    width: 19vw;
+    max-width: 385px;
+    height: 16vw;
+    max-height: 250px;
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637170002/Capstone/smalldog_yjlpa5.jpg");
+    background-size: cover;
+    border-top-left-radius: 13px;
+    border-top-right-radius: 13px;
+}
+
+.inspirationContent div {
+    color: white;
+    font-family: inherit;
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 25px;
+
+}
+
+#mediumDog .inspirationImage {
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637170980/Capstone/mediumDog_atwe5i.jpg");
+}
+
+#mediumDog {
+    background-color: rgb(217,59,49);
+}
+
+#largeDog .inspirationImage {
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637171096/Capstone/lab_jjik8n.jpg");
+}
+
+#largeDog {
+    background-color: rgb(204,45,74);
+}
+
+#xlargeDog .inspirationImage {
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637171320/Capstone/gratedane_iojn8w.jpg");
+}
+
+#xlargeDog {
+    background-color: rgb(222,49,81);
 }
