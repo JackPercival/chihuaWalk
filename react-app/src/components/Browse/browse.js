@@ -26,9 +26,11 @@ const Browse = () => {
         {isLoaded && (
             <div className="browseDogContainer">
                 <h1>Browse all dogs</h1>
-                {dogs?.map(dog =>
-                    <DogHolder dog={dog} key={`Dog_Browse_${dog?.id}`}/>
-                )}
+                <div className="allDogsContainer">
+                    {dogs?.map(dog =>
+                        <DogHolder dog={dog} key={`Dog_Browse_${dog?.id}`}/>
+                    )}
+                </div>
             </div>
 
         )}

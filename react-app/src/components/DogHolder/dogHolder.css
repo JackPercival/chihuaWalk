@@ -1,6 +1,49 @@
-.browseDogContainer {
-    width: 85vw;
-    max-width: 1600px;
-    margin: 0 auto;
-    height: fit-content;
+.singleDogHolder {
+    max-width: 300px;
+    min-width: 260px;
+    max-height: 300px;
+    min-height: 260px;
+    width: 20vw;
+    height: 20vw;
+    position: relative;
+}
+
+/*
+.react-slideshow-container {
+    max-width: 200px;
+    width: 200px;
+} */
+
+.dogSlide {
+    max-width: 300px;
+    min-width: 260px;
+    max-height: 300px;
+    min-height: 260px;
+    width: 20vw;
+    height: 20vw;
+}
+
+.dogImageSlide {
+    background-size: cover;
+    max-width: 300px;
+    min-width: 260px;
+    max-height: 300px;
+    min-height: 260px;
+    width: 20vw;
+    height: 20vw;
+}
+
+.each-slideshow-indicator {
+    position: absolute;
+    top: -40px;
+    left: -20px;
+}
+
+.react-slideshow-container+ul.indicators .each-slideshow-indicator:before {
+    background: white;
+}
+
+.react-slideshow-container .default-nav {
+    width: 20px;
+    height: 20px;
 }
