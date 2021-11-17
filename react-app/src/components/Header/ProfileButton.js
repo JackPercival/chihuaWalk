@@ -108,15 +108,18 @@ const ProfileButton = ({ user }) => {
             </div>
             {showLoginModal && (
                 <div className="loginModal">
-                    <div className="formContainer">
-                        <h3>Login or sign up</h3>
-                        <h2>Welcome to Airbnb</h2>
+                    <div className="loginFormContainer">
+                        <div className="topRowForm">
+                            <div className="xToClose" onClick={() => setShowLoginModal(false)}>
+                                <i className="fas fa-times"></i>
+                            </div>
+                            <h3>Login or sign up</h3>
+                            <div></div>
+                        </div>
+                        <h2>Welcome to chihuaWalk</h2>
 
                         <form id="signUpForm" autoComplete="off" onSubmit={onLogin}>
                             <div className="formField">
-                                <label id={loginError}>
-                                    Email
-                                </label>
                                 <input
                                     name='email'
                                     type="text"
@@ -125,13 +128,12 @@ const ProfileButton = ({ user }) => {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                 />
+                                <label>
+                                    Email
+                                </label>
                                 </div>
                             <div className="formField">
-                                <label id={loginError}>
-                                    Password
-                                </label>
                                 <input
-
                                     name='password'
                                     type="password"
                                     required
@@ -139,9 +141,10 @@ const ProfileButton = ({ user }) => {
                                     value={password}
                                     onChange={(e) => setPassword(e.target.value)}
                                 />
+                                <label>Password</label>
                             </div>
                             {errors.length > 0 && (
-                                <span className="loginError"> - Login or password is invalid.</span>
+                                <span className="loginError"> Email or password is invalid.</span>
                             )}
                             <div className="loginButtons">
                                 <button className="formButton" type="submit">Login</button>
