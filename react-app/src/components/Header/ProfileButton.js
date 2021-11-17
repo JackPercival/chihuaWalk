@@ -107,11 +107,9 @@ const ProfileButton = ({ user }) => {
 
     useEffect(() => {
         resetErrors();
-        console.log(signUpErrors)
         if (signUpErrors.length) {
             for (const error of signUpErrors) {
                 let errorArray = error.split(" : ")
-                console.log(errorArray)
                 if (errorArray[0] === "email") {
                     setSignUpEmailError("signUpEmailError")
                     setSignUpEmailErrorMessage(errorArray[1])
