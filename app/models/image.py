@@ -18,6 +18,4 @@ class Image(db.Model):
         }
 
     def image_info(self):
-        return {
-            'url': self.url
-        }
+        return self.url

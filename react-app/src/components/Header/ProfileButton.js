@@ -62,9 +62,21 @@ const ProfileButton = ({ user }) => {
     useEffect(() => {
         if (showSignUpModal || showLoginModal) {
             document.body.style.overflowY = 'hidden';
+            const arrows = document.querySelectorAll(".react-slideshow-container .nav")
+
+            for (let x = 0; x < arrows.length; x++) {
+                arrows[x].style.zIndex = 0;
+            }
+
         } else {
             document.body.style.overflowY = 'auto';
+            const arrows = document.querySelectorAll(".react-slideshow-container .nav")
+
+            for (let x = 0; x < arrows.length; x++) {
+                arrows[x].style.zIndex = 10;
+            }
         }
+
     }, [showSignUpModal, showLoginModal])
 
     useEffect(() => {
@@ -233,6 +245,9 @@ const ProfileButton = ({ user }) => {
                             <div className="loggedInProfileDropDown">
                                 <Link to="/your-walks">
                                     <div className="profileDropDownLinks">Walks</div>
+                                </Link>
+                                <Link to="/your-dogs">
+                                    <div className="profileDropDownLinks">Your dogs</div>
                                 </Link>
                                 <Link to="/your-dogs">
                                     <div className="profileDropDownLinks">Post a pup</div>

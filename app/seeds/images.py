@@ -15,6 +15,10 @@ def seed_images():
     image8 = Image(dog_id=3, url='https://www.ancarevet.com/sites/default/files/styles/large/public/labrador-retriever-dog-breed-info.jpg?itok=-Z_ky5J6')
     image9 = Image(dog_id=3, url='https://www.ancarevet.com/sites/default/files/styles/large/public/labrador-retriever-dog-breed-info.jpg?itok=-Z_ky5J6')
 
+    for j in range (4,9):
+        for i in range(1,4):
+            db.session.add(Image(dog_id=j, url='https://www.ancarevet.com/sites/default/files/styles/large/public/labrador-retriever-dog-breed-info.jpg?itok=-Z_ky5J6'))
+
     db.session.add(image1)
     db.session.add(image2)
     db.session.add(image3)

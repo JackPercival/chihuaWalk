@@ -1,0 +1,17 @@
+.browseDogContainer {
+    width: 90vw;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: fit-content;
+}
+
+.allDogsContainer {
+    display: flex;
+    /* justify-content: space-between; */
+    flex-wrap: wrap;
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+
+

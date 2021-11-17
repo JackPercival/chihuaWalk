@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/footer';
 import SplashPage from './components/SplashPage/SplashPage';
+import Browse from './components/Browse/browse';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import { authenticate } from './store/session';
 
@@ -20,9 +21,6 @@ function App() {
     })();
   }, [dispatch]);
 
-  // if (!loaded) {
-  //   return 'null';
-  // }
 
   return (
     <>
@@ -30,11 +28,16 @@ function App() {
         <BrowserRouter>
           <div className="pageContainer" id="pageContainer">
             <Header />
-            <Switch>
-              <Route path='/' exact={true} >
-                <SplashPage />
-              </Route>
-            </Switch>
+            <div className="mainContent">
+              <Switch>
+                <Route path='/' exact={true} >
+                  <SplashPage />
+                </Route>
+                <Route path='/browse' exact={true} >
+                  <Browse />
+                </Route>
+              </Switch>
+            </div>
             <Footer />
           </div>
         </BrowserRouter>
