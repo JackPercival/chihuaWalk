@@ -1,0 +1,53 @@
+.topSpashPage {
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637163413/Capstone/dogWalk_dvgabk.jpg");
+    background-size: cover;
+    height: 70vh;
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    margin-bottom: 50px;
+}
+
+.meanHeaderSlogan {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.meanHeaderSlogan h1 {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 60px;
+    text-shadow: 0 0 2px #000;
+    margin: 0;
+}
+
+.meanHeaderSlogan h2 {
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 30px;
+    text-shadow: 0 0 2px #000;
+    margin: 0;
+    position: absolute;
+    top: 80px;
+    left: -200px;
+    width: 800px;
+}
+
+.notSureContainer {
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637165012/Capstone/labwalk_lmoygn.jpg");
+    background-size: cover;
+    height: 70vh;
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
