@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Slide } from 'react-slideshow-image';
-import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
-import { loadAllDogs } from '../../store/dog';
+import {  Link } from 'react-router-dom';
 
 import 'react-slideshow-image/dist/styles.css'
 import './dogHolder.css'
@@ -18,7 +16,15 @@ const DogHolder = ({dog}) => {
             </Link>
             )}
         </Slide>
-        <p>{dog.name}</p>
+        <Link to={`/dogs/${dog.id}`}>
+            <div className="dogInfo">
+                <p className="dogName">{dog.name}</p>
+                <div className='dogStats'>
+                    <p>{dog.breed}</p>
+                    <p>{`${dog.weight} lbs`}</p>
+                </div>
+            </div>
+        </Link>
     </div>
   );
 }

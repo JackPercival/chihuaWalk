@@ -1,19 +1,15 @@
 .singleDogHolder {
     max-width: 300px;
     min-width: 260px;
-    max-height: 300px;
+    max-height: 360px;
     min-height: 260px;
     width: 20vw;
-    height: 20vw;
+    height: 25vw;
     position: relative;
     margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
-
-/*
-.react-slideshow-container {
-    max-width: 200px;
-    width: 200px;
-} */
 
 .dogSlide {
     max-width: 300px;
@@ -48,4 +44,33 @@
 .react-slideshow-container .default-nav {
     width: 20px;
     height: 20px;
+}
+
+.dogInfo {
+    position: absolute;
+    bottom: 0px;
+    padding-top: 20px;
+    color: black;
+}
+
+.dogName {
+    margin: 0;
+    font-size: 23px;
+    font-weight: 700;
+}
+
+.dogInfo div {
+    display: flex;
+    justify-content: space-between;
+    max-width: 290px;
+    min-width: 240px;
+    width: 19vw;
+    height: fit-content;
+
+}
+
+.dogStats p {
+    margin: 0;
+    color: rgb(113,113,113);
+    font-weight: 300;
 }

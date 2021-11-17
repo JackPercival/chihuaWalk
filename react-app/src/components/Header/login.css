@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: center;
   font-family: Arial, Helvetica, sans-serif;
+  z-index: 9999;
 }
 
 .loginFormContainer {
@@ -16,6 +17,7 @@
   border-radius: 15px;
   width: fit-content;
   font-family: inherit;
+  z-index: 9999;
 }
 
 .loginFormContainer h2 {
