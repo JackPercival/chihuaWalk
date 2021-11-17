@@ -30,7 +30,7 @@ const loadDogs = (dogs) => ({
 
 
 export const loadAllDogs = () => async (dispatch) => {
-    const response = await fetch(`/api/dogs`)
+    const response = await fetch(`/api/dogs/`)
 
     if (response.ok) {
         const dogs = await response.json();
