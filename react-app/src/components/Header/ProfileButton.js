@@ -6,6 +6,7 @@ import LogoutButton from '../auth/LogoutButton';
 import { login, logout } from '../../store/session';
 
 import './ProfileButton.css'
+import './login.css'
 
 const ProfileButton = ({ user }) => {
     const dispatch = useDispatch();
@@ -30,6 +31,14 @@ const ProfileButton = ({ user }) => {
 
         return () => document.removeEventListener("click", closeMenu);
       }, [showMenu]);
+
+    useEffect(() => {
+        if (showSignUpModal || showLoginModal) {
+            document.body.style.overflowY = 'hidden';
+        } else {
+            document.body.style.overflowY = 'auto';
+        }
+    }, [showSignUpModal, showLoginModal])
 
       const onLogin = async (e) => {
         e.preventDefault();
@@ -58,80 +67,78 @@ const ProfileButton = ({ user }) => {
       };
 
     return (
-        <div className="profileButtonAndDropDown">
-            <div className="profileButton" onClick={() => setShowMenu(!showMenu)}>
-                <div className="threeLines">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-                {user? (
-                    <div className="profileButtonUserIcon" style={{backgroundImage: `url(${user.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
-                ) : (
-                    <div className="profileButtonUserIcon" style={{backgroundImage: `url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
-                )}
-            </div>
-            {showMenu && (
-                <div className="profileDropDown">
+        <>
+            <div className="profileButtonAndDropDown">
+                <div className="profileButton" onClick={() => setShowMenu(!showMenu)}>
+                    <div className="threeLines">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
                     {user? (
-                        <div className="loggedInProfileDropDown">
-                             <Link to="/your-walks">
-                                <div className="profileDropDownLinks">Walks</div>
-                            </Link>
-                            <Link to="/your-dogs">
-                                <div className="profileDropDownLinks">Post a pup</div>
-                            </Link>
-                            <Link to="/account-settings">
-                                <div className="profileDropDownLinks">Account</div>
-                            </Link>
-                            <div className="dropDownLine"></div>
-                            <div className="logOutButton" onClick={onLogout}>Log out</div>
-                        </div>
+                        <div className="profileButtonUserIcon" style={{backgroundImage: `url(${user.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
                     ) : (
-                        <div className="loggedOutProfileDropDown">
-                            <div onClick={() => setShowLoginModal(true)}>Log in</div>
-                            <div>Sign up</div>
-                        </div>
+                        <div className="profileButtonUserIcon" style={{backgroundImage: `url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
                     )}
                 </div>
-            )}
+                {showMenu && (
+                    <div className="profileDropDown">
+                        {user? (
+                            <div className="loggedInProfileDropDown">
+                                <Link to="/your-walks">
+                                    <div className="profileDropDownLinks">Walks</div>
+                                </Link>
+                                <Link to="/your-dogs">
+                                    <div className="profileDropDownLinks">Post a pup</div>
+                                </Link>
+                                <Link to="/account-settings">
+                                    <div className="profileDropDownLinks">Account</div>
+                                </Link>
+                                <div className="dropDownLine"></div>
+                                <div className="logOutButton" onClick={onLogout}>Log out</div>
+                            </div>
+                        ) : (
+                            <div className="loggedOutProfileDropDown">
+                                <div onClick={() => setShowLoginModal(true)}>Log in</div>
+                                <div>Sign up</div>
+                            </div>
+                        )}
+                    </div>
+                )}
+            </div>
             {showLoginModal && (
                 <div className="loginModal">
                     <div className="formContainer">
-                        <h1>Welcome back!</h1>
-                        <h2>We're so excited to see you again!</h2>
+                        <h3>Login or sign up</h3>
+                        <h2>Welcome to Airbnb</h2>
 
                         <form id="signUpForm" autoComplete="off" onSubmit={onLogin}>
                             <div className="formField">
-                            <label id={loginError}>
-                                Email
-                            </label>
-                            <input
-
-                                name='email'
-                                type="text"
-                                required
-                                autoComplete="off"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                            </div>
-                            {errors.length > 0 && (
-                                <span className="loginError"> - Login or password is invalid.</span>
-                            )}
+                                <label id={loginError}>
+                                    Email
+                                </label>
+                                <input
+                                    name='email'
+                                    type="text"
+                                    required
+                                    autoComplete="off"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                                </div>
                             <div className="formField">
-                            <label id={loginError}>
-                                Password
-                            </label>
-                            <input
+                                <label id={loginError}>
+                                    Password
+                                </label>
+                                <input
 
-                                name='password'
-                                type="password"
-                                required
-                                autoComplete="off"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
+                                    name='password'
+                                    type="password"
+                                    required
+                                    autoComplete="off"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
                             </div>
                             {errors.length > 0 && (
                                 <span className="loginError"> - Login or password is invalid.</span>
@@ -144,7 +151,7 @@ const ProfileButton = ({ user }) => {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 }
 
