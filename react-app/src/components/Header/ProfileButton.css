@@ -39,6 +39,7 @@
     background-color: rgb(113,113,113);
     background-size: cover;
     background-position: center;
+    border: 1px solid rgb(221,221,221);
 }
 
 .noLoggedInUser {
