@@ -10,6 +10,7 @@
     align-items: center;
     border-radius: 20px;
     margin-bottom: 100px;
+    max-width: 1600px;
 }
 
 .mainHeaderSlogan {
@@ -42,8 +43,9 @@
 .notSureContainer {
     background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637166464/Capstone/labwalk_imn08s.jpg");
     background-size: cover;
-    height: 60vh;
+    height: 70vh;
     width: 90vw;
+    max-width: 1600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -78,7 +80,7 @@
     width: fit-content;
     padding: 15px 25px;
     cursor: pointer;
-    margin: 20px;
+    margin: 20px 0 50px 0;
     text-align: center;
 }
 
