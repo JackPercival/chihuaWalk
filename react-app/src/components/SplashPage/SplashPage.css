@@ -74,11 +74,12 @@
     font-size: 22px;
     font-family: 'Roboto', sans-serif;
     background-color: white;
-    border-radius: 21px;
+    border-radius: 30px;
     width: fit-content;
-    padding: 10px 15px;
+    padding: 15px 25px;
     cursor: pointer;
     margin: 20px;
+    text-align: center;
 }
 
 .flexibleButton:hover div {
