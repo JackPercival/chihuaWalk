@@ -34,7 +34,12 @@ function YourDogs() {
                     <div className="yourDogList">
                         <h1>Your Dogs</h1>
                         {dogs.map(dog =>
-                            <DogSlide dog={dog} key={`Your_dog_${dog.id}`} />
+                            <div className="yourDogSingleDogContainer">
+                                <DogSlide dog={dog} key={`Your_dog_${dog.id}`} />
+                                <div className="yourDogSingleDogInfo">
+                                    <h3>{dog.name}</h3>
+                                </div>
+                            </div>
                         )}
                     </div>
 

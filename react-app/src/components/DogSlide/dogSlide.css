@@ -1,0 +1,14 @@
+#dogSlideID {
+    width: 270px;
+    height: 270px;
+    max-height: 270px;
+    max-width: 270px;
+}
+
+#dogImageSlideID {
+    width: 270px;
+    height: 270px;
+    max-width: 270px;
+    min-height: 270px;
+    max-height: 270px;
+}
