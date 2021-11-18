@@ -48,10 +48,14 @@ function SingleDog() {
                         <div className="fullDogInfo">
                             <div className="ownerInfo">
                                 <h3>{`Shelter owned by ${dog?.user.first_name} ${dog?.user.last_name}`}</h3>
-                                <div className="ownerIcon" style={{backgroundImage: `url(${dog?.images[1]})`}}></div>
+                                {dog?.user.profile_pic? (
+                                    <div className="ownerIcon" style={{backgroundImage: `url(${dog?.user.profile_pic})`}}></div>
+                                ) : (
+                                    <div className="ownerIcon" style={{backgroundImage: 'url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png'}}></div>
+                                )}
                             </div>
                         </div>
-                        <div className="dogScheduleWalkForm">Space for sign up form here</div>
+                        <div className="dogScheduleWalkForm">Space for Walk Schedule form here</div>
                     </div>
 
                 </div>
