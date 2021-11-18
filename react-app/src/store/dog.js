@@ -63,8 +63,6 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
       }),
     });
 
-    console.log(response)
-
     if (response.ok) {
       const data = await response.json();
       dispatch(addDog(data))
