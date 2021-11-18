@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { addNewDog } from '../../store/dog';
-import { getKey } from '../../store/map';
+import { getKey, getGeoCoordinates } from '../../store/map';
 
 import './pupload.css'
 
@@ -36,9 +36,8 @@ const Pupload = () => {
 
 
     //Get the longitude/latitude coordinates of the address by calling a google API
-    const getGeoCoordinates = async (address) => {
-        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${key}`)
-        const data = await response.json();
+    const getCoordinates = async (address) => {
+        const data = await dispatch(getGeoCoordinates(address))
         return data;
     }
 
@@ -50,15 +49,14 @@ const Pupload = () => {
             return;
         }
 
-        const fullAddress = `${address.trim()}, ${city.trim()}, ${state.trim()} ${country.trim()}`
-        const encodedAddress = encodeURI(fullAddress)
-
-        const realAddress = await getGeoCoordinates(encodedAddress)
+        const fullAddress = `${address.trim()}, ${city.trim()}, ${state.trim()}`
+        
+        const realAddress = await getCoordinates(fullAddress)
         console.log(realAddress)
 
-        if (realAddress.status === "OK") {
-            const latitude = realAddress.results[0].geometry.location.lat
-            const longitude = realAddress.results[0].geometry.location.lng
+        if (realAddress.coordinates.length === 1) {
+            const latitude = realAddress.coordinates[0].geometry.location.lat
+            const longitude = realAddress.coordinates[0].geometry.location.lng
             const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3));
 
             if (data[0] === "Error") {
