@@ -24,6 +24,13 @@ function SingleDog() {
         }
     }, [dispatch]);
 
+    //Redirect if the dog does not exist
+    useEffect(() => {
+        if (isLoaded && !dog) {
+            history.push('/')
+        }
+    })
+
     return (
         <>
             {isLoaded && (
@@ -36,6 +43,15 @@ function SingleDog() {
                             <div className="smallDogImage" id="firstSmallImage" style={{backgroundImage: `url(${dog?.images[1]})`}}></div>
                             <div className="smallDogImage" id="secondSmallImage" style={{backgroundImage: `url(${dog?.images[2]})`}}></div>
                         </div>
+                    </div>
+                    <div className="dogInfoAndCreateWalkContainer">
+                        <div className="fullDogInfo">
+                            <div className="ownerInfo">
+                                <h3>{`Shelter owned by ${dog?.user.first_name} ${dog?.user.last_name}`}</h3>
+                                <div className="ownerIcon" style={{backgroundImage: `url(${dog?.images[1]})`}}></div>
+                            </div>
+                        </div>
+                        <div className="dogScheduleWalkForm">Space for sign up form here</div>
                     </div>
 
                 </div>

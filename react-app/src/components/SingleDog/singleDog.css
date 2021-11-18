@@ -53,3 +53,23 @@
 #secondSmallImage {
     border-bottom-right-radius: 13px;
 }
+
+.dogInfoAndCreateWalkContainer {
+    display: flex;
+    width: 790px;
+    justify-content: space-between;
+}
+
+.fullDogInfo {
+    flex-grow: 1;
+    border: 1px solid red;
+}
+
+.dogScheduleWalkForm {
+    width: 367px;
+    height: 280px;
+    border: 1px solid black;
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 23px;
+}
