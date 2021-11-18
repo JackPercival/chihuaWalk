@@ -57,7 +57,7 @@ function YourDogs() {
                         </div>
 
                         <div className="yourDogMap">
-                            <MapContainer GMapSetting={GMapSetting}/>
+                            <MapContainer GMapSetting={GMapSetting} dogs={dogs}/>
                         </div>
 
                     </div>

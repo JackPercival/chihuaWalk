@@ -5,7 +5,7 @@ import { getKey } from '../../store/map';
 
 import Maps from './Maps'
 
-const MapContainer = ({ GMapSetting }) => {
+const MapContainer = ({ GMapSetting, dogs }) => {
   const key = useSelector((state) => state.maps.key);
   const dispatch = useDispatch();
 
@@ -20,7 +20,7 @@ const MapContainer = ({ GMapSetting }) => {
   }
 
   return (
-    <Maps apiKey={key} GMapSetting={GMapSetting} />
+    <Maps apiKey={key} GMapSetting={GMapSetting} dogs={dogs} />
   );
 };
 
