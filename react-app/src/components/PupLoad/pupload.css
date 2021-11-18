@@ -9,6 +9,13 @@
 .puploadContainer h2 {
     font-size: 17px;
     width: 660px;
+    box-sizing: border-box;
+    font-weight: 200;
+    line-height: 24px;
+    text-align: justify;
+    border: 1px solid rgb(221,221,221);
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .puploadFormsContainer {
@@ -110,5 +117,5 @@ textarea {
 
 .classYesAddressError {
     background-color: rgb(255, 154, 154);
-    
+
 }
