@@ -14,8 +14,8 @@
 .mainDogImage {
     max-width: 520px;
     max-height: 520px;
-    height: calc(24vw + 10px);
-    width: 22.5vw;
+    height: calc(26vw + 10px);
+    width: 23.5vw;
     border: 1px solid black;
     background-size: cover;
     border-top-left-radius: 13px;
@@ -30,8 +30,8 @@
 .smallDogImage {
     max-width: 260px;
     max-height: 260px;
-    height: 12vw;
-    width: 11.5vw;
+    height: 13vw;
+    width: 12.5vw;
     border: 1px solid black;
     background-size: cover;
     margin-left: 10px;
