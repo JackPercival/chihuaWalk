@@ -15,9 +15,7 @@ function YourDogs() {
 
     const user = useSelector(state => state.session.user);
     const dogs = useSelector(state => Object.values(state.dogs).filter(dog => dog?.user_id === Number(user.id)));
-    console.log(dogs)
 
-    // const dog = useSelector(state => state.dogs[dogId]);
     const [isLoaded, setIsLoaded] = useState(false);
 
 
@@ -51,13 +49,19 @@ function YourDogs() {
                                         <div className="dogInfoSingleDog">{dog.breed}</div>
                                         <div className="dogInfoSingleDog">{dog.description}</div>
                                         <div className="dogInfoSingleDog">{`${dog.weight} lbs.`}</div>
+                                        {dog.user_id === Number(user.id) && (
+                                            <div className="editDeleteDogButtons">
+                                                <div>Edit</div>
+                                                <div>Delete</div>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             )}
                         </div>
 
                         <div className="yourDogMap">
-                            <MapContainer GMapSetting={GMapSetting} dogs={dogs}/>
+                            {/* <MapContainer GMapSetting={GMapSetting} dogs={dogs}/> */}
                         </div>
 
                     </div>

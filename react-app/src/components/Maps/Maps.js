@@ -23,20 +23,6 @@ const goToDogPage = dogId => {
     history.push(`/dogs/${dogId}`)
 }
 
-const midPoint = (dogs) => {
-    let long = 0;
-    let lat = 0;
-    dogs.forEach(dog => {
-        long += dog.longitude;
-        lat += dog.latitude
-   })
-
-    const length = dogs.length;
-
-    return [long/length, lat/length]
-
-}
-
 const center = {
     lat: latAvg,
     lng: longAvg,

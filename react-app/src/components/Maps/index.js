@@ -38,7 +38,7 @@ const MapContainer = ({ GMapSetting, dogs }) => {
 
 
   return (
-    <Maps apiKey={key} GMapSetting={GMapSetting} dogs={dogs} latAvg={latAvg} longAvg={longAvg}/>
+    <Maps apiKey={key} dogs={dogs} latAvg={latAvg} longAvg={longAvg}/>
   );
 };
 
