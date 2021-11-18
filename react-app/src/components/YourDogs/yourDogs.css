@@ -56,12 +56,69 @@
     text-align: center;
     padding: 10px 0;
     border: 1px solid rgb(221, 221, 221);
+    background-color: white;
     border-radius: 20px;
     cursor: pointer;
+    color: black;
+    transition: all 0.35s 0s;
+}
+
+.editDeleteDogButtons a {
     margin-right: 10px;
-    transition: box-shadow 0.25s 0s;
 }
 
 .editDeleteDogButtons div:hover {
-    box-shadow: -1px 1px 3px rgb(173, 173, 173), 1px 1px 3px rgb(173, 173, 173);
+    background-color: rgb(26,136,199);
+    color: white;
+}
+
+#deleteDogButton:hover {
+    background-color: rgb(204,45,74);
+}
+
+.deleteDogForm {
+    width: fit-content;
+    max-width: 500px;
+    height: fit-content;
+    max-height: 260px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.areYouSureDogDelete {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.dogDeleteConfirmButtons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dogDeleteConfirmButtons div {
+    border: 1px solid rgb(221, 221, 221);
+    margin-left: 15px;
+    cursor: pointer;
+    padding: 5px 10px;
+    width: 60px;
+    background-color: rgb(204,45,74);
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    transition: all 0.35s 0s;
+}
+
+.dogDeleteConfirmButtons div:hover {
+    background-color: rgb(151, 34, 55);
+    color: rgb(202, 202, 202);
+}
+
+#cancelDogDelete {
+    background-color: white;
+    color: black;
+}
+
+#cancelDogDelete:hover {
+    background-color: rgb(238, 238, 238);
 }

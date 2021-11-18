@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import DogSlide from '../DogSlide/dogSlide';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadAllDogs } from '../../store/dog';
+import { loadAllDogs, deleteSingleDog } from '../../store/dog';
 
 import MapContainer from '../Maps';
 
@@ -17,6 +17,9 @@ function YourDogs() {
     const dogs = useSelector(state => Object.values(state.dogs).filter(dog => dog?.user_id === Number(user.id)));
 
     const [isLoaded, setIsLoaded] = useState(false);
+    const [showDelete, setShowDelete] = useState(false);
+    const [dogToDelete, setDogToDelete] = useState('')
+    const [dogNameToDelete, setDogNameToDelete] = useState('')
 
 
     useEffect(() => {
@@ -34,6 +37,19 @@ function YourDogs() {
 		zoom: 4.4,
 	};
 
+    const showDeleteForm = (dog_id, name) => {
+        setDogToDelete(dog_id)
+        setDogNameToDelete(name)
+        setShowDelete(true)
+    }
+
+    const handleDogDelete = () => {
+        dispatch(deleteSingleDog(dogToDelete))
+        setShowDelete(false)
+        setDogToDelete('')
+        setDogNameToDelete('')
+    }
+
     return (
         <>
             {isLoaded && (
@@ -42,7 +58,7 @@ function YourDogs() {
                         <div className="yourDogList">
                             <h1>Your Dogs</h1>
                             {dogs.map(dog =>
-                                <div className="yourDogSingleDogContainer">
+                                <div className="yourDogSingleDogContainer" key={`Your_Dog_holder_${dog.id}`}>
                                     <DogSlide dog={dog} key={`Your_dog_${dog.id}`} />
                                     <div className="yourDogSingleDogInfo">
                                         <div className="singleDogName">{dog.name}</div>
@@ -51,8 +67,10 @@ function YourDogs() {
                                         <div className="dogInfoSingleDog">{`${dog.weight} lbs.`}</div>
                                         {dog.user_id === Number(user.id) && (
                                             <div className="editDeleteDogButtons">
-                                                <div>Edit</div>
-                                                <div>Delete</div>
+                                                <Link to={`/dogs/${dog.id}/edit`}>
+                                                    <div>Edit</div>
+                                                </Link>
+                                                <div id="deleteDogButton" onClick={() => showDeleteForm(dog.id, dog.name)}>Delete</div>
                                             </div>
                                         )}
                                     </div>
@@ -61,11 +79,25 @@ function YourDogs() {
                         </div>
 
                         <div className="yourDogMap">
-                            {/* <MapContainer GMapSetting={GMapSetting} dogs={dogs}/> */}
+                            <MapContainer GMapSetting={GMapSetting} dogs={dogs}/>
                         </div>
 
                     </div>
 
+                </div>
+            )}
+            {showDelete && (
+                <div className="loginModal">
+                    <div className="deleteDogForm">
+                        <div className="xToClose" onClick={() => setShowDelete(false)}>
+                            <i className="fas fa-times"></i>
+                        </div>
+                        <div className="areYouSureDogDelete">{`Are you sure you want to delete ${dogNameToDelete}?`}</div>
+                        <div className="dogDeleteConfirmButtons">
+                            <div onClick={handleDogDelete}>Delete</div>
+                            <div id="cancelDogDelete" onClick={() => setShowDelete(false)}>Cancel</div>
+                        </div>
+                    </div>
                 </div>
             )}
         </>

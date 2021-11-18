@@ -2,7 +2,7 @@
 const LOAD = 'dogs/LOAD_DOGS'
 const ADD_DOG = 'dogs/ADD_DOG'
 // const UPDATE_CHANNEL = 'channels/UPDATE_CHANNEL'
-// const DELETE_CHANNEL = 'channels/DELETE_CHANNEL'
+const DELETE_DOG = 'dogs/DELETE_DOG'
 
 const loadDogs = (dogs) => ({
     type: LOAD,
@@ -21,12 +21,12 @@ const addDog = dog => ({
 //     }
 // }
 
-// const deleteChannel = channelId => {
-//   return {
-//       type: DELETE_CHANNEL,
-//       channelId
-//   }
-// }
+const deleteDog = dogId => {
+  return {
+      type: DELETE_DOG,
+      dogId
+  }
+}
 
 
 export const loadAllDogs = () => async (dispatch) => {
@@ -104,19 +104,19 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
 //       }
 // }
 
-// export const deleteSingleChannel = (channel_id) => async (dispatch) => {
-//   const response = await fetch(`/api/channels/${channel_id}`, {
-//       method: 'DELETE',
-//       body: JSON.stringify({channel_id})
-//   });
+export const deleteSingleDog = (dog_id) => async (dispatch) => {
+  const response = await fetch(`/api/dogs/${dog_id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({dog_id})
+  });
 
-//   if (response.ok) {
-//     dispatch(deleteChannel(channel_id))
-//     return null;
-//   } else {
-//     return ['An error occurred. Please try again.']
-//   }
-// }
+  if (response.ok) {
+    dispatch(deleteDog(dog_id))
+    return null;
+  } else {
+    alert('An error occurred. Please refresh the page and try again.')
+  }
+}
 
 let initialState = {dogs: null};
 
@@ -139,10 +139,10 @@ const dogsReducer = (state = initialState, action) => {
         //         ...state,
         //         [action.channel.id]: action.channel,
         //     }
-        // case DELETE_CHANNEL:
-        //     const newState = {...state}
-        //     delete newState[action.channelId];
-        //     return newState;
+        case DELETE_DOG:
+            const newState = {...state}
+            delete newState[action.dogId];
+            return newState;
         default:
             return state;
     }
