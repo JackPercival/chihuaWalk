@@ -8,6 +8,7 @@ import SplashPage from './components/SplashPage/SplashPage';
 import Browse from './components/Browse/browse';
 import Pupload from './components/PupLoad/pupload';
 import SingleDog from './components/SingleDog/singleDog';
+import YourDogs from './components/YourDogs/yourDogs';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import { authenticate } from './store/session';
@@ -42,6 +43,9 @@ function App() {
                 </Route>
                 <ProtectedRoute exact path='/pupload' >
                   <Pupload />
+                </ProtectedRoute>
+                <ProtectedRoute exact path='/your-dogs' >
+                  <YourDogs />
                 </ProtectedRoute>
                 <Route exact path='/dogs/:dogId' >
                   <SingleDog />

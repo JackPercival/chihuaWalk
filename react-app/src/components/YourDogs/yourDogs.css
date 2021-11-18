@@ -1,0 +1,47 @@
+/* .yourDogsContainer {
+    width: 90vw;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: fit-content;
+} */
+
+.yourDogsInfoAndMapContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.yourDogList {
+    width: 630px;
+    padding: 0 10px;
+}
+
+.yourDogSingleDogContainer {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid rgb(221, 221, 221);
+    max-width: 630px;
+    min-width: 600px;
+}
+
+.yourDogSingleDogInfo {
+    margin: 0;
+    width: 287px;
+}
+
+.singleDogName {
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+.dogInfoSingleDog {
+    color: rgb(113,113,113);
+    margin-top: 10px;
+}
+
+.yourDogMap {
+    width: 50%;
+    flex: 1;
+    height: calc(100vh - 80px);
+    position: sticky;
+    top: 80px;
+}
