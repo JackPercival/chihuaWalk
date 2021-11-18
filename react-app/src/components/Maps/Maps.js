@@ -9,12 +9,9 @@ const containerStyle = {
   height: '100%',
 };
 
-const center = {
-  lat: 33.62,
-  lng: -117.8,
-};
 
-const Maps = ({ apiKey, dogs }) => {
+
+const Maps = ({ apiKey, dogs, latAvg, longAvg }) => {
     const history = useHistory();
 
   const { isLoaded } = useJsApiLoader({
@@ -25,6 +22,25 @@ const Maps = ({ apiKey, dogs }) => {
 const goToDogPage = dogId => {
     history.push(`/dogs/${dogId}`)
 }
+
+const midPoint = (dogs) => {
+    let long = 0;
+    let lat = 0;
+    dogs.forEach(dog => {
+        long += dog.longitude;
+        lat += dog.latitude
+   })
+
+    const length = dogs.length;
+
+    return [long/length, lat/length]
+
+}
+
+const center = {
+    lat: latAvg,
+    lng: longAvg,
+};
 
   return (
     <>
