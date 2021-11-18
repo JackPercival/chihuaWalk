@@ -10,10 +10,8 @@ const Pupload = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const key = useSelector((state) => state.maps.key);
     const user = useSelector(state => state.session.user);
 
-    const [errors, setErrors] = useState([]);
     const [name, setName] = useState('');
     const [breed, setBreed] = useState('');
     const [description, setDescription] = useState('');
@@ -21,20 +19,12 @@ const Pupload = () => {
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
-    // const [country, setCountry] = useState('');
     const [image1, setImage1] = useState('');
     const [image2, setImage2] = useState('');
     const [image3, setImage3] = useState('');
     const [addressErrorId, setAddressErrorId] = useState("noAddressError")
     const [addressErrorBackground, setAddressErrorBackground] = useState('classNoAddressError')
     const [dogErrorId, setDogErrorId] = useState("noDogError")
-
-    useEffect(() => {
-        if (!key) {
-          dispatch(getKey());
-        }
-      }, [dispatch, key]);
-
 
     //Get the longitude/latitude coordinates of the address by calling a google API
     const getCoordinates = async (address) => {
@@ -71,6 +61,24 @@ const Pupload = () => {
             setAddressErrorBackground("classYesAddressError")
             return;
         }
+    }
+
+
+    const clearForm = (e) => {
+        e.preventDefault();
+        setName('')
+        setBreed('')
+        setDescription('')
+        setSetWeight('')
+        setAddress('')
+        setCity('')
+        setState('')
+        setImage1('')
+        setImage2('')
+        setImage3('')
+        setAddressErrorId('noAddressError')
+        setAddressErrorBackground('classNoAddressError')
+        setDogErrorId('noDogError')
     }
 
   return (
@@ -269,9 +277,9 @@ const Pupload = () => {
                             <img className="dogHoldingLeash" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637196506/Capstone/dogPosting_tzdtv1.png" alt="Dog Holding Leash" />
                         </div>
                     </div>
-                    <div>
+                    <div className="puploadButtons">
                         <button type="submit">Add Dog</button>
-                        <button className="formButton">Clear Form</button>
+                        <button className="formButton" id="clearPuploadForm" onClick={clearForm}>Clear Form</button>
                     </div>
                 </form>
             </div>
