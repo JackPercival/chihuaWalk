@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import DogHolder from '../DogHolder/dogHolder';
 import DogSlide from '../DogSlide/dogSlide';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllDogs } from '../../store/dog';
+
+import MapContainer from '../Maps';
 
 import './yourDogs.css'
 
@@ -27,23 +28,37 @@ function YourDogs() {
         }
     }, [dispatch]);
 
+    const GMapSetting = {
+		width: "400px",
+		height: "400px",
+		lat: 37.0902,
+		lng: -95.7129,
+		zoom: 4.4,
+	};
+
     return (
         <>
             {isLoaded && (
                 <div className="yourDogsContainer">
-                    <div className="yourDogList">
-                        <h1>Your Dogs</h1>
-                        {dogs.map(dog =>
-                            <div className="yourDogSingleDogContainer">
-                                <DogSlide dog={dog} key={`Your_dog_${dog.id}`} />
-                                <div className="yourDogSingleDogInfo">
-                                    <h3>{dog.name}</h3>
+                    <div className="yourDogsInfoAndMapContainer">
+                        <div className="yourDogList">
+                            <h1>Your Dogs</h1>
+                            {dogs.map(dog =>
+                                <div className="yourDogSingleDogContainer">
+                                    <DogSlide dog={dog} key={`Your_dog_${dog.id}`} />
+                                    <div className="yourDogSingleDogInfo">
+                                        <div className="singleDogName">{dog.name}</div>
+                                        <div className="dogInfoSingleDog">{dog.breed}</div>
+                                        <div className="dogInfoSingleDog">{dog.description}</div>
+                                        <div className="dogInfoSingleDog">{`${dog.weight} lbs.`}</div>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                    </div>
+                            )}
+                        </div>
 
-                    <div className="youDogMap">
+                        <div className="yourDogMap">
+                            <MapContainer GMapSetting={GMapSetting}/>
+                        </div>
 
                     </div>
 
