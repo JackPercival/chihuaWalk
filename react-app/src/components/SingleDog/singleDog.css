@@ -1,5 +1,5 @@
 .singleDogContainer {
-    width: 90vw;
+    width: 790px;
     max-width: 1600px;
     margin: 0 auto;
     height: fit-content;
@@ -12,10 +12,8 @@
 }
 
 .mainDogImage {
-    max-width: 520px;
-    max-height: 520px;
-    height: calc(26vw + 10px);
-    width: 23.5vw;
+    height: 530px;
+    width: 520px;
     border: 1px solid black;
     background-size: cover;
     border-top-left-radius: 13px;
@@ -28,10 +26,8 @@
 }
 
 .smallDogImage {
-    max-width: 260px;
-    max-height: 260px;
-    height: 13vw;
-    width: 12.5vw;
+    width: 260px;
+    height: 260px;
     border: 1px solid black;
     background-size: cover;
     margin-left: 10px;
