@@ -7,11 +7,8 @@
 
 .allDogsContainer {
     display: flex;
-    /* justify-content: space-between; */
     flex-wrap: wrap;
     width: fit-content;
     margin: 0 auto;
     margin-bottom: 100px;
 }
-
-

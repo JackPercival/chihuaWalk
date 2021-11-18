@@ -1,0 +1,47 @@
+.singleDogContainer {
+    width: 90vw;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: fit-content;
+}
+
+.dogImageContainer {
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+}
+
+.mainDogImage {
+    max-width: 520px;
+    max-height: 520px;
+    height: calc(26vw + 10px);
+    width: 23.5vw;
+    border: 1px solid black;
+    background-size: cover;
+    border-top-left-radius: 13px;
+    border-bottom-left-radius: 13px;
+}
+
+.smallerDogImageContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.smallDogImage {
+    max-width: 260px;
+    max-height: 260px;
+    height: 13vw;
+    width: 12.5vw;
+    border: 1px solid black;
+    background-size: cover;
+    margin-left: 10px;
+}
+
+#firstSmallImage {
+    margin-bottom: 10px;
+    border-top-right-radius: 13px;
+}
+
+#secondSmallImage {
+    border-bottom-right-radius: 13px;
+}

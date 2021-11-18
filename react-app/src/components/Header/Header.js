@@ -15,7 +15,6 @@ const Header = () => {
             <div className="mainLogo">cW</div>
             <div className="mainTitle">chihuaWalk</div>
           </Link>
-          {/* <div>Seach Bar</div> */}
           <ProfileButton user={user}/>
     </header>
   );
