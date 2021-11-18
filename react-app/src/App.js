@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
 import Header from './components/Header/Header';
 import Footer from './components/Footer/footer';
 import SplashPage from './components/SplashPage/SplashPage';
 import Browse from './components/Browse/browse';
+import Pupload from './components/PupLoad/pupload';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+
 import { authenticate } from './store/session';
 
 import './components/overall.css'
@@ -36,6 +39,9 @@ function App() {
                 <Route path='/browse' exact={true} >
                   <Browse />
                 </Route>
+                <ProtectedRoute path='/pupload' exact={true}>
+                  <Pupload />
+                </ProtectedRoute>
               </Switch>
             </div>
             <Footer />

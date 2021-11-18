@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
 
 import { login, logout } from '../../store/session';
 import { signUp } from '../../store/session';
@@ -62,21 +61,8 @@ const ProfileButton = ({ user }) => {
     useEffect(() => {
         if (showSignUpModal || showLoginModal) {
             document.body.style.overflowY = 'hidden';
-
-            //Hide the carrousel buttons
-            const arrows = document.querySelectorAll(".react-slideshow-container .nav")
-
-            for (let x = 0; x < arrows.length; x++) {
-                arrows[x].style.zIndex = 0;
-            }
-
         } else {
             document.body.style.overflowY = 'auto';
-            const arrows = document.querySelectorAll(".react-slideshow-container .nav")
-
-            for (let x = 0; x < arrows.length; x++) {
-                arrows[x].style.zIndex = 10;
-            }
         }
 
     }, [showSignUpModal, showLoginModal])
@@ -251,7 +237,7 @@ const ProfileButton = ({ user }) => {
                                 <Link to="/your-dogs">
                                     <div className="profileDropDownLinks">Your dogs</div>
                                 </Link>
-                                <Link to="/your-dogs">
+                                <Link to="/pupload">
                                     <div className="profileDropDownLinks">Post a pup</div>
                                 </Link>
                                 <Link to="/account-settings">
