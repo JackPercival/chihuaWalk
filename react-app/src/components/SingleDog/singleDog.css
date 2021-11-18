@@ -3,6 +3,19 @@
     max-width: 1600px;
     margin: 0 auto;
     height: fit-content;
+    margin-bottom: 50px;
+    font-family: 'Questrial', sans-serif;
+}
+
+.singleDogContainer h1 {
+    margin-bottom: 10px;
+}
+
+.singleDogContainer h3 {
+    color:rgb(117,117,117);
+    margin-top: 0;
+    font-size: 17px;
+    font-weight: 300;
 }
 
 .dogImageContainer {
@@ -12,7 +25,7 @@
 }
 
 .mainDogImage {
-    height: 530px;
+    height: 528px;
     width: 520px;
     border: 1px solid black;
     background-size: cover;
@@ -28,7 +41,6 @@
 .smallDogImage {
     width: 260px;
     height: 260px;
-    border: 1px solid black;
     background-size: cover;
     margin-left: 10px;
 }
