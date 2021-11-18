@@ -41,8 +41,8 @@ const goToDogPage = dogId => {
                             position={{lat: dog.latitude, lng: dog.longitude}}
                             icon={{
                                 url: CustomMarker,
-                                scaledSize: new window.google.maps.Size(30, 26),
                                 labelOrigin: new window.google.maps.Point(14, -10),
+                                scaledSize: new window.google.maps.Size(30, 26),
                             }}
                             label={{text: `${dog.name}`, color: "#EA4335", textShadow: "0 0 3px #000", marginBottom: "40px"}}
                             onClick={() => goToDogPage(dog.id)}
