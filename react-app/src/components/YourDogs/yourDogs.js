@@ -54,35 +54,55 @@ function YourDogs() {
         <>
             {isLoaded && (
                 <div className="yourDogsContainer">
-                    <div className="yourDogsInfoAndMapContainer">
-                        <div className="yourDogList">
-                            <h1>Your Dogs</h1>
-                            {dogs.map(dog =>
-                                <div className="yourDogSingleDogContainer" key={`Your_Dog_holder_${dog.id}`}>
-                                    <DogSlide dog={dog} key={`Your_dog_${dog.id}`} />
-                                    <div className="yourDogSingleDogInfo">
-                                        <div className="singleDogName">{dog.name}</div>
-                                        <div className="dogInfoSingleDog">{dog.breed}</div>
-                                        <div className="dogInfoSingleDog">{dog.description}</div>
-                                        <div className="dogInfoSingleDog">{`${dog.weight} lbs.`}</div>
-                                        {dog.user_id === Number(user.id) && (
-                                            <div className="editDeleteDogButtons">
-                                                <Link to={`/dogs/${dog.id}/edit`}>
-                                                    <div>Edit</div>
-                                                </Link>
-                                                <div id="deleteDogButton" onClick={() => showDeleteForm(dog.id, dog.name)}>Delete</div>
-                                            </div>
-                                        )}
-                                    </div>
+                    {dogs?.length > 0 && (
+                        <div className="yourDogsInfoAndMapContainer">
+                            <div className="yourDogList">
+                                <div className="yourDogsAndAddButton">
+                                    <h1>Your Dogs</h1>
+                                    <Link to="/pupload">
+                                        <div id="addMoreDogsButton" className="pupLoadFromYourDogsButton">Add another Dog</div>
+                                    </Link>
                                 </div>
-                            )}
+                                {dogs.map(dog =>
+                                    <div className="yourDogSingleDogContainer" key={`Your_Dog_holder_${dog.id}`}>
+                                        <DogSlide dog={dog} key={`Your_dog_${dog.id}`} />
+                                        <div className="yourDogSingleDogInfo">
+                                            <div className="singleDogName">{dog.name}</div>
+                                            <div className="dogInfoSingleDog">{dog.breed}</div>
+                                            <div className="dogInfoSingleDog">{dog.description}</div>
+                                            <div className="dogInfoSingleDog">{`${dog.weight} lbs.`}</div>
+                                            {dog.user_id === Number(user.id) && (
+                                                <div className="editDeleteDogButtons">
+                                                    <Link to={`/dogs/${dog.id}/edit`}>
+                                                        <div>Edit</div>
+                                                    </Link>
+                                                    <div id="deleteDogButton" onClick={() => showDeleteForm(dog.id, dog.name)}>Delete</div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                            {/* <div className="yourDogMap">
+                                <MapContainer GMapSetting={GMapSetting} dogs={dogs}/>
+                            </div> */}
                         </div>
-
-                        <div className="yourDogMap">
-                            <MapContainer GMapSetting={GMapSetting} dogs={dogs}/>
+                    )}
+                    {dogs?.length === 0 && (
+                        <div className="noDogsToShow">
+                            <h1>You have not uploaded any shelter dogs yet.</h1>
+                            <p>Any dogs you add to ChihuaWalk will show up here.</p>
+                            <img className="noDogsPosted" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,w_713/v1637271815/Capstone/yellowdog_k2aeex.jpg" alt="Yellow Dog" />
+                            <div className="noDogsButtons">
+                                <Link to="/pupload">
+                                    <div className="pupLoadFromYourDogsButton">Add a Dog</div>
+                                </Link>
+                                <Link to="/browse">
+                                    <div className="pupLoadFromYourDogsButton">Browse</div>
+                                </Link>
+                            </div>
                         </div>
-
-                    </div>
+                    )}
 
                 </div>
             )}

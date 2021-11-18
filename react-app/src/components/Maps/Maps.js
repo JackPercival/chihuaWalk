@@ -35,7 +35,7 @@ const center = {
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}
-                    zoom={8}
+                    zoom={5}
                 >
                     {dogs?.map(dog =>
                         <Marker

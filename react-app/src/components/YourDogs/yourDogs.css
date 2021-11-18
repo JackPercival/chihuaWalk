@@ -15,6 +15,11 @@
     padding: 0 10px;
 }
 
+.yourDogsAndAddButton {
+    display: flex;
+    align-items: center;
+}
+
 .yourDogSingleDogContainer {
     display: flex;
     padding: 15px;
@@ -121,4 +126,70 @@
 
 #cancelDogDelete:hover {
     background-color: rgb(238, 238, 238);
+}
+
+.noDogsToShow {
+    width: 90vw;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: fit-content;
+}
+
+.noDogsPosted {
+    width: 400px;
+    height: auto;
+    border-radius: 50%;
+    margin-top: 14px;
+}
+
+.noDogsButtons {
+    display: flex;
+}
+
+.pupLoadFromYourDogsButton {
+    width: 150px;
+    margin: 5px;
+    background-color: rgb(26, 136, 199);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 8px;
+    transition: all 0.25s ease-in-out;
+    text-align: center;
+    padding: 10px;
+    margin: 30px 20px 50px 0;
+}
+
+.noDogsToShow a {
+    width: 170px;
+    display: block;
+    margin-left: 24px;
+}
+
+.pupLoadFromYourDogsButton:hover {
+    background-color: rgb(16, 87, 128);
+}
+
+#addMoreDogsButton {
+    margin: 0;
+    margin-left: 30px;
+    width: 200px;
+    text-align: center;
+    padding: 10px 0;
+    border: 1px solid rgb(221, 221, 221);
+    background-color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    color: black;
+    transition: all 0.35s 0s;
+}
+
+.editDeleteDogButtons a {
+    margin-right: 10px;
+}
+
+#addMoreDogsButton:hover {
+    background-color: rgb(26,136,199);
+    color: white;
 }
