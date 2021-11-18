@@ -11,7 +11,6 @@ import './yourDogs.css'
 function YourDogs() {
 
     const dispatch = useDispatch();
-    const history = useHistory();
 
     const user = useSelector(state => state.session.user);
     const dogs = useSelector(state => Object.values(state.dogs).filter(dog => dog?.user_id === Number(user.id)));
@@ -83,9 +82,9 @@ function YourDogs() {
                                     </div>
                                 )}
                             </div>
-                            {/* <div className="yourDogMap">
+                            <div className="yourDogMap">
                                 <MapContainer GMapSetting={GMapSetting} dogs={dogs}/>
-                            </div> */}
+                            </div>
                         </div>
                     )}
                     {dogs?.length === 0 && (

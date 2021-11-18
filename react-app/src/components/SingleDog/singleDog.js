@@ -16,9 +16,6 @@ function SingleDog() {
     const dog = useSelector(state => state.dogs[dogId]);
     const [isLoaded, setIsLoaded] = useState(false);
 
-    console.log(dog)
-
-
     useEffect(() => {
         dispatch(loadAllDogs()).then(() => setIsLoaded(true));
         return () => {
