@@ -54,6 +54,7 @@ const Pupload = () => {
         const encodedAddress = encodeURI(fullAddress)
 
         const realAddress = await getGeoCoordinates(encodedAddress)
+        console.log(realAddress)
 
         if (realAddress.status === "OK") {
             const latitude = realAddress.results[0].geometry.location.lat
