@@ -61,21 +61,8 @@ const ProfileButton = ({ user }) => {
     useEffect(() => {
         if (showSignUpModal || showLoginModal) {
             document.body.style.overflowY = 'hidden';
-
-            //Hide the carrousel buttons
-            const arrows = document.querySelectorAll(".react-slideshow-container .nav")
-
-            for (let x = 0; x < arrows.length; x++) {
-                arrows[x].style.zIndex = 0;
-            }
-
         } else {
             document.body.style.overflowY = 'auto';
-            const arrows = document.querySelectorAll(".react-slideshow-container .nav")
-
-            for (let x = 0; x < arrows.length; x++) {
-                arrows[x].style.zIndex = 10;
-            }
         }
 
     }, [showSignUpModal, showLoginModal])
