@@ -6,22 +6,36 @@
     margin-bottom: 100px;
 }
 
-.puploadContainer h2 {
+.puploadContainer h1 {
+    width: fit-content;
+    margin: 30px auto;
+}
+
+.formAndIntro {
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+.formAndIntro h2 {
     font-size: 17px;
-    width: 660px;
+    width: 300px;
+    height: fit-content;
+    box-sizing: border-box;
+    font-weight: 200;
+    line-height: 24px;
+    text-align: justify;
+    border: 1px solid rgb(221,221,221);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 0;
 }
 
 .puploadFormsContainer {
     display: flex;
     justify-content: space-between;
-}
-
-.dogHoldingLeash {
-    width: 20vw;
-    margin: 0 50px;
-    height: 100%;
-    max-height: 684px;
-    border-radius: 10px;
 }
 
 .formInputSection {
@@ -64,6 +78,12 @@
     border: 1px solid rgb(45, 160, 226);
 }
 
+
+#stateSelector select {
+    width: 100px;
+    font-size: 16px;
+}
+
 .fieldSection {
     padding: 15px;
 }
@@ -101,4 +121,45 @@ textarea {
 
 #dogError {
     visibility:visible;
+}
+
+.dogHoldingLeash {
+    width: 230px;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 30px;
+}
+
+.classYesAddressError {
+    background-color: rgb(255, 154, 154);
+
+}
+
+.puploadButtons {
+    margin-top: 20px;
+}
+
+.puploadButtons button {
+    width: 150px;
+    height: 32px;
+    margin: 5px;
+    background-color: rgb(26, 136, 199);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 8px;
+    transition: all 0.25s ease-in-out;
+}
+
+#clearPuploadForm {
+    background-color: #CC2D4A;
+}
+
+.puploadButtons button:hover {
+    background-color: rgb(16, 87, 128);
+}
+
+#clearPuploadForm:hover {
+    background-color: #861e31;
 }
