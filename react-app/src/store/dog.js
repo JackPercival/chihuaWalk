@@ -38,7 +38,7 @@ export const loadAllDogs = () => async (dispatch) => {
     }
 }
 
-export const addNewDog = (user_id, name, breed, description, weight, address, city, state, country, latitude, longitude) => async (dispatch) => {
+export const addNewDog = (user_id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3) => async (dispatch) => {
     const response = await fetch(`/api/dogs/`, {
       method: 'POST',
       headers: {
@@ -55,7 +55,10 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
         state,
         country,
         latitude,
-        longitude
+        longitude,
+        image1,
+        image2,
+        image3,
       }),
     });
 
@@ -70,6 +73,7 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
       }
     } else {
       alert('An error occurred. Please refresh the page and try again.')
+      return["Error"]
     }
 }
 

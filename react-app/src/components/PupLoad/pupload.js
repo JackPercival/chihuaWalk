@@ -22,6 +22,9 @@ const Pupload = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
+    const [image1, setImage1] = useState('');
+    const [image2, setImage2] = useState('');
+    const [image3, setImage3] = useState('');
     const [addressErrorId, setAddressErrorId] = useState("noAddressError")
     const [dogErrorId, setDogErrorId] = useState("noDogError")
 
@@ -42,6 +45,11 @@ const Pupload = () => {
     const addDog = async (e) => {
         e.preventDefault();
 
+        if (!image1 || !image2 || !image3 ) {
+            setDogErrorId('dogError')
+            return;
+        }
+
         const fullAddress = `${address}, ${city}, ${state} ${country}`
         const encodedAddress = encodeURI(fullAddress)
 
@@ -56,7 +64,7 @@ const Pupload = () => {
         //     return;
         // }
 
-        const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, country, 100, 100));
+        const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, country, 100, 100, image1, image2, image3));
         if (data[0] === "Error") {
             setDogErrorId("dogError")
         } else {
@@ -68,7 +76,7 @@ const Pupload = () => {
   return (
     <div className="puploadContainer">
         <h1>Post a Pup</h1>
-        <h2>Fill out the form below to add a shelter dog to the ChihuaWalk. Dogs on ChihuaWalk have higher visibility to the public and are more likely to get adopted. Walking with people improves dog behavior, uses up their energy, and shows people what a dog in an animal rescue can be like outside the shelter walls. Not to mention, dogs love being outside and walking!</h2>
+        <h2>Fill out the form below to add a shelter dog to ChihuaWalk. Dogs on ChihuaWalk have higher visibility to the public and are more likely to get adopted. Walking with people improves dog behavior, uses up their energy, and shows people what a dog in an animal rescue can be like beyond the shelter walls. Not to mention, dogs love being outside and walking!</h2>
         <div className="puploadFormsContainer">
             <div >
                 <form className="puploadForm" autoComplete="off" onSubmit={addDog}>
@@ -78,11 +86,10 @@ const Pupload = () => {
                             <div className="pupLoadField">
                                 <label>Name</label>
                                 <input
-                                    // className={borderError}
                                     name='name'
                                     type="input"
                                     maxLength="40"
-                                    // required
+                                    required
                                     autoComplete="off"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
@@ -92,7 +99,6 @@ const Pupload = () => {
                             <div className="pupLoadField">
                                 <label>Breed</label>
                                 <input
-                                    // className={borderError}
                                     name='breed'
                                     type="input"
                                     maxLength="40"
@@ -105,7 +111,6 @@ const Pupload = () => {
                             <div className="pupLoadField">
                                 <label>Weight (lbs)</label>
                                 <input
-                                    // className={borderError}
                                     name='weight'
                                     type="number"
                                     required
@@ -118,13 +123,43 @@ const Pupload = () => {
                             <div className="pupLoadField">
                                 <label>Description</label>
                                 <textarea
-                                    // className={borderError}
                                     name='description'
                                     type="input"
                                     required
                                     autoComplete="off"
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
+                                />
+                            </div>
+                            <div className="pupLoadField">
+                                <label>Images (URL)</label>
+                                <input
+                                    name='breed'
+                                    type="input"
+                                    required
+                                    autoComplete="off"
+                                    value={image1}
+                                    onChange={(e) => setImage1(e.target.value)}
+                                />
+                            </div>
+                            <div className="pupLoadField">
+                                <input
+                                    name='breed'
+                                    type="input"
+                                    required
+                                    autoComplete="off"
+                                    value={image2}
+                                    onChange={(e) => setImage2(e.target.value)}
+                                />
+                            </div>
+                            <div className="pupLoadField">
+                                <input
+                                    name='breed'
+                                    type="input"
+                                    required
+                                    autoComplete="off"
+                                    value={image3}
+                                    onChange={(e) => setImage3(e.target.value)}
                                 />
                             </div>
                             <div className="addDogError" id={dogErrorId}>

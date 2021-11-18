@@ -11,10 +11,6 @@
     width: 660px;
 }
 
-/* .puploadForm {
-    display: flex;
-} */
-
 .formInputSection {
     display: flex;
     flex-wrap: nowrap;
@@ -31,7 +27,7 @@
 }
 
 .pupLoadField input {
-    padding: 4px;
+    padding: 10px;
     font-size: 18px;
     width: 250px;
     border: 1px solid rgb(175, 175, 175);
@@ -43,11 +39,11 @@
 }
 
 .pupLoadField textarea {
-    padding: 14px;
+    padding: 10px;
     font-size: 14px;
     width: 250px;
     border: 1px solid rgb(175, 175, 175);
-    height: 70px;
+    height: 90px;
     outline: none;
 }
 
