@@ -39,6 +39,7 @@ export const loadAllDogs = () => async (dispatch) => {
 }
 
 export const addNewDog = (user_id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3) => async (dispatch) => {
+  console.log(user_id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3)
     const response = await fetch(`/api/dogs/`, {
       method: 'POST',
       headers: {
@@ -61,6 +62,8 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
         image3,
       }),
     });
+
+    console.log(response)
 
     if (response.ok) {
       const data = await response.json();

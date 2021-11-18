@@ -50,26 +50,26 @@ const Pupload = () => {
             return;
         }
 
-        const fullAddress = `${address}, ${city}, ${state} ${country}`
+        const fullAddress = `${address.trim()}, ${city.trim()}, ${state.trim()} ${country.trim()}`
         const encodedAddress = encodeURI(fullAddress)
 
-        // const realAddress = await getGeoCoordinates(encodedAddress)
+        const realAddress = await getGeoCoordinates(encodedAddress)
 
-        // if (realAddress.status === "OK") {
-        //     const latitude = realAddress.results[0].geometry.location.lat
-        //     const longitude = realAddress.results[0].geometry.location.lng
-        //     const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, country, latitude, longitude));
-        // } else {
-        //     setAddressErrorId("addressError")
-        //     return;
-        // }
+        if (realAddress.status === "OK") {
+            const latitude = realAddress.results[0].geometry.location.lat
+            const longitude = realAddress.results[0].geometry.location.lng
+            const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3));
 
-        const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, country, 100, 100, image1, image2, image3));
-        if (data[0] === "Error") {
-            setDogErrorId("dogError")
+            if (data[0] === "Error") {
+                setDogErrorId("dogError")
+                return;
+            } else {
+                // return <Redirect to={`/dogs/${data.id}`} />
+                history.push(`/dogs/${data[1].id}`)
+            }
         } else {
-            // return <Redirect to={`/dogs/${data.id}`} />
-            history.push(`/dogs/${data[1].id}`)
+            setAddressErrorId("addressError")
+            return;
         }
     }
 
