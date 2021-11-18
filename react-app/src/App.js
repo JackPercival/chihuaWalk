@@ -7,6 +7,7 @@ import Footer from './components/Footer/footer';
 import SplashPage from './components/SplashPage/SplashPage';
 import Browse from './components/Browse/browse';
 import Pupload from './components/PupLoad/pupload';
+import SingleDog from './components/SingleDog/singleDog';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import { authenticate } from './store/session';
@@ -33,15 +34,18 @@ function App() {
             <Header />
             <div className="mainContent">
               <Switch>
-                <Route path='/' exact={true} >
+                <Route exact path='/' >
                   <SplashPage />
                 </Route>
-                <Route path='/browse' exact={true} >
+                <Route exact path='/browse' >
                   <Browse />
                 </Route>
-                <ProtectedRoute path='/pupload' exact={true}>
+                <ProtectedRoute exact path='/pupload' >
                   <Pupload />
                 </ProtectedRoute>
+                <Route exact path='/dogs/:dogId' >
+                  <SingleDog />
+                </Route>
               </Switch>
             </div>
             <Footer />
