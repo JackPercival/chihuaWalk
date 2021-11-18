@@ -230,6 +230,7 @@ const Pupload = () => {
                     </div>
                 </form>
             </div>
+            <img className="dogHoldingLeash" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637196506/Capstone/dogPosting_tzdtv1.png" alt="Dog Holding Leash" />
     </div>
 
     </div>
