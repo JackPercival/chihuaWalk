@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Dog
+from app.models import db, Dog, Image
 from app.forms import NewDogForm
 from .auth_routes import validation_errors_to_error_messages
 
@@ -23,8 +23,19 @@ def add_dog():
         dog = Dog(user_id=data['user_id'], name=data['name'], breed=data['breed'], description=data['description'],
                     weight=data['weight'], address=data['address'], city=data['city'], state=data['state'],
                     country=data['country'], latitude=data['latitude'], longitude=data['longitude'])
+
         db.session.add(dog)
         db.session.commit()
+
+        image1 = Image(dog_id=dog.id, url=form.data['image1'])
+        image2 = Image(dog_id=dog.id, url=form.data['image2'])
+        image3 = Image(dog_id=dog.id, url=form.data['image3'])
+
+        db.session.add(image1)
+        db.session.add(image2)
+        db.session.add(image3)
+        db.session.commit()
+
         return dog.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
