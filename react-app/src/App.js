@@ -9,6 +9,7 @@ import Browse from './components/Browse/browse';
 import Pupload from './components/PupLoad/pupload';
 import SingleDog from './components/SingleDog/singleDog';
 import YourDogs from './components/YourDogs/yourDogs';
+import EditDog from './components/EditDog/editDog';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import { authenticate } from './store/session';
@@ -50,6 +51,9 @@ function App() {
                 <Route exact path='/dogs/:dogId' >
                   <SingleDog />
                 </Route>
+                <ProtectedRoute exact path='/dogs/:dogId/edit' >
+                  <EditDog />
+                </ProtectedRoute>
               </Switch>
             </div>
             <Footer />

@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { addNewDog } from '../../store/dog';
-import { getKey, getGeoCoordinates } from '../../store/map';
+import { getGeoCoordinates } from '../../store/map';
 
 import './pupload.css'
 
@@ -44,7 +44,7 @@ const Pupload = () => {
 
         const realAddress = await getCoordinates(fullAddress)
 
-        if (realAddress.coordinates.length === 1) {
+        if (realAddress.coordinates.length === 1 && realAddress.coordinates[0].geometry.location_type !== "APPROXIMATE") {
             const latitude = realAddress.coordinates[0].geometry.location.lat
             const longitude = realAddress.coordinates[0].geometry.location.lng
             const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, "USA", latitude, longitude, image1, image2, image3));

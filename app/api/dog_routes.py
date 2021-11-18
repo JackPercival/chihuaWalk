@@ -55,9 +55,21 @@ def update_dog(dogId):
         dog.address = data['address']
         dog.city = data['city']
         dog.state = data['state']
-        dog.country = data['country']
         dog.latitude=data['latitude']
         dog.longitude=data['longitude']
+
+        images = Image.query.filter(Image.dog_id == dogId).all()
+        for image in images:
+            db.session.delete(image)
+        db.session.commit()
+
+        image1 = Image(dog_id=dogId, url=form.data['image1'])
+        image2 = Image(dog_id=dogId, url=form.data['image2'])
+        image3 = Image(dog_id=dogId, url=form.data['image3'])
+
+        db.session.add(image1)
+        db.session.add(image2)
+        db.session.add(image3)
 
         db.session.commit()
         return dog.to_dict()
