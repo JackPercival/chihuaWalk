@@ -16,6 +16,8 @@ function SingleDog() {
     const dog = useSelector(state => state.dogs[dogId]);
     const [isLoaded, setIsLoaded] = useState(false);
 
+    console.log(dog)
+
 
     useEffect(() => {
         dispatch(loadAllDogs()).then(() => setIsLoaded(true));
@@ -28,7 +30,14 @@ function SingleDog() {
         <>
             {isLoaded && (
                 <div className="singleDogContainer">
-                    <p>{dog?.name}</p>
+                    <h1>{dog?.name}</h1>
+                    <div className="dogImageContainer">
+                        <div className="mainDogImage" style={{backgroundImage: `url(${dog?.images[0]})`}}></div>
+                        <div className="smallerDogImageContainer">
+                            <div className="smallDogImage" id="firstSmallImage" style={{backgroundImage: `url(${dog?.images[1]})`}}></div>
+                            <div className="smallDogImage" id="secondSmallImage" style={{backgroundImage: `url(${dog?.images[2]})`}}></div>
+                        </div>
+                    </div>
 
                 </div>
             )}
