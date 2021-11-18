@@ -6,9 +6,23 @@
     margin-bottom: 100px;
 }
 
-.puploadContainer h2 {
+.puploadContainer h1 {
+    width: fit-content;
+    margin: 30px auto;
+}
+
+.formAndIntro {
+    display: flex;
+    justify-content: space-between;
+    width: 1000px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+.formAndIntro h2 {
     font-size: 17px;
-    width: 660px;
+    width: 300px;
+    height: fit-content;
     box-sizing: border-box;
     font-weight: 200;
     line-height: 24px;
@@ -16,6 +30,7 @@
     border: 1px solid rgb(221,221,221);
     border-radius: 10px;
     padding: 20px;
+    margin: 0;
 }
 
 .puploadFormsContainer {
