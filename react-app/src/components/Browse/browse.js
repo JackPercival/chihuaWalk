@@ -10,9 +10,8 @@ const Browse = () => {
     const dispatch = useDispatch();
     const dogs = useSelector(state => Object.values(state.dogs));
     const [isLoaded, setIsLoaded] = useState(false);
-    
+
     useEffect(() => {
-        // dispatch(loadUsers())
         dispatch(loadAllDogs()).then(() => setIsLoaded(true));
         return () => {
             setIsLoaded()
