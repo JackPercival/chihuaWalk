@@ -62,14 +62,14 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
     if (response.ok) {
       const data = await response.json();
       dispatch(addDog(data))
-      return null;
+      return ["Created", data];
     } else if (response.status < 500) {
       const data = await response.json();
       if (data.errors) {
-        return data.errors;
+        return ["Error", data.errors];
       }
     } else {
-      return ['An error occurred. Please try again.']
+      alert('An error occurred. Please refresh the page and try again.')
     }
 }
 

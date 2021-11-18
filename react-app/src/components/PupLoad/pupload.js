@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 import { addNewDog } from '../../store/dog';
 import { getKey } from '../../store/map';
 
@@ -8,6 +8,7 @@ import './pupload.css'
 
 const Pupload = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const key = useSelector((state) => state.maps.key);
     const user = useSelector(state => state.session.user);
@@ -21,7 +22,8 @@ const Pupload = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [country, setCountry] = useState('');
-    const [addressError, setAddressError] = useState('Invalid address.');
+    const [addressErrorId, setAddressErrorId] = useState("noAddressError")
+    const [dogErrorId, setDogErrorId] = useState("noDogError")
 
     useEffect(() => {
         if (!key) {
@@ -40,8 +42,8 @@ const Pupload = () => {
     const addDog = async (e) => {
         e.preventDefault();
 
-        // const fullAddress = `${address}, ${city}, ${state} ${country}`
-        // const encodedAddress = encodeURI(fullAddress)
+        const fullAddress = `${address}, ${city}, ${state} ${country}`
+        const encodedAddress = encodeURI(fullAddress)
 
         // const realAddress = await getGeoCoordinates(encodedAddress)
 
@@ -50,10 +52,17 @@ const Pupload = () => {
         //     const longitude = realAddress.results[0].geometry.location.lng
         //     const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, country, latitude, longitude));
         // } else {
-        //     setAddressError("Invalid address.")
+        //     setAddressErrorId("addressError")
         //     return;
         // }
-        setAddressError("Invalid address.")
+
+        const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, country, 100, 100));
+        if (data[0] === "Error") {
+            setDogErrorId("dogError")
+        } else {
+            // return <Redirect to={`/dogs/${data.id}`} />
+            history.push(`/dogs/${data[1].id}`)
+        }
     }
 
   return (
@@ -72,7 +81,8 @@ const Pupload = () => {
                                     // className={borderError}
                                     name='name'
                                     type="input"
-                                    required
+                                    maxLength="40"
+                                    // required
                                     autoComplete="off"
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
@@ -85,6 +95,7 @@ const Pupload = () => {
                                     // className={borderError}
                                     name='breed'
                                     type="input"
+                                    maxLength="40"
                                     required
                                     autoComplete="off"
                                     value={breed}
@@ -116,15 +127,19 @@ const Pupload = () => {
                                     onChange={(e) => setDescription(e.target.value)}
                                 />
                             </div>
+                            <div className="addDogError" id={dogErrorId}>
+                                <div>!</div>
+                                <span>Please fill out all fields.</span>
+                            </div>
                         </div>
                         <div className="fieldSection">
                             <h3>Shelter Information</h3>
                             <div className="pupLoadField">
                                 <label>Street Address</label>
                                 <input
-                                    // className={borderError}
                                     name='address'
                                     type="input"
+                                    maxLength="255"
                                     required
                                     autoComplete="off"
                                     value={address}
@@ -137,6 +152,7 @@ const Pupload = () => {
                                     name='city'
                                     type="input"
                                     required
+                                    maxLength="50"
                                     autoComplete="off"
                                     value={city}
                                     onChange={(e) => setCity(e.target.value)}
@@ -149,6 +165,7 @@ const Pupload = () => {
                                     type="input"
                                     required
                                     autoComplete="off"
+                                    maxLength="50"
                                     value={state}
                                     onChange={(e) => setState(e.target.value)}
                                 />
@@ -160,16 +177,15 @@ const Pupload = () => {
                                     type="input"
                                     required
                                     autoComplete="off"
+                                    maxLength="50"
                                     value={country}
                                     onChange={(e) => setCountry(e.target.value)}
                                 />
                             </div>
-                            {addressError.length > 0 && (
-                                <div className="loginError" id="pupLoadError">
-                                    <div>!</div>
-                                <span>{addressError}</span>
+                            <div className="addDogError" id={addressErrorId}>
+                                <div>!</div>
+                                <span>Invalid address.</span>
                             </div>
-                            )}
                         </div>
 
                     </div>

@@ -3,11 +3,12 @@
     max-width: 1600px;
     margin: 0 auto;
     height: fit-content;
+    margin-bottom: 100px;
 }
 
 .puploadContainer h2 {
     font-size: 17px;
-    width: 600px;
+    width: 660px;
 }
 
 /* .puploadForm {
@@ -34,14 +35,24 @@
     font-size: 18px;
     width: 250px;
     border: 1px solid rgb(175, 175, 175);
+    outline: none;
+}
+
+.pupLoadField input:focus {
+    border: 1px solid rgb(45, 160, 226);
 }
 
 .pupLoadField textarea {
-    padding: 4px;
+    padding: 14px;
     font-size: 14px;
     width: 250px;
     border: 1px solid rgb(175, 175, 175);
     height: 70px;
+    outline: none;
+}
+
+.pupLoadField textarea:focus {
+    border: 1px solid rgb(45, 160, 226);
 }
 
 .fieldSection {
@@ -50,13 +61,35 @@
 
 textarea {
     resize: none;
+    font-family: inherit;
 }
 
-#pupLoadError {
-    font-size: 17px;
+.addDogError {
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    margin-bottom: 5px;
+    visibility: hidden;
 }
 
-#pupLoadError div {
-    width: 17px;
+.addDogError div {
+    background-color: rgb(192, 53, 22);
+    color: white;
+    border-radius: 50%;
     height: 17px;
+    width: 17px;
+    text-align: center;
+    margin: 0 5px 0 15px;
+}
+
+.addDogError span {
+    color: rgb(192, 53, 22);
+}
+
+#addressError {
+    visibility:visible;
+}
+
+#dogError {
+    visibility:visible;
 }
