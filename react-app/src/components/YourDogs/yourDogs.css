@@ -1,0 +1,6 @@
+.yourDogsContainer {
+    width: 90vw;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: fit-content;
+}
