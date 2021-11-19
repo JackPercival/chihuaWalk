@@ -58,6 +58,8 @@
   width: 790px;
   justify-content: space-between;
   margin-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid rgb(221, 221, 221);
 }
 
 .fullDogInfo {
@@ -189,4 +191,9 @@
 .react-calendar__tile:disabled:hover {
     border: 1px solid transparent;
     cursor: default;
+}
+
+.singleDogMap {
+    height: 479px;
+    width: 100%;
 }

@@ -2,7 +2,9 @@ import { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllDogs } from '../../store/dog';
-import DatePicker from 'react-calendar'
+import Reviews from '../Reviews/reviews';
+import MapContainer from '../Maps';
+import DatePicker from 'react-calendar';
 import './singleDog.css'
 
 function SingleDog() {
@@ -111,10 +113,14 @@ function SingleDog() {
                             <div className="selectADate">Select a Date</div>
                             <div onClick={(e) => setDateBackground(e)}>
                                 <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()}/>
-
                             </div>
                         </div>
                         <div className="dogScheduleWalkForm">Walk Schedule form goes here</div>
+                    </div>
+                    <Reviews dog={dog}/>
+                    <div className="selectADate">{`Where you'll pick up ${dog?.name}`}</div>
+                    <div className="singleDogMap">
+                        <MapContainer zoom={11} dogs={[dog]}/>
                     </div>
                 </div>
             )}

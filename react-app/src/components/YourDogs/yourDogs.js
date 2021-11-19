@@ -28,13 +28,6 @@ function YourDogs() {
         }
     }, [dispatch]);
 
-    const GMapSetting = {
-		width: "400px",
-		height: "400px",
-		lat: 37.0902,
-		lng: -95.7129,
-		zoom: 4.4,
-	};
 
     const showDeleteForm = (dog_id, name) => {
         setDogToDelete(dog_id)
@@ -83,7 +76,7 @@ function YourDogs() {
                                 )}
                             </div>
                             <div className="yourDogMap">
-                                <MapContainer GMapSetting={GMapSetting} dogs={dogs}/>
+                                <MapContainer zoom={6} dogs={dogs}/>
                             </div>
                         </div>
                     )}
