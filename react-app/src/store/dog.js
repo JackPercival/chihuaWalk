@@ -1,8 +1,8 @@
 //constants
 const LOAD = 'dogs/LOAD_DOGS'
 const ADD_DOG = 'dogs/ADD_DOG'
-// const UPDATE_CHANNEL = 'channels/UPDATE_CHANNEL'
-// const DELETE_CHANNEL = 'channels/DELETE_CHANNEL'
+const UPDATE_DOG = 'dogs/UPDATE_DOG'
+const DELETE_DOG = 'dogs/DELETE_DOG'
 
 const loadDogs = (dogs) => ({
     type: LOAD,
@@ -14,19 +14,19 @@ const addDog = dog => ({
     dog
 })
 
-// const updateChannel = channel => {
-//     return {
-//         type: UPDATE_CHANNEL,
-//         channel
-//     }
-// }
+const updateDog = dog => {
+    return {
+        type: UPDATE_DOG,
+        dog
+    }
+}
 
-// const deleteChannel = channelId => {
-//   return {
-//       type: DELETE_CHANNEL,
-//       channelId
-//   }
-// }
+const deleteDog = dogId => {
+  return {
+      type: DELETE_DOG,
+      dogId
+  }
+}
 
 
 export const loadAllDogs = () => async (dispatch) => {
@@ -77,46 +77,58 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
     }
 }
 
-// export const updateChannelName = (channel_id, server_id, name) => async (dispatch) => {
-//     const response = await fetch(`/api/channels/${channel_id}`, {
-//         method: 'PATCH',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify({
-//           channel_id,
-//           server_id,
-//           name,
-//         }),
-//       });
+export const updatedExistingDog = (dog_id, user_id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3) => async (dispatch) => {
+  const response = await fetch(`/api/dogs/${dog_id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      user_id,
+      name,
+      breed,
+      description,
+      weight,
+      address,
+      city,
+      state,
+      country,
+      latitude,
+      longitude,
+      image1,
+      image2,
+      image3,
+    }),
+  });
 
-//       if (response.ok) {
-//         const data = await response.json();
-//         dispatch(updateChannel(data))
-//         return null;
-//       } else if (response.status < 500) {
-//         const data = await response.json();
-//         if (data.errors) {
-//           return data.errors;
-//         }
-//       } else {
-//         return ['An error occurred. Please try again.']
-//       }
-// }
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateDog(data))
+    return ["Created", data];
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return ["Error", data.errors];
+    }
+  } else {
+    alert('An error occurred. Please refresh the page and try again.')
+    return["Error"]
+  }
+}
 
-// export const deleteSingleChannel = (channel_id) => async (dispatch) => {
-//   const response = await fetch(`/api/channels/${channel_id}`, {
-//       method: 'DELETE',
-//       body: JSON.stringify({channel_id})
-//   });
+export const deleteSingleDog = (dog_id) => async (dispatch) => {
+  const response = await fetch(`/api/dogs/${dog_id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({dog_id})
+  });
 
-//   if (response.ok) {
-//     dispatch(deleteChannel(channel_id))
-//     return null;
-//   } else {
-//     return ['An error occurred. Please try again.']
-//   }
-// }
+  if (response.ok) {
+    dispatch(deleteDog(dog_id))
+    return null;
+  } else {
+    alert('An error occurred. Please refresh the page and try again.')
+  }
+}
 
 let initialState = {dogs: null};
 
@@ -134,15 +146,15 @@ const dogsReducer = (state = initialState, action) => {
                 ...state,
                 [action.dog.id]: action.dog,
             }
-        // case UPDATE_CHANNEL:
-        //     return {
-        //         ...state,
-        //         [action.channel.id]: action.channel,
-        //     }
-        // case DELETE_CHANNEL:
-        //     const newState = {...state}
-        //     delete newState[action.channelId];
-        //     return newState;
+        case UPDATE_DOG:
+            return {
+                ...state,
+                [action.dog.id]: action.dog,
+            }
+        case DELETE_DOG:
+            const newState = {...state}
+            delete newState[action.dogId];
+            return newState;
         default:
             return state;
     }

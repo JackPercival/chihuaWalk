@@ -34,12 +34,6 @@ const LoginForm = () => {
 
   const checkAddress = async (e) => {
     e.preventDefault()
-    const encodedAddress = encodeURI(address)
-    console.log(encodedAddress)
-
-    const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=MY_API_KEY`)
-    const data = await response.json()
-    console.log(data)
   }
 
   return (
