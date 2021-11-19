@@ -73,8 +73,6 @@ const EditDog = () => {
         const fullAddress = `${address.trim()}, ${city.trim()}, ${state}`
 
         const realAddress = await getCoordinates(fullAddress)
-        console.log(fullAddress)
-        console.log(realAddress)
 
         if (realAddress.coordinates.length === 1 && realAddress.coordinates[0].geometry.location_type !== "APPROXIMATE") {
             const latitude = realAddress.coordinates[0].geometry.location.lat

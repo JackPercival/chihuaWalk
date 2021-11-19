@@ -11,7 +11,7 @@ const containerStyle = {
 
 
 
-const Maps = ({ apiKey, dogs, latAvg, longAvg }) => {
+const Maps = ({ apiKey, zoom, dogs, latAvg, longAvg }) => {
     const history = useHistory();
 
   const { isLoaded } = useJsApiLoader({
@@ -35,7 +35,7 @@ const center = {
                 <GoogleMap
                     mapContainerStyle={containerStyle}
                     center={center}
-                    zoom={5}
+                    zoom={zoom}
                 >
                     {dogs?.map(dog =>
                         <Marker
