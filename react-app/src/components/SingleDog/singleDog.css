@@ -97,7 +97,7 @@
 .dogScheduleWalkForm {
   min-width: 367px;
   width: 367px;
-  height: 280px;
+  height: 290px;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 10px;
   box-sizing: border-box;
@@ -292,4 +292,21 @@
   font-size: 24px;
   margin: 0;
   margin-bottom: 20px;
+}
+
+.dogWalkForm button {
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+  background-color: rgb(228,29,81);
+  border: none;
+  width: 100%;
+  border-radius: 7px;
+  padding: 15px;
+  margin-bottom: 125px;
+  transition: all .5s 0s;
+}
+
+.dogWalkForm button:hover {
+  background-color: rgb(167, 2, 46);
 }

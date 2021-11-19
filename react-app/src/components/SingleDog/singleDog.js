@@ -38,6 +38,11 @@ function SingleDog() {
         }
     }, [dog, isLoaded])
 
+    const createWalk = (e) => {
+        e.preventDefault();
+        console.log(date)
+    }
+
     useEffect(() => {
         if (date) {
             const displayDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
@@ -95,9 +100,9 @@ function SingleDog() {
                             </div>
                         </div>
                         <div className="dogScheduleWalkForm">
-                            <div className="walkDateContainer">
-                                <h3 id="walksFree">All Walks are Free</h3>
-                                {!showCalendar && (
+                            <form className="dogWalkForm" onSubmit={createWalk}>
+                                <div className="walkDateContainer">
+                                    <h3 id="walksFree">All Walks are Free</h3>
                                     <div className="walkDateInput">
                                         <label>WALK DATE</label>
                                         <input
@@ -105,10 +110,13 @@ function SingleDog() {
                                         value={formattedDate}
                                         placeholder="Add date"
                                         onClick={(e) => setShowCalendar(true)}
+                                        onChange={() => setFormattedDate(formattedDate)}
                                         />
                                     </div>
-                                )}
-                            </div>
+                                </div>
+                                <p>Dogs are limited to 1 walk per day. Walkers may pick up the dog anytime after 12:00 PM and must return the dog by 5:00 PM the same day.</p>
+                                <button type="submit">Reserve</button>
+                            </form>
                             {showCalendar && (
                                 <div className="popUpCalendar">
                                     <div className="topRowPopUp">
@@ -120,6 +128,7 @@ function SingleDog() {
                                             value={formattedDate}
                                             placeholder="Add date"
                                             onClick={(e) => setShowCalendar(true)}
+                                            onChange={() => setFormattedDate(formattedDate)}
                                             />
                                         </div>
                                     </div>
