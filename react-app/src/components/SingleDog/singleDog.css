@@ -25,9 +25,8 @@
 }
 
 .mainDogImage {
-    height: 528px;
+    height: 530px;
     width: 520px;
-    border: 1px solid black;
     background-size: cover;
     border-top-left-radius: 13px;
     border-bottom-left-radius: 13px;
@@ -63,7 +62,6 @@
 
 .fullDogInfo {
     flex-grow: 1;
-    border: 1px solid red;
     margin-right: 20px;
 }
 
@@ -72,7 +70,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgb(221, 221, 221);
-    padding-bottom: 10px;
+    padding-bottom: 17px;
 }
 
 .ownerInfo h3 {
@@ -88,11 +86,51 @@
     border-radius: 50%;
 }
 
+.dogBreedWeightDescriptionContainer {
+    margin-top: 30px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
 .dogScheduleWalkForm {
+    min-width: 367px;
     width: 367px;
     height: 280px;
-    border: 1px solid black;
+    border: 1px solid rgb(221, 221, 221);
     border-radius: 10px;
     box-sizing: border-box;
     padding: 23px;
+    position: sticky;
+    top: 130px;
+}
+
+.dogDataContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.dogDataIcon {
+    font-size: 40px;
+    margin-right: 20px;
+}
+
+.breedHeader {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.breedInfo {
+    color:rgb(117,117,117);
+}
+
+#weightHeader {
+    margin-left: 5px;
+}
+
+.dogDescription {
+    padding: 34px 0;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    line-height: 20px;
 }

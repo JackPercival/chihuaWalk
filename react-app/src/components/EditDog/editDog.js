@@ -286,7 +286,7 @@ const EditDog = () => {
                                 </div>
                             </div>
                             <div className="puploadButtons">
-                                <button type="submit">Add Dog</button>
+                                <button type="submit">Edit Dog</button>
                                 <button className="formButton" id="clearPuploadForm" onClick={cancelEdit}>Cancel Edit</button>
                             </div>
                         </form>
