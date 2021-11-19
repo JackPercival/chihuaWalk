@@ -14,25 +14,23 @@ const addWalk = walk => ({
     walk
 })
 
-const updateDog = dog => {
-    return {
-        type: UPDATE_DOG,
-        dog
-    }
-}
+// const updateWalk = walk => {
+//     return {
+//         type: UPDATE_DOG,
+//         walk
+//     }
+// }
 
-const deleteDog = dogId => {
-  return {
-      type: DELETE_DOG,
-      dogId
-  }
-}
+// const deleteDog = walkId => {
+//   return {
+//       type: DELETE_DOG,
+//       walkId
+//   }
+// }
 
 
 export const loadDogsWalks = (dogId) => async (dispatch) => {
-    console.log(dogId)
     const response = await fetch(`/api/walks/dog/${dogId}`)
-    console.log(response)
     if (response.ok) {
         const walks = await response.json();
         dispatch(loadWalks(walks))
@@ -48,8 +46,8 @@ export const loadUsersWalks = (userId) => async (dispatch) => {
     }
 }
 
-export const addNewWalk = (user_id, dog_id, date) => async (dispatch) => {
-    const response = await fetch(`/api/walks`, {
+export const addNewWalk = (user_id, dog_id, walk_date) => async (dispatch) => {
+    const response = await fetch(`/api/walks/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +55,7 @@ export const addNewWalk = (user_id, dog_id, date) => async (dispatch) => {
       body: JSON.stringify({
         user_id,
         dog_id,
-        date
+        walk_date
       }),
     });
 

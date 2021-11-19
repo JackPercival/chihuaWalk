@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllDogs } from '../../store/dog';
-import { loadDogsWalks } from '../../store/walk';
+import { loadDogsWalks, addNewWalk } from '../../store/walk';
 import Reviews from '../Reviews/reviews';
 import MapContainer from '../Maps';
 import DatePicker from 'react-calendar';
@@ -41,17 +41,25 @@ function SingleDog() {
         }
     }, [dog, isLoaded])
 
-    const createWalk = (e) => {
-        e.preventDefault();
-        console.log(date)
-    }
-
+    //Set formatted date to display to user
     useEffect(() => {
         if (date) {
             const displayDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
             setFormattedDate(displayDate)
         }
+
+
     }, [date])
+
+
+    const createWalk = async (e) => {
+        e.preventDefault();
+        // console.log(user?.id)
+        // console.log(dogId)
+        // console.log(date)
+        const data = await dispatch(addNewWalk(user?.id, dogId, date))
+        console.log(data)
+    }
 
     return (
         <>
@@ -112,7 +120,9 @@ function SingleDog() {
                                         type="text"
                                         value={formattedDate}
                                         placeholder="Add date"
+                                        required
                                         onClick={(e) => setShowCalendar(true)}
+                                        onFocus={(e) => setShowCalendar(true)}
                                         onChange={() => setFormattedDate(formattedDate)}
                                         />
                                     </div>

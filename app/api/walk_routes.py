@@ -1,8 +1,8 @@
 from logging import log
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Dog, Image, Walk
-from app.forms import NewDogForm
+from app.models import db, Dog, Walk
+from app.forms import NewWalk
 from .auth_routes import validation_errors_to_error_messages
 
 walk_routes = Blueprint('walks', __name__)
@@ -23,31 +23,28 @@ def user_walks(userId):
     results = [walk.to_dict() for walk in walks]
     return {'walks': results}
 
-# #Create a dog
-# @dog_routes.route('/', methods=['POST'])
-# def add_dog():
-#     form = NewDogForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         data = form.data
-#         dog = Dog(user_id=data['user_id'], name=data['name'], breed=data['breed'], description=data['description'],
-#                     weight=data['weight'], address=data['address'], city=data['city'], state=data['state'],
-#                     country=data['country'], latitude=data['latitude'], longitude=data['longitude'])
+#Create a dog
+@walk_routes.route('/', methods=['POST'])
+@login_required
+def add_walk():
+    print("****************************")
+    print(request.data)
+    form = NewWalk()
+    print(form.data)
+    print("****************************")
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        # print("**************** Valid Form **************")
+        # print(request.data)
+        # return 'Yes'
+        data = form.data
+        walk = Walk(user_id=data['user_id'], dog_id=data['dog_id'], date=request.data['walk_date'])
 
-#         db.session.add(dog)
-#         db.session.commit()
+        db.session.add(walk)
+        db.session.commit()
 
-#         image1 = Image(dog_id=dog.id, url=form.data['image1'])
-#         image2 = Image(dog_id=dog.id, url=form.data['image2'])
-#         image3 = Image(dog_id=dog.id, url=form.data['image3'])
-
-#         db.session.add(image1)
-#         db.session.add(image2)
-#         db.session.add(image3)
-#         db.session.commit()
-
-#         return dog.to_dict()
-#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return walk.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 # #Update a dog
 # @dog_routes.route('/<int:dogId>', methods=['PUT'])
