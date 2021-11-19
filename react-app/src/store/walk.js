@@ -1,6 +1,6 @@
 //constants
 const LOAD = 'walks/LOAD_WALKS'
-const ADD_DOG = 'dogs/ADD_DOG'
+const ADD_WALK = 'walks/ADD_WALK'
 const UPDATE_DOG = 'dogs/UPDATE_DOG'
 const DELETE_DOG = 'dogs/DELETE_DOG'
 
@@ -9,9 +9,9 @@ const loadWalks = (walks) => ({
     walks
 })
 
-const addDog = dog => ({
-    type: ADD_DOG,
-    dog
+const addWalk = walk => ({
+    type: ADD_WALK,
+    walk
 })
 
 const updateDog = dog => {
@@ -48,44 +48,33 @@ export const loadUsersWalks = (userId) => async (dispatch) => {
     }
 }
 
-// export const addNewDog = (user_id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3) => async (dispatch) => {
-//     const response = await fetch(`/api/dogs/`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         user_id,
-//         name,
-//         breed,
-//         description,
-//         weight,
-//         address,
-//         city,
-//         state,
-//         country,
-//         latitude,
-//         longitude,
-//         image1,
-//         image2,
-//         image3,
-//       }),
-//     });
+export const addNewWalk = (user_id, dog_id, date) => async (dispatch) => {
+    const response = await fetch(`/api/walks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_id,
+        dog_id,
+        date
+      }),
+    });
 
-//     if (response.ok) {
-//       const data = await response.json();
-//       dispatch(addDog(data))
-//       return ["Created", data];
-//     } else if (response.status < 500) {
-//       const data = await response.json();
-//       if (data.errors) {
-//         return ["Error", data.errors];
-//       }
-//     } else {
-//       alert('An error occurred. Please refresh the page and try again.')
-//       return["Error"]
-//     }
-// }
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(addWalk(data))
+      return ["Created", data];
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        return ["Error", data.errors];
+      }
+    } else {
+      alert('An error occurred. Please refresh the page and try again.')
+      return["Error"]
+    }
+}
 
 // export const updatedExistingDog = (dog_id, user_id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3) => async (dispatch) => {
 //   const response = await fetch(`/api/dogs/${dog_id}`, {
@@ -151,20 +140,20 @@ const walksReducer = (state = initialState, action) => {
                 allWalks[walk.id] = walk
             }
             return {...allWalks }
-        case ADD_DOG:
+        case ADD_WALK:
             return {
                 ...state,
-                [action.dog.id]: action.dog,
+                [action.walk.id]: action.walk,
             }
-        case UPDATE_DOG:
-            return {
-                ...state,
-                [action.dog.id]: action.dog,
-            }
-        case DELETE_DOG:
-            const newState = {...state}
-            delete newState[action.dogId];
-            return newState;
+        // case UPDATE_DOG:
+        //     return {
+        //         ...state,
+        //         [action.dog.id]: action.dog,
+        //     }
+        // case DELETE_DOG:
+        //     const newState = {...state}
+        //     delete newState[action.dogId];
+        //     return newState;
         default:
             return state;
     }

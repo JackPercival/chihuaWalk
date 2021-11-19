@@ -6,7 +6,10 @@ import { loadDogsWalks } from '../../store/walk';
 import Reviews from '../Reviews/reviews';
 import MapContainer from '../Maps';
 import DatePicker from 'react-calendar';
+
 import './singleDog.css'
+import './calendar.css'
+import './walkForm.css'
 
 function SingleDog() {
 
@@ -115,7 +118,11 @@ function SingleDog() {
                                     </div>
                                 </div>
                                 <p>Dogs are limited to 1 walk per day. Walkers may pick up the dog anytime after 12:00 PM and must return the dog by 5:00 PM the same day.</p>
-                                <button type="submit">Reserve</button>
+                                {user?.id? (
+                                    <button type="submit">Reserve</button>
+                                ) : (
+                                    <div className="pleaseLogin">Please Login to Reserve a Walk</div>
+                                )}
                             </form>
                             {showCalendar && (
                                 <div className="popUpCalendar">
