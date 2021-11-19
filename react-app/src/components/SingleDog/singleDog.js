@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllDogs } from '../../store/dog';
-
+import DatePicker from 'react-calendar'
 import './singleDog.css'
 
 function SingleDog() {
@@ -14,8 +14,8 @@ function SingleDog() {
     const user = useSelector(state => state.session.user);
 
     const dog = useSelector(state => state.dogs[dogId]);
-    console.log(dog)
     const [isLoaded, setIsLoaded] = useState(false);
+    const [date, setDate] = useState(null)
 
     useEffect(() => {
         dispatch(loadAllDogs()).then(() => setIsLoaded(true));
@@ -24,12 +24,18 @@ function SingleDog() {
         }
     }, [dispatch]);
 
+    useEffect(() => {
+        console.log(date)
+    }, [date])
+
     //Redirect if the dog does not exist
     useEffect(() => {
         if (isLoaded && !dog) {
             history.push('/')
         }
     })
+
+
 
     return (
         <>
@@ -75,6 +81,7 @@ function SingleDog() {
                                 </div>
                             </div>
                             <div className="dogDescription">{dog?.description}</div>
+                            <DatePicker onChange={(picked) => setDate(picked)} value={date} dayClassName={"calendarDay"}/>
                         </div>
                         <div className="dogScheduleWalkForm">Walk Schedule form goes here</div>
                     </div>
