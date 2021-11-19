@@ -1,226 +1,192 @@
 .singleDogContainer {
-    width: 790px;
-    max-width: 1600px;
-    margin: 0 auto;
-    height: fit-content;
-    margin-bottom: 50px;
-    font-family: 'Questrial', sans-serif;
+  width: 790px;
+  max-width: 1600px;
+  margin: 0 auto;
+  height: fit-content;
+  margin-bottom: 50px;
+  font-family: "Questrial", sans-serif;
 }
 
 .singleDogContainer h1 {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .singleDogContainer h3 {
-    color:rgb(117,117,117);
-    margin-top: 0;
-    font-size: 17px;
-    font-weight: 300;
+  color: rgb(117, 117, 117);
+  margin-top: 0;
+  font-size: 17px;
+  font-weight: 300;
 }
 
 .dogImageContainer {
-    width: fit-content;
-    margin: 0 auto;
-    display: flex;
+  width: fit-content;
+  margin: 0 auto;
+  display: flex;
 }
 
 .mainDogImage {
-    height: 530px;
-    width: 520px;
-    background-size: cover;
-    border-top-left-radius: 13px;
-    border-bottom-left-radius: 13px;
+  height: 530px;
+  width: 520px;
+  background-size: cover;
+  border-top-left-radius: 13px;
+  border-bottom-left-radius: 13px;
 }
 
 .smallerDogImageContainer {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .smallDogImage {
-    width: 260px;
-    height: 260px;
-    background-size: cover;
-    margin-left: 10px;
+  width: 260px;
+  height: 260px;
+  background-size: cover;
+  margin-left: 10px;
 }
 
 #firstSmallImage {
-    margin-bottom: 10px;
-    border-top-right-radius: 13px;
+  margin-bottom: 10px;
+  border-top-right-radius: 13px;
 }
 
 #secondSmallImage {
-    border-bottom-right-radius: 13px;
+  border-bottom-right-radius: 13px;
 }
 
 .dogInfoAndCreateWalkContainer {
-    display: flex;
-    width: 790px;
-    justify-content: space-between;
-    margin-top: 30px;
+  display: flex;
+  width: 790px;
+  justify-content: space-between;
+  margin-top: 30px;
 }
 
 .fullDogInfo {
-    flex-grow: 1;
-    margin-right: 20px;
+  flex-grow: 1;
+  margin-right: 20px;
 }
 
 .ownerInfo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid rgb(221, 221, 221);
-    padding-bottom: 17px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  padding-bottom: 17px;
 }
 
 .ownerInfo h3 {
-    color: black;
-    font-size: 24px;
-    margin: 0;
+  color: black;
+  font-size: 24px;
+  margin: 0;
 }
 
 .ownerIcon {
-    width: 70px;
-    height: 70px;
-    background-size: cover;
-    border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  border-radius: 50%;
 }
 
 .dogBreedWeightDescriptionContainer {
-    margin-top: 30px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgb(221, 221, 221);
+  margin-top: 30px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgb(221, 221, 221);
 }
 
 .dogScheduleWalkForm {
-    min-width: 367px;
-    width: 367px;
-    height: 280px;
-    border: 1px solid rgb(221, 221, 221);
-    border-radius: 10px;
-    box-sizing: border-box;
-    padding: 23px;
-    position: sticky;
-    top: 130px;
+  min-width: 367px;
+  width: 367px;
+  height: 280px;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 23px;
+  position: sticky;
+  top: 130px;
 }
 
 .dogDataContainer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
 .dogDataIcon {
-    font-size: 40px;
-    margin-right: 20px;
+  font-size: 40px;
+  margin-right: 20px;
 }
 
 .breedHeader {
-    font-size: 25px;
-    font-weight: 600;
-    margin-bottom: 3px;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 3px;
 }
 
 .breedInfo {
-    color:rgb(117,117,117);
+  color: rgb(117, 117, 117);
 }
 
 #weightHeader {
-    margin-left: 5px;
+  margin-left: 5px;
 }
 
 .dogDescription {
-    padding: 34px 0;
-    border-bottom: 1px solid rgb(221, 221, 221);
-    line-height: 20px;
+  padding: 34px 0;
+  border-bottom: 1px solid rgb(221, 221, 221);
+  line-height: 20px;
 }
 
-/* #pageContainer > div > div > div.dogInfoAndCreateWalkContainer > div.fullDogInfo > div.react-calendar > div.react-calendar__viewContainer > div > div > div > div.react-calendar__month-view__days > button {
+.selectADate {
+  font-size: 24px;
+  margin: 22px 0;
+}
+
+/* Calendar Nav container */
+.react-calendar__navigation {
+  margin: 0 auto 10px auto;
+  width: fit-content;
+}
+
+.react-calendar__navigation button {
     background-color: white;
-    padding: 0;
-    max-width: 30px;
-    min-width: 30px;
-    width: 30px;
-    height: 30px;
-    max-height: 30px;
-    min-height: 30px;
-    border: 1px solid blue;
-    border-radius: 50%;
-} */
-
-/* .react-calendar button {
-    margin: 0;
-    padding: 0;
-    height: 50px;
-    border: 0;
-    outline: none;
-    border: 1px solid green;
-    width: 30px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: lightblue;
-
-  } */
-
-  /* .react-calendar__navigation button {
-    min-width: 44px;
-    background: none;
-    height: 20px;
-    width: 100px;
-    border-radius: 0;
-    background-color: pink;
-  } */
-
-  .react-calendar__month-view__weekdays__weekday {
-        background-color: white;
-        padding: 5px;
-        text-align: center;
-        width: 30px;
-  }
-
-  .react-calendar__month-view__weekdays__weekday * {
-      text-decoration: none;
-  }
-
-  .react-calendar__month-view__weekNumbers {
-      color: yellow;
-      background-color: yellow;
-  }
-
-  .react-calendar__month-view__weekNumbers .react-calendar__tile {
-      color: blue;
-      background-color: blue;
-  }
-
-  .react-calendar__month-view__days {
-      justify-content: space-between;
-  }
-
-  .react-calendar__tile {
-      /* background-color: red; */
-      height: 57px;
-      /* width: 50px; */
-      /* padding: 5px; */
-      /* margin: 1px; */
-      border-radius: 50%;
-      border: 1px solid transparent;
-      background-color: white;
-      transition: all .2s 0s;
-  }
-
-  /* .react-calendar__tile {
-      font-weight: 600;
-  } */
-
-  .react-calendar__tile:hover {
-    border: 1px solid rgb(221, 221, 221);
+    border: none;
     cursor: pointer;
-  }
+}
 
-  .react-calendar__tile:enabled:focus {
-    background-color: black;
-  }
+.react-calendar__navigation__label > span {
+    font-size: 20px;
+    font-family: "Questrial", sans-serif;
+}
 
-  .react-calendar__tile:enabled:focus * {
-    color: white;
-  }
+.react-calendar__navigation__next-button, .react-calendar__navigation__next2-button, .react-calendar__navigation__prev-button, .react-calendar__navigation__prev2-button {
+    font-size: 20px;
+}
+
+/* Days of week */
+.react-calendar__month-view__weekdays__weekday {
+  background-color: white;
+  padding: 5px;
+  text-align: center;
+  width: 30px;
+}
+
+.react-calendar__month-view__weekdays__weekday * {
+  text-decoration: none;
+}
+
+.react-calendar__tile {
+  height: 57px;
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background-color: white;
+  transition: all 0.2s 0s;
+}
+
+.react-calendar__tile:hover {
+  border: 1px solid rgb(221, 221, 221);
+  cursor: pointer;
+}
+
+.react-calendar__tile:disabled:hover {
+    border: 1px solid transparent;
+    cursor: default;
+}
