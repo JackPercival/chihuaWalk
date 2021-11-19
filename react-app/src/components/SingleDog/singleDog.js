@@ -111,15 +111,22 @@ function SingleDog() {
                             </div>
                             {showCalendar && (
                                 <div className="popUpCalendar">
-                                    <div>Walk Date</div>
-                                    <input
-                                        type="text"
-                                        value={formattedDate}
-                                        placeholder="Add date"
-                                        onClick={(e) => setShowCalendar(true)}
-                                    />
+                                    <div className="topRowPopUp">
+                                        <h3 id="selectDate">Select a Date</h3>
+                                        <div className="walkDateInput" id="popUpDateInput">
+                                            <label>WALK DATE</label>
+                                            <input
+                                            type="text"
+                                            value={formattedDate}
+                                            placeholder="Add date"
+                                            onClick={(e) => setShowCalendar(true)}
+                                            />
+                                        </div>
+                                    </div>
                                     <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()}/>
-                                    <div onClick={(e) => setShowCalendar(false)}>Close</div>
+                                    <div className="closeDateContainer">
+                                        <div onClick={(e) => setShowCalendar(false)}>Close</div>
+                                    </div>
                                 </div>
                             )}
                         </div>

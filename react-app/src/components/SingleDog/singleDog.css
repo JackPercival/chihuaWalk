@@ -213,8 +213,13 @@
 .popUpCalendar {
   position: absolute;
   width: 405px;
-  border: 1px solid red;
-  padding: 20px;
+  background-color: white;
+  padding: 30px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  top: 33px;
+  left: -204px;
+  box-shadow: -1px 1px 3px rgb(221, 221, 221), 1px 1px 3px rgb(221, 221, 221);
 }
 
 #walksFree {
@@ -231,7 +236,7 @@
   cursor: pointer;
 }
 
-.walkDateContainer label {
+.walkDateInput label {
   position: absolute;
   font-size: 12px;
   font-weight: 600;
@@ -253,4 +258,38 @@
   font-weight: 200;
   color: rgb(117, 117, 117);
   cursor: pointer;
+}
+
+.topRowPopUp {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+#popUpDateInput {
+  margin-bottom: 20px;
+}
+
+.closeDateContainer {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+.closeDateContainer div {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 8px 14px;
+  margin-top: 5px;
+  text-align: center;
+}
+
+#selectDate {
+  color: black;
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 20px;
 }
