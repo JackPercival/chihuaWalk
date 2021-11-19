@@ -197,3 +197,12 @@
     height: 479px;
     width: 100%;
 }
+
+.react-calendar__tile--active {
+  background-color: black;
+  transition: all .5s 0s;
+}
+
+.react-calendar__tile--active * {
+  color: white;
+}

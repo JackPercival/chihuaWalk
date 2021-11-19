@@ -33,39 +33,6 @@ function SingleDog() {
         }
     }, [dog, isLoaded])
 
-
-    //Set and keep the background of the clicked on date, so even if you click other things, it remains
-    const setDateBackground = (e) => {
-        if (e.target.parentElement.disabled) {
-            return
-        }
-
-        const elements = document.querySelectorAll('.react-calendar__tile');
-
-        for (let i = 0; i < elements.length; ++i) {
-            if (elements[i].disabled) {
-                break
-            }
-            elements[i].setAttribute('style', 'background-color: white; flex-basis: 14.2857%; max-width: 14.2857%; overflow: hidden;')
-            if (elements[i].firstElementChild) {
-                elements[i].firstElementChild.setAttribute('style', "color: black;")
-            }
-        }
-
-        if (e.target.classList.contains('react-calendar__tile')) {
-            e.target.setAttribute('style', 'background-color: black; flex-basis: 14.2857%; max-width: 14.2857%; overflow: hidden;')
-            if (e.target.firstElementChild) {
-                e.target.firstElementChild.setAttribute('style', "color: white;")
-            }
-        } else if (e.target.tagName.toLowerCase() === "abbr") {
-            if (e.target.parentElement) {
-                e.target.parentElement.setAttribute('style', 'background-color: black; flex-basis: 14.2857%; max-width: 14.2857%; overflow: hidden;')
-            }
-            e.target.setAttribute('style', "color: white;")
-        }
-
-    }
-
     return (
         <>
             {isLoaded && (
@@ -111,7 +78,7 @@ function SingleDog() {
                             </div>
                             <div className="dogDescription">{dog?.description}</div>
                             <div className="selectADate">Select a Date</div>
-                            <div onClick={(e) => setDateBackground(e)}>
+                            <div>
                                 <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()}/>
                             </div>
                         </div>
@@ -120,7 +87,7 @@ function SingleDog() {
                     <Reviews dog={dog}/>
                     <div className="selectADate">{`Where you'll pick up ${dog?.name}`}</div>
                     <div className="singleDogMap">
-                        <MapContainer zoom={11} dogs={[dog]}/>
+                        {/* <MapContainer zoom={11} dogs={[dog]}/> */}
                     </div>
                 </div>
             )}
