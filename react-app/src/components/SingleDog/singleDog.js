@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllDogs } from '../../store/dog';
+import { loadDogsWalks } from '../../store/walk';
 import Reviews from '../Reviews/reviews';
 import MapContainer from '../Maps';
 import DatePicker from 'react-calendar';
@@ -14,12 +15,16 @@ function SingleDog() {
     const { dogId } = useParams();
 
     const user = useSelector(state => state.session.user);
-
     const dog = useSelector(state => state.dogs[dogId]);
+    const walks = useSelector(state => state.walks);
+
     const [isLoaded, setIsLoaded] = useState(false);
     const [date, setDate] = useState(null)
+    const [formattedDate, setFormattedDate] = useState('')
+    const [showCalendar, setShowCalendar] = useState(false)
 
     useEffect(() => {
+        dispatch(loadDogsWalks(dogId))
         dispatch(loadAllDogs()).then(() => setIsLoaded(true));
         return () => {
             setIsLoaded()
@@ -32,6 +37,13 @@ function SingleDog() {
             history.push('/')
         }
     }, [dog, isLoaded])
+
+    useEffect(() => {
+        if (date) {
+            const displayDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+            setFormattedDate(displayDate)
+        }
+    }, [date])
 
     return (
         <>
@@ -82,7 +94,35 @@ function SingleDog() {
                                 <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()}/>
                             </div>
                         </div>
-                        <div className="dogScheduleWalkForm">Walk Schedule form goes here</div>
+                        <div className="dogScheduleWalkForm">
+                            <div className="walkDateContainer">
+                                <h3 id="walksFree">All Walks are Free</h3>
+                                {!showCalendar && (
+                                    <div className="walkDateInput">
+                                        <label>WALK DATE</label>
+                                        <input
+                                        type="text"
+                                        value={formattedDate}
+                                        placeholder="Add date"
+                                        onClick={(e) => setShowCalendar(true)}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                            {showCalendar && (
+                                <div className="popUpCalendar">
+                                    <div>Walk Date</div>
+                                    <input
+                                        type="text"
+                                        value={formattedDate}
+                                        placeholder="Add date"
+                                        onClick={(e) => setShowCalendar(true)}
+                                    />
+                                    <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()}/>
+                                    <div onClick={(e) => setShowCalendar(false)}>Close</div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <Reviews dog={dog}/>
                     <div className="selectADate">{`Where you'll pick up ${dog?.name}`}</div>

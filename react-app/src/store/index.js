@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import dogsReducer from './dog';
 import mapsReducer from './map';
+import walksReducer from './walk';
 
 const rootReducer = combineReducers({
   session,
   maps: mapsReducer,
   dogs: dogsReducer,
+  walks: walksReducer,
 });
 
 
