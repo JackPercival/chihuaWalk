@@ -3,6 +3,19 @@
     max-width: 1600px;
     margin: 0 auto;
     height: fit-content;
+    margin-bottom: 50px;
+    font-family: 'Questrial', sans-serif;
+}
+
+.singleDogContainer h1 {
+    margin-bottom: 10px;
+}
+
+.singleDogContainer h3 {
+    color:rgb(117,117,117);
+    margin-top: 0;
+    font-size: 17px;
+    font-weight: 300;
 }
 
 .dogImageContainer {
@@ -14,7 +27,6 @@
 .mainDogImage {
     height: 530px;
     width: 520px;
-    border: 1px solid black;
     background-size: cover;
     border-top-left-radius: 13px;
     border-bottom-left-radius: 13px;
@@ -28,7 +40,6 @@
 .smallDogImage {
     width: 260px;
     height: 260px;
-    border: 1px solid black;
     background-size: cover;
     margin-left: 10px;
 }
@@ -40,4 +51,86 @@
 
 #secondSmallImage {
     border-bottom-right-radius: 13px;
+}
+
+.dogInfoAndCreateWalkContainer {
+    display: flex;
+    width: 790px;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.fullDogInfo {
+    flex-grow: 1;
+    margin-right: 20px;
+}
+
+.ownerInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    padding-bottom: 17px;
+}
+
+.ownerInfo h3 {
+    color: black;
+    font-size: 24px;
+    margin: 0;
+}
+
+.ownerIcon {
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    border-radius: 50%;
+}
+
+.dogBreedWeightDescriptionContainer {
+    margin-top: 30px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.dogScheduleWalkForm {
+    min-width: 367px;
+    width: 367px;
+    height: 280px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 10px;
+    box-sizing: border-box;
+    padding: 23px;
+    position: sticky;
+    top: 130px;
+}
+
+.dogDataContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.dogDataIcon {
+    font-size: 40px;
+    margin-right: 20px;
+}
+
+.breedHeader {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.breedInfo {
+    color:rgb(117,117,117);
+}
+
+#weightHeader {
+    margin-left: 5px;
+}
+
+.dogDescription {
+    padding: 34px 0;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    line-height: 20px;
 }
