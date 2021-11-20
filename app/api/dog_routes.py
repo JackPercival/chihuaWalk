@@ -15,6 +15,7 @@ def all_dogs():
 
 #Create a dog
 @dog_routes.route('/', methods=['POST'])
+@login_required
 def add_dog():
     form = NewDogForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -41,6 +42,7 @@ def add_dog():
 
 #Update a dog
 @dog_routes.route('/<int:dogId>', methods=['PUT'])
+@login_required
 def update_dog(dogId):
     form = NewDogForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -77,6 +79,7 @@ def update_dog(dogId):
 
 #Delete a dog
 @dog_routes.route('/<int:dogId>', methods=['DELETE'])
+@login_required
 def delete_dog(dogId):
     dog = Dog.query.filter(Dog.id == dogId).first()
     if dog:
