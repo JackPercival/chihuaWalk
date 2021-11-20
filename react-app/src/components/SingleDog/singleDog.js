@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllDogs } from '../../store/dog';
 import { loadDogsWalks, addNewWalk } from '../../store/walk';
@@ -57,8 +57,8 @@ function SingleDog() {
         // console.log(user?.id)
         // console.log(dogId)
         // console.log(date)
-        const data = await dispatch(addNewWalk(user?.id, dogId, date))
-        console.log(data)
+        const data = await dispatch(addNewWalk(user?.id, dogId, date.toISOString().split('T')[0]))
+        console.log(date.toISOString().split('T')[0])
     }
 
     return (
@@ -115,7 +115,7 @@ function SingleDog() {
                                 <div className="walkDateContainer">
                                     <h3 id="walksFree">All Walks are Free</h3>
                                     <div className="walkDateInput">
-                                        <label>WALK DATE</label>
+                                        <label onClick={(e) => setShowCalendar(true)}>WALK DATE</label>
                                         <input
                                         type="text"
                                         value={formattedDate}
@@ -128,10 +128,20 @@ function SingleDog() {
                                     </div>
                                 </div>
                                 <p>Dogs are limited to 1 walk per day. Walkers may pick up the dog anytime after 12:00 PM and must return the dog by 5:00 PM the same day.</p>
-                                {user?.id? (
+
+                                {user?.id && user?.id !== dog?.user_id ? (
                                     <button type="submit">Reserve</button>
                                 ) : (
-                                    <div className="pleaseLogin">Please Login to Reserve a Walk</div>
+                                    <>
+                                        {user?.id? (
+                                            <Link to={`/dogs/${dog.id}/edit`}>
+                                                <div className="pleaseLogin" id="userOwnPostEdit">Edit your Posting</div>
+                                            </Link>
+
+                                        ) : (
+                                            <div className="pleaseLogin">Please Login to Reserve a Walk</div>
+                                        )}
+                                    </>
                                 )}
                             </form>
                             {showCalendar && (
@@ -144,7 +154,6 @@ function SingleDog() {
                                             type="text"
                                             value={formattedDate}
                                             placeholder="Add date"
-                                            onClick={(e) => setShowCalendar(true)}
                                             onChange={() => setFormattedDate(formattedDate)}
                                             />
                                         </div>
