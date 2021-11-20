@@ -54,6 +54,11 @@ function SingleDog() {
 
     const createWalk = async (e) => {
         e.preventDefault();
+
+        if (!date) {
+            return;
+        }
+
         const data = await dispatch(addNewWalk(user?.id, dogId, date.toISOString().split('T')[0]))
         console.log(date.toISOString().split('T')[0])
     }
