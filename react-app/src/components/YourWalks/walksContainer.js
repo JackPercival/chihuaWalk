@@ -52,11 +52,11 @@ const WalksContainer = ({walks}) => {
                     <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png"/>
                   </>
                 ):(
-                  <>
+                  <div className="yesWalksContainer">
                     {upcomingWalks.map((walk, index) =>
                       <DogSlide dog={walk.dog} key={`Your_dog_walk_${walk.dog.id}_${index}`} />
                     )}
-                  </>
+                  </div>
                 )}
               </>
             )}
@@ -68,11 +68,11 @@ const WalksContainer = ({walks}) => {
                     <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png"/>
                   </>
                 ) :(
-                <>
-                  {pastWalks.map((walk, index) =>
-                    <DogSlide dog={walk.dog} key={`Your_past_dog_walk_${walk.dog.id}_${index}`} />
-                  )}
-                </>
+                  <div className="yesWalksContainer">
+                    {pastWalks.map((walk, index) =>
+                      <DogSlide dog={walk.dog} key={`Your_past_dog_walk_${walk.dog.id}_${index}`} />
+                    )}
+                  </div>
                 )}
               </>
             )}

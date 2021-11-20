@@ -60,9 +60,12 @@ function YourDogs() {
                                         <DogSlide dog={dog} key={`Your_dog_${dog.id}`} />
                                         <div className="yourDogSingleDogInfo">
                                             <div className="singleDogName">{dog.name}</div>
-                                            <div className="dogInfoSingleDog">{dog.breed}</div>
-                                            <div className="dogInfoSingleDog">{dog.description}</div>
-                                            <div className="dogInfoSingleDog">{`${dog.weight} lbs.`}</div>
+                                            <div className="dogDetailsNoButtons">
+                                                <div className="dogInfoSingleDog">{dog.breed}</div>
+                                                <div className="dogInfoSingleDog">{dog.description}</div>
+                                                <div className="dogInfoSingleDog">{`${dog.weight} lbs.`}</div>
+                                                <div className="dogInfoSingleDog">{`${dog.city}, ${dog.state}`}</div>
+                                            </div>
                                             {dog.user_id === Number(user.id) && (
                                                 <div className="editDeleteDogButtons">
                                                     <Link to={`/dogs/${dog.id}/edit`}>

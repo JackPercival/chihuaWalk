@@ -41,8 +41,8 @@
   }
 
   .dogWalksForUserContainer {
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex;
+    flex-wrap: wrap; */
     border-bottom: 1px solid rgb(221, 221, 221);
     margin-bottom: 50px;
     min-height: 383px;
@@ -53,6 +53,7 @@
     margin: 0 auto;
     z-index: -1;
     top: 10px;
+    display: block;
   }
 
   .noWalksText {
@@ -67,4 +68,9 @@
     text-decoration: underline;
     margin: 0 3px;
     font-weight: 600;
+  }
+
+  .yesWalksContainer {
+    display: flex;
+    flex-wrap: wrap;
   }

@@ -32,6 +32,16 @@
 .yourDogSingleDogInfo {
     margin: 0;
     width: 287px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dogDetailsNoButtons {
+    max-height: 200px;
+    overflow: auto;
+    flex-grow: 1;
 }
 
 .singleDogName {
@@ -54,7 +64,7 @@
 
 .editDeleteDogButtons {
     display: flex;
-    margin-top: 40px;
+    margin-top: 10px;
 }
 
 .editDeleteDogButtons div {
@@ -134,6 +144,7 @@
     max-width: 1600px;
     margin: 0 auto;
     height: fit-content;
+    font-family: 'Questrial', sans-serif;
 }
 
 .noDogsPosted {
