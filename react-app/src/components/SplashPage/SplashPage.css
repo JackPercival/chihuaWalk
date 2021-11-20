@@ -8,7 +8,7 @@
 }
 
 .topSpashPage {
-    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637163413/Capstone/dogWalk_dvgabk.jpg");
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,w_1920/v1637163413/Capstone/dogWalk_dvgabk.jpg");
     background-size: cover;
     height: 70vh;
     width: 85vw;
@@ -48,7 +48,7 @@
 }
 
 .notSureContainer {
-    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637166464/Capstone/labwalk_imn08s.jpg");
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,w_1920/v1637166464/Capstone/labwalk_imn08s.jpg");
     background-size: cover;
     height: 70vh;
     width: 85vw;
@@ -87,9 +87,14 @@
     cursor: pointer;
     margin: 20px 0 50px 0;
     text-align: center;
+    transition: all .4s 0s;
 }
 
-.flexibleButton:hover div {
+.flexibleButton:active {
+    transform: scale(.9);
+}
+
+.flexibleButton:hover {
     color:rgb(209, 14, 170);
 }
 
@@ -116,11 +121,11 @@
     max-width: 385px;
     background-color: rgb(188,27,110);
     border-radius: 13px;
-    transition: box-shadow .4s 0s;
+    transition: all .4s 0s;
 }
 
 .inspirationCard:hover {
-    box-shadow: -3px 3px 5px rgb(173, 173, 173), 3px 3px 5px rgb(173, 173, 173);
+    transform: scale(1.04);
 }
 
 .inspirationImage {
@@ -128,7 +133,7 @@
     max-width: 385px;
     height: 16vw;
     max-height: 250px;
-    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637170002/Capstone/smalldog_yjlpa5.jpg");
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,w_600/v1637170002/Capstone/smalldog_yjlpa5.jpg");
     background-size: cover;
     border-top-left-radius: 13px;
     border-top-right-radius: 13px;
@@ -144,7 +149,7 @@
 }
 
 #mediumDog .inspirationImage {
-    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637170980/Capstone/mediumDog_atwe5i.jpg");
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,w_600/v1637170980/Capstone/mediumDog_atwe5i.jpg");
 }
 
 #mediumDog {
@@ -152,7 +157,7 @@
 }
 
 #largeDog .inspirationImage {
-    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637171096/Capstone/lab_jjik8n.jpg");
+    background-image: url("https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,w_600/v1637171096/Capstone/lab_jjik8n.jpg");
 }
 
 #largeDog {
