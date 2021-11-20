@@ -46,15 +46,33 @@ const WalksContainer = ({walks}) => {
           <div className="dogWalksForUserContainer">
             {!showPast && (
               <>
-                {upcomingWalks.map((walk, index) =>
-                  <DogSlide dog={walk.dog} key={`Your_dog_walk_${walk.dog.id}_${index}`} />
+                {upcomingWalks.length === 0? (
+                  <>
+                    <p className="noWalksText">When you’re ready to start planning your next walk, click</p><Link to="/browse" className="noDogsBrowse">here</Link><p className="noWalksText"> to browse.</p>
+                    <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png"/>
+                  </>
+                ):(
+                  <>
+                    {upcomingWalks.map((walk, index) =>
+                      <DogSlide dog={walk.dog} key={`Your_dog_walk_${walk.dog.id}_${index}`} />
+                    )}
+                  </>
                 )}
               </>
             )}
             {showPast && (
               <>
-                {pastWalks.map((walk, index) =>
-                  <DogSlide dog={walk.dog} key={`Your_past_dog_walk_${walk.dog.id}_${index}`} />
+                {pastWalks.length === 0? (
+                  <>
+                    <p className="noWalksText">You don’t have any past walks yet—but when you do, you’ll find them here.</p>
+                    <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png"/>
+                  </>
+                ) :(
+                <>
+                  {pastWalks.map((walk, index) =>
+                    <DogSlide dog={walk.dog} key={`Your_past_dog_walk_${walk.dog.id}_${index}`} />
+                  )}
+                </>
                 )}
               </>
             )}
