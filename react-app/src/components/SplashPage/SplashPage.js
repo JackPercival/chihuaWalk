@@ -18,9 +18,9 @@ const SplashPage = () => {
         <div className="notSureContainer">
             <div className="notSureContent">
                 <h2>Not sure who to walk? Pawfect.</h2>
-                <div className="flexibleButton">
+                <div >
                     <Link to='/browse'>
-                        <div>I'm flexible</div>
+                        <div className="flexibleButton">I'm flexible</div>
                     </Link>
                 </div>
             </div>
