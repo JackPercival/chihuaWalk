@@ -62,7 +62,7 @@ const WalksContainer = ({walks}) => {
                 ):(
                   <div className="yesWalksContainer">
                     {upcomingWalks.map((walk, index) =>
-                      <DogWalkCard walk={walk} key={`Your_dog_walk_${walk.dog.id}_${index}`} />
+                      <DogWalkCard walk={walk} upcoming={true} key={`Your_dog_walk_${walk.dog.id}_${index}`} />
                     )}
                   </div>
                 )}
@@ -78,7 +78,7 @@ const WalksContainer = ({walks}) => {
                 ) :(
                   <div className="yesWalksContainer">
                     {pastWalks.map((walk, index) =>
-                      <DogWalkCard walk={walk} key={`Your_past_dog_walk_${walk.dog.id}_${index}`} />
+                      <DogWalkCard walk={walk} upcoming={false} key={`Your_past_dog_walk_${walk.dog.id}_${index}`} />
                     )}
                   </div>
                 )}

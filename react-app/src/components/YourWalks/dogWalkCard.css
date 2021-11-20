@@ -26,11 +26,19 @@
 }
 
 .dogWalkCard:hover {
-    background-color: rgb(217, 241, 255);
+    background-color: rgb(236, 248, 255);
+}
+
+.walkDogInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 12vw;
 }
 
 .walkPicAndDogInfo {
     display: flex;
+    font-size: 20px;
 }
 
 .walkDate {
@@ -40,8 +48,27 @@
 .walkPic {
     width: 15vw;
     height: 12vw;
+    min-width: 15vw;
+    min-height: 12vw;
     background-size: cover;
     background-position: center;
     border-radius: 10px;
-    /* margin-bottom: 10px; */
+    margin-right: 20px;
+}
+
+#walkLocationContainer {
+    align-items: flex-start;
+}
+
+#walkLocation {
+    margin-right: 25px;
+}
+
+#editDeleteWalkButtons div {
+    width: fit-content;
+    padding: 5px 10px;
+}
+
+#editWalkButton {
+    margin-right: 10px;
 }
