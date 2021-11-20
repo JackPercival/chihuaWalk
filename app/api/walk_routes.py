@@ -20,7 +20,7 @@ def dog_walks(dogId):
 @login_required
 def user_walks(userId):
     walks = Walk.query.filter(Walk.user_id == userId).all()
-    results = [walk.to_dict() for walk in walks]
+    results = [walk.walk_info() for walk in walks]
     return {'walks': results}
 
 #Create a dog
