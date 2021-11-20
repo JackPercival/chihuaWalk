@@ -68,9 +68,9 @@ const DogWalkCard = ({ walk, upcoming }) => {
                     <i className="fas fa-times"></i>
                 </div>
                 <div className="areYouSureDogDelete">{`Are you sure you want to cancel your walk with ${walk.dog.name} on ${formattedDate}?`}</div>
-                <div className="dogDeleteConfirmButtons">
-                    <div onClick={deleteWalk}>Delete</div>
-                    <div id="cancelDogDelete" onClick={() => setShowDelete(false)}>Cancel</div>
+                <div className="dogDeleteConfirmButtons" id="walkDeleteConfirmButtons">
+                    <div id="confirmWalkDeletionCancelButton" onClick={deleteWalk}>Cancel Walk</div>
+                    <div id="cancelDogDelete" onClick={() => setShowDelete(false)}>Go Back</div>
                 </div>
             </div>
         </div>

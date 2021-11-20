@@ -42,6 +42,7 @@
     max-height: 200px;
     overflow: auto;
     flex-grow: 1;
+    word-wrap: break-word;
 }
 
 .singleDogName {
