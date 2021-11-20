@@ -77,3 +77,16 @@
 #walkDeleteConfirmButtons div {
     width: fit-content;
 }
+
+#changeWalkDateForm {
+    min-height: 500px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    /* height: 600px; */
+    justify-content: space-between;
+}
+
+/* #changeWalkDateForm .reactCalendar {
+    flex-grow: 1;
+} */
