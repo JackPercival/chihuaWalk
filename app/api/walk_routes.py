@@ -75,11 +75,12 @@ def add_walk():
 #         return dog.to_dict()
 #     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# #Delete a dog
-# @dog_routes.route('/<int:dogId>', methods=['DELETE'])
-# def delete_dog(dogId):
-#     dog = Dog.query.filter(Dog.id == dogId).first()
-#     if dog:
-#         db.session.delete(dog)
-#         db.session.commit()
-#         return "Deleted the dog"
+#Delete a walk
+@walk_routes.route('/<int:walkId>', methods=['DELETE'])
+@login_required
+def delete_walk(walkId):
+    walk = Walk.query.filter(Walk.id == walkId).first()
+    if walk:
+        db.session.delete(walk)
+        db.session.commit()
+        return "Deleted the walk"

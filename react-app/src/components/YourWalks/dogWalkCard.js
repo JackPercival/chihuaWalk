@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {  Link } from 'react-router-dom';
+import { deleteSingleWalk } from '../../store/walk';
 
 import './dogWalkCard.css'
 
 const DogWalkCard = ({ walk, upcoming }) => {
+  const dispatch = useDispatch();
 
   const [showCalendar, setShowCalendar] = useState(false)
   const [showDelete, setShowDelete] = useState(false);
@@ -22,6 +24,11 @@ const DogWalkCard = ({ walk, upcoming }) => {
   const showDeleteConfirmation = (e) => {
     e.preventDefault()
     setShowDelete(true)
+  }
+
+  const deleteWalk = () => {
+    dispatch(deleteSingleWalk(walk.id))
+    setShowDelete(false)
   }
 
   const formattedDate = formatDate()
@@ -60,9 +67,9 @@ const DogWalkCard = ({ walk, upcoming }) => {
                 <div className="xToClose" onClick={() => setShowDelete(false)}>
                     <i className="fas fa-times"></i>
                 </div>
-                <div className="areYouSureDogDelete">{`Are you sure you want to delete your walk with ${walk.dog.name} on ${formattedDate}?`}</div>
+                <div className="areYouSureDogDelete">{`Are you sure you want to cancel your walk with ${walk.dog.name} on ${formattedDate}?`}</div>
                 <div className="dogDeleteConfirmButtons">
-                    <div>Delete</div>
+                    <div onClick={deleteWalk}>Delete</div>
                     <div id="cancelDogDelete" onClick={() => setShowDelete(false)}>Cancel</div>
                 </div>
             </div>

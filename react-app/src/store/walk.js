@@ -2,7 +2,7 @@
 const LOAD = 'walks/LOAD_WALKS'
 const ADD_WALK = 'walks/ADD_WALK'
 const UPDATE_DOG = 'dogs/UPDATE_DOG'
-const DELETE_DOG = 'dogs/DELETE_DOG'
+const DELETE_WALK = 'walks/DELETE_WALK'
 
 const loadWalks = (walks) => ({
     type: LOAD,
@@ -21,12 +21,12 @@ const addWalk = walk => ({
 //     }
 // }
 
-// const deleteDog = walkId => {
-//   return {
-//       type: DELETE_DOG,
-//       walkId
-//   }
-// }
+const deleteWalk = walkId => {
+  return {
+      type: DELETE_WALK,
+      walkId
+  }
+}
 
 
 export const loadDogsWalks = (dogId) => async (dispatch) => {
@@ -112,19 +112,19 @@ export const addNewWalk = (user_id, dog_id, walk_date) => async (dispatch) => {
 //   }
 // }
 
-// export const deleteSingleDog = (dog_id) => async (dispatch) => {
-//   const response = await fetch(`/api/dogs/${dog_id}`, {
-//       method: 'DELETE',
-//       body: JSON.stringify({dog_id})
-//   });
+export const deleteSingleWalk = (walk_id) => async (dispatch) => {
+  const response = await fetch(`/api/walks/${walk_id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({walk_id})
+  });
 
-//   if (response.ok) {
-//     dispatch(deleteDog(dog_id))
-//     return null;
-//   } else {
-//     alert('An error occurred. Please refresh the page and try again.')
-//   }
-// }
+  if (response.ok) {
+    dispatch(deleteWalk(walk_id))
+    return null;
+  } else {
+    alert('An error occurred. Please refresh the page and try again.')
+  }
+}
 
 let initialState = {dogs: null};
 
@@ -147,10 +147,10 @@ const walksReducer = (state = initialState, action) => {
         //         ...state,
         //         [action.dog.id]: action.dog,
         //     }
-        // case DELETE_DOG:
-        //     const newState = {...state}
-        //     delete newState[action.dogId];
-        //     return newState;
+        case DELETE_WALK:
+            const newState = {...state}
+            delete newState[action.walkId];
+            return newState;
         default:
             return state;
     }
