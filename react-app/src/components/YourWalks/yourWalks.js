@@ -7,7 +7,7 @@ import './yourWalks.css'
 
 const YourWalks = () => {
     const dispatch = useDispatch();
-    
+
     const user = useSelector(state => state.session.user);
     const walks = useSelector(state => state.walks);
 
@@ -22,7 +22,11 @@ const YourWalks = () => {
     }, [dispatch]);
 
   return (
-    <div>Your Walks Page</div>
+    <>
+      {isLoaded && (
+        <div className="yourWalksContainer">Your Walks Page</div>
+      )}
+    </>
   );
 }
 

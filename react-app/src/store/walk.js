@@ -47,8 +47,6 @@ export const loadUsersWalks = (userId) => async (dispatch) => {
 }
 
 export const addNewWalk = (user_id, dog_id, walk_date) => async (dispatch) => {
-  return ["Error"]
-
     const response = await fetch(`/api/walks/`, {
       method: 'POST',
       headers: {

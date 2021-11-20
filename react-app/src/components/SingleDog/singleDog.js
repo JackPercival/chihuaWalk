@@ -27,8 +27,9 @@ function SingleDog() {
     const [date, setDate] = useState(null)
     const [formattedDate, setFormattedDate] = useState('')
     const [showCalendar, setShowCalendar] = useState(false)
-    const [showSucces, setShowSuccess] = useState(true)
+    const [showSucces, setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
+    const [tomorrow, setTomorrow] = useState(null)
 
     useEffect(() => {
         dispatch(loadDogsWalks(dogId))
@@ -36,14 +37,21 @@ function SingleDog() {
         return () => {
             setIsLoaded()
         }
-    }, [dispatch]);
+    }, [dispatch, dogId]);
+
+    useEffect(() => {
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        setTomorrow(tomorrow)
+    }, [])
 
     //Redirect if the dog does not exist
     useEffect(() => {
         if (isLoaded && !dog) {
             history.push('/')
         }
-    }, [dog, isLoaded])
+    }, [dog, isLoaded, history])
 
     //Set formatted date to display to user
     useEffect(() => {
@@ -136,7 +144,7 @@ function SingleDog() {
                             <div className="dogDescription">{dog?.description}</div>
                             <div className="selectADate">Select a Date</div>
                             <div>
-                                <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()} tileDisabled={tileDisabled}/>
+                                <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow} tileDisabled={tileDisabled}/>
                             </div>
                         </div>
                         <div className="dogScheduleWalkForm">
@@ -191,7 +199,7 @@ function SingleDog() {
                                             />
                                         </div>
                                     </div>
-                                    <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()} tileDisabled={tileDisabled}/>
+                                    <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow} tileDisabled={tileDisabled}/>
                                     <div className="closeDateContainer">
                                         <div onClick={(e) => setShowCalendar(false)}>Close</div>
                                     </div>
@@ -207,14 +215,27 @@ function SingleDog() {
                 </div>
                 {showSucces && (
                     <div className="loginModal">
-                        <div className="deleteDogForm">
-                            <div className="xToClose" onClick={() => setShowSuccess(false)}>
-                                <i className="fas fa-times"></i>
+                        <div className="deleteDogForm" id="walkConfirmedPopUp">
+                            <div className="walkedConfirmedText">Walk Confirmed!</div>
+                            <div className="walkConfirmDetails">
+                                <div className="walkConfirmDetailHeader">Dog Name:</div>
+                                <div className="walkConfirmeDetailInfo">{dog?.name}</div>
                             </div>
-                            <div className="areYouSureDogDelete">{`Are you sure you want to delete `}</div>
-                            <div className="dogDeleteConfirmButtons">
-                                <div >Delete</div>
-                                <div id="cancelDogDelete" onClick={() => setShowSuccess(false)}>Cancel</div>
+                            <div className="walkConfirmDetails">
+                                <div className="walkConfirmDetailHeader">Pick Up Spot:</div>
+                                <div className="walkConfirmeDetailInfo">{`${dog?.address}, ${dog?.city}, ${dog?.state}`}</div>
+                            </div>
+                            <div className="walkConfirmDetails">
+                                <div className="walkConfirmDetailHeader">Date:</div>
+                                <div className="walkConfirmeDetailInfo">{`${date.toString().slice(0,15)} between 12 PM and 5 PM`}</div>
+                            </div>
+                            <div className="walkConfirmButtonContainer">
+                                <Link to='/your-walks'>
+                                    <div className="walkConfirmButton">View Your Walks</div>
+                                </Link>
+                                <Link to='/browse'>
+                                    <div className="walkConfirmButton">Browse Dogs</div>
+                                </Link>
                             </div>
                         </div>
                     </div>
