@@ -1,0 +1,6 @@
+.dogWalkCard {
+    border: 1px solid black;
+    color: black;
+    display: flex;
+    flex-direction: column;
+}
