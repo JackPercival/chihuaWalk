@@ -1,6 +1,47 @@
+.outerDogCardContainer {
+    width: 48%;
+    padding: 5px;
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.outerDogCardContainer:nth-child(odd) {
+    border-right: 1px solid rgb(221, 221, 221);
+
+}
+
+.outerDogCardContainer:nth-child(1), .outerDogCardContainer:nth-child(2) {
+    border-top: 1px solid transparent;
+}
+
 .dogWalkCard {
-    border: 1px solid black;
     color: black;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    padding: 25px;
+    box-sizing: border-box;
+    background-color: white;
+    transition: all .5s 0s;
+    border-radius: 10px;
+}
+
+.dogWalkCard:hover {
+    background-color: rgb(217, 241, 255);
+}
+
+.walkPicAndDogInfo {
+    display: flex;
+}
+
+.walkDate {
+    font-size: 28px;
+}
+
+.walkPic {
+    width: 15vw;
+    height: 12vw;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    /* margin-bottom: 10px; */
 }

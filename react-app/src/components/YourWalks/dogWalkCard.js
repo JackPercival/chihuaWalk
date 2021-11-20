@@ -21,18 +21,20 @@ const DogWalkCard = ({ walk }) => {
   const formattedDate = formatDate()
 
   return (
-    <Link to={`/dogs/${walk.dog.id}`}>
-      <div className="dogWalkCard">
-          <div className="walkDate">{formattedDate}</div>
-          <div className="walkPicAndDogInfo">
-            <div className="walkPic"></div>
-            <div className="walkDogInfo">
-              <div>{walk.dog.name}</div>
-              <div>{`${walk.dog.address}, ${walk.dog.city}, ${walk.dog.state}`}</div>
+    <div className="outerDogCardContainer">
+      <Link to={`/dogs/${walk.dog.id}`} className="dogWalkLinkToDog">
+        <div className="dogWalkCard">
+            <div className="walkDate">{formattedDate}</div>
+            <div className="walkPicAndDogInfo">
+              <div className="walkPic" style={{backgroundImage: `url(${walk.dog.images[0]})`}}></div>
+              <div className="walkDogInfo">
+                <div>{walk.dog.name}</div>
+                <div>{`${walk.dog.address}, ${walk.dog.city}, ${walk.dog.state}`}</div>
+              </div>
             </div>
-          </div>
-      </div>
-    </Link>
+        </div>
+      </Link>
+    </div>
   );
 }
 
