@@ -39,3 +39,8 @@
   #keepUnderline:hover {
     background-color: transparent;
   }
+
+  .dogWalksForUserContainer {
+    display: flex;
+    flex-wrap: wrap;
+  }

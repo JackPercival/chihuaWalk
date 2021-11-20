@@ -3,6 +3,8 @@ import { Link, useParams, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllDogs } from '../../store/dog';
 import { loadUsersWalks } from '../../store/walk';
+
+import WalksContainer from './walksContainer';
 import './yourWalks.css'
 
 const YourWalks = () => {
@@ -24,40 +26,21 @@ const YourWalks = () => {
         }
     }, [dispatch, user]);
 
-    //Sort walks into past and upcoming
+     //Hide scroll bar on this page
     useEffect(() => {
-      if (walks[0] === null) {
-        return;
-      }
-      let pastDogWalks = [];
-      let upcomingDogWalks = [];
-      let today = new Date()
-      for (let walk of walks) {
-        let date = new Date(walk.date.slice(5,16))
-        if (date < today) {
-          pastDogWalks.push(walk)
-        } else {
-          upcomingDogWalks.push(walk)
-        }
-      }
+      document.body.style.overflowY = 'scroll';
 
-      console.log(pastDogWalks)
-      console.log(upcomingDogWalks)
-    }, [walks])
+      return () => {
+          document.body.style.overflowY = 'auto';
+      }
+    })
 
   return (
     <>
       {isLoaded && (
         <div className="yourWalksContainer">
           <h1>Walks</h1>
-          <div className="navHeaderContainer">
-            <div className="navHeader">
-                <div className="profileNav">
-                    <h3 id={!showPast? 'keepUnderline' : null} onClick={() => setShowPast(false)}>Upcoming</h3>
-                    <h3 id={showPast? 'keepUnderline' : null} onClick={() => setShowPast(true)}>Past</h3>
-                </div>
-            </div>
-          </div>
+          <WalksContainer walks={walks}/>
         </div>
       )}
     </>
