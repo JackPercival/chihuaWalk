@@ -4,12 +4,14 @@ import session from './session'
 import dogsReducer from './dog';
 import mapsReducer from './map';
 import walksReducer from './walk';
+import dogsWalkReduce from './walk_dog'
 
 const rootReducer = combineReducers({
   session,
   maps: mapsReducer,
   dogs: dogsReducer,
   walks: walksReducer,
+  dogsWalks: dogsWalkReduce
 });
 
 

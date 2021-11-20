@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {  Link } from 'react-router-dom';
 import { deleteSingleWalk } from '../../store/walk';
+import { addWalkDogsWalks } from '../../store/walk_dog';
 import DatePicker from 'react-calendar';
 
 import './dogWalkCard.css'
@@ -11,7 +12,19 @@ const DogWalkCard = ({ walk, upcoming }) => {
 
   const [showUpdate, setShowUpdate] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
-  const [date, setDate] = useState(null)
+  const [date, setDate] = useState(null);
+  const [tomorrow, setTomorrow] = useState(null);
+
+  // useEffect(() => {
+  //   dispatch(addWalkDogsWalks(walk.dog.id))
+  // })
+
+  useEffect(() => {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    setTomorrow(tomorrow)
+  }, [])
 
   const formatDate = () => {
     const newDate = walk.date.slice(0,16).split(" ")
@@ -38,7 +51,13 @@ const DogWalkCard = ({ walk, upcoming }) => {
     setShowDelete(false)
   }
 
-  const formattedDate = formatDate()
+  const updateWalk = () => {
+
+  }
+
+
+
+  const formattedDate = formatDate();
 
   return (
     <div className="outerDogCardContainer">
@@ -76,10 +95,10 @@ const DogWalkCard = ({ walk, upcoming }) => {
                   <i className="fas fa-times"></i>
               </div>
               <div className="areYouSureDogDelete">Select a New Date</div>
-              <DatePicker onChange={(picked) => setDate(picked)} value={date}/>
+              <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow}/>
             </div>
               <div className="dogDeleteConfirmButtons" id="walkDeleteConfirmButtons">
-                  <div id="confirmWalkDeletionCancelButton" onClick={deleteWalk}>Change Date</div>
+                  <div id="confirmWalkDeletionCancelButton" onClick={updateWalk}>Change Date</div>
                   <div id="cancelDogDelete" onClick={() => setShowUpdate(false)}>Go Back</div>
               </div>
           </div>
