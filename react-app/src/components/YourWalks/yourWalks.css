@@ -33,9 +33,9 @@
 
   #keepUnderline {
     border-bottom: 2px solid rgb(34,34,34);
+    color: black;
   }
 
   #keepUnderline:hover {
     background-color: transparent;
-    color: black;
   }

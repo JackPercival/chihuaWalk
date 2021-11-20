@@ -13,9 +13,12 @@ const YourWalks = () => {
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [showPast, setShowPast] = useState(false);
+    const [pastWalks, setPastWalks] = useState([])
+    const [upcomingWalks, setUpcomingWalks] = useState([])
 
     useEffect(() => {
         dispatch(loadUsersWalks(user?.id)).then(() => setIsLoaded(true));
+
         return () => {
             setIsLoaded()
         }
