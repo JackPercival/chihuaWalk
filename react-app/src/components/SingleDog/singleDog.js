@@ -27,6 +27,8 @@ function SingleDog() {
     const [date, setDate] = useState(null)
     const [formattedDate, setFormattedDate] = useState('')
     const [showCalendar, setShowCalendar] = useState(false)
+    const [showSucces, setShowSuccess] = useState(true)
+    const [showError, setShowError] = useState(false)
 
     useEffect(() => {
         dispatch(loadDogsWalks(dogId))
@@ -54,13 +56,18 @@ function SingleDog() {
 
     const createWalk = async (e) => {
         e.preventDefault();
+        setShowError(false)
 
         if (!date) {
             return;
         }
 
         const data = await dispatch(addNewWalk(user?.id, dogId, date.toISOString().split('T')[0]))
-        console.log(date.toISOString().split('T')[0])
+        if (data[0] === "Created") {
+            setShowSuccess(true)
+        } else {
+            setShowError(true)
+        }
     }
 
 
@@ -85,6 +92,7 @@ function SingleDog() {
     return (
         <>
             {isLoaded && (
+                <>
                 <div className="singleDogContainer">
                     <h1>{dog?.name}</h1>
                     <h3>{`${dog?.city}, ${dog?.state}, ${dog?.country}`}</h3>
@@ -163,6 +171,11 @@ function SingleDog() {
                                         )}
                                     </>
                                 )}
+                                {showError && (
+                                    <div className="addDogError" id="showErrorAlready">
+                                        <span>An error occured. Please refresh the page and try again.</span>
+                                    </div>
+                                )}
                             </form>
                             {showCalendar && (
                                 <div className="popUpCalendar">
@@ -192,6 +205,21 @@ function SingleDog() {
                         {/* <MapContainer zoom={11} dogs={[dog]}/> */}
                     </div>
                 </div>
+                {showSucces && (
+                    <div className="loginModal">
+                        <div className="deleteDogForm">
+                            <div className="xToClose" onClick={() => setShowSuccess(false)}>
+                                <i className="fas fa-times"></i>
+                            </div>
+                            <div className="areYouSureDogDelete">{`Are you sure you want to delete `}</div>
+                            <div className="dogDeleteConfirmButtons">
+                                <div >Delete</div>
+                                <div id="cancelDogDelete" onClick={() => setShowSuccess(false)}>Cancel</div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+                </>
             )}
         </>
     )
