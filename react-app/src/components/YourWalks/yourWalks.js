@@ -7,12 +7,12 @@ import './yourWalks.css'
 
 const YourWalks = () => {
     const dispatch = useDispatch();
-    
+
     const user = useSelector(state => state.session.user);
-    const walks = useSelector(state => state.walks);
+    const walks = useSelector(state => Object.values(state.walks));
 
     const [isLoaded, setIsLoaded] = useState(false);
-    // const [date, setDate] = useState(new Date())
+    const [showPast, setShowPast] = useState(false);
 
     useEffect(() => {
         dispatch(loadUsersWalks(user?.id)).then(() => setIsLoaded(true));
@@ -22,7 +22,21 @@ const YourWalks = () => {
     }, [dispatch]);
 
   return (
-    <div>Your Walks Page</div>
+    <>
+      {isLoaded && (
+        <div className="yourWalksContainer">
+          <h1>Walks</h1>
+          <div className="navHeaderContainer">
+            <div className="navHeader">
+                <div className="profileNav">
+                    <h3 id={!showPast? 'keepUnderline' : null} onClick={() => setShowPast(false)}>Upcoming</h3>
+                    <h3 id={showPast? 'keepUnderline' : null} onClick={() => setShowPast(true)}>Past</h3>
+                </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
