@@ -39,3 +39,17 @@ class Dog(db.Model):
             'user': self.user.owner_info(),
             'images': [image.image_info() for image in self.images],
         }
+
+    def walk_info(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'name': self.name,
+            'breed': self.breed,
+            'description': self.description,
+            'weight': self.weight,
+            'address': self.address,
+            'city': self.city,
+            'state': self.state,
+            'images': [image.image_info() for image in self.images],
+        }

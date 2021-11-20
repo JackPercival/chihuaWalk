@@ -69,7 +69,6 @@ export const addNewWalk = (user_id, dog_id, walk_date) => async (dispatch) => {
         return ["Error", data.errors];
       }
     } else {
-      alert('An error occurred. Please refresh the page and try again.')
       return["Error"]
     }
 }

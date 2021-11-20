@@ -146,3 +146,47 @@
   height: 479px;
   width: 100%;
 }
+
+.walkConfirmedPopUp {
+  font-family: "Questrial", sans-serif;
+  width: fit-content;
+  max-width: 600px;
+}
+
+.walkConfirmDetails {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-family: "Questrial", sans-serif;
+  margin-left: 8px;
+}
+
+.walkedConfirmedText {
+  font-size: 25px;
+}
+
+.walkConfirmDetailHeader {
+  font-size: 18px;
+  font-weight: 700;
+  margin-right: 10px;
+
+}
+
+.walkConfirmeDetailInfo {
+  font-size: 18px;
+  color: rgb(54, 54, 54);
+  flex-grow: 1;
+}
+
+.walkConfirmButtonContainer {
+  display: flex;
+}
+
+.walkConfirmButton {
+  color: white;
+  background-color: rgb(26, 136, 199);
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin: 15px 10px 0 0;
+}

@@ -21,3 +21,12 @@ class Walk(db.Model):
             'dog_id': self.dog_id,
             'date': self.date,
         }
+
+    def walk_info(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'dog_id': self.dog_id,
+            'dog': self.dog.walk_info(),
+            'date': self.date,
+        }
