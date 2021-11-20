@@ -54,7 +54,7 @@ const EditDog = () => {
         if (isLoaded && dog?.user_id !== user.id) {
             history.push('/')
         }
-    }, [isLoaded, dog])
+    }, [isLoaded, dog, history, user.id])
 
     //Get the longitude/latitude coordinates of the address by calling a google API
     const getCoordinates = async (address) => {
