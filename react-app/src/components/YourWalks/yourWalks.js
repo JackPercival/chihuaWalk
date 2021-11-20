@@ -22,7 +22,28 @@ const YourWalks = () => {
         return () => {
             setIsLoaded()
         }
-    }, [dispatch]);
+    }, [dispatch, user]);
+
+    //Sort walks into past and upcoming
+    useEffect(() => {
+      if (walks[0] === null) {
+        return;
+      }
+      let pastDogWalks = [];
+      let upcomingDogWalks = [];
+      let today = new Date()
+      for (let walk of walks) {
+        let date = new Date(walk.date.slice(5,16))
+        if (date < today) {
+          pastDogWalks.push(walk)
+        } else {
+          upcomingDogWalks.push(walk)
+        }
+      }
+
+      console.log(pastDogWalks)
+      console.log(upcomingDogWalks)
+    }, [walks])
 
   return (
     <>
