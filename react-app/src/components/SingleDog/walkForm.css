@@ -1,0 +1,122 @@
+.popUpCalendar {
+    position: absolute;
+    width: 405px;
+    background-color: white;
+    padding: 30px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    top: 33px;
+    left: -204px;
+    box-shadow: -1px 1px 3px rgb(221, 221, 221), 1px 1px 3px rgb(221, 221, 221);
+  }
+
+  #walksFree {
+    color: black;
+    font-size: 24px;
+    margin: 0;
+    margin-bottom: 15px;
+  }
+
+  .walkDateInput {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .walkDateInput label {
+    position: absolute;
+    font-size: 12px;
+    font-weight: 600;
+    left: 11px;
+    top: 6px;
+    cursor: pointer;
+  }
+
+  .walkDateInput input {
+    box-sizing: border-box;
+    width: fit-content;
+    height: 57px;
+    border-radius: 10px;
+    border: 1px solid rgb(221, 221, 221);
+    outline: none;
+    padding: 10px;
+    padding-bottom: 3px;
+    font-size: 17px;
+    font-weight: 200;
+    color: rgb(117, 117, 117);
+    cursor: pointer;
+  }
+
+  .topRowPopUp {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
+  #popUpDateInput {
+    margin-bottom: 20px;
+  }
+
+  .closeDateContainer {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .closeDateContainer div {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 8px 14px;
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  #selectDate {
+    color: black;
+    font-size: 24px;
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .dogWalkForm button {
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    background-color: rgb(228,29,81);
+    border: none;
+    width: 100%;
+    border-radius: 7px;
+    padding: 15px;
+    margin-bottom: 125px;
+    transition: all 0.5s 0s;
+  }
+
+  .dogWalkForm button:hover {
+    background-color: rgb(167, 2, 46);
+  }
+
+  .pleaseLogin {
+    color: white;
+    cursor: not-allowed	;
+    font-size: 17px;
+    background-color: rgb(216, 115, 142);
+    border: none;
+    width: 100%;
+    border-radius: 7px;
+    padding: 15px 0;
+    margin-bottom: 125px;
+    text-align: center;
+  }
+
+  #userOwnPostEdit {
+    background-color: rgb(228,29,81);
+    cursor: pointer;
+    transition: all 0.5s 0s;
+  }
+
+  #userOwnPostEdit:hover {
+    background-color: rgb(167, 2, 46);
+  }
