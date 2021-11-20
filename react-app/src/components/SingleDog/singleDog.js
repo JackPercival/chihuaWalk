@@ -7,6 +7,8 @@ import Reviews from '../Reviews/reviews';
 import MapContainer from '../Maps';
 import DatePicker from 'react-calendar';
 
+import { differenceInCalendarDays } from 'date-fns';
+
 import './singleDog.css'
 import './calendar.css'
 import './walkForm.css'
@@ -19,7 +21,7 @@ function SingleDog() {
 
     const user = useSelector(state => state.session.user);
     const dog = useSelector(state => state.dogs[dogId]);
-    const walks = useSelector(state => state.walks);
+    const walks = useSelector(state => Object.values(state.walks));
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [date, setDate] = useState(null)
@@ -47,18 +49,32 @@ function SingleDog() {
             const displayDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
             setFormattedDate(displayDate)
         }
-
-
     }, [date])
 
 
     const createWalk = async (e) => {
         e.preventDefault();
-        // console.log(user?.id)
-        // console.log(dogId)
-        // console.log(date)
         const data = await dispatch(addNewWalk(user?.id, dogId, date.toISOString().split('T')[0]))
         console.log(date.toISOString().split('T')[0])
+    }
+
+
+    //Function to check if two dates are equal
+    const equalDates = (date1, date2) => {
+        return differenceInCalendarDays(date1, date2) === 0;
+    }
+
+    //Function to disable dates that already have a walk scheduled for the dog
+    const tileDisabled = ({ date, view }) => {
+        let walkDates = [];
+        for (let walk of walks) {
+            let date1 = new Date(walk.date.slice(5,16))
+            walkDates.push(date1)
+        }
+
+        if (view === 'month') {
+            return walkDates.find(theDate => equalDates(theDate, date))
+        }
     }
 
     return (
@@ -107,7 +123,7 @@ function SingleDog() {
                             <div className="dogDescription">{dog?.description}</div>
                             <div className="selectADate">Select a Date</div>
                             <div>
-                                <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()}/>
+                                <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()} tileDisabled={tileDisabled}/>
                             </div>
                         </div>
                         <div className="dogScheduleWalkForm">
@@ -128,7 +144,6 @@ function SingleDog() {
                                     </div>
                                 </div>
                                 <p>Dogs are limited to 1 walk per day. Walkers may pick up the dog anytime after 12:00 PM and must return the dog by 5:00 PM the same day.</p>
-
                                 {user?.id && user?.id !== dog?.user_id ? (
                                     <button type="submit">Reserve</button>
                                 ) : (
@@ -158,7 +173,7 @@ function SingleDog() {
                                             />
                                         </div>
                                     </div>
-                                    <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()}/>
+                                    <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={new Date()} tileDisabled={tileDisabled}/>
                                     <div className="closeDateContainer">
                                         <div onClick={(e) => setShowCalendar(false)}>Close</div>
                                     </div>
