@@ -18,7 +18,7 @@ const DogWalkCard = ({ walk, upcoming, user }) => {
 
   const [showUpdate, setShowUpdate] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
-  const [showError, setShowError] = useState(false)
+  const [showError, setShowError] = useState(true)
   const [date, setDate] = useState(null);
   const [tomorrow, setTomorrow] = useState(null);
 
@@ -134,12 +134,12 @@ const DogWalkCard = ({ walk, upcoming, user }) => {
               <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow} tileDisabled={tileDisabled}/>
             </div>
               <div className="dogDeleteConfirmButtons" id="walkDeleteConfirmButtons">
-                  <>
-                    {date !== null && (
-                      <div id="changeDateConfimButton" onClick={updateWalk}>{`Change Date to ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`}</div>
-                    )}
-                  </>
-                    <div id="cancelDogDelete" onClick={cleanUpCalendarClose}>Go Back</div>
+                <>
+                  {date !== null && (
+                    <div id="changeDateConfimButton" onClick={updateWalk}>{`Change Date to ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`}</div>
+                  )}
+                </>
+                  <div id="cancelDogDelete" onClick={cleanUpCalendarClose}>Go Back</div>
               </div>
           </div>
         </div>
@@ -158,6 +158,11 @@ const DogWalkCard = ({ walk, upcoming, user }) => {
             </div>
         </div>
       )}
+      {showError && (
+          <div className="addDogError" id="updateDogError">
+            <span>An error occured. Please refresh the page and try again.</span>
+          </div>
+        )}
     </div>
   );
 }

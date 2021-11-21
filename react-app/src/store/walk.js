@@ -88,7 +88,7 @@ export const updatedExistingWalk = (walk_id, walk_date) => async (dispatch) => {
     const data = await response.json();
     console.log(data)
     dispatch(updateWalk(data))
-    return ["Updated", data];
+    return ["Error", data];
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {

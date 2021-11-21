@@ -83,6 +83,7 @@
 
 #walkDeleteConfirmButtons div {
     width: fit-content;
+    position: relative;
 }
 
 #changeWalkDateForm {
@@ -105,3 +106,27 @@
 #changeDateConfimButton:hover {
     background-color: rgb(16, 87, 128);
 }
+
+#updateDogError {
+    visibility: visible;
+    position: absolute;
+    bottom: 90px;
+    margin: 0 auto;
+    z-index: 2;
+    font-size: 20px;
+    background-color: rgb(231, 195, 186);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  #updateDogError div {
+    width: 20px;
+    height: 20px;
+    margin: 1px;
+    text-align: center;
+  }
+
+  #updateDogError span {
+    margin: 0;
+  }
