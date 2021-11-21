@@ -23,6 +23,7 @@ function SingleDog() {
     const user = useSelector(state => state.session.user);
     const dog = useSelector(state => state.dogs[dogId]);
     const walks = useSelector(state => Object.values(state.walks));
+    const reviews = useSelector(state => Object.values(state.reviews));
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [date, setDate] = useState(null)
@@ -209,7 +210,7 @@ function SingleDog() {
                             )}
                         </div>
                     </div>
-                    <Reviews dog={dog}/>
+                    <Reviews user={user} dog={dog} reviews={reviews}/>
                     <div className="selectADate">{`Where you'll pick up ${dog?.name}`}</div>
                     <div className="singleDogMap">
                         {/* <MapContainer zoom={11} dogs={[dog]}/> */}

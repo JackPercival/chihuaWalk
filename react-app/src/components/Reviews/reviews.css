@@ -1,0 +1,23 @@
+.reviewsContainer {
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.reviewsHeader {
+    display: flex;
+    align-items: center;
+    margin-top: 22px;
+}
+
+.reviewsHeader div {
+    font-size: 24px;
+    margin-right: 6px;
+}
+
+#reviewStarHeader {
+    font-size: 17px;
+    color: rgb(255,56,93);
+}
+
+#reviewPeriod {
+    font-size: 4px;
+}

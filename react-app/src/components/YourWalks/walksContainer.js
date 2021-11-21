@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import DogWalkCard from './dogWalkCard';
-import DogSlide from '../DogSlide/dogSlide';
 
 const WalksContainer = ({ walks, user }) => {
 
@@ -60,7 +58,7 @@ const WalksContainer = ({ walks, user }) => {
                       <p className="noWalksText">When you’re ready to start planning your next walk, click</p><Link to="/browse" className="noDogsBrowse">here</Link><p className="noWalksText"> to browse.</p>
 
                     </div>
-                    <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png"/>
+                    <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png" alt="Dog Walk Drawing"/>
                   </>
                 ):(
                   <div className="yesWalksContainer">
@@ -76,7 +74,7 @@ const WalksContainer = ({ walks, user }) => {
                 {pastWalks.length === 0? (
                   <>
                     <p className="noWalksText">You don’t have any past walks yet—but when you do, you’ll find them here.</p>
-                    <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png"/>
+                    <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png" alt="Dog Walk Drawing"/>
                   </>
                 ) :(
                   <div className="yesWalksContainer">
