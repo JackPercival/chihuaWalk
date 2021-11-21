@@ -13,11 +13,13 @@ const ReviewCard = ({ review, monthFormatter }) => {
         <div className="topRowSingleReview">
             <div className="reviewerIcon" style={{backgroundImage: `url(${review.user.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
             <div className="reviewNameAndDate">
-                <div>{review.user.first_name}</div>
-                <div>{`${reviewMonth} ${reviewYear}`}</div>
+                <div className="reviewerName">{review.user.first_name}</div>
+                <div className="reviewDate">{`${reviewMonth} ${reviewYear}`}</div>
             </div>
         </div>
-        {review.comment}
+        <div className="reviewComment">
+            {review.comment}
+        </div>
     </div>
   );
 }
