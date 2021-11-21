@@ -12,14 +12,12 @@ const Reviews = ({ user, dog, reviews }) => {
     let totalKindness = 0;
     let totalQuietness = 0;
     let totalEnergy = 0;
-    let totalAvg = 0;
 
     reviews.forEach(review => {
       totalBehavior += review.behavior
       totalKindness += review.kindness
       totalQuietness += review.quietness
       totalEnergy += review.energy
-      totalAvg += review.avgRating
     })
 
     const length = reviews.length
@@ -28,7 +26,7 @@ const Reviews = ({ user, dog, reviews }) => {
     const avgKindness = (totalKindness / length).toFixed(1)
     const avgQuietness = (totalQuietness / length).toFixed(1)
     const avgEnergy = (totalEnergy / length).toFixed(1)
-    const avgTotal = (totalAvg / length).toFixed(2)
+    const avgTotal = ((totalBehavior + totalKindness + totalQuietness + totalEnergy) / (length * 4)).toFixed(2)
 
     const avgArray = [avgTotal, length, avgBehavior, avgKindness, avgQuietness, avgEnergy]
     return avgArray

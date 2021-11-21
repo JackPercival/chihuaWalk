@@ -12,7 +12,6 @@ class Review(db.Model):
     kindness = db.Column(db.Integer, nullable=False)
     quietness = db.Column(db.Integer, nullable=False)
     energy = db.Column(db.Integer, nullable=False)
-    avgRating = db.Column(db.Float, nullable=False)
 
     user = db.relationship('User', back_populates='review')
     dog = db.relationship('Dog', back_populates='review')
@@ -28,6 +27,5 @@ class Review(db.Model):
             'kindness': self.kindness,
             'quietness': self.quietness,
             'energy': self.energy,
-            'avgRating': self.avgRating,
             'user': self.user.owner_info(),
         }
