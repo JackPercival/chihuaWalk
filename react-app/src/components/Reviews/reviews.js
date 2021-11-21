@@ -18,7 +18,7 @@ const Reviews = ({ user, dog, reviews }) => {
   const [showError, setShowError] = useState(false);
 
   const calculateAvgRatings = () => {
-
+    let alreadyReviewed = false;
     let totalBehavior = 0;
     let totalKindness = 0;
     let totalQuietness = 0;
@@ -29,6 +29,10 @@ const Reviews = ({ user, dog, reviews }) => {
       totalKindness += review.kindness
       totalQuietness += review.quietness
       totalEnergy += review.energy
+
+      if (review.user_id === user?.id) {
+        alreadyReviewed = true;
+      }
     })
 
     const length = reviews.length
@@ -39,7 +43,7 @@ const Reviews = ({ user, dog, reviews }) => {
     const avgEnergy = (totalEnergy / length).toFixed(1)
     const avgTotal = ((totalBehavior + totalKindness + totalQuietness + totalEnergy) / (length * 4)).toFixed(2)
 
-    const avgArray = [avgTotal, length, avgBehavior, avgKindness, avgQuietness, avgEnergy]
+    const avgArray = [avgTotal, length, avgBehavior, avgKindness, avgQuietness, avgEnergy, alreadyReviewed]
     return avgArray
   }
 
@@ -68,6 +72,7 @@ const Reviews = ({ user, dog, reviews }) => {
   }
 
   const avgRatings = calculateAvgRatings();
+  const alreadyReviewed = avgRatings[6]
 
   return (
     <div className="reviewsContainer">
@@ -95,7 +100,7 @@ const Reviews = ({ user, dog, reviews }) => {
                   <div className="fullReviewBar">
                       <div className="dynamicReviewBar" style={{width: `${avgRatings[2] * 24}px`}}></div>
                     </div>
-                    <div className="avgRatingPerCategory">{avgRatings[3]}</div>
+                    <div className="avgRatingPerCategory">{avgRatings[2]}</div>
                   </div>
                 </div>
                 <div className="emptySpace"></div>
@@ -146,57 +151,66 @@ const Reviews = ({ user, dog, reviews }) => {
         </div>
       )}
       {user?.id && (
-        <div className="addReviewContainer">
-          <div className="addAReview">Add a Review</div>
-          <div className="avgRatingsContainer">
-            <div className="avgRatingsRow1">
-              <div className="singleAvgRating addRatingCategory">
-                <div className="reviewCategory">Behavior</div>
-                <Rating onClick={(rating) => setBehaviorRating(rating)} ratingValue={behaviorRating} fillColor={'rgb(255,56,93)'}/>
-              </div>
-              <div className="emptySpace"></div>
-              <div className="singleAvgRating addRatingCategory">
-                <div className="reviewCategory">Kindess</div>
-                <Rating onClick={(rating) => setKindessRating(rating)} ratingValue={kindessRating} fillColor={'rgb(255,56,93)'}/>
-              </div>
-            </div>
-            <div className="avgRatingsRow2">
-              <div className="singleAvgRating addRatingCategory">
-                <div className="reviewCategory">Quietness</div>
-                <Rating onClick={(rating) => setQuietnessRating(rating)} ratingValue={quietnessRating} fillColor={'rgb(255,56,93)'}/>
-              </div>
-              <div className="emptySpace"></div>
-              <div className="singleAvgRating addRatingCategory">
-                <div className="reviewCategory">Energy Level</div>
-                <Rating onClick={(rating) => setEnergyRating(rating)} ratingValue={energyRating} fillColor={'rgb(255,56,93)'}/>
-              </div>
-            </div>
-            <div className="commentBox">
-              <form className="commentForm" onSubmit={handleSubmitReview}>
-                <div className="commentHolder">
-                  <label>Comment</label>
-                  <textarea
-                    className="commentBoxInput"
-                    name='description'
-                    type="input"
-                    required
-                    autoComplete="off"
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                  />
+        <>
+        {!alreadyReviewed && (
+          <div className="addReviewContainer">
+            <div className="addAReview">Add a Review</div>
+            <div className="avgRatingsContainer">
+              <div className="avgRatingsRow1">
+                <div className="singleAvgRating addRatingCategory">
+                  <div className="reviewCategory">Behavior</div>
+                  <Rating onClick={(rating) => setBehaviorRating(rating)} ratingValue={behaviorRating} fillColor={'rgb(255,56,93)'}/>
                 </div>
-                <div className="reviewButtonContainer">
-                  <div>
-                    {showError && (
-                      <div>Please Fill Out all stuff dude</div>
-                    )}
+                <div className="emptySpace"></div>
+                <div className="singleAvgRating addRatingCategory">
+                  <div className="reviewCategory">Kindess</div>
+                  <Rating onClick={(rating) => setKindessRating(rating)} ratingValue={kindessRating} fillColor={'rgb(255,56,93)'}/>
+                </div>
+              </div>
+              <div className="avgRatingsRow2">
+                <div className="singleAvgRating addRatingCategory">
+                  <div className="reviewCategory">Quietness</div>
+                  <Rating onClick={(rating) => setQuietnessRating(rating)} ratingValue={quietnessRating} fillColor={'rgb(255,56,93)'}/>
+                </div>
+                <div className="emptySpace"></div>
+                <div className="singleAvgRating addRatingCategory">
+                  <div className="reviewCategory">Energy Level</div>
+                  <Rating onClick={(rating) => setEnergyRating(rating)} ratingValue={energyRating} fillColor={'rgb(255,56,93)'}/>
+                </div>
+              </div>
+              <div className="commentBox">
+                <form className="commentForm" onSubmit={handleSubmitReview}>
+                  <div className="commentHolder">
+                    <label>Comment</label>
+                    <textarea
+                      className="commentBoxInput"
+                      name='description'
+                      type="input"
+                      required
+                      autoComplete="off"
+                      value={comment}
+                      onChange={(e) => setComment(e.target.value)}
+                    />
                   </div>
-                  <button type="submit">Submit Review</button>
-                </div>
-              </form>
+                  <div className="reviewButtonContainer">
+                    <div>
+                      {showError && (
+                        <div>Please Fill Out all stuff dude</div>
+                      )}
+                    </div>
+                    <button type="submit">Submit Review</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
+        )}
+        {alreadyReviewed && (
+          <div className="addReviewContainer">
+            <div className="addAReview">You have already submitted a review</div>
+          </div>
+        )}
+        </>
       )}
     </div>
   );
