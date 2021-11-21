@@ -1,6 +1,5 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
-// import {  Link } from 'react-router-dom';
+import ReviewCard from './reviewCard';
 
 import './reviews.css'
 
@@ -31,6 +30,21 @@ const Reviews = ({ user, dog, reviews }) => {
     const avgArray = [avgTotal, length, avgBehavior, avgKindness, avgQuietness, avgEnergy]
     return avgArray
   }
+
+  const monthFormatter = {
+    'Jan' : 'January',
+    'Feb' : 'February',
+    'Mar' : 'March',
+    'Apr' : 'April',
+    'May' : 'May',
+    'Jun' : 'June',
+    'Jul' : 'July',
+    'Aug' : 'August',
+    'Sep' : 'September',
+    'Oct' : 'October',
+    'Nov' : 'November',
+    'Dec' : 'December'
+}
 
   const avgRatings = calculateAvgRatings();
 
@@ -95,6 +109,11 @@ const Reviews = ({ user, dog, reviews }) => {
                   </div>
                 </div>
               </div>
+          </div>
+          <div className="allReviews">
+              {reviews.map(review =>
+                <ReviewCard review={review} key={review.id} monthFormatter={monthFormatter}/>
+              )}
           </div>
         </>
       ) : (
