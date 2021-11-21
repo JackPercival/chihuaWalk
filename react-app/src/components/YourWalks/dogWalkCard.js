@@ -80,7 +80,6 @@ const DogWalkCard = ({ walk, upcoming, user }) => {
   const updateWalk = async () => {
     const data = await dispatch(updatedExistingWalk(walk.id, date.toISOString().split('T')[0]))
     if (data[0] === "Updated") {
-      // await dispatch(loadUsersWalks(user.id))
       setDate(null)
       setShowUpdate(false)
     } else {

@@ -6,7 +6,14 @@
 
 .outerDogCardContainer:nth-child(odd) {
     border-right: 1px solid rgb(221, 221, 221);
+}
 
+.outerDogCardContainer:nth-child(1), .outerDogCardContainer:nth-child(2) {
+    border-bottom: 1px solid transparent;
+}
+
+.outerDogCardContainer:nth-child(3), .outerDogCardContainer:nth-child(4) {
+    border-top: 1px solid rgb(221, 221, 221);
 }
 
 .outerDogCardContainer:nth-last-child(1) {
