@@ -18,9 +18,12 @@ const DogHolder = ({dog}) => {
         </Slide>
         <Link to={`/dogs/${dog.id}`}>
             <div className="dogInfo">
-                <p className="dogName">{dog.name}</p>
+                <div className="dogInfoTopRowBrowse">
+                    <p className="dogName">{dog.name}</p>
+                    <p className="dogBreedBrowse">{dog.breed}</p>
+                </div>
                 <div className='dogStats'>
-                    <p>{dog.breed}</p>
+                    <p className="dogAddress">{`${dog.city}, ${dog.state}`}</p>
                     <p>{`${dog.weight} lbs`}</p>
                 </div>
             </div>

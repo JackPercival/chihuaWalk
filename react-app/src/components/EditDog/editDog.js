@@ -141,6 +141,7 @@ const EditDog = () => {
                                             required
                                             autoComplete="off"
                                             min="1"
+                                            max="400"
                                             value={weight}
                                             onChange={(e) => setSetWeight(e.target.value)}
                                         />
