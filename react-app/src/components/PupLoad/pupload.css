@@ -96,6 +96,8 @@
 
 .fieldSection h3 {
     font-size: 25px;
+    max-width: 282px;
+    overflow-wrap: break-word;
 }
 
 textarea {

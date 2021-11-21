@@ -144,7 +144,7 @@ function SingleDog() {
                             <div className="dogDescription">{dog?.description}</div>
                             <div className="selectADate">Select a Date</div>
                             <div>
-                                <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow} tileDisabled={tileDisabled}/>
+                                <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow} view={"month"} prev2Label={null} next2Label={null} tileDisabled={tileDisabled}/>
                             </div>
                         </div>
                         <div className="dogScheduleWalkForm">
@@ -199,7 +199,7 @@ function SingleDog() {
                                             />
                                         </div>
                                     </div>
-                                    <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow} tileDisabled={tileDisabled}/>
+                                    <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow} view={"month"} showFixedNumberOfWeeks={true} prev2Label={null} next2Label={null} tileDisabled={tileDisabled}/>
                                     <div className="closeDateContainer">
                                         <div onClick={(e) => setShowCalendar(false)}>Close</div>
                                     </div>

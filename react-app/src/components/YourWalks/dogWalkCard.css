@@ -1,0 +1,131 @@
+.outerDogCardContainer {
+    width: 48%;
+    padding: 5px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+}
+
+.outerDogCardContainer:nth-child(odd) {
+    border-right: 1px solid rgb(221, 221, 221);
+}
+
+.outerDogCardContainer:nth-child(1), .outerDogCardContainer:nth-child(2) {
+    border-bottom: 1px solid transparent;
+}
+
+.outerDogCardContainer:nth-child(3), .outerDogCardContainer:nth-child(4) {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.outerDogCardContainer:nth-last-child(1) {
+    border-bottom: 1px solid transparent;
+}
+
+.dogWalkCard {
+    color: black;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 25px;
+    box-sizing: border-box;
+    background-color: white;
+    transition: all .5s 0s;
+    border-radius: 10px;
+}
+
+.dogWalkCard:hover {
+    background-color: rgb(236, 248, 255);
+}
+
+.walkDogInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 12vw;
+}
+
+.walkPicAndDogInfo {
+    display: flex;
+    font-size: 20px;
+}
+
+.walkDate {
+    font-size: 28px;
+    margin-bottom: 7px;
+}
+
+.walkPic {
+    width: 15vw;
+    height: 12vw;
+    min-width: 15vw;
+    min-height: 12vw;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+#walkLocationContainer {
+    align-items: flex-start;
+}
+
+#walkLocation {
+    margin-right: 25px;
+}
+
+#editDeleteWalkButtons div {
+    width: fit-content;
+    padding: 5px 10px;
+}
+
+#editWalkButton {
+    margin-right: 10px;
+}
+
+#walkDeleteConfirmButtons div {
+    width: fit-content;
+    position: relative;
+}
+
+#changeWalkDateForm {
+    min-height: 500px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+#selectNewDateHeader {
+    font-weight: 600;
+    font-size: 30px;
+}
+
+#changeDateConfimButton {
+    background-color: rgb(26,136,199);
+}
+
+#changeDateConfimButton:hover {
+    background-color: rgb(16, 87, 128);
+}
+
+#updateDogError {
+    visibility: visible;
+    position: absolute;
+    margin: 0 auto;
+    width: 420px;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    font-size: 20px;
+    background-color: rgb(231, 195, 186);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  #updateDogError div {
+    width: 20px;
+    height: 20px;
+    margin: 1px;
+    text-align: center;
+  }
