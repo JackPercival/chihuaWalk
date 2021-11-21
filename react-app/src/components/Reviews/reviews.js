@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReviewCard from './reviewCard';
+import { Rating } from 'react-simple-star-rating';
 
 import './reviews.css'
 
 const Reviews = ({ user, dog, reviews }) => {
+
+  const [behaviorRating, setBehaviorRating] = useState(0);
+  const [kindessRating, setKindessRating] = useState(0);
+  const [quietnessRating, setQuietnessRating] = useState(0);
+  const [energyRating, setEnergyRating] = useState(0);
 
   const calculateAvgRatings = () => {
 
@@ -124,6 +130,33 @@ const Reviews = ({ user, dog, reviews }) => {
           <div className="noReviews">0 reviews</div>
         </div>
       )}
+      <div className="addReviewContainer">
+        <div className="addAReview">Add a Review</div>
+        <div className="avgRatingsContainer">
+          <div className="avgRatingsRow1">
+            <div className="singleAvgRating addRatingCategory">
+              <div className="reviewCategory">Behavior</div>
+              <Rating onClick={(rating) => setBehaviorRating(rating)} ratingValue={behaviorRating} fillColor={'rgb(255,56,93)'}/>
+            </div>
+            <div className="emptySpace"></div>
+            <div className="singleAvgRating addRatingCategory">
+              <div className="reviewCategory">Kindess</div>
+              <Rating onClick={(rating) => setKindessRating(rating)} ratingValue={kindessRating} fillColor={'rgb(255,56,93)'}/>
+            </div>
+          </div>
+          <div className="avgRatingsRow2">
+            <div className="singleAvgRating addRatingCategory">
+              <div className="reviewCategory">Quietness</div>
+              <Rating onClick={(rating) => setQuietnessRating(rating)} ratingValue={quietnessRating} fillColor={'rgb(255,56,93)'}/>
+            </div>
+            <div className="emptySpace"></div>
+            <div className="singleAvgRating addRatingCategory">
+              <div className="reviewCategory">Energy Level</div>
+              <Rating onClick={(rating) => setEnergyRating(rating)} ratingValue={energyRating} fillColor={'rgb(255,56,93)'}/>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

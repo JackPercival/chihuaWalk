@@ -1,8 +1,8 @@
 //constants
 const LOAD = 'reviews/LOAD_REVIEWS'
-const ADD_REVIEW = 'reviews/ADD_REVIEWS'
-const UPDATE_REVIEW = 'reviews/UPDATE_REVIEWS'
-const DELETE_REVIEW = 'reviews/DELETE_REVIEWS'
+// const ADD_REVIEW = 'reviews/ADD_REVIEWS'
+// const UPDATE_REVIEW = 'reviews/UPDATE_REVIEWS'
+// const DELETE_REVIEW = 'reviews/DELETE_REVIEWS'
 
 const loadReviews = (reviews) => ({
     type: LOAD,

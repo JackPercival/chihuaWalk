@@ -41,6 +41,7 @@ def add_walk():
 
 # #Update a walk date
 @walk_routes.route('/<int:walkId>', methods=['PUT'])
+@login_required
 def update_dog(walkId):
     form = UpdatedWalk()
     form['csrf_token'].data = request.cookies['csrf_token']

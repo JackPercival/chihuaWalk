@@ -83,3 +83,12 @@
     flex-wrap: wrap;
     margin-top: 50px;
 }
+
+.addAReview {
+    font-size: 24px;
+    margin-top: 40px;
+}
+
+.addRatingCategory {
+    align-items: center;
+}

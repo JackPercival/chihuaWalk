@@ -15,14 +15,6 @@ def dog_reviews(dogId):
     return {'reviews': results}
 
 
-# # Get all scheduled walks for a user.
-# @walk_routes.route('/user/<int:userId>')
-# @login_required
-# def user_walks(userId):
-#     walks = Walk.query.filter(Walk.user_id == userId).all()
-#     results = [walk.walk_info() for walk in walks]
-#     return {'walks': results}
-
 # #Create a dog
 # @walk_routes.route('/', methods=['POST'])
 # @login_required
