@@ -10,6 +10,7 @@ const Reviews = ({ user, dog, reviews }) => {
   const [kindessRating, setKindessRating] = useState(0);
   const [quietnessRating, setQuietnessRating] = useState(0);
   const [energyRating, setEnergyRating] = useState(0);
+  const [comment, setComment] = useState('');
 
   const calculateAvgRatings = () => {
 
@@ -130,33 +131,54 @@ const Reviews = ({ user, dog, reviews }) => {
           <div className="noReviews">0 reviews</div>
         </div>
       )}
-      <div className="addReviewContainer">
-        <div className="addAReview">Add a Review</div>
-        <div className="avgRatingsContainer">
-          <div className="avgRatingsRow1">
-            <div className="singleAvgRating addRatingCategory">
-              <div className="reviewCategory">Behavior</div>
-              <Rating onClick={(rating) => setBehaviorRating(rating)} ratingValue={behaviorRating} fillColor={'rgb(255,56,93)'}/>
+      {user?.id && (
+        <div className="addReviewContainer">
+          <div className="addAReview">Add a Review</div>
+          <div className="avgRatingsContainer">
+            <div className="avgRatingsRow1">
+              <div className="singleAvgRating addRatingCategory">
+                <div className="reviewCategory">Behavior</div>
+                <Rating onClick={(rating) => setBehaviorRating(rating)} ratingValue={behaviorRating} fillColor={'rgb(255,56,93)'}/>
+              </div>
+              <div className="emptySpace"></div>
+              <div className="singleAvgRating addRatingCategory">
+                <div className="reviewCategory">Kindess</div>
+                <Rating onClick={(rating) => setKindessRating(rating)} ratingValue={kindessRating} fillColor={'rgb(255,56,93)'}/>
+              </div>
             </div>
-            <div className="emptySpace"></div>
-            <div className="singleAvgRating addRatingCategory">
-              <div className="reviewCategory">Kindess</div>
-              <Rating onClick={(rating) => setKindessRating(rating)} ratingValue={kindessRating} fillColor={'rgb(255,56,93)'}/>
+            <div className="avgRatingsRow2">
+              <div className="singleAvgRating addRatingCategory">
+                <div className="reviewCategory">Quietness</div>
+                <Rating onClick={(rating) => setQuietnessRating(rating)} ratingValue={quietnessRating} fillColor={'rgb(255,56,93)'}/>
+              </div>
+              <div className="emptySpace"></div>
+              <div className="singleAvgRating addRatingCategory">
+                <div className="reviewCategory">Energy Level</div>
+                <Rating onClick={(rating) => setEnergyRating(rating)} ratingValue={energyRating} fillColor={'rgb(255,56,93)'}/>
+              </div>
             </div>
-          </div>
-          <div className="avgRatingsRow2">
-            <div className="singleAvgRating addRatingCategory">
-              <div className="reviewCategory">Quietness</div>
-              <Rating onClick={(rating) => setQuietnessRating(rating)} ratingValue={quietnessRating} fillColor={'rgb(255,56,93)'}/>
-            </div>
-            <div className="emptySpace"></div>
-            <div className="singleAvgRating addRatingCategory">
-              <div className="reviewCategory">Energy Level</div>
-              <Rating onClick={(rating) => setEnergyRating(rating)} ratingValue={energyRating} fillColor={'rgb(255,56,93)'}/>
+            <div className="commentBox">
+              <form className="commentForm">
+                <div className="commentHolder">
+                  <label>Comment</label>
+                  <textarea
+                    className="commentBoxInput"
+                    name='description'
+                    type="input"
+                    required
+                    autoComplete="off"
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                  />
+                </div>
+                <div className="reviewButtonContainer">
+                  <button type="submit">Submit Review</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
