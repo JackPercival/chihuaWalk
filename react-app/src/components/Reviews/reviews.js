@@ -57,25 +57,45 @@ const Reviews = ({ user, dog, reviews }) => {
           <div className="avgRatingsContainer">
               <div className="avgRatingsRow1">
                 <div className="singleAvgRating">
-                  <div>Behavior</div>
+                  <div className="reviewCategory">Behavior</div>
                   <div className="reviewBar">
-                    <div className="dynamicReviewBar"></div>
-                    <div className="fullReviewBar"></div>
-                    <div>{avgRatings[3]}</div>
+                  <div className="fullReviewBar">
+                      <div className="dynamicReviewBar" style={{width: `${avgRatings[2] * 24}px`}}></div>
+                    </div>
+                    <div className="avgRatingPerCategory">{avgRatings[3]}</div>
                   </div>
                 </div>
                 <div className="emptySpace"></div>
                 <div className="singleAvgRating">
-                  <div id="kind">Kindess</div>
+                  <div className="reviewCategory">Kindess</div>
                   <div className="reviewBar">
-                    <div className="dynamicReviewBar"></div>
-                    <div className="fullReviewBar"></div>
-                    <div>{avgRatings[3]}</div>
-                  </div>
+                    <div className="fullReviewBar">
+                      <div className="dynamicReviewBar" style={{width: `${avgRatings[3] * 24}px`}}></div>
+                    </div>
+                    <div className="avgRatingPerCategory">{avgRatings[3]}</div>
                   </div>
                 </div>
+              </div>
               <div className="avgRatingsRow2">
-
+                <div className="singleAvgRating">
+                  <div className="reviewCategory">Quietness</div>
+                  <div className="reviewBar">
+                    <div className="fullReviewBar">
+                      <div className="dynamicReviewBar" style={{width: `${avgRatings[4] * 24}px`}}></div>
+                    </div>
+                    <div className="avgRatingPerCategory">{avgRatings[4]}</div>
+                  </div>
+                </div>
+                <div className="emptySpace"></div>
+                <div className="singleAvgRating">
+                  <div className="reviewCategory">Energy Level</div>
+                  <div className="reviewBar">
+                    <div className="fullReviewBar">
+                      <div className="dynamicReviewBar" style={{width: `${avgRatings[5] * 24}px`}}></div>
+                    </div>
+                    <div className="avgRatingPerCategory">{avgRatings[5]}</div>
+                  </div>
+                </div>
               </div>
           </div>
         </>
