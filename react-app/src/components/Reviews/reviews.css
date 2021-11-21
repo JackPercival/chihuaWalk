@@ -1,0 +1,85 @@
+.reviewsContainer {
+    border-bottom: 1px solid rgb(221, 221, 221);
+    padding-bottom: 40px;
+    z-index: 1;
+}
+
+.reviewsHeader {
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.reviewsHeader div {
+    font-size: 24px;
+    margin-right: 6px;
+}
+
+#reviewStarHeader {
+    font-size: 17px;
+    color: rgb(255,56,93);
+}
+
+#reviewPeriod {
+    font-size: 4px;
+}
+
+.avgRatingsContainer {
+    margin-top: 30px;
+}
+
+.avgRatingsRow1 {
+    margin-bottom: 20px;
+}
+
+.avgRatingsRow1, .avgRatingsRow2 {
+    display: flex;
+    justify-content: space-between;
+}
+
+.singleAvgRating {
+    display: flex;
+    width: 316.359px;
+    justify-content: space-between;
+    position: relative;
+}
+
+.reviewBar {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fullReviewBar {
+    width: 120px;
+    height: 4px;
+    background-color: rgb(221,221,221);
+    border-radius: 15px;
+}
+
+.dynamicReviewBar {
+    height: 4px;
+    background-color: rgb(34,34,34);
+    border-radius: 15px;
+}
+
+.emptySpace {
+    width: 150px;
+}
+
+.avgRatingPerCategory {
+    font-size: 14px;
+    color: rgb(34,34,34);
+}
+
+.reviewCategory {
+    font-size: 20px;
+    color: rgb(34,34,34);
+}
+
+.allReviews {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}

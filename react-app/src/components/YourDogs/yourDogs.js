@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import DogSlide from '../DogSlide/dogSlide';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllDogs, deleteSingleDog } from '../../store/dog';

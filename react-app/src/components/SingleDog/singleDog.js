@@ -3,6 +3,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllDogs } from '../../store/dog';
 import { loadDogsWalks, addNewWalk } from '../../store/walk';
+import { loadDogsReviews } from '../../store/review';
 import Reviews from '../Reviews/reviews';
 import MapContainer from '../Maps';
 import DatePicker from 'react-calendar';
@@ -22,6 +23,7 @@ function SingleDog() {
     const user = useSelector(state => state.session.user);
     const dog = useSelector(state => state.dogs[dogId]);
     const walks = useSelector(state => Object.values(state.walks));
+    const reviews = useSelector(state => Object.values(state.reviews));
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [date, setDate] = useState(null)
@@ -33,6 +35,7 @@ function SingleDog() {
 
     useEffect(() => {
         dispatch(loadDogsWalks(dogId))
+        dispatch(loadDogsReviews(dogId))
         dispatch(loadAllDogs()).then(() => setIsLoaded(true));
         return () => {
             setIsLoaded()
@@ -88,7 +91,7 @@ function SingleDog() {
     const tileDisabled = ({ date, view }) => {
         let walkDates = [];
         for (let walk of walks) {
-            let date1 = new Date(walk.date.slice(5,16))
+            let date1 = new Date(walk?.date.slice(5,16))
             walkDates.push(date1)
         }
 
@@ -207,7 +210,7 @@ function SingleDog() {
                             )}
                         </div>
                     </div>
-                    <Reviews dog={dog}/>
+                    <Reviews user={user} dog={dog} reviews={reviews}/>
                     <div className="selectADate">{`Where you'll pick up ${dog?.name}`}</div>
                     <div className="singleDogMap">
                         {/* <MapContainer zoom={11} dogs={[dog]}/> */}
