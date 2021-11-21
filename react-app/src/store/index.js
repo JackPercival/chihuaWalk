@@ -5,13 +5,15 @@ import dogsReducer from './dog';
 import mapsReducer from './map';
 import walksReducer from './walk';
 import dogsWalksReducer from './walk_dog';
+import reviewsReducer from './review';
 
 const rootReducer = combineReducers({
   session,
   maps: mapsReducer,
   dogs: dogsReducer,
   walks: walksReducer,
-  dogsWalks: dogsWalksReducer
+  dogsWalks: dogsWalksReducer,
+  reviews: reviewsReducer,
 });
 
 

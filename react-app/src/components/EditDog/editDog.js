@@ -51,6 +51,10 @@ const EditDog = () => {
 
     //Redirect if the dog does not belong to the logged in user
     useEffect(() => {
+        if (isLoaded && !dog?.name) {
+            history.push('/')
+        }
+
         if (isLoaded && dog?.user_id !== user.id) {
             history.push('/')
         }
@@ -102,13 +106,13 @@ const EditDog = () => {
       <>
       {isLoaded && (
         <div className="puploadContainer">
-            <h1 id="editYourPup">{`Edit ${dog.name}`}</h1>
+            <h1 id="editYourPup">{`Edit ${dog?.name}`}</h1>
                 <div className="puploadFormsContainer">
                     <div >
                         <form className="puploadForm" autoComplete="off" onSubmit={updateDog}>
                             <div className="formInputSection">
                                 <div className="fieldSection">
-                                    <h3>{`${dog.name}'s Information`}</h3>
+                                    <h3>{`${dog?.name}'s Information`}</h3>
                                     <div className="pupLoadField">
                                         <label>Name</label>
                                         <input
@@ -141,6 +145,7 @@ const EditDog = () => {
                                             required
                                             autoComplete="off"
                                             min="1"
+                                            max="400"
                                             value={weight}
                                             onChange={(e) => setSetWeight(e.target.value)}
                                         />
@@ -280,7 +285,7 @@ const EditDog = () => {
                                         <div>!</div>
                                         <span>Invalid address.</span>
                                     </div>
-                                    <img className="dogHoldingLeash" src={dog.images[0]} alt="Dog Holding Leash" />
+                                    <img className="dogHoldingLeash" src={dog?.images[0]} alt="Dog Holding Leash" />
                                 </div>
                             </div>
                             <div className="puploadButtons">

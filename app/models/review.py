@@ -23,7 +23,6 @@ class Review(db.Model):
             'dog_id': self.dog_id,
             'comment': self.comment,
             'date': self.date,
-            'commRating': self.comm_rating,
             'behavior': self.behavior,
             'kindness': self.kindness,
             'quietness': self.quietness,
