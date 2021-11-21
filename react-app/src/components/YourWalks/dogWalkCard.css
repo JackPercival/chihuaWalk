@@ -83,10 +83,17 @@
     width: 400px;
     display: flex;
     flex-direction: column;
-    /* height: 600px; */
     justify-content: space-between;
 }
 
-/* #changeWalkDateForm .reactCalendar {
-    flex-grow: 1;
-} */
+#selectNewDateHeader {
+    font-weight: 600;
+}
+
+#changeDateConfimButton {
+    background-color: rgb(26,136,199);
+}
+
+#changeDateConfimButton:hover {
+    background-color: rgb(16, 87, 128);
+}

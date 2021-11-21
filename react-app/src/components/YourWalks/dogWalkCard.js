@@ -1,14 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import {  Link } from 'react-router-dom';
-import { deleteSingleWalk } from '../../store/walk';
-import { addWalkDogsWalks } from '../../store/walk_dog';
+import { deleteSingleWalk, loadUsersWalks } from '../../store/walk';
+import { loadWalkDogsWalks } from '../../store/walk_dog';
 import DatePicker from 'react-calendar';
+import { differenceInCalendarDays } from 'date-fns';
 
 import './dogWalkCard.css'
 
 const DogWalkCard = ({ walk, upcoming }) => {
   const dispatch = useDispatch();
+
+  const dogsWalks = useSelector(state => Object.values(state.dogsWalks));
 
   const [showUpdate, setShowUpdate] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
@@ -26,6 +29,24 @@ const DogWalkCard = ({ walk, upcoming }) => {
     setTomorrow(tomorrow)
   }, [])
 
+  //Function to check if two dates are equal
+  const equalDates = (date1, date2) => {
+    return differenceInCalendarDays(date1, date2) === 0;
+  }
+
+  //Function to disable dates that already have a walk scheduled for the dog
+  const tileDisabled = ({ date, view }) => {
+      let walkDates = [];
+      for (let walk of dogsWalks) {
+          let date1 = new Date(walk.date.slice(5,16))
+          walkDates.push(date1)
+      }
+
+      if (view === 'month') {
+          return walkDates.find(theDate => equalDates(theDate, date))
+      }
+  }
+
   const formatDate = () => {
     const newDate = walk.date.slice(0,16).split(" ")
     const correct = []
@@ -36,9 +57,11 @@ const DogWalkCard = ({ walk, upcoming }) => {
     return correct.join(" ")
   }
 
-  const showChangeDatePopUp = (e) => {
+  const showChangeDatePopUp = async (e) => {
     e.preventDefault()
+    await dispatch(loadWalkDogsWalks(walk.dog.id))
     setShowUpdate(true)
+    console.log(date)
   }
 
   const showDeleteConfirmation = (e) => {
@@ -55,7 +78,10 @@ const DogWalkCard = ({ walk, upcoming }) => {
 
   }
 
-
+  const cleanUpCalendarClose = () => {
+    setDate(null)
+    setShowUpdate(false)
+  }
 
   const formattedDate = formatDate();
 
@@ -91,15 +117,19 @@ const DogWalkCard = ({ walk, upcoming }) => {
         <div className="loginModal">
           <div className="deleteDogForm" id="changeWalkDateForm">
             <div className="changeWalkFormEverythingButButtons">
-              <div className="xToClose" onClick={() => setShowUpdate(false)}>
+              <div className="xToClose" onClick={cleanUpCalendarClose}>
                   <i className="fas fa-times"></i>
               </div>
-              <div className="areYouSureDogDelete">Select a New Date</div>
-              <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow}/>
+              <div className="areYouSureDogDelete" id="selectNewDateHeader">Select a New Date</div>
+              <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow} tileDisabled={tileDisabled}/>
             </div>
               <div className="dogDeleteConfirmButtons" id="walkDeleteConfirmButtons">
-                  <div id="confirmWalkDeletionCancelButton" onClick={updateWalk}>Change Date</div>
-                  <div id="cancelDogDelete" onClick={() => setShowUpdate(false)}>Go Back</div>
+                  <>
+                    {date !== null && (
+                      <div id="changeDateConfimButton" onClick={updateWalk}>{`Change Date to ${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`}</div>
+                    )}
+                  </>
+                    <div id="cancelDogDelete" onClick={cleanUpCalendarClose}>Go Back</div>
               </div>
           </div>
         </div>

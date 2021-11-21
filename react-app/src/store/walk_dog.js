@@ -1,26 +1,16 @@
 //constants
-const ADD_WALKS = 'walks/ADD_WALKS'
+const LOAD = 'dogsWalks/LOAD_WALKS'
 
-const addWalks = (walks, dogId) => ({
-    type: ADD_WALKS,
-    walks,
-    dogId
+const loadDogsWalks = (walks) => ({
+    type: LOAD,
+    walks
 })
 
-// const deleteWalk = walkId => {
-//   return {
-//       type: DELETE_WALK,
-//       walkId
-//   }
-// }
-
-
-export const addWalkDogsWalks = (dogId) => async (dispatch) => {
-    console.log("*****************")
+export const loadWalkDogsWalks = (dogId) => async (dispatch) => {
     const response = await fetch(`/api/walks/dog/${dogId}`)
     if (response.ok) {
         const walks = await response.json();
-        dispatch(addWalks(walks, dogId))
+        dispatch(loadDogsWalks(walks))
     }
 }
 
@@ -28,15 +18,13 @@ let initialState = {dogsWalks: null};
 
 const dogsWalksReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_WALKS:
-            if (action.dogId in state) {
-                return state;
-            } else {
-                return {
-                    ...state,
-                    [action.dogId]: action.walks,
-                }
+        case LOAD:
+            const allWalks = {};
+
+            for (let walk of action.walks.walks) {
+                allWalks[walk.id] = walk
             }
+            return {...allWalks }
         default:
             return state;
     }
