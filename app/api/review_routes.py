@@ -51,12 +51,12 @@ def add_review():
 #         return walk.walk_info()
 #     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# #Delete a walk
-# @walk_routes.route('/<int:walkId>', methods=['DELETE'])
-# @login_required
-# def delete_walk(walkId):
-#     walk = Walk.query.filter(Walk.id == walkId).first()
-#     if walk:
-#         db.session.delete(walk)
-#         db.session.commit()
-#         return "Deleted the walk"
+#Delete a review
+@review_routes.route('/<int:reviewId>', methods=['DELETE'])
+@login_required
+def delete_walk(reviewId):
+    review = Review.query.filter(Review.id == reviewId).first()
+    if review:
+        db.session.delete(review)
+        db.session.commit()
+        return "Deleted the review"

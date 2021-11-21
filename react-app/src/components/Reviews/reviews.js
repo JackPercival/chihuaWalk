@@ -68,6 +68,14 @@ const Reviews = ({ user, dog, reviews }) => {
 
     if (data[0] === "Error") {
       setShowError(true)
+    } else {
+
+      //Reset the form in case the user deletes their comment right after creating it
+      setBehaviorRating(0);
+      setKindessRating(0);
+      setQuietnessRating(0);
+      setEnergyRating(0);
+      setComment('');
     }
   }
 
@@ -138,7 +146,7 @@ const Reviews = ({ user, dog, reviews }) => {
           </div>
           <div className="allReviews">
               {reviews.map(review =>
-                <ReviewCard review={review} key={review.id} monthFormatter={monthFormatter}/>
+                <ReviewCard review={review} key={review.id} monthFormatter={monthFormatter} user={user}/>
               )}
           </div>
         </>
@@ -207,7 +215,7 @@ const Reviews = ({ user, dog, reviews }) => {
         )}
         {alreadyReviewed && (
           <div className="addReviewContainer">
-            <div className="addAReview">You have already submitted a review</div>
+            <div className="addAReview alreadyAdded">You have already submitted a review</div>
           </div>
         )}
         </>
