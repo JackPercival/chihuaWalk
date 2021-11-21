@@ -30,7 +30,7 @@ const Reviews = ({ user, dog, reviews }) => {
       totalQuietness += review.quietness
       totalEnergy += review.energy
 
-      if (review.user_id === user?.id) {
+      if (!alreadyReviewed && review.user_id === user?.id) {
         alreadyReviewed = true;
       }
     })
