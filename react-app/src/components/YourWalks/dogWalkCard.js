@@ -4,7 +4,6 @@ import {  Link } from 'react-router-dom';
 
 import { deleteSingleWalk, updatedExistingWalk } from '../../store/walk';
 import { loadWalkDogsWalks } from '../../store/walk_dog';
-import { loadUsersWalks } from '../../store/walk';
 
 import DatePicker from 'react-calendar';
 import { differenceInCalendarDays } from 'date-fns';
@@ -18,13 +17,9 @@ const DogWalkCard = ({ walk, upcoming, user }) => {
 
   const [showUpdate, setShowUpdate] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
-  const [showError, setShowError] = useState(true)
+  const [showError, setShowError] = useState(false)
   const [date, setDate] = useState(null);
   const [tomorrow, setTomorrow] = useState(null);
-
-  // useEffect(() => {
-  //   dispatch(addWalkDogsWalks(walk.dog.id))
-  // })
 
   useEffect(() => {
     const today = new Date();
@@ -90,6 +85,7 @@ const DogWalkCard = ({ walk, upcoming, user }) => {
 
   const cleanUpCalendarClose = () => {
     setDate(null)
+    setShowError(false)
     setShowUpdate(false)
   }
 
@@ -126,6 +122,11 @@ const DogWalkCard = ({ walk, upcoming, user }) => {
       {showUpdate && (
         <div className="loginModal">
           <div className="deleteDogForm" id="changeWalkDateForm">
+          {showError && (
+              <div className="addDogError" id="updateDogError">
+                <span>An error occured. Please refresh the page and try again.</span>
+              </div>
+            )}
             <div className="changeWalkFormEverythingButButtons">
               <div className="xToClose" onClick={cleanUpCalendarClose}>
                   <i className="fas fa-times"></i>
@@ -158,11 +159,6 @@ const DogWalkCard = ({ walk, upcoming, user }) => {
             </div>
         </div>
       )}
-      {showError && (
-          <div className="addDogError" id="updateDogError">
-            <span>An error occured. Please refresh the page and try again.</span>
-          </div>
-        )}
     </div>
   );
 }

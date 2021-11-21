@@ -73,6 +73,7 @@ export const addNewWalk = (user_id, dog_id, walk_date) => async (dispatch) => {
 }
 
 export const updatedExistingWalk = (walk_id, walk_date) => async (dispatch) => {
+
   const response = await fetch(`/api/walks//${walk_id}`, {
     method: 'PUT',
     headers: {
@@ -88,7 +89,7 @@ export const updatedExistingWalk = (walk_id, walk_date) => async (dispatch) => {
     const data = await response.json();
     console.log(data)
     dispatch(updateWalk(data))
-    return ["Error", data];
+    return ["Updated", data];
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
