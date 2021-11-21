@@ -1,11 +1,13 @@
 .reviewsContainer {
     border-bottom: 1px solid rgb(221, 221, 221);
+    padding-bottom: 30px;
+    z-index: 1;
 }
 
 .reviewsHeader {
     display: flex;
     align-items: center;
-    margin-top: 22px;
+    margin-top: 30px;
 }
 
 .reviewsHeader div {
@@ -20,4 +22,43 @@
 
 #reviewPeriod {
     font-size: 4px;
+}
+
+.avgRatingsContainer {
+    margin-top: 30px;
+}
+
+.avgRatingsContainer div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.singleAvgRating {
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    position: relative;
+}
+
+.reviewBar {
+    width: 150px;
+}
+
+.fullReviewBar {
+    width: 120px;
+    height: 4px;
+    background-color: rgb(221,221,221);
+}
+
+.dynamicReviewBar {
+    height: 4px;
+    background-color: rgb(34,34,34);
+}
+
+.emptySpace {
+    width: 150px;
+}
+
+#kind {
+    z-index: 0;
 }

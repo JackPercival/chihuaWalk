@@ -24,10 +24,10 @@ const Reviews = ({ user, dog, reviews }) => {
 
     const length = reviews.length
 
-    const avgBehavior = (totalBehavior / length).toFixed(2)
-    const avgKindness = (totalKindness / length).toFixed(2)
-    const avgQuietness = (totalQuietness / length).toFixed(2)
-    const avgEnergy = (totalEnergy / length).toFixed(2)
+    const avgBehavior = (totalBehavior / length).toFixed(1)
+    const avgKindness = (totalKindness / length).toFixed(1)
+    const avgQuietness = (totalQuietness / length).toFixed(1)
+    const avgEnergy = (totalEnergy / length).toFixed(1)
     const avgTotal = (totalAvg / length).toFixed(2)
 
     const avgArray = [avgTotal, length, avgBehavior, avgKindness, avgQuietness, avgEnergy]
@@ -38,16 +38,55 @@ const Reviews = ({ user, dog, reviews }) => {
 
   return (
     <div className="reviewsContainer">
-      <div className="reviewsHeader">
-        <div id="reviewStarHeader">
-          <i className="fas fa-star"></i>
+      {avgRatings[1] > 0? (
+        <>
+          <div className="reviewsHeader">
+            <div id="reviewStarHeader">
+              <i className="fas fa-star"></i>
+            </div>
+            <div>{avgRatings[0]}</div>
+            <div id="reviewPeriod">
+              <i className="fas fa-circle"></i>
+            </div>
+            {avgRatings[1] > 1? (
+              <div>{`${avgRatings[1]} reviews`}</div>
+            ) : (
+              <div>{`1 review`}</div>
+            )}
+          </div>
+          <div className="avgRatingsContainer">
+              <div className="avgRatingsRow1">
+                <div className="singleAvgRating">
+                  <div>Behavior</div>
+                  <div className="reviewBar">
+                    <div className="dynamicReviewBar"></div>
+                    <div className="fullReviewBar"></div>
+                    <div>{avgRatings[3]}</div>
+                  </div>
+                </div>
+                <div className="emptySpace"></div>
+                <div className="singleAvgRating">
+                  <div id="kind">Kindess</div>
+                  <div className="reviewBar">
+                    <div className="dynamicReviewBar"></div>
+                    <div className="fullReviewBar"></div>
+                    <div>{avgRatings[3]}</div>
+                  </div>
+                  </div>
+                </div>
+              <div className="avgRatingsRow2">
+
+              </div>
+          </div>
+        </>
+      ) : (
+        <div className="reviewsHeader">
+          <div id="reviewStarHeader">
+            <i className="fas fa-star"></i>
+          </div>
+          <div className="noReviews">0 reviews</div>
         </div>
-        <div>{avgRatings[0]}</div>
-        <div id="reviewPeriod">
-          <i className="fas fa-circle"></i>
-        </div>
-        <div>{`${avgRatings[1]} reviews`}</div>
-      </div>
+      )}
     </div>
   );
 }
