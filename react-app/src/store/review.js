@@ -1,6 +1,6 @@
 //constants
 const LOAD = 'reviews/LOAD_REVIEWS'
-// const ADD_REVIEW = 'reviews/ADD_REVIEWS'
+const ADD_REVIEW = 'reviews/ADD_REVIEWS'
 // const UPDATE_REVIEW = 'reviews/UPDATE_REVIEWS'
 // const DELETE_REVIEW = 'reviews/DELETE_REVIEWS'
 
@@ -9,10 +9,10 @@ const loadReviews = (reviews) => ({
     reviews
 })
 
-// const addWalk = walk => ({
-//     type: ADD_WALK,
-//     walk
-// })
+const addReview = review => ({
+    type: ADD_REVIEW,
+    review
+})
 
 // const updateWalk = walk => {
 //     return {
@@ -36,41 +36,36 @@ export const loadDogsReviews = (dogId) => async (dispatch) => {
     }
 }
 
-// export const loadUsersWalks = (userId) => async (dispatch) => {
-//     const response = await fetch(`/api/walks/user/${userId}`)
+export const addNewReview = (user_id, dog_id, comment, behavior, kindness, quietness, energy) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user_id,
+        dog_id,
+        comment,
+        behavior,
+        kindness,
+        quietness,
+        energy
+      }),
+    });
 
-//     if (response.ok) {
-//         const walks = await response.json();
-//         dispatch(loadWalks(walks))
-//     }
-// }
-
-// export const addNewWalk = (user_id, dog_id, walk_date) => async (dispatch) => {
-//     const response = await fetch(`/api/walks/`, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         user_id,
-//         dog_id,
-//         walk_date
-//       }),
-//     });
-
-//     if (response.ok) {
-//       const data = await response.json();
-//       dispatch(addWalk(data))
-//       return ["Created", data];
-//     } else if (response.status < 500) {
-//       const data = await response.json();
-//       if (data.errors) {
-//         return ["Error", data.errors];
-//       }
-//     } else {
-//       return["Error"]
-//     }
-// }
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(addReview(data))
+      return ["Created", data];
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        return ["Error", data.errors];
+      }
+    } else {
+      return["Error"]
+    }
+}
 
 // export const updatedExistingWalk = (walk_id, walk_date) => async (dispatch) => {
 //   const response = await fetch(`/api/walks/${walk_id}`, {
@@ -123,11 +118,11 @@ const reviewsReducer = (state = initialState, action) => {
                 allReviews[review.id] = review
             }
             return {...allReviews }
-        // case ADD_WALK:
-        //     return {
-        //         ...state,
-        //         [action.walk.id]: action.walk,
-        //     }
+        case ADD_REVIEW:
+            return {
+                ...state,
+                [action.review.id]: action.review,
+            }
         // case UPDATE_WALK:
         //     return {
         //         ...state,

@@ -23,7 +23,7 @@ def user_walks(userId):
     results = [walk.walk_info() for walk in walks]
     return {'walks': results}
 
-#Create a dog
+#Create a walk
 @walk_routes.route('/', methods=['POST'])
 @login_required
 def add_walk():

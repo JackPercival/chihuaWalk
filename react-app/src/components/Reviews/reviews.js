@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import ReviewCard from './reviewCard';
 import { Rating } from 'react-simple-star-rating';
+import { useDispatch } from 'react-redux';
+import { addNewReview } from '../../store/review';
 
 import './reviews.css'
 
 const Reviews = ({ user, dog, reviews }) => {
+
+  const dispatch = useDispatch();
 
   const [behaviorRating, setBehaviorRating] = useState(0);
   const [kindessRating, setKindessRating] = useState(0);
   const [quietnessRating, setQuietnessRating] = useState(0);
   const [energyRating, setEnergyRating] = useState(0);
   const [comment, setComment] = useState('');
+  const [showError, setShowError] = useState(false);
 
   const calculateAvgRatings = () => {
 
@@ -52,6 +57,15 @@ const Reviews = ({ user, dog, reviews }) => {
     'Nov' : 'November',
     'Dec' : 'December'
 }
+
+  const handleSubmitReview = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(addNewReview(user.id, dog.id, comment, behaviorRating, kindessRating, quietnessRating, energyRating))
+
+    if (data[0] === "Error") {
+      setShowError(true)
+    }
+  }
 
   const avgRatings = calculateAvgRatings();
 
@@ -158,7 +172,7 @@ const Reviews = ({ user, dog, reviews }) => {
               </div>
             </div>
             <div className="commentBox">
-              <form className="commentForm">
+              <form className="commentForm" onSubmit={handleSubmitReview}>
                 <div className="commentHolder">
                   <label>Comment</label>
                   <textarea
@@ -172,6 +186,11 @@ const Reviews = ({ user, dog, reviews }) => {
                   />
                 </div>
                 <div className="reviewButtonContainer">
+                  <div>
+                    {showError && (
+                      <div>Please Fill Out all stuff dude</div>
+                    )}
+                  </div>
                   <button type="submit">Submit Review</button>
                 </div>
               </form>
