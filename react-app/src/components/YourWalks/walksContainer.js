@@ -36,8 +36,6 @@ const WalksContainer = ({ walks, user }) => {
         return new Date(b.date) - new Date(a.date)
       })
 
-      console.log(theUpcomingDogWalks)
-
       setPastWalks(thePastDogWalks)
       setUpcomingWalks(theUpcomingDogWalks)
     }, [walks])
