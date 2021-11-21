@@ -28,6 +28,18 @@ const DogWalkCard = ({ walk, upcoming, user }) => {
     setTomorrow(tomorrow)
   }, [])
 
+  //Cleanup function
+  useEffect(() => {
+
+    return () => {
+      setShowUpdate(false)
+      setShowDelete(false)
+      setShowError(false)
+      setDate(null)
+      setTomorrow(null)
+    }
+}, [])
+
   //Function to check if two dates are equal
   const equalDates = (date1, date2) => {
     return differenceInCalendarDays(date1, date2) === 0;
@@ -132,7 +144,7 @@ const DogWalkCard = ({ walk, upcoming, user }) => {
                   <i className="fas fa-times"></i>
               </div>
               <div className="areYouSureDogDelete" id="selectNewDateHeader">Select a New Date</div>
-              <DatePicker onChange={(picked) => setDate(picked)} value={date} minDate={tomorrow} tileDisabled={tileDisabled}/>
+              <DatePicker onChange={(picked) => setDate(picked)} view={"month"} prev2Label={null} next2Label={null} showFixedNumberOfWeeks={true} value={date} minDate={tomorrow} tileDisabled={tileDisabled}/>
             </div>
               <div className="dogDeleteConfirmButtons" id="walkDeleteConfirmButtons">
                 <>
