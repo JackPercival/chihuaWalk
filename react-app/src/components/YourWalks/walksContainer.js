@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import DogWalkCard from './dogWalkCard';
 import DogSlide from '../DogSlide/dogSlide';
 
-const WalksContainer = ({walks}) => {
-    const dispatch = useDispatch();
-
+const WalksContainer = ({ walks, user }) => {
 
     const [showPast, setShowPast] = useState(false);
     const [pastWalks, setPastWalks] = useState([])
     const [upcomingWalks, setUpcomingWalks] = useState([])
 
 
-    // Sort walks into past and upcoming
+    // Sort walks into past and upcoming by date
     useEffect(() => {
       if (walks[0] === null) {
         return;
@@ -29,9 +28,20 @@ const WalksContainer = ({walks}) => {
         }
       }
 
+      theUpcomingDogWalks.sort(function(a,b) {
+        return new Date(a.date) - new Date(b.date)
+      })
+
+      thePastDogWalks.sort(function(a,b) {
+        return new Date(b.date) - new Date(a.date)
+      })
+
+      console.log(theUpcomingDogWalks)
+
       setPastWalks(thePastDogWalks)
       setUpcomingWalks(theUpcomingDogWalks)
     }, [walks])
+
 
   return (
     <>
@@ -46,15 +56,36 @@ const WalksContainer = ({walks}) => {
           <div className="dogWalksForUserContainer">
             {!showPast && (
               <>
-                {upcomingWalks.map((walk, index) =>
-                  <DogSlide dog={walk.dog} key={`Your_dog_walk_${walk.dog.id}_${index}`} />
+                {upcomingWalks.length === 0? (
+                  <>
+                    <div className="noWalksTextContainer">
+                      <p className="noWalksText">When you’re ready to start planning your next walk, click</p><Link to="/browse" className="noDogsBrowse">here</Link><p className="noWalksText"> to browse.</p>
+
+                    </div>
+                    <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png"/>
+                  </>
+                ):(
+                  <div className="yesWalksContainer">
+                    {upcomingWalks.map((walk, index) =>
+                      <DogWalkCard user={user} walk={walk} upcoming={true} key={`Your_dog_walk_${walk.dog.id}_${index}`} />
+                    )}
+                  </div>
                 )}
               </>
             )}
             {showPast && (
               <>
-                {pastWalks.map((walk, index) =>
-                  <DogSlide dog={walk.dog} key={`Your_past_dog_walk_${walk.dog.id}_${index}`} />
+                {pastWalks.length === 0? (
+                  <>
+                    <p className="noWalksText">You don’t have any past walks yet—but when you do, you’ll find them here.</p>
+                    <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png"/>
+                  </>
+                ) :(
+                  <div className="yesWalksContainer">
+                    {pastWalks.map((walk, index) =>
+                      <DogWalkCard walk={walk} upcoming={false} key={`Your_past_dog_walk_${walk.dog.id}_${index}`} />
+                    )}
+                  </div>
                 )}
               </>
             )}

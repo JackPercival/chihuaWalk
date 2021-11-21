@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadAllDogs } from '../../store/dog';
 import { loadUsersWalks } from '../../store/walk';
 
 import WalksContainer from './walksContainer';
@@ -14,9 +13,6 @@ const YourWalks = () => {
     const walks = useSelector(state => Object.values(state.walks));
 
     const [isLoaded, setIsLoaded] = useState(false);
-    const [showPast, setShowPast] = useState(false);
-    const [pastWalks, setPastWalks] = useState([])
-    const [upcomingWalks, setUpcomingWalks] = useState([])
 
     useEffect(() => {
         dispatch(loadUsersWalks(user?.id)).then(() => setIsLoaded(true));
@@ -40,7 +36,7 @@ const YourWalks = () => {
       {isLoaded && (
         <div className="yourWalksContainer">
           <h1>Walks</h1>
-          <WalksContainer walks={walks}/>
+          <WalksContainer walks={walks} user={user}/>
         </div>
       )}
     </>

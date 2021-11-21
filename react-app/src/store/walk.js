@@ -1,8 +1,8 @@
 //constants
 const LOAD = 'walks/LOAD_WALKS'
 const ADD_WALK = 'walks/ADD_WALK'
-const UPDATE_DOG = 'dogs/UPDATE_DOG'
-const DELETE_DOG = 'dogs/DELETE_DOG'
+const UPDATE_WALK = 'walks/UPDATE_WALK'
+const DELETE_WALK = 'walks/DELETE_WALK'
 
 const loadWalks = (walks) => ({
     type: LOAD,
@@ -14,20 +14,19 @@ const addWalk = walk => ({
     walk
 })
 
-// const updateWalk = walk => {
-//     return {
-//         type: UPDATE_DOG,
-//         walk
-//     }
-// }
+const updateWalk = walk => {
+    return {
+        type: UPDATE_WALK,
+        walk
+    }
+}
 
-// const deleteDog = walkId => {
-//   return {
-//       type: DELETE_DOG,
-//       walkId
-//   }
-// }
-
+const deleteWalk = walkId => {
+  return {
+      type: DELETE_WALK,
+      walkId
+  }
+}
 
 export const loadDogsWalks = (dogId) => async (dispatch) => {
     const response = await fetch(`/api/walks/dog/${dogId}`)
@@ -73,60 +72,49 @@ export const addNewWalk = (user_id, dog_id, walk_date) => async (dispatch) => {
     }
 }
 
-// export const updatedExistingDog = (dog_id, user_id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3) => async (dispatch) => {
-//   const response = await fetch(`/api/dogs/${dog_id}`, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       user_id,
-//       name,
-//       breed,
-//       description,
-//       weight,
-//       address,
-//       city,
-//       state,
-//       country,
-//       latitude,
-//       longitude,
-//       image1,
-//       image2,
-//       image3,
-//     }),
-//   });
+export const updatedExistingWalk = (walk_id, walk_date) => async (dispatch) => {
 
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(updateDog(data))
-//     return ["Created", data];
-//   } else if (response.status < 500) {
-//     const data = await response.json();
-//     if (data.errors) {
-//       return ["Error", data.errors];
-//     }
-//   } else {
-//     alert('An error occurred. Please refresh the page and try again.')
-//     return["Error"]
-//   }
-// }
+  const response = await fetch(`/api/walks//${walk_id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      walk_id,
+      walk_date
+    }),
+  });
 
-// export const deleteSingleDog = (dog_id) => async (dispatch) => {
-//   const response = await fetch(`/api/dogs/${dog_id}`, {
-//       method: 'DELETE',
-//       body: JSON.stringify({dog_id})
-//   });
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data)
+    dispatch(updateWalk(data))
+    return ["Updated", data];
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return ["Error", data.errors];
+    }
+  } else {
+    return ["Error"]
+  }
+}
 
-//   if (response.ok) {
-//     dispatch(deleteDog(dog_id))
-//     return null;
-//   } else {
-//     alert('An error occurred. Please refresh the page and try again.')
-//   }
-// }
+export const deleteSingleWalk = (walk_id) => async (dispatch) => {
+  const response = await fetch(`/api/walks/${walk_id}`, {
+      method: 'DELETE',
+      body: JSON.stringify({walk_id})
+  });
 
-let initialState = {dogs: null};
+  if (response.ok) {
+    dispatch(deleteWalk(walk_id))
+    return null;
+  } else {
+    alert('An error occurred. Please refresh the page and try again.')
+  }
+}
+
+let initialState = {walks: null};
 
 const walksReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -142,15 +130,15 @@ const walksReducer = (state = initialState, action) => {
                 ...state,
                 [action.walk.id]: action.walk,
             }
-        // case UPDATE_DOG:
-        //     return {
-        //         ...state,
-        //         [action.dog.id]: action.dog,
-        //     }
-        // case DELETE_DOG:
-        //     const newState = {...state}
-        //     delete newState[action.dogId];
-        //     return newState;
+        case UPDATE_WALK:
+            return {
+                ...state,
+                [action.walk.id]: action.walk,
+            }
+        case DELETE_WALK:
+            const newState = {...state}
+            delete newState[action.walkId];
+            return newState;
         default:
             return state;
     }

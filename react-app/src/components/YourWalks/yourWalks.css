@@ -8,7 +8,6 @@
 
 .navHeader {
     border-bottom: 1px solid rgb(221, 221, 221);
-    margin-bottom: 20px;
 }
 
 .profileNav {
@@ -41,6 +40,41 @@
   }
 
   .dogWalksForUserContainer {
+    border-bottom: 1px solid rgb(221, 221, 221);
+    margin-bottom: 50px;
+    min-height: 383px;
+  }
+
+  .noWalks {
+    width: 800px;
+    margin: 0 auto;
+    z-index: -1;
+    top: 10px;
+    display: block;
+  }
+
+  .noWalksTextContainer {
+    display: flex;
+    align-items: center;
+
+  }
+
+  .noWalksText {
+    color: rgb(72,72,72);
+    margin-top: 20px;
+  }
+
+  .noDogsBrowse {
+    display: inline-block;
+    height: fit-content;
+    color: rgb(72,72,72);
+    text-decoration: underline;
+    margin: 5px 3px 0 3px;
+    font-weight: 600;
+  }
+
+  .yesWalksContainer {
     display: flex;
     flex-wrap: wrap;
+    margin: 0 auto;
   }
