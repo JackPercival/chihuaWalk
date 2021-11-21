@@ -2,7 +2,7 @@ from logging import log
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, Dog, Walk
-from app.forms import NewWalk
+from app.forms import NewWalk, UpdatedWalk
 from .auth_routes import validation_errors_to_error_messages
 
 walk_routes = Blueprint('walks', __name__)
@@ -39,41 +39,21 @@ def add_walk():
         return walk.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# #Update a dog
-# @dog_routes.route('/<int:dogId>', methods=['PUT'])
-# def update_dog(dogId):
-#     form = NewDogForm()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         data = form.data
+# #Update a walk date
+@walk_routes.route('/<int:walkId>', methods=['PUT'])
+def update_dog(walkId):
+    form = UpdatedWalk()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
 
-#         dog = Dog.query.filter(Dog.id == dogId).first()
-#         dog.name = data['name']
-#         dog.breed = data['breed']
-#         dog.description = data['description']
-#         dog.weight = data['weight']
-#         dog.address = data['address']
-#         dog.city = data['city']
-#         dog.state = data['state']
-#         dog.latitude=data['latitude']
-#         dog.longitude=data['longitude']
+        walk = Walk.query.filter(Walk.id == walkId).first()
+        walk.date = data['walk_date']
 
-#         images = Image.query.filter(Image.dog_id == dogId).all()
-#         for image in images:
-#             db.session.delete(image)
-#         db.session.commit()
+        db.session.commit()
 
-#         image1 = Image(dog_id=dogId, url=form.data['image1'])
-#         image2 = Image(dog_id=dogId, url=form.data['image2'])
-#         image3 = Image(dog_id=dogId, url=form.data['image3'])
-
-#         db.session.add(image1)
-#         db.session.add(image2)
-#         db.session.add(image3)
-
-#         db.session.commit()
-#         return dog.to_dict()
-#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return walk.walk_info()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #Delete a walk
 @walk_routes.route('/<int:walkId>', methods=['DELETE'])

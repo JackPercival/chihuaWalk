@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {  Link } from 'react-router-dom';
-import { deleteSingleWalk, loadUsersWalks } from '../../store/walk';
+
+import { deleteSingleWalk, updatedExistingWalk } from '../../store/walk';
 import { loadWalkDogsWalks } from '../../store/walk_dog';
+import { loadUsersWalks } from '../../store/walk';
+
 import DatePicker from 'react-calendar';
 import { differenceInCalendarDays } from 'date-fns';
 
 import './dogWalkCard.css'
 
-const DogWalkCard = ({ walk, upcoming }) => {
+const DogWalkCard = ({ walk, upcoming, user }) => {
   const dispatch = useDispatch();
 
   const dogsWalks = useSelector(state => Object.values(state.dogsWalks));
 
   const [showUpdate, setShowUpdate] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
+  const [showError, setShowError] = useState(false)
   const [date, setDate] = useState(null);
   const [tomorrow, setTomorrow] = useState(null);
 
@@ -61,7 +65,6 @@ const DogWalkCard = ({ walk, upcoming }) => {
     e.preventDefault()
     await dispatch(loadWalkDogsWalks(walk.dog.id))
     setShowUpdate(true)
-    console.log(date)
   }
 
   const showDeleteConfirmation = (e) => {
@@ -74,7 +77,15 @@ const DogWalkCard = ({ walk, upcoming }) => {
     setShowDelete(false)
   }
 
-  const updateWalk = () => {
+  const updateWalk = async () => {
+    const data = await dispatch(updatedExistingWalk(walk.id, date.toISOString().split('T')[0]))
+    if (data[0] === "Updated") {
+      // await dispatch(loadUsersWalks(user.id))
+      setDate(null)
+      setShowUpdate(false)
+    } else {
+      setShowError(true)
+    }
 
   }
 

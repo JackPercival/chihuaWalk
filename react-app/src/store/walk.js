@@ -1,7 +1,7 @@
 //constants
 const LOAD = 'walks/LOAD_WALKS'
 const ADD_WALK = 'walks/ADD_WALK'
-const UPDATE_DOG = 'dogs/UPDATE_DOG'
+const UPDATE_WALK = 'walks/UPDATE_WALK'
 const DELETE_WALK = 'walks/DELETE_WALK'
 
 const loadWalks = (walks) => ({
@@ -14,12 +14,12 @@ const addWalk = walk => ({
     walk
 })
 
-// const updateWalk = walk => {
-//     return {
-//         type: UPDATE_DOG,
-//         walk
-//     }
-// }
+const updateWalk = walk => {
+    return {
+        type: UPDATE_WALK,
+        walk
+    }
+}
 
 const deleteWalk = walkId => {
   return {
@@ -27,7 +27,6 @@ const deleteWalk = walkId => {
       walkId
   }
 }
-
 
 export const loadDogsWalks = (dogId) => async (dispatch) => {
     const response = await fetch(`/api/walks/dog/${dogId}`)
@@ -73,44 +72,32 @@ export const addNewWalk = (user_id, dog_id, walk_date) => async (dispatch) => {
     }
 }
 
-// export const updatedExistingDog = (dog_id, user_id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3) => async (dispatch) => {
-//   const response = await fetch(`/api/dogs/${dog_id}`, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       user_id,
-//       name,
-//       breed,
-//       description,
-//       weight,
-//       address,
-//       city,
-//       state,
-//       country,
-//       latitude,
-//       longitude,
-//       image1,
-//       image2,
-//       image3,
-//     }),
-//   });
+export const updatedExistingWalk = (walk_id, walk_date) => async (dispatch) => {
+  const response = await fetch(`/api/walks//${walk_id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      walk_id,
+      walk_date
+    }),
+  });
 
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(updateDog(data))
-//     return ["Created", data];
-//   } else if (response.status < 500) {
-//     const data = await response.json();
-//     if (data.errors) {
-//       return ["Error", data.errors];
-//     }
-//   } else {
-//     alert('An error occurred. Please refresh the page and try again.')
-//     return["Error"]
-//   }
-// }
+  if (response.ok) {
+    const data = await response.json();
+    console.log(data)
+    dispatch(updateWalk(data))
+    return ["Updated", data];
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return ["Error", data.errors];
+    }
+  } else {
+    return ["Error"]
+  }
+}
 
 export const deleteSingleWalk = (walk_id) => async (dispatch) => {
   const response = await fetch(`/api/walks/${walk_id}`, {
@@ -126,7 +113,7 @@ export const deleteSingleWalk = (walk_id) => async (dispatch) => {
   }
 }
 
-let initialState = {dogs: null};
+let initialState = {walks: null};
 
 const walksReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -142,11 +129,11 @@ const walksReducer = (state = initialState, action) => {
                 ...state,
                 [action.walk.id]: action.walk,
             }
-        // case UPDATE_DOG:
-        //     return {
-        //         ...state,
-        //         [action.dog.id]: action.dog,
-        //     }
+        case UPDATE_WALK:
+            return {
+                ...state,
+                [action.walk.id]: action.walk,
+            }
         case DELETE_WALK:
             const newState = {...state}
             delete newState[action.walkId];

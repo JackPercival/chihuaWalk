@@ -53,6 +53,12 @@
     display: block;
   }
 
+  .noWalksTextContainer {
+    display: flex;
+    align-items: center;
+
+  }
+
   .noWalksText {
     color: rgb(72,72,72);
     margin-top: 20px;
@@ -63,7 +69,7 @@
     height: fit-content;
     color: rgb(72,72,72);
     text-decoration: underline;
-    margin: 0 3px;
+    margin: 5px 3px 0 3px;
     font-weight: 600;
   }
 

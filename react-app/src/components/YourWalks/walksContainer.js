@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import DogWalkCard from './dogWalkCard';
 import DogSlide from '../DogSlide/dogSlide';
 
-const WalksContainer = ({walks}) => {
+const WalksContainer = ({ walks, user }) => {
 
     const [showPast, setShowPast] = useState(false);
     const [pastWalks, setPastWalks] = useState([])
@@ -36,6 +36,8 @@ const WalksContainer = ({walks}) => {
         return new Date(a.date) - new Date(b.date)
       })
 
+      console.log(theUpcomingDogWalks)
+
       setPastWalks(thePastDogWalks)
       setUpcomingWalks(theUpcomingDogWalks)
     }, [walks])
@@ -56,13 +58,16 @@ const WalksContainer = ({walks}) => {
               <>
                 {upcomingWalks.length === 0? (
                   <>
-                    <p className="noWalksText">When you’re ready to start planning your next walk, click</p><Link to="/browse" className="noDogsBrowse">here</Link><p className="noWalksText"> to browse.</p>
+                    <div className="noWalksTextContainer">
+                      <p className="noWalksText">When you’re ready to start planning your next walk, click</p><Link to="/browse" className="noDogsBrowse">here</Link><p className="noWalksText"> to browse.</p>
+
+                    </div>
                     <img className="noWalks" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637424585/Capstone/walkDrawing_lcursw.png"/>
                   </>
                 ):(
                   <div className="yesWalksContainer">
                     {upcomingWalks.map((walk, index) =>
-                      <DogWalkCard walk={walk} upcoming={true} key={`Your_dog_walk_${walk.dog.id}_${index}`} />
+                      <DogWalkCard user={user} walk={walk} upcoming={true} key={`Your_dog_walk_${walk.dog.id}_${index}`} />
                     )}
                   </div>
                 )}
