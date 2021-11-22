@@ -9,9 +9,6 @@ import './searchDisplay.css'
 function SearchDisplay() {
 
     const dogs = useSelector(state => Object.values(state.search));
-    console.log(dogs)
-    console.log(dogs.length)
-
     const [isLoaded] = useState(true);
 
     return (
