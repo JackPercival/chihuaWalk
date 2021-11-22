@@ -211,7 +211,7 @@ function SingleDog() {
                         </div>
                     </div>
                     <Reviews user={user} dog={dog} reviews={reviews}/>
-                    <div className="selectADate">{`Where you'll pick up ${dog?.name}`}</div>
+                    <div className="selectADate" id="wherePickUpHeader">{`Where you'll pick up ${dog?.name}`}</div>
                     <div className="singleDogMap">
                         {/* <MapContainer zoom={11} dogs={[dog]}/> */}
                     </div>
