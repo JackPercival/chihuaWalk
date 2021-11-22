@@ -12,7 +12,7 @@ const DogHolder = ({dog}) => {
         <Slide easing="ease" indicators={true} autoplay={false} cssClass="dogSlide" transitionDuration={500}>
             {imageArray.map(image =>
             <Link to={`/dogs/${dog.id}`} key={`Dog_slide_${image.id}`}>
-                <div style={{backgroundImage: `url(${image})`}} className="dogImageSlide"></div>
+                <div style={{backgroundImage: `url(${image}), url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637621047/Capstone/dogFallBack_zbctxj.png")`}} className="dogImageSlide"></div>
             </Link>
             )}
         </Slide>
