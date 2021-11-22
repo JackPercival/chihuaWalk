@@ -86,3 +86,34 @@
     overflow-wrap: break-word;
     font-size: 17px;
 }
+
+#updateReviewForm  .avgRatingsContainer .singleAvgRating {
+  width: 250px;
+}
+
+#updateReviewForm {
+  width: 550px;
+  max-width: 550px;
+  height: 360px;
+  max-height: 360px;
+}
+
+#updateEmptySpace1, #updateEmptySpace2 {
+  width: 50px;
+}
+
+#updateReviewHeader {
+  font-weight: 600;
+  font-size: 25px;
+  margin-left: 0;
+}
+
+#goBackUpdateReviewButton {
+  margin-left: 15px;
+}
+
+
+#goBackUpdateReviewButton:hover {
+  background-color: rgb(238, 238, 238);
+  color: black;
+}
