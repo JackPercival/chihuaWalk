@@ -132,7 +132,7 @@ const SearchBar = () => {
                             <input
                                 type="text"
                                 autoComplete="off"
-                                placeholder="Add a breed"
+                                placeholder="What breed?"
                                 maxLength="40"
                                 value={searchBreed}
                                 onChange={(e) => setSearchBreed(e.target.value)}
@@ -143,7 +143,7 @@ const SearchBar = () => {
                             <input
                                 type="number"
                                 autoComplete="off"
-                                placeholder="Min weight"
+                                placeholder="Min weight?"
                                 min="1"
                                 max="399"
                                 value={searchMinWeight}
