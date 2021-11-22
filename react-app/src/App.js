@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import SearchProvider from './components/context/SearchContext';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/footer';
 import SplashPage from './components/SplashPage/SplashPage';
@@ -32,37 +33,39 @@ function App() {
   return (
     <>
       {isLoaded && (
-        <BrowserRouter>
-          <div className="pageContainer" id="pageContainer">
-            <Header />
-            <div className="mainContent">
-              <Switch>
-                <Route exact path='/' >
-                  <SplashPage />
-                </Route>
-                <Route exact path='/browse' >
-                  <Browse />
-                </Route>
-                <ProtectedRoute exact path='/pupload' >
-                  <Pupload />
-                </ProtectedRoute>
-                <ProtectedRoute exact path='/your-dogs' >
-                  <YourDogs />
-                </ProtectedRoute>
-                <ProtectedRoute exact path='/your-walks' >
-                  <YourWalks />
-                </ProtectedRoute>
-                <Route exact path='/dogs/:dogId' >
-                  <SingleDog />
-                </Route>
-                <ProtectedRoute exact path='/dogs/:dogId/edit' >
-                  <EditDog />
-                </ProtectedRoute>
-              </Switch>
+        <SearchProvider>
+          <BrowserRouter>
+            <div className="pageContainer" id="pageContainer">
+              <Header />
+              <div className="mainContent">
+                <Switch>
+                  <Route exact path='/' >
+                    <SplashPage />
+                  </Route>
+                  <Route exact path='/browse' >
+                    <Browse />
+                  </Route>
+                  <ProtectedRoute exact path='/pupload' >
+                    <Pupload />
+                  </ProtectedRoute>
+                  <ProtectedRoute exact path='/your-dogs' >
+                    <YourDogs />
+                  </ProtectedRoute>
+                  <ProtectedRoute exact path='/your-walks' >
+                    <YourWalks />
+                  </ProtectedRoute>
+                  <Route exact path='/dogs/:dogId' >
+                    <SingleDog />
+                  </Route>
+                  <ProtectedRoute exact path='/dogs/:dogId/edit' >
+                    <EditDog />
+                  </ProtectedRoute>
+                </Switch>
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        </BrowserRouter>
+          </BrowserRouter>
+        </SearchProvider>
       )}
     </>
   );

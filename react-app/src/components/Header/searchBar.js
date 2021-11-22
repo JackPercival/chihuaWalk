@@ -1,27 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {  Link } from 'react-router-dom';
-import ProfileButton from './ProfileButton';
+import { useSearch } from '../context/SearchContext';
 
 import './searchBar.css'
 
 const SearchBar = () => {
 
+    const {showSearch, setShowSearch, setShowSearchClass} = useSearch();
 
-  return (
-    <div className="searchBarContainer">
-        <div className="fakeSearchBar">
-            <div className="searchCategories">
-                <div>Address</div>
-                <div>Breed</div>
-                <div>Weight</div>
-            </div>
-            <div className="searchMagGlassIcon">
-                <i className="fas fa-search"></i>
-            </div>
+
+    const showRealSearch = () => {
+        setShowSearchClass('expanded')
+        setShowSearch(true)
+    }
+
+    return (
+        <div className="searchBarContainer">
+            {!showSearch && (
+                <div className="fakeSearchBar" id="searchBar" onClick={showRealSearch}>
+                    <div className="searchCategories">
+                        <div>Address</div>
+                        <div>Breed</div>
+                        <div>Weight</div>
+                    </div>
+                    <div className="searchMagGlassIcon">
+                        <i className="fas fa-search"></i>
+                    </div>
+                </div>
+            )}
+            {showSearch && (
+                <div className="realSearchBar">
+                    <div className="searchDogsHeader">Search Dogs</div>
+                    <div className="realSearchFormContainer"></div>
+                </div>
+            )}
         </div>
-    </div>
-  );
+    );
 }
 
 export default SearchBar;

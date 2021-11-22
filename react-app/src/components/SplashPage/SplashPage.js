@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useSearch } from '../context/SearchContext';
 
 import './SplashPage.css'
 
 const SplashPage = () => {
 
-//   const user = useSelector(state => state.session.user);
+    const {setShowSearch, setShowSearchClass} = useSearch();
+
+    //Clean up search bar
+    useEffect(() => {
+        setShowSearch(false)
+        setShowSearchClass('noExpand')
+    }, [])
+
 
   return (
     <div className="splashPageContainer">
