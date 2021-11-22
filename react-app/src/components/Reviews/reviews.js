@@ -8,10 +8,6 @@ import './reviews.css'
 
 const Reviews = ({ user, dog, reviews }) => {
 
-  if (reviews[0] === null) {
-    return;
-  }
-
   const dispatch = useDispatch();
 
   const [behaviorRating, setBehaviorRating] = useState(0);
@@ -20,6 +16,10 @@ const Reviews = ({ user, dog, reviews }) => {
   const [energyRating, setEnergyRating] = useState(0);
   const [comment, setComment] = useState('');
   const [showError, setShowError] = useState(false);
+
+  if (reviews[0] === null) {
+    return null;
+  }
 
   const calculateAvgRatings = () => {
     if (reviews[0] === null) {
