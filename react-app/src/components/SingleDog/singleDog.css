@@ -194,3 +194,7 @@
   text-align: center;
   margin: 15px 10px 0 0;
 }
+
+#wherePickUpHeader {
+  margin: 0;
+}

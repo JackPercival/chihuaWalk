@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReviewCard from './reviewCard';
-import { Rating } from 'react-simple-star-rating';
-import { useDispatch } from 'react-redux';
-import { addNewReview } from '../../store/review';
+import ReviewForm from './reviewForm';
 
 import './reviews.css'
 
 const Reviews = ({ user, dog, reviews }) => {
 
-  const dispatch = useDispatch();
+  const [sortedReviews, setSortedReviews] = useState([])
 
-  const [behaviorRating, setBehaviorRating] = useState(0);
-  const [kindessRating, setKindessRating] = useState(0);
-  const [quietnessRating, setQuietnessRating] = useState(0);
-  const [energyRating, setEnergyRating] = useState(0);
-  const [comment, setComment] = useState('');
-  const [showError, setShowError] = useState(false);
+  //Sort reviews by most recent
+  useEffect(() => {
+    if (reviews[0] === null) {
+      return;
+    }
+
+    const sortedReviews = reviews
+
+    sortedReviews.sort(function(a,b) {
+      return new Date(b.date) - new Date(a.date)
+    })
+
+    setSortedReviews(sortedReviews)
+
+  }, [reviews])
+
 
   if (reviews[0] === null) {
     return null;
@@ -69,34 +77,6 @@ const Reviews = ({ user, dog, reviews }) => {
     'Nov' : 'November',
     'Dec' : 'December'
 }
-
-  const handleSubmitReview = async (e) => {
-    e.preventDefault();
-
-    if (!behaviorRating || !kindessRating || !quietnessRating || !energyRating || !comment) {
-      setShowError(true)
-      return;
-    }
-
-    const data = await dispatch(addNewReview(user.id, dog.id, comment, behaviorRating, kindessRating, quietnessRating, energyRating))
-
-    if (data[0] === "Error") {
-      setShowError(true)
-    } else {
-
-      //Reset the form in case the user deletes their comment right after creating it
-      setBehaviorRating(0);
-      setKindessRating(0);
-      setQuietnessRating(0);
-      setEnergyRating(0);
-      setComment('');
-      setShowError(false)
-
-      //Scroll to the top of the reviews so you can see your review
-      let location = document.querySelector("#reviewStarHeader").scrollIntoView({behavior: 'smooth' });
-
-    }
-  }
 
   const avgRatings = calculateAvgRatings();
   const alreadyReviewed = avgRatings[6]
@@ -164,7 +144,7 @@ const Reviews = ({ user, dog, reviews }) => {
               </div>
           </div>
           <div className="allReviews">
-              {reviews.map(review =>
+              {sortedReviews.map(review =>
                 <ReviewCard review={review} key={review.id} monthFormatter={monthFormatter} user={user}/>
               )}
           </div>
@@ -180,57 +160,7 @@ const Reviews = ({ user, dog, reviews }) => {
       {user?.id && (
         <>
         {!alreadyReviewed && dog?.user_id !== user?.id && (
-          <div className="addReviewContainer">
-            <div className="addAReview">Add a Review</div>
-            <div className="avgRatingsContainer">
-              <div className="avgRatingsRow1">
-                <div className="singleAvgRating addRatingCategory">
-                  <div className="reviewCategory">Behavior</div>
-                  <Rating onClick={(rating) => setBehaviorRating(rating)} ratingValue={behaviorRating} fillColor={'rgb(255,56,93)'}/>
-                </div>
-                <div className="emptySpace"></div>
-                <div className="singleAvgRating addRatingCategory">
-                  <div className="reviewCategory">Kindess</div>
-                  <Rating onClick={(rating) => setKindessRating(rating)} ratingValue={kindessRating} fillColor={'rgb(255,56,93)'}/>
-                </div>
-              </div>
-              <div className="avgRatingsRow2">
-                <div className="singleAvgRating addRatingCategory">
-                  <div className="reviewCategory">Quietness</div>
-                  <Rating onClick={(rating) => setQuietnessRating(rating)} ratingValue={quietnessRating} fillColor={'rgb(255,56,93)'}/>
-                </div>
-                <div className="emptySpace"></div>
-                <div className="singleAvgRating addRatingCategory">
-                  <div className="reviewCategory">Energy Level</div>
-                  <Rating onClick={(rating) => setEnergyRating(rating)} ratingValue={energyRating} fillColor={'rgb(255,56,93)'}/>
-                </div>
-              </div>
-              <div className="commentBox">
-                <form className="commentForm" onSubmit={handleSubmitReview}>
-                  <div className="commentHolder">
-                    <label>Comment</label>
-                    <textarea
-                      className="commentBoxInput"
-                      name='description'
-                      type="input"
-                      required
-                      autoComplete="off"
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                    />
-                  </div>
-                  <div className="reviewButtonContainer">
-                    <div>
-                      {showError && (
-                        <div className="addReviewError">Please fill out all fields</div>
-                      )}
-                    </div>
-                    <button type="submit">Submit Review</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+          <ReviewForm userId={user?.id} dogId={dog?.id} />
         )}
         {alreadyReviewed && dog?.user_id !== user?.id && (
           <div className="addReviewContainer">

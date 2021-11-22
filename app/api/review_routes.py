@@ -2,7 +2,7 @@ from logging import log
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, Review
-from app.forms import NewReview
+from app.forms import NewReview, UpdateReview
 from .auth_routes import validation_errors_to_error_messages
 import datetime
 
@@ -35,21 +35,26 @@ def add_review():
         return review.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-# # #Update a walk date
-# @walk_routes.route('/<int:walkId>', methods=['PUT'])
-# def update_dog(walkId):
-#     form = UpdatedWalk()
-#     form['csrf_token'].data = request.cookies['csrf_token']
-#     if form.validate_on_submit():
-#         data = form.data
+# #Update a review
+@review_routes.route('/<int:reviewId>', methods=['PUT'])
+@login_required
+def update_review(reviewId):
+    form = UpdateReview()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
 
-#         walk = Walk.query.filter(Walk.id == walkId).first()
-#         walk.date = data['walk_date']
+        review = Review.query.filter(Review.id == reviewId).first()
+        review.comment = data['comment']
+        review.behavior = data['behavior']
+        review.kindness = data['kindness']
+        review.quietness = data['quietness']
+        review.energy= data['energy']
 
-#         db.session.commit()
+        db.session.commit()
 
-#         return walk.walk_info()
-#     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return review.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #Delete a review
 @review_routes.route('/<int:reviewId>', methods=['DELETE'])
