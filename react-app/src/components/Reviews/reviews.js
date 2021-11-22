@@ -18,7 +18,10 @@ const Reviews = ({ user, dog, reviews }) => {
   const [showError, setShowError] = useState(false);
 
   const calculateAvgRatings = () => {
-    console.log(reviews)
+    if (reviews[0] === null) {
+      break;
+    }
+    
     let alreadyReviewed = false;
     let totalBehavior = 0;
     let totalKindness = 0;
