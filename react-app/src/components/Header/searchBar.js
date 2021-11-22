@@ -21,7 +21,7 @@ const SearchBar = () => {
 
 
     const showRealSearch = () => {
-        setShowSearchClass('expanded')
+        // setShowSearchClass('expanded')
         setTimeout(function() {
             setShowSearch(true)
           }, 100);
@@ -60,7 +60,7 @@ const SearchBar = () => {
             )}
             {showSearch && (
                 <div className="realSearchBar">
-                    <div className="searchDogsHeader">Search Dogs</div>
+                    {/* <div className="searchDogsHeader">Search Dogs</div> */}
                     <form className="realSearchFormContainer" onSubmit={handleSearch}>
                         <div className="searchFormField">
                             <label>City</label>

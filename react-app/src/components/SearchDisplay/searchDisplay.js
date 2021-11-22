@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 import DogSlide from '../DogSlide/dogSlide';
 import { useSelector, useDispatch } from 'react-redux';
-import { loadAllDogs, deleteSingleDog } from '../../store/dog';
 
 import MapContainer from '../Maps';
 
@@ -60,17 +58,29 @@ function SearchDisplay() {
                             </div>
                         </div>
                     )}
-                    {dogs[0] === null || dogs.length === 0 &&  (
+                    {dogs.length === 0 &&  (
                         <div className="yourDogsInfoAndMapContainer">
-                        <div className="yourDogList">
-                            <div className="yourDogsAndAddButton">
-                                <h1>No Search Results</h1>
+                            <div className="yourDogList">
+                                <div className="yourDogsAndAddButton">
+                                    <h1>No Search Results</h1>
+                                </div>
+                            </div>
+                            <div className="yourDogMap">
+                                <MapContainer zoom={4}/>
                             </div>
                         </div>
-                        <div className="yourDogMap">
-                            <MapContainer zoom={4}/>
+                    )}
+                    {dogs[0] === null && (
+                        <div className="yourDogsInfoAndMapContainer">
+                            <div className="yourDogList">
+                                <div className="yourDogsAndAddButton">
+                                    <h1>Enter a Search</h1>
+                                </div>
+                            </div>
+                            <div className="yourDogMap">
+                                <MapContainer zoom={4}/>
+                            </div>
                         </div>
-                    </div>
                     )}
                 </div>
             )}
