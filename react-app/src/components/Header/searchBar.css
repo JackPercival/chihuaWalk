@@ -120,6 +120,7 @@
     cursor: pointer;
     transition: all .25s 0s;
     border: none;
+    font-family: "Questrial", sans-serif;
 }
 
 .realSearchButtonContainer:hover {

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import {  Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { useSearch } from '../context/SearchContext';
+import { loadSearches } from '../../store/search';
 
 import './searchBar.css'
 
 const SearchBar = () => {
+    const dispatch = useDispatch()
 
     const {showSearch, setShowSearch, setShowSearchClass,
         searchCity, setSearchCity,
@@ -36,7 +37,7 @@ const SearchBar = () => {
 
     const handleSearch = async (e) => {
         e.preventDefault()
-        console.log(searchCity, searchState, searchBreed, searchMinWeight, searchMaxWeight)
+        await dispatch(loadSearches(searchCity, searchState, searchBreed, searchMinWeight, searchMaxWeight))
     }
 
 
@@ -64,6 +65,7 @@ const SearchBar = () => {
                                 type="text"
                                 autoComplete="off"
                                 placeholder="What city?"
+                                maxLength="50"
                                 value={searchCity}
                                 onChange={(e) => setSearchCity(e.target.value)}
                             />
@@ -131,6 +133,7 @@ const SearchBar = () => {
                                 type="text"
                                 autoComplete="off"
                                 placeholder="Add a breed"
+                                maxLength="40"
                                 value={searchBreed}
                                 onChange={(e) => setSearchBreed(e.target.value)}
                             />

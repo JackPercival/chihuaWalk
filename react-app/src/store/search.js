@@ -7,18 +7,18 @@ const loadSearchResults = (dogs) => ({
     dogs
 })
 
-export const loadSearchReviews = (searchCity, searchState, searchBreed, searchMinWeight, searchMaxWeight) => async (dispatch) => {
-    const response = await fetch(`/api/reviews/`, {
+export const loadSearches = (city, state, breed, min_weight, max_weight) => async (dispatch) => {
+    const response = await fetch(`/api/search/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            searchCity,
-            searchState,
-            searchBreed,
-            searchMinWeight,
-            searchMaxWeight
+            city,
+            state,
+            breed,
+            min_weight,
+            max_weight
         }),
       });
 
