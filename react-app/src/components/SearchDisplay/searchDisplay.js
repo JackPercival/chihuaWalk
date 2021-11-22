@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import DogSlide from '../DogSlide/dogSlide';
+import {  Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import DogSlide from '../DogSlide/dogSlide';
 
 import MapContainer from '../Maps';
 
@@ -29,18 +30,20 @@ function SearchDisplay() {
                                     )}
                                 </div>
                                 {dogs?.map(dog =>
-                                    <div className="yourDogSingleDogContainer" key={`Your_Dog_holder_${dog?.id}`}>
-                                        <DogSlide dog={dog} key={`Your_dog_${dog?.id}`} />
-                                        <div className="yourDogSingleDogInfo">
-                                            <div className="singleDogName">{dog?.name}</div>
-                                            <div className="dogDetailsNoButtons">
-                                                <div className="dogInfoSingleDog">{dog?.breed}</div>
-                                                <div className="dogInfoSingleDog">{dog?.description}</div>
-                                                <div className="dogInfoSingleDog">{`${dog?.weight} lbs.`}</div>
-                                                <div className="dogInfoSingleDog">{`${dog?.city}, ${dog?.state}`}</div>
+                                    <Link to={`/dogs/${dog.id}`} className="youDogsContainerLink" key={`Your_Dog_holder_${dog?.id}`}>
+                                        <div className="yourDogSingleDogContainer">
+                                            <DogSlide dog={dog} key={`Your_dog_${dog?.id}`} />
+                                            <div className="yourDogSingleDogInfo">
+                                                <div className="singleDogName">{dog?.name}</div>
+                                                <div className="dogDetailsNoButtons">
+                                                    <div className="dogInfoSingleDog">{dog?.breed}</div>
+                                                    <div className="dogInfoSingleDog">{dog?.description}</div>
+                                                    <div className="dogInfoSingleDog">{`${dog?.weight} lbs.`}</div>
+                                                    <div className="dogInfoSingleDog">{`${dog?.city}, ${dog?.state}`}</div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )}
                             </div>
                             <div className="yourDogMap">
