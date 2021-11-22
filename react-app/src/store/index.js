@@ -6,6 +6,7 @@ import mapsReducer from './map';
 import walksReducer from './walk';
 import dogsWalksReducer from './walk_dog';
 import reviewsReducer from './review';
+import searchReducer from './search';
 
 const rootReducer = combineReducers({
   session,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   walks: walksReducer,
   dogsWalks: dogsWalksReducer,
   reviews: reviewsReducer,
+  search: searchReducer,
 });
 
 

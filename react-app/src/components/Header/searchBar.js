@@ -31,9 +31,13 @@ const SearchBar = () => {
         } else {
             setMaxMin(1)
         }
-        console.log(searchMinWeight)
-        console.log(maxMin)
     }, [searchMinWeight])
+
+
+    const handleSearch = async (e) => {
+        e.preventDefault()
+        console.log(searchCity, searchState, searchBreed, searchMinWeight, searchMaxWeight)
+    }
 
 
     return (
@@ -53,7 +57,7 @@ const SearchBar = () => {
             {showSearch && (
                 <div className="realSearchBar">
                     <div className="searchDogsHeader">Search Dogs</div>
-                    <form className="realSearchFormContainer">
+                    <form className="realSearchFormContainer" onSubmit={handleSearch}>
                         <div className="searchFormField">
                             <label>City</label>
                             <input
