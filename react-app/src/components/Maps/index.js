@@ -19,7 +19,8 @@ const MapContainer = ({ zoom, dogs }) => {
   }, [dispatch, key]);
 
   useEffect(() => {
-    if (dogs) {
+    console.log(dogs)
+    if (dogs && dogs[0] !== undefined) {
         let lat = 0;
         let long = 0;
       dogs.forEach(dog => {

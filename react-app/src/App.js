@@ -12,6 +12,7 @@ import SingleDog from './components/SingleDog/singleDog';
 import YourDogs from './components/YourDogs/yourDogs';
 import EditDog from './components/EditDog/editDog';
 import YourWalks from './components/YourWalks/yourWalks';
+import PageNotFound from './components/PageNotFound/pageNotFound';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import SearchDisplay from './components/SearchDisplay/searchDisplay';
@@ -64,6 +65,9 @@ function App() {
                   </ProtectedRoute>
                   <Route exact path='/search' >
                     <SearchDisplay />
+                  </Route>
+                  <Route>
+                    <PageNotFound />
                   </Route>
                 </Switch>
               </div>
