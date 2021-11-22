@@ -23,7 +23,7 @@ def user_walks(userId):
     results = [walk.walk_info() for walk in walks]
     return {'walks': results}
 
-#Create a dog
+#Create a walk
 @walk_routes.route('/', methods=['POST'])
 @login_required
 def add_walk():
@@ -41,6 +41,7 @@ def add_walk():
 
 # #Update a walk date
 @walk_routes.route('/<int:walkId>', methods=['PUT'])
+@login_required
 def update_dog(walkId):
     form = UpdatedWalk()
     form['csrf_token'].data = request.cookies['csrf_token']
