@@ -24,7 +24,7 @@ const Reviews = ({ user, dog, reviews }) => {
     let totalQuietness = 0;
     let totalEnergy = 0;
 
-    reviews.forEach(review => {
+    reviews?.forEach(review => {
       totalBehavior += review.behavior
       totalKindness += review.kindness
       totalQuietness += review.quietness
