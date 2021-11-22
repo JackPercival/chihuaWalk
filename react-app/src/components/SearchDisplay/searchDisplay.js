@@ -11,12 +11,15 @@ function SearchDisplay() {
     const dogs = useSelector(state => Object.values(state.search));
     const [isLoaded] = useState(true);
 
+    //Scroll to the top of page
+    document.documentElement.scrollTop = 0;
+
     return (
         <>
             {isLoaded && (
                 <div className="yourDogsContainer">
                     {dogs?.length > 0 && dogs[0] !== null && (
-                        <div className="yourDogsInfoAndMapContainer">
+                        <div className="yourDogsInfoAndMapContainer" id="searchResultHeader">
                             <div className="yourDogList">
                                 <div className="yourDogsAndAddButton">
                                     {dogs?.length === 1? (
