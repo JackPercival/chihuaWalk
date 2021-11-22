@@ -12,7 +12,9 @@ const SearchBar = () => {
 
     const showRealSearch = () => {
         setShowSearchClass('expanded')
-        setShowSearch(true)
+        setTimeout(function() {
+            setShowSearch(true)
+          }, 100);
     }
 
     return (
@@ -32,7 +34,11 @@ const SearchBar = () => {
             {showSearch && (
                 <div className="realSearchBar">
                     <div className="searchDogsHeader">Search Dogs</div>
-                    <div className="realSearchFormContainer"></div>
+                    <div className="realSearchFormContainer">
+                        <div className="searchFormInputContainer">
+
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
