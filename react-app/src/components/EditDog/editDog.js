@@ -297,7 +297,7 @@ const EditDog = () => {
                                         <div>!</div>
                                         <span>Invalid address.</span>
                                     </div>
-                                    <img className="dogHoldingLeash" src={dog?.images[0]} alt="Dog Holding Leash" />
+                                    <img className="dogHoldingLeash" src={dog?.images[0]} alt="Dog Holding Leash" onError={(e)=>{e.target.onerror = null; e.target.src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637621047/Capstone/dogFallBack_zbctxj.png"}}/>
                                 </div>
                             </div>
                             <div className="puploadButtons">
