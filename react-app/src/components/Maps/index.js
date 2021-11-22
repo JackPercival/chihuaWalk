@@ -19,16 +19,22 @@ const MapContainer = ({ zoom, dogs }) => {
   }, [dispatch, key]);
 
   useEffect(() => {
-      let lat = 0;
-      let long = 0;
-    dogs.forEach(dog => {
-        long += dog.longitude;
-        lat += dog.latitude
-   })
+    if (dogs) {
+        let lat = 0;
+        let long = 0;
+      dogs.forEach(dog => {
+          long += dog.longitude;
+          lat += dog.latitude
+    })
 
-    const length = dogs.length
-    setLatAvg(parseFloat(lat / length))
-    setLongAvg(parseFloat(long / length))
+      const length = dogs?.length
+      setLatAvg(parseFloat(lat / length))
+      setLongAvg(parseFloat(long / length))
+
+    } else {
+      setLatAvg(38.747)
+      setLongAvg(-98.138)
+    }
 
   }, [dogs])
 

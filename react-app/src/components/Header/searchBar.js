@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 import { useSearch } from '../context/SearchContext';
 import { loadSearches } from '../../store/search';
 
 import './searchBar.css'
 
 const SearchBar = () => {
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     const {showSearch, setShowSearch, setShowSearchClass,
         searchCity, setSearchCity,
@@ -28,7 +30,7 @@ const SearchBar = () => {
     //Calculate min and max allowed values based on user inputs
     useEffect(() => {
         if (searchMinWeight) {
-            setMaxMin(searchMinWeight + 1)
+            setMaxMin(searchMinWeight)
         } else {
             setMaxMin(1)
         }
@@ -38,6 +40,7 @@ const SearchBar = () => {
     const handleSearch = async (e) => {
         e.preventDefault()
         await dispatch(loadSearches(searchCity, searchState, searchBreed, searchMinWeight, searchMaxWeight))
+        history.push('/search')
     }
 
 
@@ -147,7 +150,7 @@ const SearchBar = () => {
                                 min="1"
                                 max="399"
                                 value={searchMinWeight}
-                                onChange={(e) => setSearchMinWeight(Number(e.target.value))}
+                                onChange={(e) => setSearchMinWeight(Number(e.target.value).toString())}
                             />
                         </div>
                         <div className="searchFormField lastSearchCat">
@@ -159,7 +162,7 @@ const SearchBar = () => {
                                 min={maxMin}
                                 max="400"
                                 value={searchMaxWeight}
-                                onChange={(e) => setSearchMaxWeight(Number(e.target.value))}
+                                onChange={(e) => setSearchMaxWeight(Number(e.target.value).toString())}
                             />
                         </div>
                         <button type="submit" className="realSearchButtonContainer">

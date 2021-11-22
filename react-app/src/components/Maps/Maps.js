@@ -9,8 +9,6 @@ const containerStyle = {
   height: '100%',
 };
 
-
-
 const Maps = ({ apiKey, zoom, dogs, latAvg, longAvg }) => {
     const history = useHistory();
 
