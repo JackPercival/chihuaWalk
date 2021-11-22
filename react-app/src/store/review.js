@@ -1,7 +1,7 @@
 //constants
 const LOAD = 'reviews/LOAD_REVIEWS'
 const ADD_REVIEW = 'reviews/ADD_REVIEWS'
-// const UPDATE_REVIEW = 'reviews/UPDATE_REVIEWS'
+const UPDATE_REVIEW = 'reviews/UPDATE_REVIEWS'
 const DELETE_REVIEW = 'reviews/DELETE_REVIEWS'
 
 const loadReviews = (reviews) => ({
@@ -14,12 +14,12 @@ const addReview = review => ({
     review
 })
 
-// const updateWalk = review => {
-//     return {
-//         type: UPDATE_REVIEW,
-//         review
-//     }
-// }
+const updateReview = review => {
+    return {
+        type: UPDATE_REVIEW,
+        review
+    }
+}
 
 const deleteReview = reviewId => {
   return {
@@ -67,31 +67,35 @@ export const addNewReview = (user_id, dog_id, comment, behavior, kindness, quiet
     }
 }
 
-// export const updatedExistingWalk = (walk_id, walk_date) => async (dispatch) => {
-//   const response = await fetch(`/api/walks/${walk_id}`, {
-//     method: 'PUT',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify({
-//       walk_id,
-//       walk_date
-//     }),
-//   });
+export const updatedExistingReview = (review_id, comment, behavior, kindness, quietness, energy) => async (dispatch) => {
+  const response = await fetch(`/api/reviews/${review_id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      review_id,
+      comment,
+      behavior,
+      kindness,
+      quietness,
+      energy
+    }),
+  });
 
-//   if (response.ok) {
-//     const data = await response.json();
-//     dispatch(updateWalk(data))
-//     return ["Updated", data];
-//   } else if (response.status < 500) {
-//     const data = await response.json();
-//     if (data.errors) {
-//       return ["Error", data.errors];
-//     }
-//   } else {
-//     return ["Error"]
-//   }
-// }
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateReview(data))
+    return ["Updated", data];
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return ["Error", data.errors];
+    }
+  } else {
+    return ["Error"]
+  }
+}
 
 export const deleteSingleReview = (reviewId) => async (dispatch) => {
   const response = await fetch(`/api/reviews/${reviewId}`, {
@@ -123,11 +127,11 @@ const reviewsReducer = (state = initialState, action) => {
                 ...state,
                 [action.review.id]: action.review,
             }
-        // case UPDATE_REVIEW:
-        //     return {
-        //         ...state,
-        //         [action.review.id]: action.review,
-        //     }
+        case UPDATE_REVIEW:
+            return {
+                ...state,
+                [action.review.id]: action.review,
+            }
         case DELETE_REVIEW:
             const newState = {...state}
             delete newState[action.reviewId];
