@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ReviewCard from './reviewCard';
 import ReviewForm from './reviewForm';
 
@@ -6,6 +6,24 @@ import './reviews.css'
 
 const Reviews = ({ user, dog, reviews }) => {
 
+  const [sortedReviews, setSortedReviews] = useState([])
+
+  useEffect(() => {
+    if (reviews[0] === null) {
+      return;
+    }
+
+    const sortedReviews = reviews
+
+    sortedReviews.sort(function(a,b) {
+      return new Date(b.date) - new Date(a.date)
+    })
+
+    setSortedReviews(sortedReviews)
+
+  }, [reviews])
+
+  //Sort reviews by most recent
   if (reviews[0] === null) {
     return null;
   }
@@ -125,7 +143,7 @@ const Reviews = ({ user, dog, reviews }) => {
               </div>
           </div>
           <div className="allReviews">
-              {reviews.map(review =>
+              {sortedReviews.map(review =>
                 <ReviewCard review={review} key={review.id} monthFormatter={monthFormatter} user={user}/>
               )}
           </div>
