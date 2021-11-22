@@ -2,7 +2,7 @@ body {
   margin: 0;
 }
 
-header {
+.mainHeaderContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -34,4 +34,10 @@ header {
   color: rgb(255, 56, 93);
   margin-top: 10px;
   margin-left: 6px;
+}
+
+.profBarContainer {
+  width: 189.359px;
+  display: flex;
+  justify-content: flex-end;
 }

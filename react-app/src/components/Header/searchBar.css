@@ -1,0 +1,41 @@
+.fakeSearchBar {
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 30px;
+    box-shadow: -1px 1px 5px rgb(233, 233, 233), 1px 1px 5px rgb(233, 233, 233);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Questrial', sans-serif;
+    cursor: pointer;
+    padding: 10px;
+    transition: all .5s 0s;
+}
+
+.fakeSearchBar:hover {
+    box-shadow: -1px 1px 3px rgb(173, 173, 173), 1px 1px 3px rgb(173, 173, 173);
+}
+
+.searchCategories {
+    display: flex;
+    color: rgb(145, 145, 145);
+    width: fit-content;
+}
+
+.searchCategories div {
+    border-right: 1px solid rgb(221, 221, 221);
+    padding: 7px 13px;
+    font-size: 15px;
+}
+
+.searchCategories div:last-child {
+    border-right: 1px solid transparent;
+}
+
+.searchMagGlassIcon {
+    background-color: rgb(255, 56, 93);
+    color: white;
+    border-radius: 50%;
+    padding: 8px;
+}

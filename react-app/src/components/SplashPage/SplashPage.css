@@ -104,6 +104,7 @@
 
 .inspiration {
     font-family: 'Roboto', sans-serif;
+    font-family: 'Questrial', sans-serif;
     font-size: 30px;
 }
 
@@ -111,7 +112,7 @@
     display: flex;
     width: 85vw;
     justify-content: space-between;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Questrial', sans-serif;
 }
 
 .inspirationCard {
