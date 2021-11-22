@@ -8,6 +8,10 @@ import './reviews.css'
 
 const Reviews = ({ user, dog, reviews }) => {
 
+  if (reviews[0] === null) {
+    return;
+  }
+
   const dispatch = useDispatch();
 
   const [behaviorRating, setBehaviorRating] = useState(0);
@@ -18,7 +22,10 @@ const Reviews = ({ user, dog, reviews }) => {
   const [showError, setShowError] = useState(false);
 
   const calculateAvgRatings = () => {
-    console.log(reviews)
+    if (reviews[0] === null) {
+      return;
+    }
+
     let alreadyReviewed = false;
     let totalBehavior = 0;
     let totalKindness = 0;
