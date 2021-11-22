@@ -1,0 +1,54 @@
+.container404 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  max-width: 1600px;
+  margin: 0 auto;
+  height: fit-content;
+  font-family: "Questrial", sans-serif;
+}
+
+.content404 {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  margin-top: 40px;
+  color: rgb(72,72,72);
+}
+
+.left404 h1 {
+  font-size: 170px;
+  margin: 0;
+  color: rgb(72,72,72);
+  margin-bottom: 15px;
+}
+
+.cantFind {
+    font-size: 37px;
+    margin: 0;
+    color: rgb(72,72,72);
+}
+
+.img404 {
+  width: 300px;
+  max-width: 300px;
+  height: 450px;
+  flex-grow: 1;
+}
+
+.suggestedPages {
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestedPages a {
+    color: rgb(0,132,137);
+    margin-bottom: 4px;
+    width: fit-content;
+    display: block;
+}
+
+.suggestedPages a:hover {
+    text-decoration: underline;
+}
