@@ -24,7 +24,7 @@ const Reviews = ({ user, dog, reviews }) => {
     let totalQuietness = 0;
     let totalEnergy = 0;
 
-    reviews.forEach(review => {
+    reviews?.forEach(review => {
       totalBehavior += review.behavior
       totalKindness += review.kindness
       totalQuietness += review.quietness
@@ -83,6 +83,10 @@ const Reviews = ({ user, dog, reviews }) => {
       setEnergyRating(0);
       setComment('');
       setShowError(false)
+
+      //Scroll to the top of the reviews so you can see your review
+      let location = document.querySelector("#reviewStarHeader").scrollIntoView({behavior: 'smooth' });
+
     }
   }
 
@@ -167,7 +171,7 @@ const Reviews = ({ user, dog, reviews }) => {
       )}
       {user?.id && (
         <>
-        {!alreadyReviewed && (
+        {!alreadyReviewed && dog?.user_id !== user?.id && (
           <div className="addReviewContainer">
             <div className="addAReview">Add a Review</div>
             <div className="avgRatingsContainer">
@@ -220,9 +224,14 @@ const Reviews = ({ user, dog, reviews }) => {
             </div>
           </div>
         )}
-        {alreadyReviewed && (
+        {alreadyReviewed && dog?.user_id !== user?.id && (
           <div className="addReviewContainer">
             <div className="addAReview alreadyAdded">You have already submitted a review</div>
+          </div>
+        )}
+        {dog?.user_id === user?.id && (
+          <div className="addReviewContainer">
+            <div className="addAReview alreadyAdded">You cannot add a review to your own dog</div>
           </div>
         )}
         </>
