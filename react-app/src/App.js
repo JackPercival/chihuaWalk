@@ -14,6 +14,8 @@ import EditDog from './components/EditDog/editDog';
 import YourWalks from './components/YourWalks/yourWalks';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
+import SearchDisplay from './components/SearchDisplay/searchDisplay';
+
 import { authenticate } from './store/session';
 
 import './components/overall.css'
@@ -60,6 +62,9 @@ function App() {
                   <ProtectedRoute exact path='/dogs/:dogId/edit' >
                     <EditDog />
                   </ProtectedRoute>
+                  <Route exact path='/search' >
+                    <SearchDisplay />
+                  </Route>
                 </Switch>
               </div>
               <Footer />
