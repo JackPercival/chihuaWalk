@@ -8,35 +8,25 @@ header {
   z-index: 11;
   transition: all 0.5s 0s;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.mainHeaderContent {
-  display: flex;
   justify-content: space-between;
-  /* align-items: center; */
+  align-items: center;
   padding: 20px 80px;
   height: 100px;
   box-sizing: border-box;
   background-color: white;
   z-index: 11;
   box-shadow: 0 4px 4px -4px rgb(211, 211, 211);
-  transition: height 0.2s linear;
 }
 
 .mainLogoTitle {
-  display: flex;
-  align-items: flex-start;
-  position: relative;
+  width: fit-content;
+  display: block;
 }
 
 .mainLogo {
   font-family: "Gloria Hallelujah", cursive;
   color: rgb(255, 56, 93);
   font-size: 45px;
-  position: absolute;
-  top: -20px;
 }
 
 .mainTitle {
@@ -45,14 +35,4 @@ header {
   color: rgb(255, 56, 93);
   margin-top: 10px;
   margin-left: 66px;
-}
-
-.profBarContainer {
-  width: 189.359px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.expanded {
-  height: 150px;
 }

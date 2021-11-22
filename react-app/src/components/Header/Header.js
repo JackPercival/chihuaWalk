@@ -14,16 +14,11 @@ const Header = () => {
 
   return (
     <header>
-        <div className={`mainHeaderContent ${showSearchClass}`} id="mainHeaderContent">
-          <Link to='/' className="mainLogoTitle">
-            <div className="mainLogo">cW</div>
-            <div className="mainTitle">chihuaWalk</div>
-          </Link>
-          <SearchBar />
-          <div className="profBarContainer">
-            <ProfileButton user={user}/>
-          </div>
-        </div>
+        <Link to='/' className="mainLogoTitle">
+          <div className="mainLogo">cW</div>
+        </Link>
+        <SearchBar />
+        <ProfileButton user={user}/>
     </header>
   );
 }
