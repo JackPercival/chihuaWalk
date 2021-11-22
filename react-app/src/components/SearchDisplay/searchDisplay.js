@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import DogSlide from '../DogSlide/dogSlide';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import MapContainer from '../Maps';
 
@@ -8,21 +8,11 @@ import './searchDisplay.css'
 
 function SearchDisplay() {
 
-    const dispatch = useDispatch();
-
-    const user = useSelector(state => state.session.user);
     const dogs = useSelector(state => Object.values(state.search));
     console.log(dogs)
     console.log(dogs.length)
 
-    const [isLoaded, setIsLoaded] = useState(true);
-
-    // useEffect(() => {
-    //     dispatch(loadAllDogs()).then(() => setIsLoaded(true));
-    //     return () => {
-    //         setIsLoaded()
-    //     }
-    // }, [dispatch]);
+    const [isLoaded] = useState(true);
 
     return (
         <>

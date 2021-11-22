@@ -10,7 +10,7 @@ const SearchBar = () => {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    const {showSearch, setShowSearch, setShowSearchClass,
+    const {showSearch, setShowSearch,
         searchCity, setSearchCity,
         searchState, setSearchState,
         searchBreed, setSearchBreed,
@@ -21,10 +21,7 @@ const SearchBar = () => {
 
 
     const showRealSearch = () => {
-        // setShowSearchClass('expanded')
-        setTimeout(function() {
-            setShowSearch(true)
-          }, 100);
+       setShowSearch(true)
     }
 
     //Calculate min and max allowed values based on user inputs

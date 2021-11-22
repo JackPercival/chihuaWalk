@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useSearch } from '../context/SearchContext';
 import DogSlide from '../DogSlide/dogSlide';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadAllDogs, deleteSingleDog } from '../../store/dog';
@@ -14,12 +15,22 @@ function YourDogs() {
 
     const user = useSelector(state => state.session.user);
     const dogs = useSelector(state => Object.values(state.dogs).filter(dog => dog?.user_id === Number(user.id)));
+    const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
     const [dogToDelete, setDogToDelete] = useState('')
     const [dogNameToDelete, setDogNameToDelete] = useState('')
 
+    //Clean up search bar
+    useEffect(() => {
+        setShowSearch(false)
+        setSearchCity('')
+        setSearchState('')
+        setSearchBreed('')
+        setSearchMinWeight('')
+        setSearchMaxWeight('')
+    }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
     useEffect(() => {
         dispatch(loadAllDogs()).then(() => setIsLoaded(true));

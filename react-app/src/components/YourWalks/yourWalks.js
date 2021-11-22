@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useSearch } from '../context/SearchContext';
 import { loadUsersWalks } from '../../store/walk';
 
 import WalksContainer from './walksContainer';
@@ -10,6 +11,7 @@ const YourWalks = () => {
 
     const user = useSelector(state => state.session.user);
     const walks = useSelector(state => Object.values(state.walks));
+    const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -29,6 +31,16 @@ const YourWalks = () => {
           document.body.style.overflowY = 'auto';
       }
     })
+
+    //Clean up search bar
+    useEffect(() => {
+      setShowSearch(false)
+      setSearchCity('')
+      setSearchState('')
+      setSearchBreed('')
+      setSearchMinWeight('')
+      setSearchMaxWeight('')
+  }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
   return (
     <>

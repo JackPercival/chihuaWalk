@@ -6,14 +6,17 @@ import './SplashPage.css'
 
 const SplashPage = () => {
 
-    const {setShowSearch, setShowSearchClass} = useSearch();
+    const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
     //Clean up search bar
     useEffect(() => {
         setShowSearch(false)
-        setShowSearchClass('noExpand')
-    }, [])
-
+        setSearchCity('')
+        setSearchState('')
+        setSearchBreed('')
+        setSearchMinWeight('')
+        setSearchMaxWeight('')
+    }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
   return (
     <div className="splashPageContainer">

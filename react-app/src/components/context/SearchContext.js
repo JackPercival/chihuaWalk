@@ -6,7 +6,6 @@ export const useSearch = () => useContext(SearchContext);
 
 export default function SearchProvider({ children }) {
   const [showSearch, setShowSearch] = useState(false);
-  const [showSearchClass, setShowSearchClass] = useState('noExpand');
   const [searchCity, setSearchCity] = useState('')
   const [searchState, setSearchState] = useState('')
   const [searchBreed, setSearchBreed] = useState('')
@@ -17,7 +16,6 @@ export default function SearchProvider({ children }) {
     <SearchContext.Provider
       value={{
         showSearch, setShowSearch,
-        showSearchClass, setShowSearchClass,
         searchCity, setSearchCity,
         searchState, setSearchState,
         searchBreed, setSearchBreed,

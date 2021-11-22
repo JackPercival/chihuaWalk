@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useSearch } from '../context/SearchContext';
 import { loadAllDogs } from '../../store/dog';
 import { loadDogsWalks, addNewWalk } from '../../store/walk';
 import { loadDogsReviews } from '../../store/review';
@@ -24,6 +25,7 @@ function SingleDog() {
     const dog = useSelector(state => state.dogs[dogId]);
     const walks = useSelector(state => Object.values(state.walks));
     const reviews = useSelector(state => Object.values(state.reviews));
+    const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [date, setDate] = useState(null)
@@ -32,6 +34,16 @@ function SingleDog() {
     const [showSucces, setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
     const [tomorrow, setTomorrow] = useState(null)
+
+    //Clean up search bar
+    useEffect(() => {
+        setShowSearch(false)
+        setSearchCity('')
+        setSearchState('')
+        setSearchBreed('')
+        setSearchMinWeight('')
+        setSearchMaxWeight('')
+    }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
     useEffect(() => {
         dispatch(loadDogsWalks(dogId))
@@ -213,7 +225,7 @@ function SingleDog() {
                     <Reviews user={user} dog={dog} reviews={reviews}/>
                     <div className="selectADate" id="wherePickUpHeader">{`Where you'll pick up ${dog?.name}`}</div>
                     <div className="singleDogMap">
-                        {/* <MapContainer zoom={11} dogs={[dog]}/> */}
+                        <MapContainer zoom={11} dogs={[dog]}/>
                     </div>
                 </div>
                 {showSucces && (
