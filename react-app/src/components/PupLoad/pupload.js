@@ -260,18 +260,6 @@ const Pupload = () => {
                                         <option value="WY">Wyoming</option>
                                     </select>
                                 </div>
-                                {/* <div className="pupLoadField">
-                                    <label>Country</label>
-                                    <input
-                                        name='password'
-                                        type="input"
-                                        required
-                                        autoComplete="off"
-                                        maxLength="50"
-                                        value={country}
-                                        onChange={(e) => setCountry(e.target.value)}
-                                    />
-                                </div> */}
                                 <div className="addDogError" id={addressErrorId}>
                                     <div>!</div>
                                     <span>Invalid address.</span>
