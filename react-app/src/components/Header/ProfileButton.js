@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { useSearch } from '../context/SearchContext';
 import { login, logout } from '../../store/session';
 import { signUp } from '../../store/session';
 
@@ -15,6 +15,7 @@ const ProfileButton = ({ user }) => {
     const [showMenu, setShowMenu] = useState(false);
     const [showLoginModal, setShowLoginModal] = useState(false)
     const [showSignUpModal, setShowSignUpModal] = useState(false)
+    const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
     const [errors, setErrors] = useState([]);
     const [signUpErrors, setSignUpErrors] = useState([]);
@@ -157,6 +158,12 @@ const ProfileButton = ({ user }) => {
 
       const onLogout = async (e) => {
         await dispatch(logout());
+        setShowSearch(false)
+        setSearchCity('')
+        setSearchState('')
+        setSearchBreed('')
+        setSearchMinWeight('')
+        setSearchMaxWeight('')
       };
 
       const resetLoginForm = () => {
