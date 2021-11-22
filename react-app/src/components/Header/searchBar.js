@@ -7,13 +7,14 @@ import './searchBar.css'
 
 const SearchBar = () => {
 
-    const {showSearch, setShowSearch,
-        showSearchClass, setShowSearchClass,
+    const {showSearch, setShowSearch, setShowSearchClass,
         searchCity, setSearchCity,
         searchState, setSearchState,
         searchBreed, setSearchBreed,
         searchMinWeight, setSearchMinWeight,
         searchMaxWeight, setSearchMaxWeight} = useSearch();
+
+    const [maxMin, setMaxMin] = useState(1)
 
 
     const showRealSearch = () => {
@@ -22,6 +23,18 @@ const SearchBar = () => {
             setShowSearch(true)
           }, 100);
     }
+
+    //Calculate min and max allowed values based on user inputs
+    useEffect(() => {
+        if (searchMinWeight) {
+            setMaxMin(searchMinWeight + 1)
+        } else {
+            setMaxMin(1)
+        }
+        console.log(searchMinWeight)
+        console.log(maxMin)
+    }, [searchMinWeight])
+
 
     return (
         <div className="searchBarContainer">
@@ -40,7 +53,7 @@ const SearchBar = () => {
             {showSearch && (
                 <div className="realSearchBar">
                     <div className="searchDogsHeader">Search Dogs</div>
-                    <div className="realSearchFormContainer">
+                    <form className="realSearchFormContainer">
                         <div className="searchFormField">
                             <label>City</label>
                             <input
@@ -54,7 +67,7 @@ const SearchBar = () => {
                         <div className="searchFormField">
                             <label>State</label>
                             <select value={searchState} onChange={(e) => setSearchState(e.target.value)}>
-                                <option value="" disabled selected>What state?</option>
+                                <option value="" disabled defaultValue>What state?</option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
@@ -121,30 +134,34 @@ const SearchBar = () => {
                         <div className="searchFormField">
                             <label>Min Weight</label>
                             <input
-                                type="text"
+                                type="number"
                                 autoComplete="off"
-                                placeholder="Minimum weight"
+                                placeholder="Min weight"
+                                min="1"
+                                max="399"
                                 value={searchMinWeight}
-                                onChange={(e) => setSearchMinWeight(e.target.value)}
+                                onChange={(e) => setSearchMinWeight(Number(e.target.value))}
                             />
                         </div>
                         <div className="searchFormField lastSearchCat">
                             <label>Max Weight</label>
                             <input
-                                type="text"
+                                type="number"
                                 autoComplete="off"
-                                placeholder="Maximum weight?"
+                                placeholder="Max weight?"
+                                min={maxMin}
+                                max="400"
                                 value={searchMaxWeight}
-                                onChange={(e) => setSearchMaxWeight(e.target.value)}
+                                onChange={(e) => setSearchMaxWeight(Number(e.target.value))}
                             />
                         </div>
-                        <div className="realSearchButtonContainer">
+                        <button type="submit" className="realSearchButtonContainer">
                             <div>
                                 <i className="fas fa-search"></i>
                             </div>
                             <div className="searchWord">Search</div>
-                        </div>
-                    </div>
+                        </button>
+                    </form>
                 </div>
             )}
         </div>

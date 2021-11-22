@@ -119,6 +119,7 @@
     margin-right: 10px;
     cursor: pointer;
     transition: all .25s 0s;
+    border: none;
 }
 
 .realSearchButtonContainer:hover {
