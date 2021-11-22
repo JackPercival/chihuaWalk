@@ -12,6 +12,7 @@ from .api.dog_routes import dog_routes
 from .api.map_routes import map_routes
 from .api.walk_routes import walk_routes
 from .api.review_routes import review_routes
+from .api.search_routes import search_routes
 
 from .seeds import seed_commands
 
@@ -39,6 +40,7 @@ app.register_blueprint(dog_routes, url_prefix='/api/dogs')
 app.register_blueprint(map_routes, url_prefix='/api/maps')
 app.register_blueprint(walk_routes, url_prefix='/api/walks')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
+app.register_blueprint(search_routes, url_prefix='/api/search')
 
 db.init_app(app)
 Migrate(app, db)

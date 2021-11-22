@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import {  Link } from 'react-router-dom';
+import SearchBar from './searchBar';
 import ProfileButton from './ProfileButton';
 
 import './Header.css'
@@ -11,11 +12,11 @@ const Header = () => {
 
   return (
     <header>
-          <Link to='/' className="mainLogoTitle">
-            <div className="mainLogo">cW</div>
-            <div className="mainTitle">chihuaWalk</div>
-          </Link>
-          <ProfileButton user={user}/>
+        <Link to='/' className="mainLogoTitle">
+          <div className="mainLogo">cW</div>
+        </Link>
+        <SearchBar />
+        <ProfileButton user={user}/>
     </header>
   );
 }

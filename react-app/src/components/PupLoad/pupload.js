@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
+import { useSearch } from '../context/SearchContext';
 import { addNewDog } from '../../store/dog';
 import { getGeoCoordinates } from '../../store/map';
 
@@ -25,6 +26,17 @@ const Pupload = () => {
     const [addressErrorId, setAddressErrorId] = useState("noAddressError")
     const [addressErrorBackground, setAddressErrorBackground] = useState('classNoAddressError')
     const [dogErrorId, setDogErrorId] = useState("noDogError")
+
+    const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
+    //Clean up search bar
+    useEffect(() => {
+        setShowSearch(false)
+        setSearchCity('')
+        setSearchState('')
+        setSearchBreed('')
+        setSearchMinWeight('')
+        setSearchMaxWeight('')
+    }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
     //Get the longitude/latitude coordinates of the address by calling a google API
     const getCoordinates = async (address) => {
