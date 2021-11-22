@@ -8,6 +8,7 @@ const Reviews = ({ user, dog, reviews }) => {
 
   const [sortedReviews, setSortedReviews] = useState([])
 
+  //Sort reviews by most recent
   useEffect(() => {
     if (reviews[0] === null) {
       return;
@@ -23,7 +24,7 @@ const Reviews = ({ user, dog, reviews }) => {
 
   }, [reviews])
 
-  //Sort reviews by most recent
+
   if (reviews[0] === null) {
     return null;
   }
