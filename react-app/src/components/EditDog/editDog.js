@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from "react-router-dom";
+import { useSearch } from '../context/SearchContext';
 import { getGeoCoordinates } from '../../store/map';
 import { loadAllDogs, updatedExistingDog } from '../../store/dog';
 
@@ -13,6 +14,7 @@ const EditDog = () => {
 
     const dog = useSelector(state => state.dogs[dogId]);
     const user = useSelector(state => state.session.user);
+    const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
     const [isLoaded, setIsLoaded] = useState(false);
     const [name, setName] = useState('');
@@ -101,6 +103,16 @@ const EditDog = () => {
         e.preventDefault()
         history.push(`/your-dogs`)
     }
+
+    //Clean up search bar
+    useEffect(() => {
+        setShowSearch(false)
+        setSearchCity('')
+        setSearchState('')
+        setSearchBreed('')
+        setSearchMinWeight('')
+        setSearchMaxWeight('')
+    }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
   return (
       <>
