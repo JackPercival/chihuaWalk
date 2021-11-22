@@ -1,68 +1,125 @@
 .fakeSearchBar {
-    width: fit-content;
-    height: fit-content;
-    max-height: fit-content;
-    border: 1px solid rgb(221, 221, 221);
-    border-radius: 30px;
-    box-shadow: -1px 1px 5px rgb(233, 233, 233), 1px 1px 5px rgb(233, 233, 233);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: 'Questrial', sans-serif;
-    cursor: pointer;
-    padding: 10px;
-    /* transition: all .5s 0s; */
+  width: fit-content;
+  height: fit-content;
+  max-height: fit-content;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 30px;
+  box-shadow: -1px 1px 5px rgb(233, 233, 233), 1px 1px 5px rgb(233, 233, 233);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Questrial", sans-serif;
+  cursor: pointer;
+  padding: 10px;
 }
 
 .fakeSearchBar:hover {
-    box-shadow: -1px 1px 3px rgb(173, 173, 173), 1px 1px 3px rgb(173, 173, 173);
+  box-shadow: -1px 1px 3px rgb(173, 173, 173), 1px 1px 3px rgb(173, 173, 173);
 }
 
-
-
 .searchCategories {
-    display: flex;
-    color: rgb(145, 145, 145);
-    width: fit-content;
+  display: flex;
+  color: rgb(145, 145, 145);
+  width: fit-content;
 }
 
 .searchCategories div {
-    border-right: 1px solid rgb(221, 221, 221);
-    padding: 7px 13px;
-    font-size: 15px;
+  border-right: 1px solid rgb(221, 221, 221);
+  padding: 7px 13px;
+  font-size: 15px;
 }
 
 .searchCategories div:last-child {
-    border-right: 1px solid transparent;
+  border-right: 1px solid transparent;
 }
 
 .searchMagGlassIcon {
-    background-color: rgb(255, 56, 93);
-    color: white;
-    border-radius: 50%;
-    padding: 8px;
+  background-color: rgb(255, 56, 93);
+  color: white;
+  border-radius: 50%;
+  padding: 8px;
 }
 
 .realSearchBar {
-    height: fit-content;
-    font-family: 'Questrial', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  height: fit-content;
+  font-family: "Questrial", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .searchDogsHeader {
-    box-sizing: border-box;
-    font-size: 25px;
-    margin-top: 10px;
-    color: rgb(145, 145, 145);
-    margin-bottom: 20px;
+  box-sizing: border-box;
+  font-size: 25px;
+  margin-top: 10px;
+  color: rgb(145, 145, 145);
+  margin-bottom: 20px;
 }
 
 .realSearchFormContainer {
-    width: 700px;
-    height: 50px;
-    border: 1px solid rgb(221, 221, 221);
-    border-radius: 30px;
+  width: fit-content;
+  height: fit-content;
+  border: 1px solid rgb(221, 221, 221);
+  border-radius: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchFormField {
+  display: flex;
+  flex-direction: column;
+  padding: 7px 10px;
+  margin: 5px 0;
+  border-right: 1px solid rgb(221, 221, 221);
+}
+
+.searchFormField:first-child {
+    margin-left: 20px;
+}
+
+.lastSearchCat {
+    border-right: 1px solid transparent;
+}
+
+.searchFormField label {
+    color: black;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.searchFormField input {
+  border: none;
+  width: 100px;
+  outline: none;
+  font-family: "Questrial", sans-serif;
+  padding: 2px;
+}
+
+.searchFormField input::placeholder {
+    font-family: "Questrial", sans-serif;
+}
+
+.realSearchButtonContainer {
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    color: white;
+    background-color: rgb(255, 56, 93);
+    padding: 10px 15px;
+    border-radius: 40px;
+    font-weight: 600;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all .25s 0s;
+}
+
+.realSearchButtonContainer:hover {
+    background-color: rgb(190, 42, 70);
+}
+
+.searchWord {
+    margin-left: 10px;
+    font-size: 17px;
 }

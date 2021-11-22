@@ -35,8 +35,61 @@ const SearchBar = () => {
                 <div className="realSearchBar">
                     <div className="searchDogsHeader">Search Dogs</div>
                     <div className="realSearchFormContainer">
-                        <div className="searchFormInputContainer">
-
+                        <div className="searchFormField">
+                            <label>City</label>
+                            <input
+                                type="text"
+                                autoComplete="off"
+                                placeholder="What city?"
+                                // value={email}
+                                // onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="searchFormField">
+                            <label>State</label>
+                            <input
+                                type="text"
+                                autoComplete="off"
+                                placeholder="What state?"
+                                // value={email}
+                                // onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="searchFormField">
+                            <label>Breed</label>
+                            <input
+                                type="text"
+                                autoComplete="off"
+                                placeholder="Add a breed"
+                                // value={email}
+                                // onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="searchFormField">
+                            <label>Min Weight</label>
+                            <input
+                                type="text"
+                                autoComplete="off"
+                                placeholder="Minimum weight"
+                                // value={email}
+                                // onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="searchFormField lastSearchCat">
+                            <label>Max Weight</label>
+                            <input
+                                type="text"
+                                autoComplete="off"
+                                placeholder="Maximum weight?"
+                                // value={email}
+                                // onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                        <div className="realSearchButtonContainer">
+                            <div>
+                                <i className="fas fa-search"></i>
+                            </div>
+                            <div className="searchWord">Search</div>
                         </div>
                     </div>
                 </div>
