@@ -64,6 +64,12 @@ const Reviews = ({ user, dog, reviews }) => {
 
   const handleSubmitReview = async (e) => {
     e.preventDefault();
+
+    if (!behaviorRating || !kindessRating || !quietnessRating || !energyRating || !comment) {
+      setShowError(true)
+      return;
+    }
+
     const data = await dispatch(addNewReview(user.id, dog.id, comment, behaviorRating, kindessRating, quietnessRating, energyRating))
 
     if (data[0] === "Error") {
@@ -76,6 +82,7 @@ const Reviews = ({ user, dog, reviews }) => {
       setQuietnessRating(0);
       setEnergyRating(0);
       setComment('');
+      setShowError(false)
     }
   }
 
@@ -203,7 +210,7 @@ const Reviews = ({ user, dog, reviews }) => {
                   <div className="reviewButtonContainer">
                     <div>
                       {showError && (
-                        <div>Please Fill Out all stuff dude</div>
+                        <div className="addReviewError">Please fill out all fields</div>
                       )}
                     </div>
                     <button type="submit">Submit Review</button>

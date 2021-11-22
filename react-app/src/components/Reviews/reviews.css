@@ -131,6 +131,8 @@
 .reviewButtonContainer {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
+    height: 60px;
 }
 
 .reviewButtonContainer button {
@@ -155,4 +157,15 @@
 
 .alreadyAdded {
     font-size: 20px;
+}
+
+.addReviewError {
+    margin-top: 20px;
+    margin-right: 20px;
+    width: fit-content;
+    font-size: 20px;
+    background-color: rgb(192, 53, 22);
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
 }
