@@ -19,20 +19,15 @@ header {
 }
 
 .mainLogoTitle {
-  width: fit-content;
-  display: block;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mainLogo {
   font-family: "Gloria Hallelujah", cursive;
   color: rgb(255, 56, 93);
   font-size: 45px;
-}
-
-.mainTitle {
-  font-family: "Roboto", sans-serif;
-  font-size: 24px;
-  color: rgb(255, 56, 93);
-  margin-top: 10px;
-  margin-left: 66px;
 }

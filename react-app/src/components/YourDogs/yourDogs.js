@@ -79,7 +79,7 @@ function YourDogs() {
                                 )}
                             </div>
                             <div className="yourDogMap">
-                                {/* <MapContainer zoom={6} dogs={dogs}/> */}
+                                <MapContainer zoom={6} dogs={dogs}/>
                             </div>
                         </div>
                     )}
