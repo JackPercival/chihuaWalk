@@ -4,15 +4,17 @@ import random
 
 # Adds a demo user, you can add other users here if you want
 def seed_dogs():
-    dog1 = Dog(user_id=2, name="Arlo", breed="Chihuaha", description="Small and cute and loves to snuggle", weight=8, address="5 Canyon Point", city="Newport Coast", state="CA", country="USA", latitude=33.600578, longitude=-117.851860)
-    dog2 = Dog(user_id=3, name="Evie", breed="Chihuaha", description="Full of energy and loves to walk", weight=10, address="20402 Newport Coast Dr", city="Newport Coast", state="CA", country="USA", latitude=33.617450, longitude=-117.823870)
+    dog1 = Dog(user_id=1, name="Casper", breed="Akita", description="Small and cute and loves to snuggle. Would make a wonderful walking buddy.", weight=25, address="560 Penstock Drive", city="Grass Valley", state="CA", country="USA", latitude=39.213076, longitude=-121.077583)
+    dog2 = Dog(user_id=2, name="Kirby", breed="Beagle", description="Who doesn't want a cute lil beagle to walk. Kirby is such a sweatheart and will make someone very happy soon.", weight=28, address="637 Britannia Drive", city="Vallejo", state="CA", country="USA", latitude=38.10476999999999, longitude=-122.193849)
+    dog3 = Dog(user_id=3, name="Maple", breed="Chihuahua", description="Such a little pup, with a big heart!", weight=8, address="5601 West Crocus Drive", city="Glendale", state="AZ", country="USA", latitude=33.6152469, longitude=-112.179737)
+    dog4 = Dog(user_id=4, name="Newton", breed="Vizsla", description="Newton loves long, romantic walks on the beach. Or on a sidewalk. Or anywhere. Newton just loves walks.", weight=80, address="22572 Toreador Drive", city="Salinas", state="CA", country="USA", latitude=36.602449, longitude=-121.699071)
+    dog5 = Dog(user_id=5, name="Chester", breed="Pomeranian", description="So fluffy and cute. Chester is a bit of a diva but is great on a leash", weight=14, address="49548 Road 200", city="'Neals", state="CA", country="USA", latitude=37.153463, longitude=-119.648192)
 
-    dog3 = Dog(user_id=1, name="Spot", breed="Labrador", description="Loves people and being outside. Makes a great walking companion", weight=60, address="20302 Riverside Drive", city="Newport Beach", state="CA", country="USA", latitude=random.uniform(34.4, 41.9), longitude=random.uniform(-118, -111))
-    dog4 = Dog(user_id=1, name="Spot", breed="Labrador", description="Loves people and being outside. Makes a great walking companion", weight=60, address="20302 Riverside Drive", city="Newport Beach", state="CA", country="USA", latitude=random.uniform(34.4, 41.9), longitude=random.uniform(-118, -111))
-    dog5 = Dog(user_id=1, name="Spot", breed="Labrador", description="Loves people and being outside. Makes a great walking companion", weight=60, address="20302 Riverside Drive", city="Newport Beach", state="CA", country="USA", latitude=random.uniform(34.4, 41.9), longitude=random.uniform(-118, -111))
-    dog6 = Dog(user_id=1, name="Spot", breed="Labrador", description="Loves people and being outside. Makes a great walking companion", weight=60, address="20302 Riverside Drive", city="Newport Beach", state="CA", country="USA", latitude=random.uniform(34.4, 41.9), longitude=random.uniform(-118, -111))
-    dog7 = Dog(user_id=1, name="Spot", breed="Labrador", description="Loves people and being outside. Makes a great walking companion", weight=60, address="20302 Riverside Drive", city="Newport Beach", state="CA", country="USA", latitude=random.uniform(34.4, 41.9), longitude=random.uniform(-118, -111))
-    dog8 = Dog(user_id=1, name="Spot", breed="Labrador", description="Loves people and being outside. Makes a great walking companion", weight=60, address="20302 Riverside Drive", city="Newport Beach", state="CA", country="USA", latitude=random.uniform(34.4, 41.9), longitude=random.uniform(-118, -111))
+    dog6 = Dog(user_id=6, name="Rudy", breed="", description="", weight=60, address="", city="", state="", country="USA", latitude=0, longitude=0)
+    dog7 = Dog(user_id=7, name="Fitz", breed="", description="", weight=60, address="", city="", state="", country="USA", latitude=0, longitude=0)
+    dog8 = Dog(user_id=8, name="Cooper", breed="", description="", weight=60, address="", city="", state="", country="USA", latitude=0, longitude=0)
+    dog9 = Dog(user_id=9, name="Tucker", breed="", description="", weight=60, address="", city="", state="", country="USA", latitude=0, longitude=0)
+    dog10 = Dog(user_id=10, name="Simba", breed="", description="", weight=60, address="", city="", state="", country="USA", latitude=0, longitude=0)
 
 
     db.session.add(dog1)
