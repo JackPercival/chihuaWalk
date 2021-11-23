@@ -138,6 +138,10 @@
     visibility: visible;
 }
 
+#updatePasswordError {
+    visibility: visible;
+}
+
 .demoUserWarning {
     margin: 0;
     margin-bottom: 10px;

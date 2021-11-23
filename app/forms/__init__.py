@@ -9,3 +9,4 @@ from .search_form import SearchForm
 from .update_user_name import UpdateName
 from .update_user_email import UpdateEmail
 from .update_user_pic import UpdatePicture
+from .update_password import UpdatePassword
