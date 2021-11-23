@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { updateUserName, updateUserEmail, updateUserPicture } from '../../store/session';
+import { updateUserName, updateUserEmail, updateUserPicture, updateUserPassword } from '../../store/session';
 import { useSearch } from '../context/SearchContext';
 
 import './accountSettings.css'
@@ -16,14 +16,23 @@ const AccountSettings = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [nameErrorId, setNameErrorId] = useState('noUpdateNameError')
+
     const [showEmailForm, setShowEmailForm] = useState(false);
     const [email, setEmail] = useState('')
     const [emailErrorId, setEmailErrorId] = useState('noUpdateEmailError')
     const [emailErrorMessage, setEmailErrorMessage] = useState('')
+
     const [showPicForm, setShowPicForm] = useState(false);
     const [profilePic, setProfilePic] = useState('')
     const [profiePicErrorId, setProfilePicErrorId] = useState('noUpdatePicError')
     const [picErrorMessage, setPicErrorMessage] = useState('')
+
+    const [showPasswordForm, setShowPasswordForm] = useState(false)
+    const [newPassword, setNewPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [passwordErrorId, setPasswordErrorId] = useState('noUpdatePasswordError')
+    const [passwordErrorMessage, setPasswordErrorMessage] = useState('')
+
 
     //Clean up search bar
     useEffect(() => {
@@ -126,6 +135,42 @@ const AccountSettings = () => {
         }
     }
 
+    const resetPasswordForm = () => {
+        setShowPasswordForm(false)
+        setNewPassword('')
+        setConfirmPassword('')
+        setPasswordErrorId('noUpdatePasswordError')
+        setPasswordErrorMessage('')
+    }
+
+    const updatePassword = async (e) => {
+        e.preventDefault()
+
+        if (!newPassword || !confirmPassword) {
+            setPasswordErrorId('updatePasswordError')
+            setPasswordErrorMessage('Please fill out the New Password and Confirm Password fields.')
+            return
+        }
+
+        if (newPassword !== confirmPassword) {
+            setPasswordErrorId('updatePasswordError')
+            setPasswordErrorMessage('New Password and Confirm Password fields must match.')
+            return
+        }
+
+        const data = await dispatch(updateUserPassword(user.id, newPassword))
+        if (data[0] === 'Error') {
+            setPasswordErrorId('updatePasswordError')
+            setPasswordErrorMessage('An error occured. Refresh the page and try again.')
+        } else {
+            setShowPasswordForm(false)
+            setNewPassword('')
+            setConfirmPassword('')
+            setPasswordErrorId('noUpdatePasswordError')
+            setPasswordErrorMessage('')
+        }
+    }
+
     return (
         <div className="accountSettingsContainer">
             <h1>Account</h1>
@@ -135,14 +180,14 @@ const AccountSettings = () => {
             {showNameForm? (
                 <div className="accountFormContainer">
                     <div className="topRowAccount">
-                        <div className="accountHeader">Legal Name</div>
+                        <div className="accountHeader">Legal name</div>
                         <div className="editAccountButton" onClick={resetNameForm}>Cancel</div>
                     </div>
                     <div className="accountInfo">This is the name on your government issued ID, which could be a license or a passport.</div>
                     <form className="accountForm" onSubmit={updateName}>
                         <div className="nameInputs">
                             <div className="accountFormInputContainer">
-                                <label>First Name</label>
+                                <label>First name</label>
                                 <input
                                     name='first_name'
                                     type="input"
@@ -154,7 +199,7 @@ const AccountSettings = () => {
                                 />
                             </div>
                             <div className="accountFormInputContainer">
-                                <label>Last Name</label>
+                                <label>Last name</label>
                                 <input
                                     name='first_name'
                                     type="input"
@@ -175,7 +220,7 @@ const AccountSettings = () => {
             ) : (
                 <div className="accountFormContainer">
                     <div className="topRowAccount">
-                        <div className="accountHeader">Legal Name</div>
+                        <div className="accountHeader">Legal name</div>
                         {user?.id !== 1 && (
                             <div className="editAccountButton" onClick={() => setShowNameForm(true)}>Edit</div>
                         )}
@@ -223,36 +268,36 @@ const AccountSettings = () => {
             )}
             {showPicForm? (
                 <div className="accountFormContainer">
-                <div className="topRowAccount">
-                    <div className="accountHeader">Profile Picture</div>
-                    <div className="editAccountButton" onClick={resetPictureForm}>Cancel</div>
-                </div>
-                <div className="accountInfo">Enter a valid Image URL.</div>
-                <form className="accountForm" onSubmit={updateProfilePic}>
-                    <div className="nameInputs">
-                        <div className="accountFormInputContainer">
-                            <label>Image URL</label>
-                            <input
-                                name='image_url'
-                                type="input"
-                                maxLength="255"
-                                value={profilePic}
-                                onChange={(e) => setProfilePic(e.target.value)}
-                            />
+                    <div className="topRowAccount">
+                        <div className="accountHeader">Profile picture</div>
+                        <div className="editAccountButton" onClick={resetPictureForm}>Cancel</div>
+                    </div>
+                    <div className="accountInfo">Enter a valid Image URL.</div>
+                    <form className="accountForm" onSubmit={updateProfilePic}>
+                        <div className="nameInputs">
+                            <div className="accountFormInputContainer extraLongInput">
+                                <label>Image URL</label>
+                                <input
+                                    name='image_url'
+                                    type="input"
+                                    maxLength="255"
+                                    value={profilePic}
+                                    onChange={(e) => setProfilePic(e.target.value)}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="accountFormUpdateErrorContainer">
-                        <button type="submit">Save</button>
-                        <div className="updateAccountError" id={profiePicErrorId}>{picErrorMessage}</div>
-                    </div>
-                </form>
-            </div>
+                        <div className="accountFormUpdateErrorContainer">
+                            <button type="submit">Save</button>
+                            <div className="updateAccountError" id={profiePicErrorId}>{picErrorMessage}</div>
+                        </div>
+                    </form>
+                </div>
             ) : (
                 <div className="accountFormContainer">
                 {user?.profile_pic? (
                     <>
                         <div className="topRowAccount" id="profilePicAccount">
-                            <div className="accountHeader">Profile Picture</div>
+                            <div className="accountHeader">Profile picture</div>
                             {user?.id !== 1 && (
                                 <div className="editAccountButton" onClick={() => setShowPicForm(true)}>Edit</div>
                             )}
@@ -262,7 +307,7 @@ const AccountSettings = () => {
                 ) : (
                     <>
                         <div className="topRowAccount">
-                            <div className="accountHeader">Profile Picture</div>
+                            <div className="accountHeader">Profile picture</div>
                             {user?.id !== 1 && (
                                 <div className="editAccountButton" onClick={() => setShowPicForm(true)}>Edit</div>
                             )}
@@ -272,13 +317,57 @@ const AccountSettings = () => {
                     )}
                 </div>
             )}
-            <div className="accountFormContainer">
-                <div className="topRowAccount">
-                    <div className="accountHeader">Password</div>
-                    {/* <div className="editAccountButton">Edit</div> */}
+            {showPasswordForm? (
+                <div className="accountFormContainer">
+                    <div className="topRowAccount">
+                        <div className="accountHeader">Password</div>
+                        <div className="editAccountButton" onClick={resetPasswordForm}>Cancel</div>
+                    </div>
+                    <form className="accountForm" onSubmit={updatePassword}>
+                        <div className="nameInputs">
+                            <div className="accountFormInputContainer">
+                                <label>New password</label>
+                                <input
+                                    name='new_password'
+                                    type="password"
+                                    maxLength="60"
+                                    required
+                                    autoComplete="off"
+                                    value={newPassword}
+                                    onChange={(e) => setNewPassword(e.target.value)}
+                                />
+                            </div>
+                            <div className="accountFormInputContainer">
+                                <label>Confirm password</label>
+                                <input
+                                    name='confirm_password'
+                                    type="password"
+                                    maxLength="60"
+                                    required
+                                    autoComplete="off"
+                                    value={confirmPassword}
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
+                                />
+                            </div>
+                        </div>
+                        <div className="accountFormUpdateErrorContainer">
+                            <button type="submit">Save</button>
+                            <div className="updateAccountError" id={passwordErrorId}>{passwordErrorMessage}</div>
+                        </div>
+                    </form>
                 </div>
-                <div className="accountInfo">***************</div>
-            </div>
+            ) : (
+
+                <div className="accountFormContainer">
+                    <div className="topRowAccount">
+                        <div className="accountHeader">Password</div>
+                        {user?.id !== 1 && (
+                            <div className="editAccountButton" onClick={() => setShowPasswordForm(true)}>Edit</div>
+                        )}
+                    </div>
+                    <div className="accountInfo">***************</div>
+                </div>
+            )}
         </div>
     );
 }

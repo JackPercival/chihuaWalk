@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, User
-from app.forms import UpdateName, UpdateEmail, UpdatePicture
+from app.forms import UpdateName, UpdateEmail, UpdatePicture, UpdatePassword
 from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint('users', __name__)
@@ -66,6 +66,22 @@ def update_user_picture(userId):
         data = form.data
         user = User.query.filter(User.id == userId).first()
         user.profile_pic = data['profile_pic']
+
+        db.session.commit()
+
+        return user.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+# Update user password
+@user_routes.route('/password/<int:userId>', methods=['PUT'])
+@login_required
+def update_user_password(userId):
+    form = UpdatePassword()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        data = form.data
+        user = User.query.filter(User.id == userId).first()
+        user.password = data['password']
 
         db.session.commit()
 

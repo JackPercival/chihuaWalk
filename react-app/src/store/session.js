@@ -179,6 +179,28 @@ export const updateUserPicture = (userId, profile_pic) => async (dispatch) => {
   }
 }
 
+export const updateUserPassword = (userId, password) => async (dispatch) => {
+  const response = await fetch(`/api/users/password/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      password
+    }),
+  });
+  if (response.ok) {
+    return ["Updated"];
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return ["Error", data.errors];
+    }
+  } else {
+    return ['Error','An error occurred. Please try again.']
+  }
+}
+
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
