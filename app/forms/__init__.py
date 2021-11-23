@@ -6,3 +6,4 @@ from .update_walk import UpdatedWalk
 from .new_review import NewReview
 from .update_review import UpdateReview
 from .search_form import SearchForm
+from .update_user_name import UpdateName
