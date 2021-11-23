@@ -105,3 +105,23 @@
 .accountForm button:hover {
     background-color: rgb(0, 82, 85);
 }
+
+.accountFormUpdateErrorContainer {
+    display: flex;
+    align-items: center;
+}
+
+.updateAccountError {
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: rgb(255, 185, 185);
+    color: rgb(105, 29, 12);
+    padding: 10px;
+    border-radius: 5px;
+    width: fit-content;
+    visibility: hidden;
+}
+
+#updateNameError {
+    visibility: visible;
+}

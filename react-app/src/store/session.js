@@ -116,18 +116,18 @@ export const updateUserName = (userId, first_name, last_name) => async (dispatch
       last_name,
     }),
   });
-
+  console.log(response)
   if (response.ok) {
     const data = await response.json();
     dispatch(updateUser(data))
-    return null;
+    return ["Updated"];
   } else if (response.status < 500) {
     const data = await response.json();
     if (data.errors) {
-      return data.errors;
+      return ["Error", data.errors];
     }
   } else {
-    return ['An error occurred. Please try again.']
+    return ['Error','An error occurred. Please try again.']
   }
 }
 

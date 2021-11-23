@@ -13,6 +13,7 @@ const AccountSettings = () => {
     const [showNameForm, setShowNameForm] = useState(false);
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
+    const [nameErrorId, setNameErrorId] = useState('noUpdateNameError')
 
     useEffect(() => {
         setFirstName(user?.first_name)
@@ -22,13 +23,25 @@ const AccountSettings = () => {
     const resetNameForm = () => {
         setFirstName(user?.first_name)
         setLastName(user?.last_name)
+        setNameErrorId("noUpdateNameError")
         setShowNameForm(false)
     }
 
     const updateName = async (e) => {
         e.preventDefault();
-        await dispatch(updateUserName(user.id, firstName, lastName))
-        setShowNameForm(false)
+        if (!firstName || !lastName) {
+            setNameErrorId("updateNameError")
+            return
+        }
+        const data = await dispatch(updateUserName(user.id, firstName, lastName))
+
+        if (data[0] === 'Error') {
+            setNameErrorId("updateNameError")
+            return
+        } else {
+            setNameErrorId("noUpdateNameError")
+            setShowNameForm(false)
+        }
     }
 
     return (
@@ -61,14 +74,17 @@ const AccountSettings = () => {
                                     name='first_name'
                                     type="input"
                                     maxLength="60"
-                                    required
+
                                     autoComplete="off"
                                     value={lastName}
                                     onChange={(e) => setLastName(e.target.value)}
                                 />
                             </div>
                         </div>
-                        <button type="submit">Save</button>
+                        <div className="accountFormUpdateErrorContainer">
+                            <button type="submit">Save</button>
+                            <div className="updateAccountError" id={nameErrorId}>Please fill out the First and Last Name fields.</div>
+                        </div>
                     </form>
                 </div>
             ) : (
