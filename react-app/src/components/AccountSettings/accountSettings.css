@@ -1,0 +1,43 @@
+.accountSettingsContainer {
+    width: 90vw;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: fit-content;
+    font-family: 'Questrial', sans-serif;
+}
+
+.accountSettingsContainer h1 {
+    margin-bottom: 32px;
+}
+
+.accountFormContainer {
+    width: 595px;
+    color: rgb(72,72,72);
+    border-bottom: 1px solid rgb(221, 221, 221);
+    padding: 28px 0;
+}
+
+.topRowAccount {
+    display: flex;
+    justify-content: space-between;
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.accountHeader {
+    font-weight: 700;
+}
+
+.editAccountButton {
+    color: rgb(0,132,137);
+    font-weight: 700;
+}
+
+.editAccountButton:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.accountInfo {
+    overflow-x: hidden;
+}
