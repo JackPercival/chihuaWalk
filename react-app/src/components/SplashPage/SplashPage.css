@@ -123,6 +123,7 @@
     background-color: rgb(188,27,110);
     border-radius: 13px;
     transition: all .4s 0s;
+    cursor: pointer;
 }
 
 .inspirationCard:hover {
