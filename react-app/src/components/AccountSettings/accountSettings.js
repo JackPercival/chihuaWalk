@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { updateUserName } from '../../store/session';
+import { useSearch } from '../context/SearchContext';
 
 import './accountSettings.css'
 
@@ -9,11 +10,23 @@ const AccountSettings = () => {
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.session.user);
+    const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
     const [showNameForm, setShowNameForm] = useState(false);
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [nameErrorId, setNameErrorId] = useState('noUpdateNameError')
+    const [email, setEmail] = useState('')
+
+    //Clean up search bar
+    useEffect(() => {
+        setShowSearch(false)
+        setSearchCity('')
+        setSearchState('')
+        setSearchBreed('')
+        setSearchMinWeight('')
+        setSearchMaxWeight('')
+    }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
     useEffect(() => {
         setFirstName(user?.first_name)
