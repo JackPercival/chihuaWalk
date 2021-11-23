@@ -133,3 +133,9 @@
 #updatePicError {
     visibility: visible;
 }
+
+.demoUserWarning {
+    margin: 0;
+    margin-bottom: 10px;
+    color: rgb(72,72,72);
+}
