@@ -74,6 +74,7 @@ const SearchBar = () => {
                             <label>State</label>
                             <select value={searchState} onChange={(e) => setSearchState(e.target.value)}>
                                 <option value="" disabled defaultValue>What state?</option>
+                                <option value="">-</option>
                                 <option value="AL">Alabama</option>
                                 <option value="AK">Alaska</option>
                                 <option value="AZ">Arizona</option>
