@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { updateUserName } from '../../store/session';
+import { updateUserName, updateUserEmail } from '../../store/session';
 import { useSearch } from '../context/SearchContext';
 
 import './accountSettings.css'
@@ -16,7 +16,10 @@ const AccountSettings = () => {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [nameErrorId, setNameErrorId] = useState('noUpdateNameError')
+    const [showEmailForm, setShowEmailForm] = useState(false);
     const [email, setEmail] = useState('')
+    const [emailErrorId, setEmailErrorId] = useState('noUpdateEmailError')
+    const [emailErrorMessage, setEmailErrorMessage] = useState('')
 
     //Clean up search bar
     useEffect(() => {
@@ -31,6 +34,7 @@ const AccountSettings = () => {
     useEffect(() => {
         setFirstName(user?.first_name)
         setLastName(user?.last_name)
+        setEmail(user?.email)
     }, [user])
 
     const resetNameForm = () => {
@@ -54,6 +58,37 @@ const AccountSettings = () => {
         } else {
             setNameErrorId("noUpdateNameError")
             setShowNameForm(false)
+        }
+    }
+
+    const resetEmailForm = () => {
+        setEmail(user?.email)
+        setShowEmailForm(false)
+        setEmailErrorId('noUpdateEmailError')
+        setEmailErrorMessage('')
+    }
+
+    const updateEmail = async (e) => {
+        e.preventDefault();
+        if (!email) {
+            setEmailErrorMessage("Please fill out the Email field.")
+            setEmailErrorId("updateEmailError")
+            return
+        }
+        if (email === user?.email) {
+            setShowEmailForm(false)
+            return
+        }
+        const data = await dispatch(updateUserEmail(user.id, email))
+
+        if (data[0] === 'Error') {
+            setEmailErrorId("updateEmailError")
+            setEmailErrorMessage(data[1][0].split("email : ").join(''))
+            return
+        } else {
+            setEmailErrorId("noUpdateEmailError")
+            setEmailErrorMessage('')
+            setShowEmailForm(false)
         }
     }
 
@@ -87,7 +122,7 @@ const AccountSettings = () => {
                                     name='first_name'
                                     type="input"
                                     maxLength="60"
-
+                                    required
                                     autoComplete="off"
                                     value={lastName}
                                     onChange={(e) => setLastName(e.target.value)}
@@ -109,13 +144,42 @@ const AccountSettings = () => {
                     <div className="accountInfo">{`${user?.first_name} ${user?.last_name}`}</div>
                 </div>
             )}
-            <div className="accountFormContainer">
+            {showEmailForm? (
+                <div className="accountFormContainer">
                 <div className="topRowAccount">
                     <div className="accountHeader">Email</div>
-                    <div className="editAccountButton">Edit</div>
+                    <div className="editAccountButton" onClick={resetEmailForm}>Cancel</div>
                 </div>
-                <div className="accountInfo">{`${user?.email}`}</div>
+                <div className="accountInfo">Use an address you’ll always have access to.</div>
+                <form className="accountForm" onSubmit={updateEmail}>
+                    <div className="nameInputs">
+                        <div className="accountFormInputContainer">
+                            <label>Email</label>
+                            <input
+                                name='first_name'
+                                type="email"
+                                maxLength="255"
+                                // required
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+                    </div>
+                    <div className="accountFormUpdateErrorContainer">
+                        <button type="submit">Save</button>
+                        <div className="updateAccountError" id={emailErrorId}>{emailErrorMessage}</div>
+                    </div>
+                </form>
             </div>
+            ) : (
+                <div className="accountFormContainer">
+                    <div className="topRowAccount">
+                        <div className="accountHeader">Email</div>
+                        <div className="editAccountButton" onClick={() => setShowEmailForm(true)}>Edit</div>
+                    </div>
+                    <div className="accountInfo">{`${user?.email}`}</div>
+                </div>
+            )}
             <div className="accountFormContainer">
             {user?.profile_pic? (
                 <>

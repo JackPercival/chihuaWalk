@@ -106,7 +106,7 @@ export const signUp = (first_name, last_name, email, password) => async (dispatc
 }
 
 export const updateUserName = (userId, first_name, last_name) => async (dispatch) => {
-  const response = await fetch(`/api/users/${userId}`, {
+  const response = await fetch(`/api/users/name/${userId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -116,7 +116,31 @@ export const updateUserName = (userId, first_name, last_name) => async (dispatch
       last_name,
     }),
   });
-  console.log(response)
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateUser(data))
+    return ["Updated"];
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return ["Error", data.errors];
+    }
+  } else {
+    return ['Error','An error occurred. Please try again.']
+  }
+}
+
+export const updateUserEmail = (userId, email) => async (dispatch) => {
+  const response = await fetch(`/api/users/email/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      email
+    }),
+  });
   if (response.ok) {
     const data = await response.json();
     dispatch(updateUser(data))

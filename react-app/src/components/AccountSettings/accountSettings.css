@@ -125,3 +125,7 @@
 #updateNameError {
     visibility: visible;
 }
+
+#updateEmailError {
+    visibility: visible;
+}
