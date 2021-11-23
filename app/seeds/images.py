@@ -1,7 +1,7 @@
 from app.models import db, Image
 
 
-# Adds a demo user, you can add other users here if you want
+# Adds images to dogs
 def seed_images():
     image1 = Image(dog_id=1, url='https://images.dog.ceo/breeds/akita/512px-Ainu-Dog.jpg')
     image2 = Image(dog_id=1, url='https://images.dog.ceo/breeds/akita/512px-Akita_inu.jpeg')
@@ -83,9 +83,6 @@ def seed_images():
     image59 = Image(dog_id=20, url='https://images.dog.ceo/breeds/retriever-golden/n02099601_1249.jpg')
     image60 = Image(dog_id=20, url='https://images.dog.ceo/breeds/retriever-golden/n02099601_118.jpg')
 
-    # for j in range (4,9):
-    #     for i in range(1,4):
-    #         db.session.add(Image(dog_id=j, url='https://www.ancarevet.com/sites/default/files/styles/large/public/labrador-retriever-dog-breed-info.jpg?itok=-Z_ky5J6'))
 
     db.session.add(image1)
     db.session.add(image2)
