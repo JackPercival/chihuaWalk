@@ -69,6 +69,10 @@
     flex-direction: column;
 }
 
+.extraLongInput {
+    width: 580px;
+}
+
 .accountFormInputContainer label {
     margin-bottom: 10px;
 }
@@ -131,6 +135,10 @@
 }
 
 #updatePicError {
+    visibility: visible;
+}
+
+#updatePasswordError {
     visibility: visible;
 }
 
