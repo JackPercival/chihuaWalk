@@ -129,6 +129,9 @@ const AccountSettings = () => {
     return (
         <div className="accountSettingsContainer">
             <h1>Account</h1>
+            {user?.id === 1 && (
+                <h4 className="demoUserWarning">You cannot update the Demo User account information. Login as another user to update your account.</h4>
+            )}
             {showNameForm? (
                 <div className="accountFormContainer">
                     <div className="topRowAccount">
@@ -173,7 +176,9 @@ const AccountSettings = () => {
                 <div className="accountFormContainer">
                     <div className="topRowAccount">
                         <div className="accountHeader">Legal Name</div>
-                        <div className="editAccountButton" onClick={() => setShowNameForm(true)}>Edit</div>
+                        {user?.id !== 1 && (
+                            <div className="editAccountButton" onClick={() => setShowNameForm(true)}>Edit</div>
+                        )}
                     </div>
                     <div className="accountInfo">{`${user?.first_name} ${user?.last_name}`}</div>
                 </div>
@@ -209,7 +214,9 @@ const AccountSettings = () => {
                 <div className="accountFormContainer">
                     <div className="topRowAccount">
                         <div className="accountHeader">Email</div>
-                        <div className="editAccountButton" onClick={() => setShowEmailForm(true)}>Edit</div>
+                        {user?.id !== 1 && (
+                            <div className="editAccountButton" onClick={() => setShowEmailForm(true)}>Edit</div>
+                        )}
                     </div>
                     <div className="accountInfo">{`${user?.email}`}</div>
                 </div>
@@ -246,7 +253,9 @@ const AccountSettings = () => {
                     <>
                         <div className="topRowAccount" id="profilePicAccount">
                             <div className="accountHeader">Profile Picture</div>
-                            <div className="editAccountButton" onClick={() => setShowPicForm(true)}>Edit</div>
+                            {user?.id !== 1 && (
+                                <div className="editAccountButton" onClick={() => setShowPicForm(true)}>Edit</div>
+                            )}
                         </div>
                         <div className="userPhoto accountInfo" style={{backgroundImage: `url(${user.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
                     </>
@@ -254,7 +263,9 @@ const AccountSettings = () => {
                     <>
                         <div className="topRowAccount">
                             <div className="accountHeader">Profile Picture</div>
-                            <div className="editAccountButton" onClick={() => setShowPicForm(true)}>Edit</div>
+                            {user?.id !== 1 && (
+                                <div className="editAccountButton" onClick={() => setShowPicForm(true)}>Edit</div>
+                            )}
                         </div>
                         <div className="accountInfo">Not set</div>
                     </>
