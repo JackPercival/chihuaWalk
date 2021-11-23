@@ -30,6 +30,7 @@ const EditDog = () => {
     const [addressErrorId, setAddressErrorId] = useState("noAddressError")
     const [addressErrorBackground, setAddressErrorBackground] = useState('classNoAddressError')
     const [dogErrorId, setDogErrorId] = useState("noDogError")
+    const [dogErrorMessage, setDogErrorMessage] = useState('')
 
     useEffect(() => {
         dispatch(loadAllDogs()).then(() => setIsLoaded(true));
@@ -68,11 +69,32 @@ const EditDog = () => {
         return data;
     }
 
+    const validateURL = (imageArray) => {
+        let validImageUrl = true;
+        const regex = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
+        for (let i = 0; i < imageArray.length; i++) {
+            if (regex.test(imageArray[i]) === false) {
+                validImageUrl = false;
+                break;
+            }
+        }
+
+        return validImageUrl
+    }
+
     const updateDog = async (e) => {
         e.preventDefault();
 
         if (!image1 || !image2 || !image3 ) {
             setDogErrorId('dogError')
+            setDogErrorMessage("Please fill out all fields.")
+            return;
+        }
+
+        const validImages = validateURL([image1, image2, image3])
+        if (!validImages) {
+            setDogErrorId('dogError')
+            setDogErrorMessage("Please add valid Image URLs.")
             return;
         }
 
@@ -87,6 +109,7 @@ const EditDog = () => {
 
             if (data[0] === "Error") {
                 setDogErrorId("dogError")
+                setDogErrorMessage("Please fill out all fields.")
                 return;
             } else {
                 // return <Redirect to={`/dogs/${data.id}`} />
@@ -206,7 +229,7 @@ const EditDog = () => {
                                     </div>
                                     <div className="addDogError" id={dogErrorId}>
                                         <div>!</div>
-                                        <span>Please fill out all fields.</span>
+                                        <span>{dogErrorMessage}</span>
                                     </div>
                                 </div>
                                 <div className="fieldSection">
