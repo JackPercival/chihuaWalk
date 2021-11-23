@@ -31,7 +31,7 @@ const AccountSettings = () => {
                     <div className="accountHeader">Profile Picture</div>
                     <div className="editAccountButton">Edit</div>
                 </div>
-                <div className="accountInfo">{`${user?.profile_pic}`}</div>
+                <div className="userPhoto accountInfo" style={{backgroundImage: `url(${user.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
             </>
         ) : (
             <>
