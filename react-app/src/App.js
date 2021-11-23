@@ -13,6 +13,7 @@ import YourDogs from './components/YourDogs/yourDogs';
 import EditDog from './components/EditDog/editDog';
 import YourWalks from './components/YourWalks/yourWalks';
 import PageNotFound from './components/PageNotFound/pageNotFound';
+import AccountSettings from './components/AccountSettings/accountSettings';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import SearchDisplay from './components/SearchDisplay/searchDisplay';
@@ -66,6 +67,9 @@ function App() {
                   <Route exact path='/search' >
                     <SearchDisplay />
                   </Route>
+                  <ProtectedRoute exact path='/account-settings' >
+                    <AccountSettings />
+                  </ProtectedRoute>
                   <Route>
                     <PageNotFound />
                   </Route>

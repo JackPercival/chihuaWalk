@@ -21,7 +21,7 @@ def seed_dogs():
     dog17 = Dog(user_id=10, name="Benji", breed="Great Dane", description="If you like big dogs, Benji is the one for you", weight=180, address="90 Via Verde", city="San Lorenzo", state="CA", country="USA", latitude=37.67869, longitude=-122.117142)
     dog18 = Dog(user_id=1, name="Neslon", breed="Labrador", description="Nelson will get you in shape. His walks are really more like brisk jogs.", weight=70, address="6231 North 59th Avenue", city="Glendale", state="AZ", country="USA", latitude=33.5285304, longitude=-112.1860744)
     dog19 = Dog(user_id=2, name="Leo", breed="Jack Russell", description="Walking and eating are this pups' pastime", weight=32, address="553 South Arlington Road", city="Orange", state="CA", country="USA", latitude=33.7794839, longitude=-117.820383)
-    dog20 = Dog(user_id=3, name="Maverick", breed="Golden Retrieve", description="His buddies all call him Mav. If you walk him enough times, he might let you call him Mav too!", weight=63, address="457 Mountain Village Boulevard", city="Mountain Village", state="CO", country="USA", latitude=37.93323040000001, longitude=-107.8515732)
+    dog20 = Dog(user_id=3, name="Maverick", breed="Golden Retriever", description="His buddies all call him Mav. If you walk him enough times, he might let you call him Mav too!", weight=63, address="457 Mountain Village Boulevard", city="Mountain Village", state="CO", country="USA", latitude=37.93323040000001, longitude=-107.8515732)
 
 
     db.session.add(dog1)
