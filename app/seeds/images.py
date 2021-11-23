@@ -5,7 +5,7 @@ from app.models import db, Image
 def seed_images():
     image1 = Image(dog_id=1, url='https://images.dog.ceo/breeds/akita/512px-Ainu-Dog.jpg')
     image2 = Image(dog_id=1, url='https://images.dog.ceo/breeds/akita/512px-Akita_inu.jpeg')
-    image3 = Image(dog_id=1, url='images.dog.ceo/breeds/akita/Akita_hiking_in_Shpella_e_Pellumbasit.jpg')
+    image3 = Image(dog_id=1, url='https://images.dog.ceo/breeds/akita/Akita_hiking_in_Shpella_e_Pellumbasit.jpg')
 
     image4 = Image(dog_id=2, url='https://images.dog.ceo/breeds/beagle/1271553739_Milo.jpg')
     image5 = Image(dog_id=2, url='https://images.dog.ceo/breeds/beagle/1374053345_Milo.jpg')
