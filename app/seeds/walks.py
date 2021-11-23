@@ -1,29 +1,19 @@
 from app.models import db, Walk
 import datetime
+import random
 
-# Adds a demo user, you can add other users here if you want
+# Adds walk data
 def seed_walks():
-    walk1 = Walk(user_id=1, dog_id=1, date=(datetime.datetime.now() - datetime.timedelta(days = 10)).date())
-    walk2 = Walk(user_id=1, dog_id=2, date=datetime.datetime.now().date())
-    walk3 = Walk(user_id=1, dog_id=3, date=(datetime.datetime.now() + datetime.timedelta(days = 10)).date())
 
-    walk4 = Walk(user_id=2, dog_id=1, date=(datetime.datetime.now() - datetime.timedelta(days = 5)).date())
-    walk5 = Walk(user_id=2, dog_id=2, date=(datetime.datetime.now() + datetime.timedelta(days = 3)).date())
-    walk6 = Walk(user_id=3, dog_id=3, date=(datetime.datetime.now() + datetime.timedelta(days = 5)).date())
+    # Get random list of non-repeated numbers to avoid conflicting dates
+    uniqueDates = random.sample(range(-500, 500), 200)
+    loopCount = 0
 
-    walk7 = Walk(user_id=3, dog_id=1, date=(datetime.datetime.now() + datetime.timedelta(days = 7)).date())
-    walk8 = Walk(user_id=3, dog_id=2, date=(datetime.datetime.now() - datetime.timedelta(days = 3)).date())
-    walk9 = Walk(user_id=3, dog_id=3, date=(datetime.datetime.now() + datetime.timedelta(days = 2)).date())
-
-    db.session.add(walk1)
-    db.session.add(walk2)
-    db.session.add(walk3)
-    db.session.add(walk4)
-    db.session.add(walk5)
-    db.session.add(walk6)
-    db.session.add(walk7)
-    db.session.add(walk8)
-    db.session.add(walk9)
+    for j in range (1, 11):
+        for i in range (1,21):
+            walkDate = uniqueDates[loopCount]
+            db.session.add(Walk(user_id=j, dog_id=i, date=(datetime.datetime.now() - datetime.timedelta(days = walkDate)).date()))
+            loopCount += 1
 
     db.session.commit()
 
