@@ -264,7 +264,7 @@ const AccountSettings = () => {
             <div className="accountFormContainer">
                 <div className="topRowAccount">
                     <div className="accountHeader">Password</div>
-                    <div className="editAccountButton">Edit</div>
+                    {/* <div className="editAccountButton">Edit</div> */}
                 </div>
                 <div className="accountInfo">***************</div>
             </div>
