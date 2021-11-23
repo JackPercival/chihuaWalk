@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { updateUserName, updateUserEmail } from '../../store/session';
+import { updateUserName, updateUserEmail, updateUserPicture } from '../../store/session';
 import { useSearch } from '../context/SearchContext';
 
 import './accountSettings.css'
@@ -20,6 +20,10 @@ const AccountSettings = () => {
     const [email, setEmail] = useState('')
     const [emailErrorId, setEmailErrorId] = useState('noUpdateEmailError')
     const [emailErrorMessage, setEmailErrorMessage] = useState('')
+    const [showPicForm, setShowPicForm] = useState(false);
+    const [profilePic, setProfilePic] = useState('')
+    const [profiePicErrorId, setProfilePicErrorId] = useState('noUpdatePicError')
+    const [picErrorMessage, setPicErrorMessage] = useState('')
 
     //Clean up search bar
     useEffect(() => {
@@ -35,6 +39,7 @@ const AccountSettings = () => {
         setFirstName(user?.first_name)
         setLastName(user?.last_name)
         setEmail(user?.email)
+        setProfilePic(user?.profile_pic)
     }, [user])
 
     const resetNameForm = () => {
@@ -92,6 +97,35 @@ const AccountSettings = () => {
         }
     }
 
+    const resetPictureForm = () => {
+        setProfilePic(user?.profile_pic)
+        setProfilePicErrorId('noUpdatePicError')
+        setPicErrorMessage('')
+        setShowPicForm(false)
+    }
+
+    const updateProfilePic = async (e) => {
+        e.preventDefault();
+
+        const regex = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
+        if ((profilePic.length > 0) && !regex.test(profilePic)) {
+            setProfilePicErrorId('updatePicError')
+            setPicErrorMessage('Please add a valid Image URL.')
+            return
+        }
+
+        const data = await dispatch(updateUserPicture(user.id, profilePic))
+        if (data[0] === 'Error') {
+            setProfilePicErrorId('updatePicError')
+            setPicErrorMessage('An error occured. Refresh the page and try again.')
+            return
+        } else {
+            setProfilePicErrorId('noUpdatePicError')
+            setPicErrorMessage('')
+            setShowPicForm(false)
+        }
+    }
+
     return (
         <div className="accountSettingsContainer">
             <h1>Account</h1>
@@ -146,31 +180,31 @@ const AccountSettings = () => {
             )}
             {showEmailForm? (
                 <div className="accountFormContainer">
-                <div className="topRowAccount">
-                    <div className="accountHeader">Email</div>
-                    <div className="editAccountButton" onClick={resetEmailForm}>Cancel</div>
-                </div>
-                <div className="accountInfo">Use an address you’ll always have access to.</div>
-                <form className="accountForm" onSubmit={updateEmail}>
-                    <div className="nameInputs">
-                        <div className="accountFormInputContainer">
-                            <label>Email</label>
-                            <input
-                                name='first_name'
-                                type="email"
-                                maxLength="255"
-                                // required
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
+                    <div className="topRowAccount">
+                        <div className="accountHeader">Email</div>
+                        <div className="editAccountButton" onClick={resetEmailForm}>Cancel</div>
+                    </div>
+                    <div className="accountInfo">Use an address you’ll always have access to.</div>
+                    <form className="accountForm" onSubmit={updateEmail}>
+                        <div className="nameInputs">
+                            <div className="accountFormInputContainer">
+                                <label>Email</label>
+                                <input
+                                    name='email'
+                                    type="email"
+                                    maxLength="255"
+                                    required
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="accountFormUpdateErrorContainer">
-                        <button type="submit">Save</button>
-                        <div className="updateAccountError" id={emailErrorId}>{emailErrorMessage}</div>
-                    </div>
-                </form>
-            </div>
+                        <div className="accountFormUpdateErrorContainer">
+                            <button type="submit">Save</button>
+                            <div className="updateAccountError" id={emailErrorId}>{emailErrorMessage}</div>
+                        </div>
+                    </form>
+                </div>
             ) : (
                 <div className="accountFormContainer">
                     <div className="topRowAccount">
@@ -180,25 +214,53 @@ const AccountSettings = () => {
                     <div className="accountInfo">{`${user?.email}`}</div>
                 </div>
             )}
-            <div className="accountFormContainer">
-            {user?.profile_pic? (
-                <>
-                    <div className="topRowAccount" id="profilePicAccount">
-                        <div className="accountHeader">Profile Picture</div>
-                        <div className="editAccountButton">Edit</div>
+            {showPicForm? (
+                <div className="accountFormContainer">
+                <div className="topRowAccount">
+                    <div className="accountHeader">Profile Picture</div>
+                    <div className="editAccountButton" onClick={resetPictureForm}>Cancel</div>
+                </div>
+                <div className="accountInfo">Enter a valid Image URL.</div>
+                <form className="accountForm" onSubmit={updateProfilePic}>
+                    <div className="nameInputs">
+                        <div className="accountFormInputContainer">
+                            <label>Image URL</label>
+                            <input
+                                name='image_url'
+                                type="input"
+                                maxLength="255"
+                                value={profilePic}
+                                onChange={(e) => setProfilePic(e.target.value)}
+                            />
+                        </div>
                     </div>
-                    <div className="userPhoto accountInfo" style={{backgroundImage: `url(${user.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
-                </>
-            ) : (
-                <>
-                    <div className="topRowAccount">
-                        <div className="accountHeader">Profile Picture</div>
-                        <div className="editAccountButton">Edit</div>
+                    <div className="accountFormUpdateErrorContainer">
+                        <button type="submit">Save</button>
+                        <div className="updateAccountError" id={profiePicErrorId}>{picErrorMessage}</div>
                     </div>
-                    <div className="accountInfo">Not set</div>
-                </>
-                )}
+                </form>
             </div>
+            ) : (
+                <div className="accountFormContainer">
+                {user?.profile_pic? (
+                    <>
+                        <div className="topRowAccount" id="profilePicAccount">
+                            <div className="accountHeader">Profile Picture</div>
+                            <div className="editAccountButton" onClick={() => setShowPicForm(true)}>Edit</div>
+                        </div>
+                        <div className="userPhoto accountInfo" style={{backgroundImage: `url(${user.profile_pic}), url(https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637102034/Capstone/noProfPic_uxrkv7.png)`}}></div>
+                    </>
+                ) : (
+                    <>
+                        <div className="topRowAccount">
+                            <div className="accountHeader">Profile Picture</div>
+                            <div className="editAccountButton" onClick={() => setShowPicForm(true)}>Edit</div>
+                        </div>
+                        <div className="accountInfo">Not set</div>
+                    </>
+                    )}
+                </div>
+            )}
             <div className="accountFormContainer">
                 <div className="topRowAccount">
                     <div className="accountHeader">Password</div>

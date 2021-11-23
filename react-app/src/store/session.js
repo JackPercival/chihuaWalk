@@ -151,7 +151,31 @@ export const updateUserEmail = (userId, email) => async (dispatch) => {
       return ["Error", data.errors];
     }
   } else {
-    return ['Error','An error occurred. Please try again.']
+    return ['Error','email : An error occurred. Please try again.']
+  }
+}
+
+export const updateUserPicture = (userId, profile_pic) => async (dispatch) => {
+  const response = await fetch(`/api/users/picture/${userId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      profile_pic
+    }),
+  });
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(updateUser(data))
+    return ["Updated"];
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return ["Error", data.errors];
+    }
+  } else {
+    return ['Error','profile_pic : An error occurred. Please try again.']
   }
 }
 
