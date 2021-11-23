@@ -40,13 +40,14 @@ function YourDogs() {
     }, [dispatch]);
 
 
-    const showDeleteForm = (dog_id, name) => {
+    const showDeleteForm = (e, dog_id, name) => {
+        e.preventDefault(e)
         setDogToDelete(dog_id)
         setDogNameToDelete(name)
         setShowDelete(true)
     }
 
-    const handleDogDelete = () => {
+    const handleDogDelete = (e) => {
         dispatch(deleteSingleDog(dogToDelete))
         setShowDelete(false)
         setDogToDelete('')
@@ -67,26 +68,28 @@ function YourDogs() {
                                     </Link>
                                 </div>
                                 {dogs.map(dog =>
-                                    <div className="yourDogSingleDogContainer" key={`Your_Dog_holder_${dog.id}`}>
-                                        <DogSlide dog={dog} key={`Your_dog_${dog.id}`} />
-                                        <div className="yourDogSingleDogInfo">
-                                            <div className="singleDogName">{dog.name}</div>
-                                            <div className="dogDetailsNoButtons">
-                                                <div className="dogInfoSingleDog">{dog.breed}</div>
-                                                <div className="dogInfoSingleDog">{dog.description}</div>
-                                                <div className="dogInfoSingleDog">{`${dog.weight} lbs.`}</div>
-                                                <div className="dogInfoSingleDog">{`${dog.city}, ${dog.state}`}</div>
-                                            </div>
-                                            {dog.user_id === Number(user.id) && (
-                                                <div className="editDeleteDogButtons">
-                                                    <Link to={`/dogs/${dog.id}/edit`}>
-                                                        <div>Edit</div>
-                                                    </Link>
-                                                    <div id="deleteDogButton" onClick={() => showDeleteForm(dog.id, dog.name)}>Delete</div>
+                                    <Link to={`/dogs/${dog.id}`} className="youDogsContainerLink" key={`Your_Dog_holder_${dog?.id}`}>
+                                        <div className="yourDogSingleDogContainer" key={`Your_Dog_holder_${dog.id}`}>
+                                            <DogSlide dog={dog} key={`Your_dog_${dog.id}`} />
+                                            <div className="yourDogSingleDogInfo">
+                                                <div className="singleDogName">{dog.name}</div>
+                                                <div className="dogDetailsNoButtons">
+                                                    <div className="dogInfoSingleDog">{dog.breed}</div>
+                                                    <div className="dogInfoSingleDog">{dog.description}</div>
+                                                    <div className="dogInfoSingleDog">{`${dog.weight} lbs.`}</div>
+                                                    <div className="dogInfoSingleDog">{`${dog.city}, ${dog.state}`}</div>
                                                 </div>
-                                            )}
+                                                {dog.user_id === Number(user.id) && (
+                                                    <div className="editDeleteDogButtons">
+                                                        <Link to={`/dogs/${dog.id}/edit`}>
+                                                            <div>Edit</div>
+                                                        </Link>
+                                                        <div id="deleteDogButton" onClick={(e) => showDeleteForm(e, dog.id, dog.name)}>Delete</div>
+                                                    </div>
+                                                )}
+                                            </div>
                                         </div>
-                                    </div>
+                                        </Link>
                                 )}
                             </div>
                             <div className="yourDogMap">

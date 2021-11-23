@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSearch } from '../context/SearchContext';
+import { useDispatch } from 'react-redux';
+import { loadSearches } from '../../store/search';
 
 import './SplashPage.css'
 
 const SplashPage = () => {
-
+    const dispatch = useDispatch();
+    const history = useHistory();
     const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
     //Clean up search bar
@@ -17,6 +20,37 @@ const SplashPage = () => {
         setSearchMinWeight('')
         setSearchMaxWeight('')
     }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
+
+    const searchSmall = async () => {
+        await dispatch(loadSearches('','','', 1, 10))
+        history.push('/search')
+        setSearchMinWeight(1)
+        setSearchMaxWeight(10)
+        setShowSearch(true)
+    }
+
+    const searchMedium = async () => {
+        await dispatch(loadSearches('','','', 11, 30))
+        history.push('/search')
+        setSearchMinWeight(11)
+        setSearchMaxWeight(30)
+        setShowSearch(true)
+    }
+
+    const searchLarge = async () => {
+        await dispatch(loadSearches('','','', 31, 70))
+        history.push('/search')
+        setSearchMinWeight(31)
+        setSearchMaxWeight(70)
+        setShowSearch(true)
+    }
+
+    const searchExtraLarge = async () => {
+        await dispatch(loadSearches('','','', 71, ''))
+        history.push('/search')
+        setSearchMinWeight(71)
+        setShowSearch(true)
+    }
 
   return (
     <div className="splashPageContainer">
@@ -38,38 +72,30 @@ const SplashPage = () => {
         </div>
         <h3 className="inspiration">Inspiration for your next walk</h3>
         <div className="inspirationCardContainer">
-            <Link to="/browse">
-                <div className="inspirationCard">
-                    <div className="inspirationImage"></div>
-                    <div className="inspirationContent">
-                        <div>Small Dogs</div>
-                    </div>
+            <div className="inspirationCard" onClick={searchSmall}>
+                <div className="inspirationImage"></div>
+                <div className="inspirationContent">
+                    <div>Small Dogs</div>
                 </div>
-            </Link>
-            <Link to="/browse">
-                <div className="inspirationCard" id="mediumDog">
-                    <div className="inspirationImage"></div>
-                    <div className="inspirationContent">
-                        <div>Medium Dogs</div>
-                    </div>
+            </div>
+            <div className="inspirationCard" id="mediumDog" onClick={searchMedium}>
+                <div className="inspirationImage"></div>
+                <div className="inspirationContent">
+                    <div>Medium Dogs</div>
                 </div>
-            </Link>
-            <Link to="/browse">
-                <div className="inspirationCard" id="largeDog">
-                    <div className="inspirationImage"></div>
-                    <div className="inspirationContent">
-                        <div>Large Dogs</div>
-                    </div>
+            </div>
+            <div className="inspirationCard" id="largeDog" onClick={searchLarge}>
+                <div className="inspirationImage"></div>
+                <div className="inspirationContent">
+                    <div>Large Dogs</div>
                 </div>
-            </Link>
-            <Link to="/browse">
-                <div className="inspirationCard" id="xlargeDog">
-                    <div className="inspirationImage"></div>
-                    <div className="inspirationContent">
-                        <div>Extra Large Dogs</div>
-                    </div>
+            </div>
+            <div className="inspirationCard" id="xlargeDog" onClick={searchExtraLarge}>
+                <div className="inspirationImage"></div>
+                <div className="inspirationContent">
+                    <div>Extra Large Dogs</div>
                 </div>
-            </Link>
+            </div>
         </div>
     </div>
   );
