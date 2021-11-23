@@ -223,30 +223,30 @@ const AccountSettings = () => {
             )}
             {showPicForm? (
                 <div className="accountFormContainer">
-                <div className="topRowAccount">
-                    <div className="accountHeader">Profile Picture</div>
-                    <div className="editAccountButton" onClick={resetPictureForm}>Cancel</div>
-                </div>
-                <div className="accountInfo">Enter a valid Image URL.</div>
-                <form className="accountForm" onSubmit={updateProfilePic}>
-                    <div className="nameInputs">
-                        <div className="accountFormInputContainer">
-                            <label>Image URL</label>
-                            <input
-                                name='image_url'
-                                type="input"
-                                maxLength="255"
-                                value={profilePic}
-                                onChange={(e) => setProfilePic(e.target.value)}
-                            />
+                    <div className="topRowAccount">
+                        <div className="accountHeader">Profile Picture</div>
+                        <div className="editAccountButton" onClick={resetPictureForm}>Cancel</div>
+                    </div>
+                    <div className="accountInfo">Enter a valid Image URL.</div>
+                    <form className="accountForm" onSubmit={updateProfilePic}>
+                        <div className="nameInputs">
+                            <div className="accountFormInputContainer extraLongInput">
+                                <label>Image URL</label>
+                                <input
+                                    name='image_url'
+                                    type="input"
+                                    maxLength="255"
+                                    value={profilePic}
+                                    onChange={(e) => setProfilePic(e.target.value)}
+                                />
+                            </div>
                         </div>
-                    </div>
-                    <div className="accountFormUpdateErrorContainer">
-                        <button type="submit">Save</button>
-                        <div className="updateAccountError" id={profiePicErrorId}>{picErrorMessage}</div>
-                    </div>
-                </form>
-            </div>
+                        <div className="accountFormUpdateErrorContainer">
+                            <button type="submit">Save</button>
+                            <div className="updateAccountError" id={profiePicErrorId}>{picErrorMessage}</div>
+                        </div>
+                    </form>
+                </div>
             ) : (
                 <div className="accountFormContainer">
                 {user?.profile_pic? (
@@ -275,7 +275,9 @@ const AccountSettings = () => {
             <div className="accountFormContainer">
                 <div className="topRowAccount">
                     <div className="accountHeader">Password</div>
-                    {/* <div className="editAccountButton">Edit</div> */}
+                    {user?.id !== 1 && (
+                        <div className="editAccountButton">Edit</div>
+                    )}
                 </div>
                 <div className="accountInfo">***************</div>
             </div>
