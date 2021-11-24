@@ -1,6 +1,31 @@
-# Flask React Project
+# ChihuaWalk
 
-This is the starter for the Flask React project.
+## ChihuaWalk Summary
+
+ChihuaWalk is a fullstack application that allows users to browse dogs, review dogs, and schedule walks with them. The app is a rough clone of AirBnb, but focused on dogs intead of locations. All users can browse dogs on the website and read information about them, as well as search for dogs and view them on a Google Map. Logged in users can upload dogs, add and edit reviews, and schedule walks with other dogs. 
+
+## Application Architecture
+
+ChihuaWalk is built on a React frontent and a Flask backend, which uses SQLAlchemy to connect to a PostgreSQL database.
+
+## Frontend Overview
+
+ChihuaWalk uses several technologies on the front end to display and render data.
+
+### Frontend Technologies Used
+
+#### React
+
+ChihuaWalk is a React application. All display logic is determined by React libraries. Some packages used include React-Slideshow, React-Calendar, and @react-google-maps/api. 
+
+#### Redux
+
+ChihuaWalk uses Redux to disaplay and update state throughout the website. Redux is used with thunks to make APIs to the backend server to request and update data. 
+
+
+### Google Maps
+
+ChihuaWalk implements the use of Google Maps to display dog locations - both for a single dog and a group of dogs. 
 
 ## Getting started
 
