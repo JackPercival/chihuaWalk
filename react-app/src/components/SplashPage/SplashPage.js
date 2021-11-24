@@ -22,25 +22,25 @@ const SplashPage = () => {
     }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
     const searchSmall = async () => {
-        await dispatch(loadSearches('','','', 1, 10))
+        await dispatch(loadSearches('','','', 1, 20))
         history.push('/search')
         setSearchMinWeight(1)
-        setSearchMaxWeight(10)
+        setSearchMaxWeight(20)
         setShowSearch(true)
     }
 
     const searchMedium = async () => {
-        await dispatch(loadSearches('','','', 11, 30))
+        await dispatch(loadSearches('','','', 21, 40))
         history.push('/search')
-        setSearchMinWeight(11)
-        setSearchMaxWeight(30)
+        setSearchMinWeight(21)
+        setSearchMaxWeight(40)
         setShowSearch(true)
     }
 
     const searchLarge = async () => {
-        await dispatch(loadSearches('','','', 31, 70))
+        await dispatch(loadSearches('','','', 41, 70))
         history.push('/search')
-        setSearchMinWeight(31)
+        setSearchMinWeight(41)
         setSearchMaxWeight(70)
         setShowSearch(true)
     }

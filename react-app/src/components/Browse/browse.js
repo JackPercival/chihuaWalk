@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useSearch } from '../context/SearchContext';
 import { loadAllDogs } from '../../store/dog';
-import DogHolder from '../DogHolder/dogHolder';
+import DogBrowseContainer from './dogContainer';
 
 import './browse.css'
 
@@ -35,11 +35,7 @@ const Browse = () => {
         {isLoaded && (
             <div className="browseDogContainer">
                 <h1>Browse all dogs</h1>
-                <div className="allDogsContainer">
-                    {dogs?.map(dog =>
-                        <DogHolder dog={dog} key={`Dog_Browse_${dog?.id}`}/>
-                    )}
-                </div>
+                <DogBrowseContainer dogs={dogs} />
             </div>
 
         )}
