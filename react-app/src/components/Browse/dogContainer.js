@@ -133,7 +133,7 @@ const DogBrowseContainer = ({dogs}) => {
         setShowDistanceButton(true)
     }
 
-    const successLoad = () => {
+    const errorLoad = () => {
         setShowDistanceButton(false)
     }
 
