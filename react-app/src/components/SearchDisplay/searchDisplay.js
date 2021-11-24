@@ -44,7 +44,7 @@ function SearchDisplay() {
                                 )}
                             </div>
                             <div className="yourDogMap">
-                                <MapContainer zoom={6} dogs={dogs}/>
+                                <MapContainer zoom={5} dogs={dogs}/>
                             </div>
                         </div>
                     )}

@@ -16,6 +16,8 @@ const DogBrowseContainer = ({dogs}) => {
     const [weightHClass, setWeightHClass] = useState('')
     const [distanceClass, setDistanceClass] = useState('')
 
+    const [showDistanceButton, setShowDistanceButton] = useState(true)
+
     const success = async (pos) => {
         let crd = pos.coords;
 
@@ -28,6 +30,7 @@ const DogBrowseContainer = ({dogs}) => {
     }
 
     const error = () => {
+        setShowDistanceButton(false)
         setIsLoaded(true)
     }
 
@@ -131,7 +134,9 @@ const DogBrowseContainer = ({dogs}) => {
             <div className="sortHeader">Sort by:</div>
             <div className={`sortCategory ${breedAClass}`} onClick={() => setSortBy('breed-a')}>Breed (a - z)</div>
             <div className={`sortCategory ${breedZClass}`} onClick={() => setSortBy('breed-z')}>Breed (z - a)</div>
-            <div className={`sortCategory ${distanceClass}`} onClick={() => setSortBy('distance')}>Distance</div>
+            {showDistanceButton && (
+                <div className={`sortCategory ${distanceClass}`} onClick={() => setSortBy('distance')}>Distance</div>
+            )}
             <div className={`sortCategory ${weightLClass}`} onClick={() => setSortBy('weight-l')}>Weight (low - high)</div>
             <div className={`sortCategory ${weightHClass}`} onClick={() => setSortBy('weight-h')}>Weight (high - low)</div>
         </div>
