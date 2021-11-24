@@ -5,7 +5,7 @@ import {  Link } from 'react-router-dom';
 import 'react-slideshow-image/dist/styles.css'
 import './dogHolder.css'
 
-const DogHolder = ({dog}) => {
+const DogHolder = ({dog, haveUserDistance}) => {
     const imageArray = (Object.values(dog.images));
   return (
     <div className="singleDogHolder">
@@ -23,7 +23,11 @@ const DogHolder = ({dog}) => {
                     <p className="dogBreedBrowse">{dog.breed}</p>
                 </div>
                 <div className='dogStats'>
-                    <p className="dogAddress">{`${dog.city}, ${dog.state}`}</p>
+                    {haveUserDistance? (
+                        <p className="dogAddress">{`${parseInt(dog.distance)} miles away`}</p>
+                    ) : (
+                        <p className="dogAddress">{`${dog.city}, ${dog.state}`}</p>
+                    )}
                     <p>{`${dog.weight} lbs`}</p>
                 </div>
             </div>
