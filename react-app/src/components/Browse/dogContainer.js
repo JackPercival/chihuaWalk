@@ -128,6 +128,23 @@ const DogBrowseContainer = ({dogs}) => {
         }
     }, [sortBy])
 
+
+    const successLoad = () => {
+        setShowDistanceButton(true)
+    }
+
+    const successLoad = () => {
+        setShowDistanceButton(false)
+    }
+
+    //Get user location data on load
+    //If they already allowed it, they will see the distance button
+    //If they already blocked it, they will not see the distance button
+    //If they have not been asked yet, they will be asked, then we show/hide the delete button based on their response
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(successLoad, errorLoad);
+    }, [])
+
   return (
     <>
         <div className="sortByContainer">
