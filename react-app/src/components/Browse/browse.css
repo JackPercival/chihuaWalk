@@ -6,10 +6,56 @@
     font-family: 'Questrial', sans-serif;
 }
 
+.browseDogContainer h1 {
+    margin-bottom: 0;
+}
+
 .allDogsContainer {
     display: flex;
     flex-wrap: wrap;
     width: fit-content;
     margin: 0 auto;
     margin-bottom: 100px;
+}
+
+.fetchGif {
+    margin: 0 auto;
+    display: block;
+    border-radius: 50%;
+    margin-top: 100px;
+}
+
+.sortByContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.sortHeader {
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.sortCategory {
+    border: 1px solid rgb(221, 221, 221);
+    padding: 5px 10px;
+    border-radius: 21px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all .2s 0s;
+}
+
+.sortCategory:hover {
+    background-color: rgb(238, 238, 238);
+    border: 1px solid rgb(163, 163, 163);
+    box-shadow: -1px 1px 2px rgb(173, 173, 173), 1px 1px 2px rgb(173, 173, 173);
+}
+
+.sortSelected {
+    background-color: rgb(238, 238, 238);
+    border: 1px solid rgb(163, 163, 163);
+    box-shadow: -1px 1px 2px rgb(173, 173, 173), 1px 1px 2px rgb(173, 173, 173);
 }
