@@ -40,6 +40,12 @@ const EditDog = () => {
     }, [dispatch]);
 
     useEffect(() => {
+        if (isLoaded) {
+            document.title = `Edit ${dog?.name} · ChihuaWalk`;
+        }
+    }, [isLoaded, dog?.name]);
+
+    useEffect(() => {
         setName(dog?.name)
         setBreed(dog?.breed)
         setDescription(dog?.description)

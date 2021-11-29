@@ -11,6 +11,10 @@ const SplashPage = () => {
     const history = useHistory();
     const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
+    useEffect(() => {
+        document.title = `ChihuaWalk`;
+    }, []);
+
     //Clean up search bar
     useEffect(() => {
         setShowSearch(false)

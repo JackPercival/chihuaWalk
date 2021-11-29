@@ -35,6 +35,12 @@ function SingleDog() {
     const [showError, setShowError] = useState(false)
     const [tomorrow, setTomorrow] = useState(null)
 
+    useEffect(() => {
+        if (isLoaded) {
+            document.title = `${dog?.name} · ChihuaWalk`;
+        }
+    }, [isLoaded, dog?.name]);
+
     //Clean up search bar
     useEffect(() => {
         setShowSearch(false)
