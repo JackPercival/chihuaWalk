@@ -33,6 +33,9 @@ const AccountSettings = () => {
     const [passwordErrorId, setPasswordErrorId] = useState('noUpdatePasswordError')
     const [passwordErrorMessage, setPasswordErrorMessage] = useState('')
 
+    useEffect(() => {
+        document.title = `Account Settings · ChihuaWalk`;
+    }, []);
 
     //Clean up search bar
     useEffect(() => {

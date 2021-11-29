@@ -22,6 +22,10 @@ function YourDogs() {
     const [dogToDelete, setDogToDelete] = useState('')
     const [dogNameToDelete, setDogNameToDelete] = useState('')
 
+    useEffect(() => {
+        document.title = `Your Dogs · ChihuaWalk`;
+      }, []);
+
     //Clean up search bar
     useEffect(() => {
         setShowSearch(false)

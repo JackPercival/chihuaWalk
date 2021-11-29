@@ -42,6 +42,10 @@ const YourWalks = () => {
       setSearchMaxWeight('')
   }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
+  useEffect(() => {
+    document.title = `Your Walks · ChihuaWalk`;
+  }, []);
+
   return (
     <>
       {isLoaded && (

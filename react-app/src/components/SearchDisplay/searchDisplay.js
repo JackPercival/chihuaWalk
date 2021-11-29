@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import DogSlide from '../DogSlide/dogSlide';
 
@@ -10,6 +10,10 @@ function SearchDisplay() {
 
     const dogs = useSelector(state => Object.values(state.search));
     const [isLoaded] = useState(true);
+
+    useEffect(() => {
+        document.title = `Search · ChihuaWalk`;
+    }, []);
 
     //Scroll to the top of page
     document.documentElement.scrollTop = 0;

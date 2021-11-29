@@ -34,7 +34,7 @@ const DogBrowseContainer = ({dogs}) => {
         setIsLoaded(true)
     }
 
-    //Get distance between two sets of coordinates
+    //Get distance between two sets of longitude/latitude coordinates
     // https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula?rq=1
     // Took from stackoverflow and modified last line to convert to miles instead of Kilometers
     function distance(lat1, lon1, lat2, lon2) {

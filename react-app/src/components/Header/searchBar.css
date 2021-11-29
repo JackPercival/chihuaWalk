@@ -11,6 +11,7 @@
   font-family: "Questrial", sans-serif;
   cursor: pointer;
   padding: 10px;
+  transition: box-shadow 0.25s 0s;
 }
 
 .fakeSearchBar:hover {
@@ -70,8 +71,8 @@
 .searchFormField {
   display: flex;
   flex-direction: column;
-  padding: 7px 10px;
-  margin: 5px 0;
+  padding: 0 10px;
+  margin: 12px 0;
   border-right: 1px solid rgb(221, 221, 221);
 }
 

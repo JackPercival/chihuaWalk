@@ -40,6 +40,18 @@ const SearchBar = () => {
         history.push('/search')
     }
 
+    const clearMinWeight = (e) => {
+        if (e.key === 'Backspace' && searchMinWeight.length === 1) {
+            setSearchMinWeight('')
+        }
+    }
+
+    const clearMaxWeight = (e) => {
+        if (e.key === 'Backspace' && searchMaxWeight.length === 1) {
+            setSearchMaxWeight('')
+        }
+    }
+
 
     return (
         <div className="searchBarContainer">
@@ -149,6 +161,7 @@ const SearchBar = () => {
                                 max="399"
                                 value={searchMinWeight}
                                 onChange={(e) => setSearchMinWeight(Number(e.target.value).toString())}
+                                onKeyDown={(e) => clearMinWeight(e)}
                             />
                         </div>
                         <div className="searchFormField lastSearchCat">
@@ -161,6 +174,7 @@ const SearchBar = () => {
                                 max="400"
                                 value={searchMaxWeight}
                                 onChange={(e) => setSearchMaxWeight(Number(e.target.value).toString())}
+                                onKeyDown={(e) => clearMaxWeight(e)}
                             />
                         </div>
                         <button type="submit" className="realSearchButtonContainer">

@@ -29,6 +29,11 @@ const Pupload = () => {
     const [dogErrorMessage, setDogErrorMessage] = useState('')
 
     const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
+
+    useEffect(() => {
+        document.title = `Pupload · ChihuaWalk`;
+    }, []);
+
     //Clean up search bar
     useEffect(() => {
         setShowSearch(false)

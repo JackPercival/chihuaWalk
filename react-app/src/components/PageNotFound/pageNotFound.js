@@ -1,8 +1,13 @@
+import { useEffect } from 'react';
 import {  Link } from 'react-router-dom';
 
 import './pageNotFound.css'
 
 function PageNotFound() {
+
+    useEffect(() => {
+        document.title = `Page not found · ChihuaWalk`;
+    }, []);
 
     return (
         <div className="container404">
