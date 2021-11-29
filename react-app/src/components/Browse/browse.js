@@ -30,6 +30,10 @@ const Browse = () => {
         setSearchMaxWeight('')
     }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
+    useEffect(() => {
+        document.title = "All Dogs · ChihuaWalk";
+    }, []);
+
   return (
     <>
         {isLoaded && (
