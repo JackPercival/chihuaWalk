@@ -11,6 +11,7 @@
   font-family: "Questrial", sans-serif;
   cursor: pointer;
   padding: 10px;
+  transition: box-shadow 0.25s 0s;
 }
 
 .fakeSearchBar:hover {

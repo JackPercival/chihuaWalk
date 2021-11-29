@@ -272,7 +272,7 @@ const ProfileButton = ({ user }) => {
                             <h3>Login</h3>
                             <div></div>
                         </div>
-                        <h2>Welcome to chihuaWalk</h2>
+                        <h2>Welcome to ChihuaWalk</h2>
                         <form id="signUpForm" autoComplete="off" onSubmit={onLogin}>
                             <div className="formField">
                                 <input
@@ -320,7 +320,7 @@ const ProfileButton = ({ user }) => {
                             <h3>Sign up</h3>
                             <div></div>
                         </div>
-                        <h2>Welcome to chihuaWalk</h2>
+                        <h2>Welcome to ChihuaWalk</h2>
                         <form id="signUpForm" autoComplete="off" onSubmit={onSignUp}>
                             <div className="formField">
                                 <input
