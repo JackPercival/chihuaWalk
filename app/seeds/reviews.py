@@ -6,12 +6,12 @@ import random
 def seed_reviews():
     reviewComments = ["I had such a blast with this dog. They are soooo cute and such a good pup. I hope someone adopts them soon!",
                         "This pupper is sooooo much fun to walk! I will definitely be scheduling a walk with this dog another time soon.",
+                        "5 out of 5 would walk again any day.",
                         "Cannot wait to take this pupper on another walk. When they get adopted, I'll definitely be sad I can't walk them anymore, but I'll be so happy for this cute dog to have a forever home",
                         "This dog walks so well and is so kind and gentle. Please someone adopt this dog. I would but I already have 5 dogs.",
                         "The people at this shelter treat this dog so nice. Everytime I show up to walk them, I'm greeted with so many friendly greetings. The dog is great too!",
-                        "5 out of 5 would walk again any day.",
                         "I went on a nice 3 hour hike with this dog and they kept up the entire time!",
-                        "I wish I could rate this dog higher than 5 stars. I'd rate them an 13 out of 10 if I could",
+                        "I wish I could rate this dog higher than 5 stars. I'd rate them a 13 out of 10 if I could",
                         "This dog even convinced my cat loving friend to try out this website and walk dogs"
                         ]
 
