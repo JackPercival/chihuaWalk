@@ -12,7 +12,7 @@ def seed_reviews():
                         "5 out of 5 would walk again any day.",
                         "I went on a nice 3 hour hike with this dog and they kept up the entire time!",
                         "I wish I could rate this dog higher than 5 stars. I'd rate them an 13 out of 10 if I could",
-                        "This dog even conviced my cat loving friend to try out this website and walk dogs"
+                        "This dog even convinced my cat loving friend to try out this website and walk dogs"
                         ]
 
     for j in range (1, 21):
