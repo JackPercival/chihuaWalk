@@ -81,7 +81,7 @@ On the Browse page, all dogs are displayed using the React-Slideshow components 
 #### Viewing Dog Pages
 On an individual dog page, you can view photos and information about the dog, read reviews, schedeule a walk, and view the dog's location on a Google Map.
 
-![Single Dog Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,w_414/v1638493006/Capstone/1_bcddqd.png) ![Single Dog Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,h_416/v1638493006/Capstone/2_rfztjb.png)
+![Single Dog Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,h_380/v1638493006/Capstone/1_bcddqd.png) ![Single Dog Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,h_380/v1638493006/Capstone/2_rfztjb.png)
 
 #### Searching
 With the search feature, users can search on multiple, optional parameters, and results will be displayed on a Google Map.
