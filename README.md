@@ -11,13 +11,13 @@ Visit the site at [https://chihuawalk.herokuapp.com/](https://chihuawalk.herokua
 ChihuaWalk uses:
 
 * [React.js](https://reactjs.org/)
-* Redux
-* Flask
-* SQLAlchemy
-* PostgreSQL
-* React-Slideshow
-* React-Calendar
-* @react-google-maps/api
+* [Redux](https://redux.js.org/)
+* [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+* [SQLAlchemy](https://www.sqlalchemy.org/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [React-Slideshow](https://github.com/femioladeji/react-slideshow)
+* [React-Calendar](https://github.com/wojtekmaj/react-calendar)
+* [@react-google-maps/api](https://react-google-maps-api-docs.netlify.app/)
 * Google Geocoder API
 
 
