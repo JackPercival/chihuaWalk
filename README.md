@@ -66,12 +66,18 @@ SQLAlchemu was the ORM of choice for JamOut because of how seemlessly it integra
 
 The Google Geocoder API is used whenever a user uploads or edits a dog posting. On form submision, I use the API to determine if the user provided address is valid. If it is valid, the Geocoder API sends back the latitude and longitude of the address, which allows me to plug those coordinates into the front end Google Map, and display the exact location of the dog on the interactable map.
 
-## Workflows
+## Workflow Examples
 
-#### Viewing a Dog
+#### Viewing Dog Pages
 On an individual dog page, you can view photos and information about the dog, read reviews, schedeule a walk, and view the dog's location on a Google Map.
 
 ![Single Dog Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,w_414/v1638493006/Capstone/1_bcddqd.png) ![Single Dog Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,h_416/v1638493006/Capstone/2_rfztjb.png)
+
+#### Searching
+With the search feature, users can search on multiple, optional parameters, and results will be displayed on a Google Map.
+
+![Search Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/v1638495447/Capstone/search_ns2npu.png) 
+
 
 ## Conclusion and What's Next
 
