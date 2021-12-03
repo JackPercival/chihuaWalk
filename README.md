@@ -18,7 +18,7 @@ ChihuaWalk uses:
 * [React-Slideshow](https://github.com/femioladeji/react-slideshow)
 * [React-Calendar](https://github.com/wojtekmaj/react-calendar)
 * [@react-google-maps/api](https://react-google-maps-api-docs.netlify.app/)
-* Google Geocoder API
+* [Google Geocoder API](https://github.com/googlemaps/google-maps-services-python)
 
 
 ## Application Architecture
