@@ -15,6 +15,7 @@ ChihuaWalk uses:
 * [Flask](https://flask.palletsprojects.com/en/2.0.x/)
 * [SQLAlchemy](https://www.sqlalchemy.org/)
 * [PostgreSQL](https://www.postgresql.org/)
+* [Werkzeug] (https://werkzeug.palletsprojects.com/en/2.0.x/) for password hashing
 * [React-Slideshow](https://github.com/femioladeji/react-slideshow)
 * [React-Calendar](https://github.com/wojtekmaj/react-calendar)
 * [@react-google-maps/api](https://react-google-maps-api-docs.netlify.app/)
@@ -57,6 +58,10 @@ ChihuaWalk uses Flask as the backend server to handle incoming requests and resp
 #### PostgreSQL
 
 I used PostgreSQL as the database, as it is easy to setup and use, especially when making calls with SQLAlchemy.
+
+#### Werkzeug
+
+Werkzeug was used for hashing user passwords during sign up and authentication. No plain text passwords are stored in the database, only hashed passwords.
 
 #### SQLAlchemy
 
