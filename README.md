@@ -68,6 +68,11 @@ The Google Geocoder API is used whenever a user uploads or edits a dog posting. 
 
 ## Workflow Examples
 
+#### Browsing Dogs
+On the Browse page, all dogs are displayed using the React-Slideshow components to easily view multiple pictures of each dog. Dogs can be sorted by several categories, including distance from the current user. 
+
+![Browse Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/v1638500011/Capstone/browse_bed6uo.png)
+
 #### Viewing Dog Pages
 On an individual dog page, you can view photos and information about the dog, read reviews, schedeule a walk, and view the dog's location on a Google Map.
 
