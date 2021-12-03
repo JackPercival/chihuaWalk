@@ -3,7 +3,7 @@
 
 ## ChihuaWalk Summary
 
-ChihuaWalk is a fullstack application that allows users to browse dogs, review dogs, and schedule walks with them. I built the initial application in one week, and it's a rough clone of AirBnb, but focused on dogs intead of locations. All users can browse dogs on the website and read information about them, as well as search for dogs and view them on a Google Map. Logged in users can upload dogs, add and edit reviews, and schedule walks with other dogs. 
+ChihuaWalk is a full stack application that allows users to browse dogs, review dogs, and schedule walks with them. I built the initial application in one week, and it's a rough clone of AirBnb, but focused on dogs intead of locations. All users can browse dogs on the website and read information about them, as well as search for dogs and view them on a Google Map. Logged in users can upload dogs, add and edit reviews, and schedule walks with other dogs. 
 
 Visit the site at [https://chihuawalk.herokuapp.com/](https://chihuawalk.herokuapp.com/)
 
@@ -69,7 +69,7 @@ SQLAlchemu was the ORM of choice for JamOut because of how seemlessly it integra
 
 #### Google Geocoder API
 
-The Google Geocoder API is used whenever a user uploads or edits a dog posting. On form submision, I use the API to determine if the user provided address is valid. If it is valid, the Geocoder API sends back the latitude and longitude of the address, which allows me to plug those coordinates into the front end Google Map, and display the exact location of the dog on the interactable map.
+The Google Geocoder API is used whenever a user uploads or edits a dog posting. On form submision, I use the API to determine if the user provided address is valid. If it is valid, the Geocoder API sends back the latitude and longitude of the address, which allows me to use those coordinates with the front end Google Map, and display the exact location of the dog on the interactable map.
 
 ## Workflow Examples
 
