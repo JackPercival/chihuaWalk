@@ -1,10 +1,25 @@
 # ChihuaWalk
+![ChihuaWalk Home Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637705894/Capstone/metaPhoto_evlung.png)
 
 ## ChihuaWalk Summary
 
 ChihuaWalk is a fullstack application that allows users to browse dogs, review dogs, and schedule walks with them. I built the initial application in one week, and it's a rough clone of AirBnb, but focused on dogs intead of locations. All users can browse dogs on the website and read information about them, as well as search for dogs and view them on a Google Map. Logged in users can upload dogs, add and edit reviews, and schedule walks with other dogs. 
 
 Visit the site at [https://chihuawalk.herokuapp.com/](https://chihuawalk.herokuapp.com/)
+
+### Libraries and technologies
+ChihuaWalk uses:
+
+* [React.js](https://reactjs.org/)
+* Redux
+* Flask
+* SQLAlchemy
+* PostgreSQL
+* React-Slideshow
+* React-Calendar
+* @react-google-maps/api
+* Google Geocoder API
+
 
 ## Application Architecture
 
