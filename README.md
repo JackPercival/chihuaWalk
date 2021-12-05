@@ -24,7 +24,7 @@ ChihuaWalk uses:
 
 ## Application Architecture
 
-ChihuaWalk is built on a React frontent and a Flask backend, which uses SQLAlchemy to connect to a PostgreSQL database.
+ChihuaWalk is built on a React frontend and a Flask backend, which uses SQLAlchemy to connect to a PostgreSQL database.
 
 ## Frontend Overview
 
