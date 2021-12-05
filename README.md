@@ -65,7 +65,7 @@ Werkzeug was used for hashing user passwords during sign up and authentication. 
 
 #### SQLAlchemy
 
-SQLAlchemu was the ORM of choice for JamOut because of how seemlessly it integrates with PostgreSQL and Flask. All database manipulation and seed data was implementing using SQLAlchemy
+SQLAlchemu was the ORM of choice for ChihuaWalk because of how seemlessly it integrates with PostgreSQL and Flask. All database manipulation and seed data was implementing using SQLAlchemy
 
 #### Google Geocoder API
 
