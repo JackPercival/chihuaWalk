@@ -65,7 +65,7 @@ Werkzeug was used for hashing user passwords during sign up and authentication. 
 
 #### SQLAlchemy
 
-SQLAlchemy was the ORM of choice for ChihuaWalk because of how seemlessly it integrates with PostgreSQL and Flask. All database manipulation and seed data was implementing using SQLAlchemy.
+SQLAlchemy was the ORM of choice for ChihuaWalk because of how seemlessly it integrates with PostgreSQL and Flask. All database manipulation and seed data was implemented using SQLAlchemy.
 
 #### Google Geocoder API
 
