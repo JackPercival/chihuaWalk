@@ -38,7 +38,7 @@ ChihuaWalk is a React application. All display logic is determined by React libr
 
 #### Redux
 
-ChihuaWalk uses Redux to disaplay and update state throughout the website. Redux is used with thunks to make APIs to the backend server to request and update data. 
+ChihuaWalk uses Redux to display and update state throughout the website. Redux is used with thunks to make API calls to the backend server to request and update data. 
 
 #### Google Maps
 
