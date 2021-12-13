@@ -1,14 +1,30 @@
 # ChihuaWalk
+![ChihuaWalk Home Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637705894/Capstone/metaPhoto_evlung.png)
 
 ## ChihuaWalk Summary
 
-ChihuaWalk is a fullstack application that allows users to browse dogs, review dogs, and schedule walks with them. I built the initial application in one week, and it's a rough clone of AirBnb, but focused on dogs intead of locations. All users can browse dogs on the website and read information about them, as well as search for dogs and view them on a Google Map. Logged in users can upload dogs, add and edit reviews, and schedule walks with other dogs. 
+ChihuaWalk is a full stack application that allows users to browse dogs, review dogs, and schedule walks with them. I built the initial application in one week, and it's a rough clone of AirBnb, but focused on dogs intead of locations. All users can browse dogs on the website and read information about them, as well as search for dogs and view them on a Google Map. Logged in users can upload dogs, add and edit reviews, and schedule walks with other dogs. 
 
 Visit the site at [https://chihuawalk.herokuapp.com/](https://chihuawalk.herokuapp.com/)
 
+### Libraries and technologies
+ChihuaWalk uses:
+
+* [React.js](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+* [Flask](https://flask.palletsprojects.com/en/2.0.x/)
+* [SQLAlchemy](https://www.sqlalchemy.org/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [Werkzeug](https://werkzeug.palletsprojects.com/en/2.0.x/) for password hashing
+* [React-Slideshow](https://github.com/femioladeji/react-slideshow)
+* [React-Calendar](https://github.com/wojtekmaj/react-calendar)
+* [@react-google-maps/api](https://react-google-maps-api-docs.netlify.app/)
+* [Google Geocoder API](https://github.com/googlemaps/google-maps-services-python)
+
+
 ## Application Architecture
 
-ChihuaWalk is built on a React frontent and a Flask backend, which uses SQLAlchemy to connect to a PostgreSQL database.
+ChihuaWalk is built on a React frontend and a Flask backend, which uses SQLAlchemy to connect to a PostgreSQL database.
 
 ## Frontend Overview
 
@@ -22,7 +38,7 @@ ChihuaWalk is a React application. All display logic is determined by React libr
 
 #### Redux
 
-ChihuaWalk uses Redux to disaplay and update state throughout the website. Redux is used with thunks to make APIs to the backend server to request and update data. 
+ChihuaWalk uses Redux to display and update state throughout the website. Redux is used with thunks to make API calls to the backend server to request and update data. 
 
 #### Google Maps
 
@@ -43,13 +59,34 @@ ChihuaWalk uses Flask as the backend server to handle incoming requests and resp
 
 I used PostgreSQL as the database, as it is easy to setup and use, especially when making calls with SQLAlchemy.
 
+#### Werkzeug
+
+Werkzeug was used for hashing user passwords during sign up and authentication. No plain text passwords are stored in the database, only hashed passwords.
+
 #### SQLAlchemy
 
-SQLAlchemu was the ORM of choice for JamOut because of how seemlessly it integrates with PostgreSQL and Flask. All database manipulation and seed data was implementing using SQLAlchemy
+SQLAlchemy was the ORM of choice for ChihuaWalk because of how seemlessly it integrates with PostgreSQL and Flask. All database manipulation and seed data was implemented using SQLAlchemy.
 
 #### Google Geocoder API
 
-The Google Geocoder API is used whenever a user uploads or edits a dog posting. On form submision, I use the API to determine if the user provided address is valid. If it is valid, the Geocoder API sends back the latitude and longitude of the address, which allows me to plug those coordinates into the front end Google Map, and display the exact location of the dog on the interactable map.
+The Google Geocoder API is used whenever a user uploads or edits a dog posting. On form submision, I use the API to determine if the user provided address is valid. If it is valid, the Geocoder API sends back the latitude and longitude of the address, which allows me to use those coordinates with the front end Google Map, and display the exact location of the dog on the interactable map.
+
+## Workflow Examples
+
+#### Browsing Dogs
+On the Browse page, all dogs are displayed using the React-Slideshow components to easily view multiple pictures of each dog. Dogs can be sorted by several categories, including distance from the current user. 
+
+![Browse Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/v1638500011/Capstone/browse_bed6uo.png)
+
+#### Viewing Dog Pages
+On an individual dog page, you can view photos and information about the dog, read reviews, schedeule a walk, and view the dog's location on a Google Map.
+
+![Single Dog Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,h_380/v1638493006/Capstone/1_bcddqd.png) ![Single Dog Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/c_scale,h_380/v1638493006/Capstone/2_rfztjb.png)
+
+#### Searching
+With the search feature, users can search on multiple, optional parameters, and results will be displayed on a Google Map.
+
+![Search Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/v1638495447/Capstone/search_ns2npu.png) 
 
 
 ## Conclusion and What's Next
