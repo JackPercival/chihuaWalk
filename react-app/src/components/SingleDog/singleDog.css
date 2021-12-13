@@ -30,6 +30,13 @@
   background-size: cover;
   border-top-left-radius: 13px;
   border-bottom-left-radius: 13px;
+  background-color: black;
+}
+
+.mainDogImage:hover, .smallDogImage:hover {
+  filter:brightness(80%);
+  transition: all .35s ease;
+  cursor: pointer;
 }
 
 .smallerDogImageContainer {
