@@ -8,9 +8,12 @@ import { loadDogsReviews } from '../../store/review';
 import Reviews from '../Reviews/reviews';
 import MapContainer from '../Maps';
 import DatePicker from 'react-calendar';
+import ReactBnbGallery from 'react-bnb-gallery';
+
 
 import { differenceInCalendarDays } from 'date-fns';
 
+import 'react-bnb-gallery/dist/style.css'
 import './singleDog.css'
 import './calendar.css'
 import './walkForm.css'
@@ -34,6 +37,9 @@ function SingleDog() {
     const [showSucces, setShowSuccess] = useState(false)
     const [showError, setShowError] = useState(false)
     const [tomorrow, setTomorrow] = useState(null)
+
+    const [photoIndex, setPhotoIndex] = useState(0)
+    const [showPhotoModal, setShowPhotoModal] = useState(false)
 
     useEffect(() => {
         if (isLoaded) {
@@ -118,6 +124,12 @@ function SingleDog() {
         }
     }
 
+    const handlePhotoModal = photoIndex => {
+        setPhotoIndex(photoIndex)
+        setShowPhotoModal(true)
+    }
+
+
     return (
         <>
             {isLoaded && (
@@ -126,12 +138,13 @@ function SingleDog() {
                     <h1>{dog?.name}</h1>
                     <h3>{`${dog?.city}, ${dog?.state}, ${dog?.country}`}</h3>
                     <div className="dogImageContainer">
-                        <div className="mainDogImage" style={{backgroundImage: `url(${dog?.images[0]}), url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637621047/Capstone/dogFallBack_zbctxj.png")`}}></div>
+                        <div className="mainDogImage" onClick={() => handlePhotoModal(0)} style={{backgroundImage: `url(${dog?.images[0]}), url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637621047/Capstone/dogFallBack_zbctxj.png")`}}></div>
                         <div className="smallerDogImageContainer">
-                            <div className="smallDogImage" id="firstSmallImage" style={{backgroundImage: `url(${dog?.images[1]}), url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637621047/Capstone/dogFallBack_zbctxj.png")`}}></div>
-                            <div className="smallDogImage" id="secondSmallImage" style={{backgroundImage: `url(${dog?.images[2]}), url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637621047/Capstone/dogFallBack_zbctxj.png")`}}></div>
+                            <div className="smallDogImage" id="firstSmallImage" onClick={() => handlePhotoModal(1)} style={{backgroundImage: `url(${dog?.images[1]}), url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637621047/Capstone/dogFallBack_zbctxj.png")`}}></div>
+                            <div className="smallDogImage" id="secondSmallImage" onClick={() => handlePhotoModal(2)} style={{backgroundImage: `url(${dog?.images[2]}), url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637621047/Capstone/dogFallBack_zbctxj.png")`}}></div>
                         </div>
                     </div>
+                    <ReactBnbGallery show={showPhotoModal} onClose={() => setShowPhotoModal(false)} photos={dog?.images} activePhotoIndex={photoIndex}/>
                     <div className="dogInfoAndCreateWalkContainer">
                         <div className="fullDogInfo">
                             <div className="ownerInfo">
