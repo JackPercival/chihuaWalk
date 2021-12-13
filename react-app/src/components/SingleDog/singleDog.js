@@ -39,6 +39,7 @@ function SingleDog() {
     const [tomorrow, setTomorrow] = useState(null)
 
     const [photoIndex, setPhotoIndex] = useState(0)
+    const [photoObject, setPhotoObject] = useState(false)
     const [showPhotoModal, setShowPhotoModal] = useState(false)
 
     useEffect(() => {
@@ -125,6 +126,26 @@ function SingleDog() {
     }
 
     const handlePhotoModal = photoIndex => {
+        if (!photoObject) {
+            const dogImages = [
+                {
+                    'photo' : dog?.images[0],
+                    'caption' : dog?.name,
+                    'subcaption' : `${dog?.city}, ${dog?.state}`
+                },
+                {
+                    'photo' : dog?.images[1],
+                    'caption' : dog?.name,
+                    'subcaption' : `${dog?.city}, ${dog?.state}`
+                },
+                {
+                    'photo' : dog?.images[2],
+                    'caption' : dog?.name,
+                    'subcaption' : `${dog?.city}, ${dog?.state}`
+                }
+            ]
+            setPhotoObject(dogImages)
+        }
         setPhotoIndex(photoIndex)
         setShowPhotoModal(true)
     }
@@ -144,7 +165,7 @@ function SingleDog() {
                             <div className="smallDogImage" id="secondSmallImage" onClick={() => handlePhotoModal(2)} style={{backgroundImage: `url(${dog?.images[2]}), url("https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637621047/Capstone/dogFallBack_zbctxj.png")`}}></div>
                         </div>
                     </div>
-                    <ReactBnbGallery show={showPhotoModal} onClose={() => setShowPhotoModal(false)} photos={dog?.images} activePhotoIndex={photoIndex}/>
+                    <ReactBnbGallery show={showPhotoModal} onClose={() => setShowPhotoModal(false)} photos={photoObject} activePhotoIndex={photoIndex}/>
                     <div className="dogInfoAndCreateWalkContainer">
                         <div className="fullDogInfo">
                             <div className="ownerInfo">
