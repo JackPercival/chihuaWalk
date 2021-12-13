@@ -30,6 +30,13 @@
   background-size: cover;
   border-top-left-radius: 13px;
   border-bottom-left-radius: 13px;
+  background-color: black;
+}
+
+.mainDogImage:hover, .smallDogImage:hover {
+  filter:brightness(80%);
+  transition: all .35s ease;
+  cursor: pointer;
 }
 
 .smallerDogImageContainer {
@@ -198,4 +205,19 @@
 #wherePickUpHeader {
   margin: 0;
   margin-bottom: 20px;
+}
+
+/* Photo modal styling */
+.gallery-figcaption--info .photo-caption {
+  font-size: 32px;
+  font-family: "Questrial", sans-serif;
+}
+
+.gallery-figcaption--info .photo-subcaption {
+  font-family: "Questrial", sans-serif;
+  font-size: 17px;
+}
+
+.thumbnail-button {
+  border: none;
 }
