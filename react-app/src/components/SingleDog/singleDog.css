@@ -221,3 +221,7 @@
 .thumbnail-button {
   border: none;
 }
+
+button.gallery-control.gallery-control--next, button.gallery-control.gallery-control--prev {
+  border: none;
+}
