@@ -38,17 +38,37 @@ function SearchDisplay() {
                                         <div className="yourDogSingleDogInfo">
                                             <div className="singleDogName">{dog?.name}</div>
                                             <div className="dogDetailsNoButtons">
-                                                <div className="dogInfoSingleDog">{dog?.breed}</div>
-                                                <div className="dogInfoSingleDog">{dog?.description}</div>
-                                                <div className="dogInfoSingleDog">{`${dog?.weight} lbs.`}</div>
-                                                <div className="dogInfoSingleDog">{`${dog?.city}, ${dog?.state}`}</div>
+                                                <div className="dogCardData">
+                                                    <div className="dogDataIcon">
+                                                        <i className="fas fa-dog"></i>
+                                                    </div>
+                                                    <div className="dogInfoSingleDog">{dog?.breed}</div>
+                                                </div>
+                                                <div className="dogCardData">
+                                                    <div className="dogDataIcon">
+                                                        <i className="fas fa-dog"></i>
+                                                    </div>
+                                                    <div className="dogInfoSingleDog">{dog?.description}</div>
+                                                </div>
+                                                <div className="dogCardData">
+                                                    <div className="dogDataIcon">
+                                                        <i className="fas fa-weight"></i>
+                                                    </div>
+                                                    <div className="dogInfoSingleDog">{`${dog?.weight} lbs.`}</div>
+                                                </div>
+                                                <div className="dogCardData">
+                                                    <div className="dogDataIcon">
+                                                        <i className="fas fa-weight"></i>
+                                                    </div>
+                                                    <div className="dogInfoSingleDog">{`${dog?.city}, ${dog?.state}`}</div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 )}
                             </div>
                             <div className="yourDogMap">
-                                <MapContainer zoom={5} dogs={dogs}/>
+                                {/* <MapContainer zoom={5} dogs={dogs}/> */}
                             </div>
                         </div>
                     )}
@@ -60,7 +80,7 @@ function SearchDisplay() {
                                 </div>
                             </div>
                             <div className="yourDogMap">
-                                <MapContainer zoom={4}/>
+                                {/* <MapContainer zoom={4}/> */}
                             </div>
                         </div>
                     )}
@@ -72,7 +92,7 @@ function SearchDisplay() {
                                 </div>
                             </div>
                             <div className="yourDogMap">
-                                <MapContainer zoom={4}/>
+                                {/* <MapContainer zoom={4}/> */}
                             </div>
                         </div>
                     )}
