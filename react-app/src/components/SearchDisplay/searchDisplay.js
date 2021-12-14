@@ -68,7 +68,7 @@ function SearchDisplay() {
                                 )}
                             </div>
                             <div className="yourDogMap">
-                                {/* <MapContainer zoom={5} dogs={dogs}/> */}
+                                <MapContainer zoom={5} dogs={dogs}/>
                             </div>
                         </div>
                     )}
@@ -80,7 +80,7 @@ function SearchDisplay() {
                                 </div>
                             </div>
                             <div className="yourDogMap">
-                                {/* <MapContainer zoom={4}/> */}
+                                <MapContainer zoom={4}/>
                             </div>
                         </div>
                     )}
@@ -92,7 +92,7 @@ function SearchDisplay() {
                                 </div>
                             </div>
                             <div className="yourDogMap">
-                                {/* <MapContainer zoom={4}/> */}
+                                <MapContainer zoom={4}/>
                             </div>
                         </div>
                     )}
