@@ -1,0 +1,15 @@
+.dogCardData {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+}
+
+.dogCardData .dogDataIcon {
+    font-size: 20px;
+    color: rgb(56, 56, 56);
+    margin-right: 15px;
+}
+
+.dogInfoSingleDog {
+    margin-top: 0;
+}
