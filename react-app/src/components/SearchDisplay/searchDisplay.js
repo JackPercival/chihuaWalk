@@ -46,7 +46,7 @@ function SearchDisplay() {
                                                 </div>
                                                 <div className="dogCardData">
                                                     <div className="dogDataIcon">
-                                                        <i className="fas fa-dog"></i>
+                                                        <i className="fas fa-info-circle"></i>
                                                     </div>
                                                     <div className="dogInfoSingleDog">{dog?.description}</div>
                                                 </div>
@@ -58,7 +58,7 @@ function SearchDisplay() {
                                                 </div>
                                                 <div className="dogCardData">
                                                     <div className="dogDataIcon">
-                                                        <i className="fas fa-weight"></i>
+                                                        <i className="fas fa-home"></i>
                                                     </div>
                                                     <div className="dogInfoSingleDog">{`${dog?.city}, ${dog?.state}`}</div>
                                                 </div>
