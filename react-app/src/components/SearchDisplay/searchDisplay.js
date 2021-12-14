@@ -37,7 +37,7 @@ function SearchDisplay() {
                                         <DogSlide dog={dog} key={`Your_dog_${dog?.id}`} />
                                         <div className="yourDogSingleDogInfo">
                                             <div className="singleDogName">{dog?.name}</div>
-                                            <div className="dogDetailsNoButtons">
+                                            <div className="dogDetailsNoButtons searchDogHolder">
                                                 <div className="dogCardData">
                                                     <div className="dogDataIcon">
                                                         <i className="fas fa-dog"></i>
