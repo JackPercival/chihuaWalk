@@ -38,6 +38,11 @@
     word-wrap: break-word;
 }
 
+.searchDogHolder {
+    max-height: 285px;
+    margin-top: 10px;
+}
+
 .singleDogName {
     font-size: 30px;
     margin-top: 10px;
