@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { useSearch } from '../context/SearchContext';
-import { addNewDog } from '../../store/dog';
+import { addNewDog, uploadFile } from '../../store/dog';
 import { getGeoCoordinates } from '../../store/map';
 import ImageUploading from 'react-images-uploading';
 
@@ -21,13 +21,11 @@ const Pupload = () => {
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
-    const [image1, setImage1] = useState('');
-    const [image2, setImage2] = useState('');
-    const [image3, setImage3] = useState('');
     const [addressErrorId, setAddressErrorId] = useState("noAddressError")
     const [addressErrorBackground, setAddressErrorBackground] = useState('classNoAddressError')
     const [dogErrorId, setDogErrorId] = useState("noDogError")
     const [dogErrorMessage, setDogErrorMessage] = useState('')
+    const [fake, setFake] = useState('')
 
     const [images, setImages] = useState('')
 
@@ -38,8 +36,9 @@ const Pupload = () => {
     }, []);
 
     useEffect(() => {
+        console.log(fake)
         console.log(images)
-    }, [images])
+    }, [fake, images])
 
     //Clean up search bar
     useEffect(() => {
@@ -57,32 +56,12 @@ const Pupload = () => {
         return data;
     }
 
-    const validateURL = (imageArray) => {
-        let validImageUrl = true;
-        const regex = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
-        for (let i = 0; i < imageArray.length; i++) {
-            if (regex.test(imageArray[i]) === false) {
-                validImageUrl = false;
-                break;
-            }
-        }
-
-        return validImageUrl
-    }
-
     const addDog = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        if (!image1 || !image2 || !image3 ) {
+        if (images.length < 3) {
             setDogErrorId('dogError')
-            setDogErrorMessage("Please fill out all fields.")
-            return;
-        }
-
-        const validImages = validateURL([image1, image2, image3])
-        if (!validImages) {
-            setDogErrorId('dogError')
-            setDogErrorMessage("Please add valid Image URLs.")
+            setDogErrorMessage("Please add a minumum of 3 images.")
             return;
         }
 
@@ -90,10 +69,12 @@ const Pupload = () => {
 
         const realAddress = await getCoordinates(fullAddress)
 
+
         if (realAddress.coordinates.length === 1 && realAddress.coordinates[0].geometry.location_type !== "APPROXIMATE") {
             const latitude = realAddress.coordinates[0].geometry.location.lat
             const longitude = realAddress.coordinates[0].geometry.location.lng
-            const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, "USA", latitude, longitude, image1, image2, image3));
+            let cleanImages = images.map(image => image.file)
+            const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, "USA", latitude, longitude, cleanImages));
 
             if (data[0] === "Error") {
                 setDogErrorId("dogError")
@@ -101,15 +82,31 @@ const Pupload = () => {
                 return;
             } else {
                 // return <Redirect to={`/dogs/${data.id}`} />
-                history.push(`/dogs/${data[1].id}`)
+                await addImages(cleanImages, data[1].id)
+                // history.push(`/dogs/${data[1].id}`)
             }
         } else {
             setAddressErrorId("addressError")
             setAddressErrorBackground("classYesAddressError")
+            setDogErrorMessage("Invalid Address")
+            setDogErrorId("dogError")
             return;
         }
     }
 
+    const addImages = async (images, dog_id) => {
+        for (let x = 0; x < images.length; x++) {
+            const obj = {
+                file: images[x],
+                dog_id: dog_id,
+              };
+
+              await dispatch(uploadFile(obj));
+        }
+
+        history.push(`/dogs/${dog_id}`)
+
+    }
 
     const clearForm = (e) => {
         e.preventDefault();
@@ -120,9 +117,6 @@ const Pupload = () => {
         setAddress('')
         setCity('')
         setState('')
-        setImage1('')
-        setImage2('')
-        setImage3('')
         setImages('')
         setAddressErrorId('noAddressError')
         setAddressErrorBackground('classNoAddressError')
@@ -189,10 +183,6 @@ const Pupload = () => {
                                         value={description}
                                         onChange={(e) => setDescription(e.target.value)}
                                     />
-                                </div>
-                                <div className="addDogError" id={dogErrorId}>
-                                    <div>!</div>
-                                    <span>{dogErrorMessage}</span>
                                 </div>
                             </div>
                             <div className="fieldSection">
@@ -336,6 +326,11 @@ const Pupload = () => {
                             <button type="submit">Add Dog</button>
                             <button className="formButton" id="clearPuploadForm" onClick={clearForm}>Clear Form</button>
                         </div>
+                        <div className="addDogError" id={dogErrorId}>
+                            <div>!</div>
+                            <span>{dogErrorMessage}</span>
+                        </div>
+                        <input type="file" onChange={(e) => setFake(e.target.files)} />
                     </form>
                 </div>
         </div>
