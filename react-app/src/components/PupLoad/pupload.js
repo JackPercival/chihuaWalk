@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useSearch } from '../context/SearchContext';
 import { addNewDog } from '../../store/dog';
 import { getGeoCoordinates } from '../../store/map';
+import ImageUploading from 'react-images-uploading';
 
 import './pupload.css'
 
@@ -28,11 +29,17 @@ const Pupload = () => {
     const [dogErrorId, setDogErrorId] = useState("noDogError")
     const [dogErrorMessage, setDogErrorMessage] = useState('')
 
+    const [images, setImages] = useState('')
+
     const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
     useEffect(() => {
         document.title = `Pupload · ChihuaWalk`;
     }, []);
+
+    useEffect(() => {
+        console.log(images)
+    }, [images])
 
     //Clean up search bar
     useEffect(() => {
@@ -182,37 +189,6 @@ const Pupload = () => {
                                         onChange={(e) => setDescription(e.target.value)}
                                     />
                                 </div>
-                                <div className="pupLoadField">
-                                    <label>Images (URL)</label>
-                                    <input
-                                        name='breed'
-                                        type="input"
-                                        required
-                                        autoComplete="off"
-                                        value={image1}
-                                        onChange={(e) => setImage1(e.target.value)}
-                                    />
-                                </div>
-                                <div className="pupLoadField">
-                                    <input
-                                        name='breed'
-                                        type="input"
-                                        required
-                                        autoComplete="off"
-                                        value={image2}
-                                        onChange={(e) => setImage2(e.target.value)}
-                                    />
-                                </div>
-                                <div className="pupLoadField">
-                                    <input
-                                        name='breed'
-                                        type="input"
-                                        required
-                                        autoComplete="off"
-                                        value={image3}
-                                        onChange={(e) => setImage3(e.target.value)}
-                                    />
-                                </div>
                                 <div className="addDogError" id={dogErrorId}>
                                     <div>!</div>
                                     <span>{dogErrorMessage}</span>
@@ -306,7 +282,50 @@ const Pupload = () => {
                                     <div>!</div>
                                     <span>Invalid address.</span>
                                 </div>
-                                <img className="dogHoldingLeash" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637196506/Capstone/dogPosting_tzdtv1.png" alt="Dog Holding Leash" />
+                                <div className="pupLoadField">
+                                    <label>Images (URL)</label>
+                                </div>
+                                <div className="imageUploadContainer">
+                                    <ImageUploading
+                                        multiple
+                                        value={images}
+                                        onChange={(imageList) => setImages(imageList)}
+                                        maxNumber={20}
+                                        dataURLKey="data_url"
+                                        acceptType={['jpg','png']}>
+                                        {({
+                                        imageList,
+                                        onImageUpload,
+                                        onImageRemoveAll,
+                                        onImageUpdate,
+                                        onImageRemove,
+                                        isDragging,
+                                        dragProps,
+                                        }) => (
+                                        // write your building UI
+                                        <div className="upload__image-wrapper">
+                                            <div
+                                            style={isDragging ? { color: 'red' } : undefined}
+                                            onClick={onImageUpload}
+                                            {...dragProps}
+                                            >
+                                            Click or Drop here
+                                            </div>
+                                            &nbsp;
+                                            <div onClick={onImageRemoveAll}>Remove all images</div>
+                                            {imageList.map((image, index) => (
+                                            <div key={index} className="image-item">
+                                                <img src={image['data_url']} alt="" width="100" />
+                                                <div className="image-item__btn-wrapper">
+                                                <button onClick={() => onImageUpdate(index)}>Update</button>
+                                                <button onClick={() => onImageRemove(index)}>Remove</button>
+                                                </div>
+                                            </div>
+                                            ))}
+                                        </div>
+                                        )}
+                                    </ImageUploading>
+                                </div>
                             </div>
                         </div>
                         <div className="puploadButtons">
