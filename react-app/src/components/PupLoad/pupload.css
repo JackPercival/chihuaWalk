@@ -45,7 +45,7 @@
     border: 1px solid rgb(221,221,221);
     border-radius: 10px;
     width: fit-content;
-    padding: 20px;
+    padding: 10px;
 }
 
 .pupLoadField {
@@ -76,7 +76,7 @@
     font-size: 14px;
     width: 250px;
     border: 1px solid rgb(175, 175, 175);
-    height: 90px;
+    height: 60px;
     outline: none;
 }
 
@@ -91,13 +91,14 @@
 }
 
 .fieldSection {
-    padding: 15px;
+    padding: 5px;
 }
 
 .fieldSection h3 {
     font-size: 25px;
     max-width: 282px;
     overflow-wrap: break-word;
+    margin-top: 0;
 }
 
 textarea {
@@ -174,4 +175,31 @@ textarea {
 
 #clearPuploadForm:hover {
     background-color: #861e31;
+}
+
+#imageUploadSection {
+    box-sizing: border-box;
+    width: 606px;
+    margin-top: 20px;
+}
+
+.imagesHeader {
+    margin-bottom: 10px;
+}
+
+.clickDragHere {
+    border: 1px solid rgb(221,221,221);
+    background-color: rgb(231, 231, 231);
+    border-radius: 5px;
+    padding: 50px 0;
+    box-sizing: border-box;
+    width: 575px;
+    cursor: pointer;
+    transition: background-color 0.25s ease-in-out;
+    text-align: center;
+    font-size: 18px;
+}
+
+.clickDragHere:hover {
+    background-color: rgb(184, 182, 182);
 }

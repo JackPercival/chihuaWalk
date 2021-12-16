@@ -282,9 +282,11 @@ const Pupload = () => {
                                     <div>!</div>
                                     <span>Invalid address.</span>
                                 </div>
-                                <div className="pupLoadField">
-                                    <label>Images (URL)</label>
-                                </div>
+                            </div>
+                        </div>
+                        <div className="formInputSection" id="imageUploadSection">
+                            <div className="fieldSection">
+                                <h3 className="imagesHeader">Images</h3>
                                 <div className="imageUploadContainer">
                                     <ImageUploading
                                         multiple
@@ -302,17 +304,16 @@ const Pupload = () => {
                                         isDragging,
                                         dragProps,
                                         }) => (
-                                        // write your building UI
                                         <div className="upload__image-wrapper">
                                             <div
-                                            style={isDragging ? { color: 'red' } : undefined}
-                                            onClick={onImageUpload}
-                                            {...dragProps}
+                                                style={isDragging ? { color: 'rgb(192, 53, 22)' } : undefined}
+                                                onClick={onImageUpload}
+                                                {...dragProps}
+                                                className="clickDragHere"
                                             >
-                                            Click or Drop here
+                                            Add or Drag Images Here
                                             </div>
-                                            &nbsp;
-                                            <div onClick={onImageRemoveAll}>Remove all images</div>
+                                            {/* <div onClick={onImageRemoveAll}>Remove all images</div> */}
                                             {imageList.map((image, index) => (
                                             <div key={index} className="image-item">
                                                 <img src={image['data_url']} alt="" width="100" />
