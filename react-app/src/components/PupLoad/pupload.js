@@ -25,7 +25,7 @@ const Pupload = () => {
     const [addressErrorBackground, setAddressErrorBackground] = useState('classNoAddressError')
     const [dogErrorId, setDogErrorId] = useState("noDogError")
     const [dogErrorMessage, setDogErrorMessage] = useState('')
-    const [fake, setFake] = useState('')
+    const [showModal, setShowModal]= useState(false)
 
     const [images, setImages] = useState('')
 
@@ -100,6 +100,7 @@ const Pupload = () => {
     }
 
     const addImages = async (images, dog_id) => {
+        setShowModal(true)
         for (let x = 0; x < images.length; x++) {
             const obj = {
                 file: images[x],
@@ -110,7 +111,7 @@ const Pupload = () => {
         }
 
         history.push(`/dogs/${dog_id}`)
-
+        setShowModal(false)
     }
 
     const clearForm = (e) => {
@@ -134,7 +135,7 @@ const Pupload = () => {
 
         for (let x = 0; x < images.length; x++) {
             let image = images[x]
-            
+
             let stringTime = String(image.lastModified);
             let name = image.name
             let size = image.size
@@ -360,7 +361,13 @@ const Pupload = () => {
         </div>
 
         </div>
-
+        {showModal && (
+            <div className="loginModal">
+                <div>
+                    <img className="fetchGif" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637790962/Capstone/loadingGif_hgflu6.gif" alt="fetching gif"/>
+                </div>
+            </div>
+        )}
     </div>
   );
 }
