@@ -123,6 +123,7 @@ const Pupload = () => {
         setImage1('')
         setImage2('')
         setImage3('')
+        setImages('')
         setAddressErrorId('noAddressError')
         setAddressErrorBackground('classNoAddressError')
         setDogErrorId('noDogError')
@@ -294,7 +295,7 @@ const Pupload = () => {
                                         onChange={(imageList) => setImages(imageList)}
                                         maxNumber={20}
                                         dataURLKey="data_url"
-                                        acceptType={['jpg','png']}>
+                                        acceptType={['jpg','png', 'jpeg']}>
                                         {({
                                         imageList,
                                         onImageUpload,
@@ -314,15 +315,17 @@ const Pupload = () => {
                                             Add or Drag Images Here
                                             </div>
                                             {/* <div onClick={onImageRemoveAll}>Remove all images</div> */}
-                                            {imageList.map((image, index) => (
-                                            <div key={index} className="image-item">
-                                                <img src={image['data_url']} alt="" width="100" />
-                                                <div className="image-item__btn-wrapper">
-                                                <button onClick={() => onImageUpdate(index)}>Update</button>
-                                                <button onClick={() => onImageRemove(index)}>Remove</button>
+                                            <div className="uploadedImagesContainer">
+                                                {imageList.map((image, index) => (
+                                                <div key={index}>
+                                                    <img src={image['data_url']} alt="" height="230" />
+                                                    <div className="editPhotoButtons">
+                                                        <div className="updatePhoto" onClick={() => onImageUpdate(index)}>Update</div>
+                                                        <div className="updatePhoto removePhoto" onClick={() => onImageRemove(index)}>Remove</div>
+                                                    </div>
                                                 </div>
+                                                ))}
                                             </div>
-                                            ))}
                                         </div>
                                         )}
                                     </ImageUploading>
