@@ -35,11 +35,6 @@ const Pupload = () => {
         document.title = `Pupload · ChihuaWalk`;
     }, []);
 
-    useEffect(() => {
-        console.log(fake)
-        console.log(images)
-    }, [fake, images])
-
     //Clean up search bar
     useEffect(() => {
         setShowSearch(false)
@@ -65,6 +60,17 @@ const Pupload = () => {
             return;
         }
 
+        let cleanImages = images.map(image => image.file)
+
+        //Check for duplicate images
+        let duplicateImages = checkDuplicateImages(cleanImages)
+        console.log(duplicateImages)
+        if (duplicateImages) {
+            setDogErrorId('dogError')
+            setDogErrorMessage("Please remove duplicate images.")
+            return;
+        }
+
         const fullAddress = `${address.trim()}, ${city.trim()}, ${state}`
 
         const realAddress = await getCoordinates(fullAddress)
@@ -73,8 +79,7 @@ const Pupload = () => {
         if (realAddress.coordinates.length === 1 && realAddress.coordinates[0].geometry.location_type !== "APPROXIMATE") {
             const latitude = realAddress.coordinates[0].geometry.location.lat
             const longitude = realAddress.coordinates[0].geometry.location.lng
-            let cleanImages = images.map(image => image.file)
-            const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, "USA", latitude, longitude, cleanImages));
+            const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, "USA", latitude, longitude));
 
             if (data[0] === "Error") {
                 setDogErrorId("dogError")
@@ -124,6 +129,26 @@ const Pupload = () => {
         setDogErrorMessage('')
     }
 
+    const checkDuplicateImages = images => {
+        let map = {}
+
+        for (let x = 0; x < images.length; x++) {
+            let image = images[x]
+            
+            let stringTime = String(image.lastModified);
+            let name = image.name
+            let size = image.size
+            let duplicateString = stringTime + name + size
+
+            if (map[duplicateString]) {
+                return true
+            } else {
+                map[duplicateString] = 1;
+            }
+        }
+
+        return false;
+    }
 
   return (
     <div className="puploadContainer">
@@ -330,7 +355,6 @@ const Pupload = () => {
                             <div>!</div>
                             <span>{dogErrorMessage}</span>
                         </div>
-                        <input type="file" onChange={(e) => setFake(e.target.files)} />
                     </form>
                 </div>
         </div>

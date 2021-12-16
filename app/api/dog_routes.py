@@ -4,6 +4,11 @@ from app.models import db, Dog, Image
 from app.forms import NewDogForm
 from .auth_routes import validation_errors_to_error_messages
 
+import boto3
+import botocore
+from app.config import Config
+from app.aws_s3 import *
+
 dog_routes = Blueprint('dogs', __name__)
 
 # Get all dogs. Used for the browse page
@@ -28,17 +33,34 @@ def add_dog():
         db.session.add(dog)
         db.session.commit()
 
-        image1 = Image(dog_id=dog.id, url=form.data['image1'])
-        image2 = Image(dog_id=dog.id, url=form.data['image2'])
-        image3 = Image(dog_id=dog.id, url=form.data['image3'])
+        # image1 = Image(dog_id=dog.id, url=form.data['image1'])
+        # image2 = Image(dog_id=dog.id, url=form.data['image2'])
+        # image3 = Image(dog_id=dog.id, url=form.data['image3'])
 
-        db.session.add(image1)
-        db.session.add(image2)
-        db.session.add(image3)
-        db.session.commit()
+        # db.session.add(image1)
+        # db.session.add(image2)
+        # db.session.add(image3)
+        # db.session.commit()
 
         return dog.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@dog_routes.route('/images', methods=['POST'])
+@login_required
+def add_dog_images():
+    if "file" not in request.files:
+        return "No user_file key in request.files"
+
+    file = request.files['file']
+    if file:
+        dog_id = request.form.get('dog_id')
+        file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+        file_url = file_url.replace(" ", "+")
+        image = Image(dog_id=dog_id, url=file_url)
+        db.session.add(image)
+        db.session.commit()
+
+    return {'msg': 'ok'}
 
 #Update a dog
 @dog_routes.route('/<int:dogId>', methods=['PUT'])
