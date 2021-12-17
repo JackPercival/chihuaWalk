@@ -62,20 +62,6 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
     if (response.ok) {
       const data = await response.json();
 
-      // for (let x = 0; x < cleanImages.length; x++) {
-
-      //   const form = new FormData();
-      //   form.append('image', cleanImages[x])
-      //   form.append('dog_id', data.id)
-      //   console.log("Inside this if statement")
-
-      //   const res = await fetch('/api/dogs/images', {
-      //     method: "POST",
-      //     body: form
-      //   });
-      // }
-
-
       dispatch(addDog(data))
       return ["Created", data];
     } else if (response.status < 500) {

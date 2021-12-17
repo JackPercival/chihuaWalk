@@ -141,8 +141,6 @@ const EditDog = () => {
                 newFile: newFile
             };
 
-            console.log(obj)
-
             await dispatch(uploadFile(obj));
         }
 
