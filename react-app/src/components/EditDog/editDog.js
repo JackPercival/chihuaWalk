@@ -86,6 +86,8 @@ const EditDog = () => {
         e.preventDefault();
         setDogErrorId("noDogError")
         setDogErrorMessage('')
+        setAddressErrorId("noAddressError")
+        setAddressErrorBackground("classNoAddressError")
 
         if (images.length < 3) {
             setDogErrorId('dogError')
@@ -162,6 +164,13 @@ const EditDog = () => {
         setSearchMinWeight('')
         setSearchMaxWeight('')
     }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
+
+    //Clean up function
+    useEffect(() => {
+        return () => {
+            setShowModal(false)
+        }
+    }, [])
 
   return (
       <>

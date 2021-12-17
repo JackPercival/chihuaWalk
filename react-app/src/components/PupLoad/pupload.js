@@ -45,6 +45,13 @@ const Pupload = () => {
         setSearchMaxWeight('')
     }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
+    //Clean up function
+    useEffect(() => {
+        return () => {
+            setShowModal(false)
+        }
+    }, [])
+
     //Get the longitude/latitude coordinates of the address by calling a google API
     const getCoordinates = async (address) => {
         const data = await dispatch(getGeoCoordinates(address))
