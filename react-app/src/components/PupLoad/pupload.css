@@ -46,6 +46,7 @@
     border-radius: 10px;
     width: fit-content;
     padding: 10px;
+    height: fit-content;
 }
 
 .pupLoadField {
@@ -92,6 +93,7 @@
 
 .fieldSection {
     padding: 5px;
+    height: fit-content;
 }
 
 .fieldSection h3 {

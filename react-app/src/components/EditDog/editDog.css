@@ -2,3 +2,22 @@
     margin: 30px;
 
 }
+
+.editPupForm {
+    display: flex;
+}
+
+.editPupForm #imageUploadSection {
+    margin-top: 0;
+    margin-left: 20px;
+}
+
+@media screen and (max-width: 1300px) {
+    .editPupForm #imageUploadSection {
+        width: 500px;
+    }
+
+    .clickDragHere {
+        width: 466px;
+    }
+  }

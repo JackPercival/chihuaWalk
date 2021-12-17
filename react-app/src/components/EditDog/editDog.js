@@ -84,6 +84,8 @@ const EditDog = () => {
 
     const updateDog = async (e) => {
         e.preventDefault();
+        setDogErrorId("noDogError")
+        setDogErrorMessage('')
 
         if (images.length < 3) {
             setDogErrorId('dogError')
@@ -169,192 +171,194 @@ const EditDog = () => {
                 <div className="puploadFormsContainer">
                     <div >
                         <form className="puploadForm" autoComplete="off" onSubmit={updateDog}>
-                            <div className="formInputSection">
-                                <div className="fieldSection">
-                                    <h3>{`${dog?.name}'s Information`}</h3>
-                                    <div className="pupLoadField">
-                                        <label>Name</label>
-                                        <input
-                                            name='name'
-                                            type="input"
-                                            maxLength="40"
-                                            required
-                                            autoComplete="off"
-                                            value={name}
-                                            onChange={(e) => setName(e.target.value)}
-                                        />
+                            <div className="editPupForm">
+                                <div className="formInputSection">
+                                    <div className="fieldSection">
+                                        <h3>{`${dog?.name}'s Information`}</h3>
+                                        <div className="pupLoadField">
+                                            <label>Name</label>
+                                            <input
+                                                name='name'
+                                                type="input"
+                                                maxLength="40"
+                                                required
+                                                autoComplete="off"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="pupLoadField">
+                                            <label>Breed</label>
+                                            <input
+                                                name='breed'
+                                                type="input"
+                                                maxLength="40"
+                                                required
+                                                autoComplete="off"
+                                                value={breed}
+                                                onChange={(e) => setBreed(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="pupLoadField">
+                                            <label>Weight (lbs)</label>
+                                            <input
+                                                name='weight'
+                                                type="number"
+                                                required
+                                                autoComplete="off"
+                                                min="1"
+                                                max="400"
+                                                value={weight}
+                                                onChange={(e) => setSetWeight(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="pupLoadField">
+                                            <label>Description</label>
+                                            <textarea
+                                                name='description'
+                                                type="input"
+                                                required
+                                                autoComplete="off"
+                                                value={description}
+                                                onChange={(e) => setDescription(e.target.value)}
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="pupLoadField">
-                                        <label>Breed</label>
-                                        <input
-                                            name='breed'
-                                            type="input"
-                                            maxLength="40"
-                                            required
-                                            autoComplete="off"
-                                            value={breed}
-                                            onChange={(e) => setBreed(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="pupLoadField">
-                                        <label>Weight (lbs)</label>
-                                        <input
-                                            name='weight'
-                                            type="number"
-                                            required
-                                            autoComplete="off"
-                                            min="1"
-                                            max="400"
-                                            value={weight}
-                                            onChange={(e) => setSetWeight(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="pupLoadField">
-                                        <label>Description</label>
-                                        <textarea
-                                            name='description'
-                                            type="input"
-                                            required
-                                            autoComplete="off"
-                                            value={description}
-                                            onChange={(e) => setDescription(e.target.value)}
-                                        />
+                                    <div className="fieldSection">
+                                        <h3>Shelter Information</h3>
+                                        <div className="pupLoadField">
+                                            <label>Street Address</label>
+                                            <input
+                                                className={addressErrorBackground}
+                                                name='address'
+                                                type="input"
+                                                maxLength="255"
+                                                required
+                                                autoComplete="off"
+                                                value={address}
+                                                onChange={(e) => setAddress(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="pupLoadField">
+                                            <label>City</label>
+                                            <input
+                                                className={addressErrorBackground}
+                                                name='city'
+                                                type="input"
+                                                required
+                                                maxLength="50"
+                                                autoComplete="off"
+                                                value={city}
+                                                onChange={(e) => setCity(e.target.value)}
+                                            />
+                                        </div>
+                                        <div className="pupLoadField" id="stateSelector">
+                                            <label>State</label>
+                                            <select value={state} onChange={(e) => setState(e.target.value)} className={addressErrorBackground}>
+                                                <option value="AL">Alabama</option>
+                                                <option value="AK">Alaska</option>
+                                                <option value="AZ">Arizona</option>
+                                                <option value="AR">Arkansas</option>
+                                                <option value="CA">California</option>
+                                                <option value="CO">Colorado</option>
+                                                <option value="CT">Connecticut</option>
+                                                <option value="DE">Delaware</option>
+                                                <option value="DC">District Of Columbia</option>
+                                                <option value="FL">Florida</option>
+                                                <option value="GA">Georgia</option>
+                                                <option value="HI">Hawaii</option>
+                                                <option value="ID">Idaho</option>
+                                                <option value="IL">Illinois</option>
+                                                <option value="IN">Indiana</option>
+                                                <option value="IA">Iowa</option>
+                                                <option value="KS">Kansas</option>
+                                                <option value="KY">Kentucky</option>
+                                                <option value="LA">Louisiana</option>
+                                                <option value="ME">Maine</option>
+                                                <option value="MD">Maryland</option>
+                                                <option value="MA">Massachusetts</option>
+                                                <option value="MI">Michigan</option>
+                                                <option value="MN">Minnesota</option>
+                                                <option value="MS">Mississippi</option>
+                                                <option value="MO">Missouri</option>
+                                                <option value="MT">Montana</option>
+                                                <option value="NE">Nebraska</option>
+                                                <option value="NV">Nevada</option>
+                                                <option value="NH">New Hampshire</option>
+                                                <option value="NJ">New Jersey</option>
+                                                <option value="NM">New Mexico</option>
+                                                <option value="NY">New York</option>
+                                                <option value="NC">North Carolina</option>
+                                                <option value="ND">North Dakota</option>
+                                                <option value="OH">Ohio</option>
+                                                <option value="OK">Oklahoma</option>
+                                                <option value="OR">Oregon</option>
+                                                <option value="PA">Pennsylvania</option>
+                                                <option value="RI">Rhode Island</option>
+                                                <option value="SC">South Carolina</option>
+                                                <option value="SD">South Dakota</option>
+                                                <option value="TN">Tennessee</option>
+                                                <option value="TX">Texas</option>
+                                                <option value="UT">Utah</option>
+                                                <option value="VT">Vermont</option>
+                                                <option value="VA">Virginia</option>
+                                                <option value="WA">Washington</option>
+                                                <option value="WV">West Virginia</option>
+                                                <option value="WI">Wisconsin</option>
+                                                <option value="WY">Wyoming</option>
+                                            </select>
+                                        </div>
+                                        <div className="addDogError" id={addressErrorId}>
+                                            <div>!</div>
+                                            <span>Invalid address.</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="fieldSection">
-                                    <h3>Shelter Information</h3>
-                                    <div className="pupLoadField">
-                                        <label>Street Address</label>
-                                        <input
-                                            className={addressErrorBackground}
-                                            name='address'
-                                            type="input"
-                                            maxLength="255"
-                                            required
-                                            autoComplete="off"
-                                            value={address}
-                                            onChange={(e) => setAddress(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="pupLoadField">
-                                        <label>City</label>
-                                        <input
-                                            className={addressErrorBackground}
-                                            name='city'
-                                            type="input"
-                                            required
-                                            maxLength="50"
-                                            autoComplete="off"
-                                            value={city}
-                                            onChange={(e) => setCity(e.target.value)}
-                                        />
-                                    </div>
-                                    <div className="pupLoadField" id="stateSelector">
-                                        <label>State</label>
-                                        <select value={state} onChange={(e) => setState(e.target.value)} className={addressErrorBackground}>
-                                            <option value="AL">Alabama</option>
-                                            <option value="AK">Alaska</option>
-                                            <option value="AZ">Arizona</option>
-                                            <option value="AR">Arkansas</option>
-                                            <option value="CA">California</option>
-                                            <option value="CO">Colorado</option>
-                                            <option value="CT">Connecticut</option>
-                                            <option value="DE">Delaware</option>
-                                            <option value="DC">District Of Columbia</option>
-                                            <option value="FL">Florida</option>
-                                            <option value="GA">Georgia</option>
-                                            <option value="HI">Hawaii</option>
-                                            <option value="ID">Idaho</option>
-                                            <option value="IL">Illinois</option>
-                                            <option value="IN">Indiana</option>
-                                            <option value="IA">Iowa</option>
-                                            <option value="KS">Kansas</option>
-                                            <option value="KY">Kentucky</option>
-                                            <option value="LA">Louisiana</option>
-                                            <option value="ME">Maine</option>
-                                            <option value="MD">Maryland</option>
-                                            <option value="MA">Massachusetts</option>
-                                            <option value="MI">Michigan</option>
-                                            <option value="MN">Minnesota</option>
-                                            <option value="MS">Mississippi</option>
-                                            <option value="MO">Missouri</option>
-                                            <option value="MT">Montana</option>
-                                            <option value="NE">Nebraska</option>
-                                            <option value="NV">Nevada</option>
-                                            <option value="NH">New Hampshire</option>
-                                            <option value="NJ">New Jersey</option>
-                                            <option value="NM">New Mexico</option>
-                                            <option value="NY">New York</option>
-                                            <option value="NC">North Carolina</option>
-                                            <option value="ND">North Dakota</option>
-                                            <option value="OH">Ohio</option>
-                                            <option value="OK">Oklahoma</option>
-                                            <option value="OR">Oregon</option>
-                                            <option value="PA">Pennsylvania</option>
-                                            <option value="RI">Rhode Island</option>
-                                            <option value="SC">South Carolina</option>
-                                            <option value="SD">South Dakota</option>
-                                            <option value="TN">Tennessee</option>
-                                            <option value="TX">Texas</option>
-                                            <option value="UT">Utah</option>
-                                            <option value="VT">Vermont</option>
-                                            <option value="VA">Virginia</option>
-                                            <option value="WA">Washington</option>
-                                            <option value="WV">West Virginia</option>
-                                            <option value="WI">Wisconsin</option>
-                                            <option value="WY">Wyoming</option>
-                                        </select>
-                                    </div>
-                                    <div className="addDogError" id={addressErrorId}>
-                                        <div>!</div>
-                                        <span>Invalid address.</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="formInputSection" id="imageUploadSection">
-                                <div className="fieldSection">
-                                    <h3 className="imagesHeader">Images</h3>
-                                    <div className="imageUploadContainer">
-                                        <ImageUploading
-                                            multiple
-                                            value={images}
-                                            onChange={(imageList) => setImages(imageList)}
-                                            maxNumber={20}
-                                            dataURLKey="data_url"
-                                            acceptType={['jpg','png', 'jpeg']}>
-                                            {({
-                                            imageList,
-                                            onImageUpload,
-                                            onImageRemoveAll,
-                                            onImageUpdate,
-                                            onImageRemove,
-                                            isDragging,
-                                            dragProps,
-                                            }) => (
-                                            <div className="upload__image-wrapper">
-                                                <div
-                                                    style={isDragging ? { color: 'rgb(192, 53, 22)' } : undefined}
-                                                    onClick={onImageUpload}
-                                                    {...dragProps}
-                                                    className="clickDragHere"
-                                                >
-                                                Add or Drag Images Here
-                                                </div>
-                                                {/* <div onClick={onImageRemoveAll}>Remove all images</div> */}
-                                                <div className="uploadedImagesContainer">
-                                                    {imageList.map((image, index) => (
-                                                    <div key={index}>
-                                                        <img src={image['data_url']} alt="" height="230" />
-                                                        <div className="editPhotoButtons">
-                                                            <div className="updatePhoto" onClick={() => onImageUpdate(index)}>Update</div>
-                                                            <div className="updatePhoto removePhoto" onClick={() => onImageRemove(index)}>Remove</div>
-                                                        </div>
+                                <div className="formInputSection" id="imageUploadSection">
+                                    <div className="fieldSection">
+                                        <h3 className="imagesHeader">Images</h3>
+                                        <div className="imageUploadContainer">
+                                            <ImageUploading
+                                                multiple
+                                                value={images}
+                                                onChange={(imageList) => setImages(imageList)}
+                                                maxNumber={20}
+                                                dataURLKey="data_url"
+                                                acceptType={['jpg','png', 'jpeg']}>
+                                                {({
+                                                imageList,
+                                                onImageUpload,
+                                                onImageRemoveAll,
+                                                onImageUpdate,
+                                                onImageRemove,
+                                                isDragging,
+                                                dragProps,
+                                                }) => (
+                                                <div className="upload__image-wrapper">
+                                                    <div
+                                                        style={isDragging ? { color: 'rgb(192, 53, 22)' } : undefined}
+                                                        onClick={onImageUpload}
+                                                        {...dragProps}
+                                                        className="clickDragHere"
+                                                    >
+                                                    Add or Drag Images Here
                                                     </div>
-                                                    ))}
+                                                    {/* <div onClick={onImageRemoveAll}>Remove all images</div> */}
+                                                    <div className="uploadedImagesContainer">
+                                                        {imageList.map((image, index) => (
+                                                        <div key={index}>
+                                                            <img src={image['data_url']} alt="" height="230" />
+                                                            <div className="editPhotoButtons">
+                                                                <div className="updatePhoto" onClick={() => onImageUpdate(index)}>Update</div>
+                                                                <div className="updatePhoto removePhoto" onClick={() => onImageRemove(index)}>Remove</div>
+                                                            </div>
+                                                        </div>
+                                                        ))}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            )}
-                                        </ImageUploading>
+                                                )}
+                                            </ImageUploading>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
