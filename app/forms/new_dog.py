@@ -14,6 +14,3 @@ class NewDogForm(FlaskForm):
     country = StringField("country", validators=[DataRequired()])
     latitude = DecimalField("latitude", validators=[DataRequired()])
     longitude = DecimalField("longitude", validators=[DataRequired()])
-    image1 = StringField("image1", validators=[DataRequired()])
-    image2 = StringField("image2", validators=[DataRequired()])
-    image3 = StringField("image3", validators=[DataRequired()])

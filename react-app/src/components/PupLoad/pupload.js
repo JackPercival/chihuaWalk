@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { useSearch } from '../context/SearchContext';
-import { addNewDog } from '../../store/dog';
+import { addNewDog, uploadFile } from '../../store/dog';
 import { getGeoCoordinates } from '../../store/map';
+import ImageUploading from 'react-images-uploading';
 
 import './pupload.css'
 
@@ -20,13 +21,13 @@ const Pupload = () => {
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
-    const [image1, setImage1] = useState('');
-    const [image2, setImage2] = useState('');
-    const [image3, setImage3] = useState('');
     const [addressErrorId, setAddressErrorId] = useState("noAddressError")
     const [addressErrorBackground, setAddressErrorBackground] = useState('classNoAddressError')
     const [dogErrorId, setDogErrorId] = useState("noDogError")
     const [dogErrorMessage, setDogErrorMessage] = useState('')
+    const [showModal, setShowModal]= useState(false)
+
+    const [images, setImages] = useState('')
 
     const {setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight} = useSearch();
 
@@ -44,49 +45,47 @@ const Pupload = () => {
         setSearchMaxWeight('')
     }, [setShowSearch, setSearchCity, setSearchState, setSearchBreed, setSearchMinWeight, setSearchMaxWeight])
 
+    //Clean up function
+    useEffect(() => {
+        return () => {
+            setShowModal(false)
+        }
+    }, [])
+
     //Get the longitude/latitude coordinates of the address by calling a google API
     const getCoordinates = async (address) => {
         const data = await dispatch(getGeoCoordinates(address))
         return data;
     }
 
-    const validateURL = (imageArray) => {
-        let validImageUrl = true;
-        const regex = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/
-        for (let i = 0; i < imageArray.length; i++) {
-            if (regex.test(imageArray[i]) === false) {
-                validImageUrl = false;
-                break;
-            }
-        }
-
-        return validImageUrl
-    }
-
     const addDog = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
-        if (!image1 || !image2 || !image3 ) {
+        if (images.length < 3) {
             setDogErrorId('dogError')
-            setDogErrorMessage("Please fill out all fields.")
+            setDogErrorMessage("Please add a minumum of 3 images.")
             return;
         }
 
-        const validImages = validateURL([image1, image2, image3])
-        if (!validImages) {
-            setDogErrorId('dogError')
-            setDogErrorMessage("Please add valid Image URLs.")
-            return;
-        }
+        let cleanImages = images.map(image => image.file)
+
+        //Check for duplicate images
+        // let duplicateImages = checkDuplicateImages(cleanImages)
+        // if (duplicateImages) {
+        //     setDogErrorId('dogError')
+        //     setDogErrorMessage("Please remove duplicate images.")
+        //     return;
+        // }
 
         const fullAddress = `${address.trim()}, ${city.trim()}, ${state}`
 
         const realAddress = await getCoordinates(fullAddress)
 
+
         if (realAddress.coordinates.length === 1 && realAddress.coordinates[0].geometry.location_type !== "APPROXIMATE") {
             const latitude = realAddress.coordinates[0].geometry.location.lat
             const longitude = realAddress.coordinates[0].geometry.location.lng
-            const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, "USA", latitude, longitude, image1, image2, image3));
+            const data = await dispatch(addNewDog(user?.id, name, breed, description, weight, address, city, state, "USA", latitude, longitude));
 
             if (data[0] === "Error") {
                 setDogErrorId("dogError")
@@ -94,15 +93,33 @@ const Pupload = () => {
                 return;
             } else {
                 // return <Redirect to={`/dogs/${data.id}`} />
-                history.push(`/dogs/${data[1].id}`)
+                await addImages(cleanImages, data[1].id)
+                // history.push(`/dogs/${data[1].id}`)
             }
         } else {
             setAddressErrorId("addressError")
             setAddressErrorBackground("classYesAddressError")
+            setDogErrorMessage("Invalid Address")
+            setDogErrorId("dogError")
             return;
         }
     }
 
+    const addImages = async (images, dog_id) => {
+        setShowModal(true)
+        for (let x = 0; x < images.length; x++) {
+            const obj = {
+                file: images[x],
+                dog_id: dog_id,
+                newFile: true
+              };
+
+              await dispatch(uploadFile(obj));
+        }
+
+        history.push(`/dogs/${dog_id}`)
+        setShowModal(false)
+    }
 
     const clearForm = (e) => {
         e.preventDefault();
@@ -113,15 +130,33 @@ const Pupload = () => {
         setAddress('')
         setCity('')
         setState('')
-        setImage1('')
-        setImage2('')
-        setImage3('')
+        setImages('')
         setAddressErrorId('noAddressError')
         setAddressErrorBackground('classNoAddressError')
         setDogErrorId('noDogError')
         setDogErrorMessage('')
     }
 
+    // const checkDuplicateImages = images => {
+    //     let map = {}
+
+    //     for (let x = 0; x < images.length; x++) {
+    //         let image = images[x]
+
+    //         let stringTime = String(image.lastModified);
+    //         let name = image.name
+    //         let size = image.size
+    //         let duplicateString = stringTime + name + size
+
+    //         if (map[duplicateString]) {
+    //             return true
+    //         } else {
+    //             map[duplicateString] = 1;
+    //         }
+    //     }
+
+    //     return false;
+    // }
 
   return (
     <div className="puploadContainer">
@@ -181,41 +216,6 @@ const Pupload = () => {
                                         value={description}
                                         onChange={(e) => setDescription(e.target.value)}
                                     />
-                                </div>
-                                <div className="pupLoadField">
-                                    <label>Images (URL)</label>
-                                    <input
-                                        name='breed'
-                                        type="input"
-                                        required
-                                        autoComplete="off"
-                                        value={image1}
-                                        onChange={(e) => setImage1(e.target.value)}
-                                    />
-                                </div>
-                                <div className="pupLoadField">
-                                    <input
-                                        name='breed'
-                                        type="input"
-                                        required
-                                        autoComplete="off"
-                                        value={image2}
-                                        onChange={(e) => setImage2(e.target.value)}
-                                    />
-                                </div>
-                                <div className="pupLoadField">
-                                    <input
-                                        name='breed'
-                                        type="input"
-                                        required
-                                        autoComplete="off"
-                                        value={image3}
-                                        onChange={(e) => setImage3(e.target.value)}
-                                    />
-                                </div>
-                                <div className="addDogError" id={dogErrorId}>
-                                    <div>!</div>
-                                    <span>{dogErrorMessage}</span>
                                 </div>
                             </div>
                             <div className="fieldSection">
@@ -306,19 +306,75 @@ const Pupload = () => {
                                     <div>!</div>
                                     <span>Invalid address.</span>
                                 </div>
-                                <img className="dogHoldingLeash" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637196506/Capstone/dogPosting_tzdtv1.png" alt="Dog Holding Leash" />
+                            </div>
+                        </div>
+                        <div className="formInputSection" id="imageUploadSection">
+                            <div className="fieldSection">
+                                <h3 className="imagesHeader">Images</h3>
+                                <div className="imageUploadContainer">
+                                    <ImageUploading
+                                        multiple
+                                        value={images}
+                                        onChange={(imageList) => setImages(imageList)}
+                                        maxNumber={20}
+                                        dataURLKey="data_url"
+                                        acceptType={['jpg','png', 'jpeg']}>
+                                        {({
+                                        imageList,
+                                        onImageUpload,
+                                        onImageRemoveAll,
+                                        onImageUpdate,
+                                        onImageRemove,
+                                        isDragging,
+                                        dragProps,
+                                        }) => (
+                                        <div className="upload__image-wrapper">
+                                            <div
+                                                style={isDragging ? { color: 'rgb(192, 53, 22)' } : undefined}
+                                                onClick={onImageUpload}
+                                                {...dragProps}
+                                                className="clickDragHere"
+                                            >
+                                            Add or Drag Images Here
+                                            </div>
+                                            {/* <div onClick={onImageRemoveAll}>Remove all images</div> */}
+                                            <div className="uploadedImagesContainer">
+                                                {imageList.map((image, index) => (
+                                                    <div key={index}>
+                                                        <img src={image['data_url']} alt="" height="230" />
+                                                        <div className="editPhotoButtons">
+                                                            <div className="updatePhoto" onClick={() => onImageUpdate(index)}>Update</div>
+                                                            <div className="updatePhoto removePhoto" onClick={() => onImageRemove(index)}>Remove</div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+                                        )}
+                                    </ImageUploading>
+                                </div>
                             </div>
                         </div>
                         <div className="puploadButtons">
                             <button type="submit">Add Dog</button>
                             <button className="formButton" id="clearPuploadForm" onClick={clearForm}>Clear Form</button>
                         </div>
+                        <div className="addDogError" id={dogErrorId}>
+                            <div>!</div>
+                            <span>{dogErrorMessage}</span>
+                        </div>
                     </form>
                 </div>
         </div>
 
         </div>
-
+        {showModal && (
+            <div className="loginModal">
+                <div>
+                    <img className="fetchGif" src="https://res.cloudinary.com/dt8q1ngxj/image/upload/v1637790962/Capstone/loadingGif_hgflu6.gif" alt="fetching gif"/>
+                </div>
+            </div>
+        )}
     </div>
   );
 }

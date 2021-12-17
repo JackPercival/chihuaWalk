@@ -38,7 +38,7 @@ export const loadAllDogs = () => async (dispatch) => {
     }
 }
 
-export const addNewDog = (user_id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3) => async (dispatch) => {
+export const addNewDog = (user_id, name, breed, description, weight, address, city, state, country, latitude, longitude) => async (dispatch) => {
     const response = await fetch(`/api/dogs/`, {
       method: 'POST',
       headers: {
@@ -56,14 +56,12 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
         country,
         latitude,
         longitude,
-        image1,
-        image2,
-        image3,
       }),
     });
 
     if (response.ok) {
       const data = await response.json();
+
       dispatch(addDog(data))
       return ["Created", data];
     } else if (response.status < 500) {
@@ -75,6 +73,25 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
       alert('An error occurred. Please refresh the page and try again.')
       return["Error"]
     }
+}
+
+export const uploadFile = (fileForm) => async (dispatch) => {
+  const {
+      dog_id,
+      file,
+      newFile
+  } = fileForm
+
+  const form = new FormData();
+  form.append("file", file);
+  form.append("dog_id", dog_id);
+  form.append("newFile", newFile);
+
+  const res = await fetch("/api/dogs/images", {
+    method: "POST",
+    body: form,
+  });
+
 }
 
 export const updatedExistingDog = (dog_id, user_id, name, breed, description, weight, address, city, state, country, latitude, longitude, image1, image2, image3) => async (dispatch) => {

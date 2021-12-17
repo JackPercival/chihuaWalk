@@ -39,7 +39,7 @@ function SingleDog() {
     const [tomorrow, setTomorrow] = useState(null)
 
     const [photoIndex, setPhotoIndex] = useState(0)
-    const [photoObject, setPhotoObject] = useState(false)
+    const [photoObject, setPhotoObject] = useState([])
     const [showPhotoModal, setShowPhotoModal] = useState(false)
 
     useEffect(() => {
@@ -126,24 +126,34 @@ function SingleDog() {
     }
 
     const handlePhotoModal = photoIndex => {
-        if (!photoObject) {
-            const dogImages = [
-                {
-                    'photo' : dog?.images[0],
+        if (!photoObject.length) {
+            const dogImages = []
+
+            for (let x = 0; x < dog?.images.length; x++) {
+                dogImages.push({
+                    'photo' : dog?.images[x],
                     'caption' : dog?.name,
                     'subcaption' : `${dog?.city}, ${dog?.state}`
-                },
-                {
-                    'photo' : dog?.images[1],
-                    'caption' : dog?.name,
-                    'subcaption' : `${dog?.city}, ${dog?.state}`
-                },
-                {
-                    'photo' : dog?.images[2],
-                    'caption' : dog?.name,
-                    'subcaption' : `${dog?.city}, ${dog?.state}`
-                }
-            ]
+                })
+            }
+
+            // const dogImages = [
+            //     {
+            //         'photo' : dog?.images[0],
+            //         'caption' : dog?.name,
+            //         'subcaption' : `${dog?.city}, ${dog?.state}`
+            //     },
+            //     {
+            //         'photo' : dog?.images[1],
+            //         'caption' : dog?.name,
+            //         'subcaption' : `${dog?.city}, ${dog?.state}`
+            //     },
+            //     {
+            //         'photo' : dog?.images[2],
+            //         'caption' : dog?.name,
+            //         'subcaption' : `${dog?.city}, ${dog?.state}`
+            //     }
+            // ]
             setPhotoObject(dogImages)
         }
         setPhotoIndex(photoIndex)
@@ -265,7 +275,7 @@ function SingleDog() {
                     <Reviews user={user} dog={dog} reviews={reviews}/>
                     <div className="selectADate" id="wherePickUpHeader">{`Where you'll pick up ${dog?.name}`}</div>
                     <div className="singleDogMap">
-                        <MapContainer zoom={11} dogs={[dog]}/>
+                        {/* <MapContainer zoom={11} dogs={[dog]}/> */}
                     </div>
                 </div>
                 {showSucces && (
