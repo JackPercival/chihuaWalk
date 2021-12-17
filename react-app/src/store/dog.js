@@ -92,12 +92,14 @@ export const addNewDog = (user_id, name, breed, description, weight, address, ci
 export const uploadFile = (fileForm) => async (dispatch) => {
   const {
       dog_id,
-      file
+      file,
+      newFile
   } = fileForm
 
   const form = new FormData();
   form.append("file", file);
   form.append("dog_id", dog_id);
+  form.append("newFile", newFile);
 
   const res = await fetch("/api/dogs/images", {
     method: "POST",

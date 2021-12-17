@@ -63,13 +63,12 @@ const Pupload = () => {
         let cleanImages = images.map(image => image.file)
 
         //Check for duplicate images
-        let duplicateImages = checkDuplicateImages(cleanImages)
-        console.log(duplicateImages)
-        if (duplicateImages) {
-            setDogErrorId('dogError')
-            setDogErrorMessage("Please remove duplicate images.")
-            return;
-        }
+        // let duplicateImages = checkDuplicateImages(cleanImages)
+        // if (duplicateImages) {
+        //     setDogErrorId('dogError')
+        //     setDogErrorMessage("Please remove duplicate images.")
+        //     return;
+        // }
 
         const fullAddress = `${address.trim()}, ${city.trim()}, ${state}`
 
@@ -105,6 +104,7 @@ const Pupload = () => {
             const obj = {
                 file: images[x],
                 dog_id: dog_id,
+                newFile: true
               };
 
               await dispatch(uploadFile(obj));
@@ -130,26 +130,26 @@ const Pupload = () => {
         setDogErrorMessage('')
     }
 
-    const checkDuplicateImages = images => {
-        let map = {}
+    // const checkDuplicateImages = images => {
+    //     let map = {}
 
-        for (let x = 0; x < images.length; x++) {
-            let image = images[x]
+    //     for (let x = 0; x < images.length; x++) {
+    //         let image = images[x]
 
-            let stringTime = String(image.lastModified);
-            let name = image.name
-            let size = image.size
-            let duplicateString = stringTime + name + size
+    //         let stringTime = String(image.lastModified);
+    //         let name = image.name
+    //         let size = image.size
+    //         let duplicateString = stringTime + name + size
 
-            if (map[duplicateString]) {
-                return true
-            } else {
-                map[duplicateString] = 1;
-            }
-        }
+    //         if (map[duplicateString]) {
+    //             return true
+    //         } else {
+    //             map[duplicateString] = 1;
+    //         }
+    //     }
 
-        return false;
-    }
+    //     return false;
+    // }
 
   return (
     <div className="puploadContainer">
@@ -333,13 +333,13 @@ const Pupload = () => {
                                             {/* <div onClick={onImageRemoveAll}>Remove all images</div> */}
                                             <div className="uploadedImagesContainer">
                                                 {imageList.map((image, index) => (
-                                                <div key={index}>
-                                                    <img src={image['data_url']} alt="" height="230" />
-                                                    <div className="editPhotoButtons">
-                                                        <div className="updatePhoto" onClick={() => onImageUpdate(index)}>Update</div>
-                                                        <div className="updatePhoto removePhoto" onClick={() => onImageRemove(index)}>Remove</div>
+                                                    <div key={index}>
+                                                        <img src={image['data_url']} alt="" height="230" />
+                                                        <div className="editPhotoButtons">
+                                                            <div className="updatePhoto" onClick={() => onImageUpdate(index)}>Update</div>
+                                                            <div className="updatePhoto removePhoto" onClick={() => onImageRemove(index)}>Remove</div>
+                                                        </div>
                                                     </div>
-                                                </div>
                                                 ))}
                                             </div>
                                         </div>

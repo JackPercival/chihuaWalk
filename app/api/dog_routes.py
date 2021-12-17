@@ -48,15 +48,26 @@ def add_dog():
 @dog_routes.route('/images', methods=['POST'])
 @login_required
 def add_dog_images():
-    if "file" not in request.files:
-        return "No user_file key in request.files"
+    newFile = request.form.get('newFile')
+    if newFile == 'true':
+        if "file" not in request.files:
+            return "No user_file key in request.files"
 
-    file = request.files['file']
-    if file:
+        file = request.files['file']
+        if file:
+            dog_id = request.form.get('dog_id')
+            file_url = upload_file_to_s3(file, Config.S3_BUCKET)
+            file_url = file_url.replace(" ", "+")
+            image = Image(dog_id=dog_id, url=file_url)
+            db.session.add(image)
+            db.session.commit()
+    if newFile == 'false':
+        print("Existing file*****************************")
         dog_id = request.form.get('dog_id')
-        file_url = upload_file_to_s3(file, Config.S3_BUCKET)
-        file_url = file_url.replace(" ", "+")
-        image = Image(dog_id=dog_id, url=file_url)
+        url = request.form.get('file')
+        print(dog_id)
+        print(url)
+        image = Image(dog_id=dog_id, url=url)
         db.session.add(image)
         db.session.commit()
 
@@ -87,13 +98,13 @@ def update_dog(dogId):
             db.session.delete(image)
         db.session.commit()
 
-        image1 = Image(dog_id=dogId, url=form.data['image1'])
-        image2 = Image(dog_id=dogId, url=form.data['image2'])
-        image3 = Image(dog_id=dogId, url=form.data['image3'])
+        # image1 = Image(dog_id=dogId, url=form.data['image1'])
+        # image2 = Image(dog_id=dogId, url=form.data['image2'])
+        # image3 = Image(dog_id=dogId, url=form.data['image3'])
 
-        db.session.add(image1)
-        db.session.add(image2)
-        db.session.add(image3)
+        # db.session.add(image1)
+        # db.session.add(image2)
+        # db.session.add(image3)
 
         db.session.commit()
         return dog.to_dict()
