@@ -5,8 +5,6 @@
 
 ChihuaWalk is a full stack application that allows users to browse dogs, review dogs, and schedule walks with them. I built the initial application in one week, and it's a rough clone of AirBnb, but focused on dogs intead of locations. All users can browse dogs on the website and read information about them, as well as search for dogs and view them on a Google Map. Logged in users can upload dogs, add and edit reviews, and schedule walks with other dogs. 
 
-Visit the site at [https://chihuawalk.herokuapp.com/](https://chihuawalk.herokuapp.com/)
-
 ### Libraries and technologies
 ChihuaWalk uses:
 
@@ -34,15 +32,15 @@ ChihuaWalk uses several technologies on the front end to display and render data
 
 #### React
 
-ChihuaWalk is a React application. All display logic is determined by React libraries. Some packages used include React-Slideshow, React-Calendar, and @react-google-maps/api. 
+ChihuaWalk is a React application. All display logic is determined by React libraries. Some packages used include React-Slideshow, React-Calendar, and @react-google-maps/api.
 
 #### Redux
 
-ChihuaWalk uses Redux to display and update state throughout the website. Redux is used with thunks to make API calls to the backend server to request and update data. 
+ChihuaWalk uses Redux to display and update state throughout the website. Redux is used with thunks to make API calls to the backend server to request and update data.
 
 #### Google Maps
 
-ChihuaWalk implements the use of Google Maps to display dog locations - both for a single dog and a group of dogs - on an interactable Google Map.  
+ChihuaWalk implements the use of Google Maps to display dog locations - both for a single dog and a group of dogs - on an interactable Google Map.
 
 
 ## Backend Overview
@@ -74,7 +72,7 @@ The Google Geocoder API is used whenever a user uploads or edits a dog posting. 
 ## Workflow Examples
 
 #### Browsing Dogs
-On the Browse page, all dogs are displayed using the React-Slideshow components to easily view multiple pictures of each dog. Dogs can be sorted by several categories, including distance from the current user. 
+On the Browse page, all dogs are displayed using the React-Slideshow components to easily view multiple pictures of each dog. Dogs can be sorted by several categories, including distance from the current user.
 
 ![Browse Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/v1638500011/Capstone/browse_bed6uo.png)
 
@@ -86,9 +84,9 @@ On an individual dog page, you can view photos and information about the dog, re
 #### Searching
 With the search feature, users can search on multiple, optional parameters, and results will be displayed on a Google Map.
 
-![Search Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/v1638495447/Capstone/search_ns2npu.png) 
+![Search Page](https://res.cloudinary.com/dt8q1ngxj/image/upload/v1638495447/Capstone/search_ns2npu.png)
 
 
 ## Conclusion and What's Next
 
-Overall, I'm pretty happy with the overall look and function of ChihuaWalk. For future enhancements, I'd like to allow direct photo upload for dog images and user profile pictures. I would also like to implement live messaging between users and dog owners. I also want to implement creating and updating actual dog shelters. The site's main purpose is to help shelter dogs get adopted, so being able to have a dedicated shelter section would increase both shelter and dog visibility. Finally, I'd love to integrate Petfinder APIs into the site's functionality, so the application can display real dogs that are currently available for adoption, along with links to their petfinder bio. 
+Overall, I'm pretty happy with the overall look and function of ChihuaWalk. For future enhancements, I'd like to allow direct photo upload for dog images and user profile pictures. I would also like to implement live messaging between users and dog owners. I also want to implement creating and updating actual dog shelters. The site's main purpose is to help shelter dogs get adopted, so being able to have a dedicated shelter section would increase both shelter and dog visibility. Finally, I'd love to integrate Petfinder APIs into the site's functionality, so the application can display real dogs that are currently available for adoption, along with links to their petfinder bio.
